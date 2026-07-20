@@ -3,7 +3,7 @@
 
 export const SITE = {
   name: "Jesus Festival",
-  url: "https://jesusfestival.app",
+  url: "https://www.jesusfestival.app",
   description:
     "The official Jesus Festival app. Hamilton 2026 — September 4–5 at Gage Park. Celebration. Worship. Unity. More than a festival — a movement.",
   eventDatesISO: "2026-09-04T18:30:00-04:00", // Friday 6:30pm Pure Worship Night
@@ -199,6 +199,7 @@ export const DISCIPLESHIP = {
     { name: "Transformation Centre", href: "https://transformationcentre.ca/" },
   ],
   ministries: [
+    { name: "Thy Kingdom Network", href: "https://www.thykingdom.net" },
     { name: "Love on Hamilton", href: "https://loveonhamilton.com/" },
     { name: "e3 Canada", href: "https://e3ministry.ca/" },
     { name: "Sons of Scripture", href: "https://sonsofscripture.com/" },
@@ -252,13 +253,43 @@ export const LINKS = {
   facebookEvent: "https://www.facebook.com/share/1B22HVTfin/",
   volunteer: "https://www.jesusfestival.ca/volunteer",
   sponsor: "https://www.jesusfestival.ca/sponsors",
-  donate: "https://www.jesusfestival.ca/donate",
+  donate: "https://e3ministry.ca/donate/Jesus-Festival",
   eventDetails: "https://www.jesusfestival.ca/event-details",
   directions: "https://www.google.com/maps/place/Gage+Park/@43.2413,-79.8132,15z",
   community:
     "https://thykingdom.app.clientclub.net/communities/groups/jesus-festival/home?invite=69c06d5b596281f3ec6a5fda",
   movement: "https://www.jesusfestivalmovement.com/",
 };
+
+// Donation / sowing into the movement.
+export const DONATE = {
+  eyebrow: "Sow into good ground",
+  title: "Give to Jesus Festival",
+  href: "https://e3ministry.ca/donate/Jesus-Festival",
+  intro:
+    "Every gift helps take the Gospel to the city — worship nights, outreach, baptisms, and a free festival where thousands meet Jesus. When you give, you're not just funding an event; you're sowing into a movement.",
+  receipt: "You'll receive a charitable tax receipt for your gift through our ministry partner e3 Canada.",
+  scripture: {
+    text: "Whoever sows generously will also reap generously. God loves a cheerful giver.",
+    ref: "2 Corinthians 9:6–7",
+  },
+  impact: [
+    { emoji: "🎤", text: "Free worship & Gospel nights for the whole city" },
+    { emoji: "💧", text: "Baptisms & new life celebrated publicly" },
+    { emoji: "🤝", text: "Year-round outreach & discipleship" },
+    { emoji: "🎡", text: "A free family festival — no ticket needed" },
+  ],
+};
+
+// Teaser: features on the way.
+export const COMING_SOON = [
+  { emoji: "🗺️", title: "Live Festival Map", text: "Find stages, food, baptisms & the Kids Zone in real time." },
+  { emoji: "📸", title: "Photo Wall", text: "Share your festival moments with the whole community." },
+  { emoji: "🙏", title: "Prayer Wall", text: "Post & pray for requests across the city together." },
+  { emoji: "🎟️", title: "Digital Check-In", text: "Save your spot and get personal schedule reminders." },
+  { emoji: "📱", title: "QR Missions", text: "Scan around the park to unlock special Revive the City missions." },
+  { emoji: "🔔", title: "Push Notifications", text: "Instant alerts for artist reveals & surprise moments." },
+];
 
 export const INTERESTS = [
   { id: "updates", label: "Event Updates" },

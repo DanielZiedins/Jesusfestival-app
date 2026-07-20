@@ -38,27 +38,46 @@ export const metadata: Metadata = {
     title: "Jesus Festival",
   },
   formatDetection: { telephone: false },
+  alternates: { canonical: SITE.url },
+  category: "events",
+  authors: [{ name: "Jesus Festival" }],
+  creator: "Jesus Festival",
+  publisher: "Jesus Festival",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
   keywords: [
     "Jesus Festival",
     "Jesus Festival app",
     "Jesus Festival Hamilton",
-    "Gage Park",
-    "Christian festival",
-    "worship festival",
-    "Hamilton 2026",
+    "Jesus Festival 2026",
+    "Gage Park Hamilton",
+    "Christian festival Hamilton",
+    "worship festival Ontario",
+    "free family festival Hamilton",
+    "Hamilton worship night",
+    "September 2026 Hamilton events",
+    "Ant Lee",
+    "Open Heaven worship",
+    "baptism Hamilton",
+    "church event Hamilton",
   ],
   openGraph: {
     type: "website",
     locale: "en_CA",
     url: SITE.url,
     siteName: SITE.name,
-    title: "Jesus Festival — Hamilton 2026",
+    title: "Jesus Festival — Hamilton 2026 · Sept 4–5 · Gage Park",
     description: SITE.description,
+    images: [{ url: "/brand/banner.png", width: 1200, height: 600, alt: "Jesus Festival — Love God. Love People. Change the World." }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Jesus Festival — Hamilton 2026",
     description: SITE.description,
+    images: ["/brand/banner.png"],
   },
   icons: {
     icon: [
@@ -69,6 +88,43 @@ export const metadata: Metadata = {
   },
 };
 
+const EVENT_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: "Jesus Festival Hamilton 2026",
+  startDate: "2026-09-04T18:00:00-04:00",
+  endDate: "2026-09-05T18:00:00-04:00",
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  description: SITE.description,
+  image: [`${SITE.url}/brand/banner.png`],
+  location: {
+    "@type": "Place",
+    name: "Gage Park",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "1000 Main St E",
+      addressLocality: "Hamilton",
+      addressRegion: "ON",
+      postalCode: "L8M 1N2",
+      addressCountry: "CA",
+    },
+  },
+  organizer: { "@type": "Organization", name: "Jesus Festival", url: "https://www.jesusfestival.ca" },
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "CAD",
+    availability: "https://schema.org/InStock",
+    url: SITE.url,
+    validFrom: "2026-01-01",
+  },
+  performer: [
+    { "@type": "MusicGroup", name: "Open Heaven" },
+    { "@type": "PerformingGroup", name: "Ant Lee" },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -76,7 +132,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${display.variable} ${sans.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://d2xsxph8kpxj0f.cloudfront.net" crossOrigin="" />
+        <link rel="preconnect" href="https://www.jesusfestival.ca" />
+        <link rel="dns-prefetch" href="https://vmpkiwfvnlzraabtjkig.supabase.co" />
+      </head>
       <body className="min-h-screen bg-ink antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(EVENT_JSONLD) }}
+        />
         {children}
         <script
           dangerouslySetInnerHTML={{

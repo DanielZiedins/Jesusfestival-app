@@ -14,6 +14,8 @@ import {
   LINKS,
   MOMENTS,
   SCRIPTURES,
+  COMING_SOON,
+  DONATE,
 } from "@/lib/content";
 import Countdown from "@/components/Countdown";
 import Reveal, { Eyebrow } from "@/components/Reveal";
@@ -370,6 +372,54 @@ export default function HomeScreen({ go }: { go: (t: TabId) => void }) {
             <FlameIcon width={17} height={17} /> See the Movement <ArrowRight width={16} height={16} />
           </button>
         </Reveal>
+      </section>
+
+      {/* ===== GIVE ===== */}
+      <section className="mt-14 px-4">
+        <Reveal className="mx-auto max-w-md">
+          <a
+            href={DONATE.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative flex items-center gap-4 overflow-hidden rounded-2xl border border-gold/25 bg-gradient-to-br from-gold/12 to-transparent p-4 active:scale-[0.99]"
+          >
+            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-gold-400 to-gold-600 text-navy-950">
+              <Heart width={22} height={22} />
+            </div>
+            <div className="min-w-0 flex-1">
+              <h3 className="font-display text-base font-bold text-white">Sow into good ground</h3>
+              <p className="mt-0.5 text-[13px] leading-snug text-white/60">
+                Help take the Gospel to the city. Give a gift & receive a tax receipt.
+              </p>
+            </div>
+            <ArrowRight width={18} height={18} className="shrink-0 text-gold-400" />
+          </a>
+        </Reveal>
+      </section>
+
+      {/* ===== COMING SOON ===== */}
+      <section className="mt-14 px-4">
+        <Reveal className="mb-4 text-center">
+          <Eyebrow>This is just the beginning</Eyebrow>
+          <h2 className="mt-2 font-display text-3xl font-bold text-white">More is coming 🚀</h2>
+          <p className="mx-auto mt-2 max-w-xs text-sm text-white/60">
+            We&apos;re building something special. Here&apos;s a peek at what&apos;s on the way — stay tuned!
+          </p>
+        </Reveal>
+        <div className="mx-auto grid max-w-md grid-cols-2 gap-3">
+          {COMING_SOON.map((f, i) => (
+            <Reveal key={f.title} delay={i * 0.05}>
+              <div className="relative h-full overflow-hidden rounded-2xl border border-white/8 bg-white/[0.04] p-4">
+                <span className="absolute right-2 top-2 rounded-full bg-purple-500/20 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-purple-200">
+                  Soon
+                </span>
+                <div className="text-2xl">{f.emoji}</div>
+                <h3 className="mt-2 font-display text-[15px] font-bold text-white">{f.title}</h3>
+                <p className="mt-1 text-[12px] leading-snug text-white/55">{f.text}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </section>
 
       {/* ===== RECAP CTA ===== */}

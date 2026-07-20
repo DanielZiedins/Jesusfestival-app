@@ -4,52 +4,132 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { MiniGame as MiniGameDef } from "@/lib/game";
 import CaptainGoodness from "./CaptainGoodness";
+import Portal from "../Portal";
 
-type Cfg = { goal: number; good: string[]; bad: string[]; goodLabel: string };
+/* ============================ Juice ============================ */
+type Juice =
+  | { id: number; kind: "text"; x: number; y: number; text: string; color: string }
+  | { id: number; kind: "dot"; x: number; y: number; dx: number; dy: number; color: string };
 
-const TAP_CFG: Record<string, Cfg> = {
-  light: { goal: 8, good: ["💡"], bad: ["☁️", "🌧️"], goodLabel: "streetlights lit" },
-  plant: { goal: 8, good: ["🌱", "🌷", "🌻"], bad: ["🪨"], goodLabel: "planted" },
-  fruit: { goal: 10, good: ["❤️", "😊", "🕊️", "🌿", "🌟"], bad: ["📱", "😠"], goodLabel: "fruit caught" },
-  clean: { goal: 9, good: ["🍬", "🥤", "📄", "🗑️"], bad: ["🌸"], goodLabel: "cleaned up" },
-};
+function useJuice() {
+  const [items, setItems] = useState<Juice[]>([]);
+  const idRef = useRef(0);
 
-type Target = { id: number; x: number; y: number; emoji: string; good: boolean };
+  const fire = useCallback(
+    (x: number, y: number, opts: { text?: string; colors?: string[]; count?: number } = {}) => {
+      const colors = opts.colors ?? ["#F5A623", "#FFC24D", "#a855f7", "#c084fc", "#4bb873"];
+      const count = opts.count ?? 9;
+      const add: Juice[] = [];
+      if (opts.text) add.push({ id: idRef.current++, kind: "text", x, y, text: opts.text, color: "#FFD173" });
+      for (let i = 0; i < count; i++) {
+        const a = (i / count) * Math.PI * 2 + Math.random() * 0.6;
+        const dist = 34 + Math.random() * 46;
+        add.push({ id: idRef.current++, kind: "dot", x, y, dx: Math.cos(a) * dist, dy: Math.sin(a) * dist, color: colors[i % colors.length] });
+      }
+      setItems((p) => [...p, ...add]);
+      const ids = new Set(add.map((a) => a.id));
+      setTimeout(() => setItems((p) => p.filter((it) => !ids.has(it.id))), 1000);
+    },
+    []
+  );
 
-const NEIGHBOR = [
-  {
-    q: "Someone dropped their groceries.",
-    options: ["Walk away", "Help pick them up", "Laugh"],
-    answer: 1,
-  },
-  {
-    q: "A new kid is standing alone at the festival.",
-    options: ["Ignore them", "Point and stare", "Say hi and invite them over"],
-    answer: 2,
-  },
-  {
-    q: "Your friend is feeling discouraged.",
-    options: ["Encourage them", "Change the subject", "Tell them to toughen up"],
-    answer: 0,
-  },
+  const layer = (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      {items.map((it) =>
+        it.kind === "text" ? (
+          <motion.div
+            key={it.id}
+            initial={{ opacity: 1, y: 0, scale: 0.8 }}
+            animate={{ opacity: 0, y: -46, scale: 1.15 }}
+            transition={{ duration: 0.95, ease: "easeOut" }}
+            style={{ position: "absolute", left: `${it.x}%`, top: `${it.y}%`, color: it.color }}
+            className="-translate-x-1/2 whitespace-nowrap font-display text-lg font-extrabold drop-shadow"
+          >
+            {it.text}
+          </motion.div>
+        ) : (
+          <motion.span
+            key={it.id}
+            initial={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+            animate={{ opacity: 0, x: it.dx, y: it.dy, scale: 0.3 }}
+            transition={{ duration: 0.85, ease: "easeOut" }}
+            style={{ position: "absolute", left: `${it.x}%`, top: `${it.y}%`, width: 9, height: 9, borderRadius: 9, background: it.color }}
+          />
+        )
+      )}
+    </div>
+  );
+
+  return { fire, layer };
+}
+
+/* ============================ Shared UI ============================ */
+function HUD({ score, goal, combo, label }: { score: number; goal: number; combo: number; label: string }) {
+  const pct = Math.min(100, Math.round((score / goal) * 100));
+  return (
+    <div className="px-4 pt-2">
+      <div className="mb-1.5 flex items-center justify-between text-sm">
+        <span className="font-semibold text-white">
+          {score}/{goal} {label}
+        </span>
+        <AnimatePresence>
+          {combo > 1 && (
+            <motion.span
+              key={combo}
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="rounded-full bg-gold/20 px-2.5 py-0.5 text-xs font-extrabold text-gold-400"
+            >
+              🔥 {combo}× combo
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </div>
+      <div className="h-2.5 w-full overflow-hidden rounded-full bg-white/10">
+        <motion.div className="h-full rounded-full bg-gradient-to-r from-purple-500 via-gold-400 to-gold-500" animate={{ width: `${pct}%` }} transition={{ type: "spring", stiffness: 200, damping: 26 }} />
+      </div>
+    </div>
+  );
+}
+
+const WIN_LINES = [
+  "You helped revive another part of the city! 🌇",
+  "That's what happens when we play our part!",
+  "Light is spreading across the city because of you!",
+  "You + the whole community are reviving Hamilton together!",
+  "Small acts, big impact — keep the light going!",
 ];
 
-export default function MiniGame({
-  game,
-  onWin,
-  onClose,
-}: {
-  game: MiniGameDef;
-  onWin: (points: number) => void;
-  onClose: () => void;
-}) {
-  const isChoice = game.id === "neighbor";
+function WinOverlay({ points, onClaim }: { points: number; onClaim: () => void }) {
+  const [line] = useState(() => WIN_LINES[Math.floor(Math.random() * WIN_LINES.length)]);
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[75] flex flex-col bg-gradient-to-b from-navy-900 via-ink to-ink"
+      className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-ink/80 p-6 text-center backdrop-blur"
+    >
+      <motion.div initial={{ scale: 0.5, rotate: -8 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: "spring", stiffness: 200, damping: 12 }}>
+        <CaptainGoodness size={104} />
+      </motion.div>
+      <h4 className="mt-2 font-display text-3xl font-extrabold text-white">You did it! 🎉</h4>
+      <p className="mt-1 max-w-xs text-sm text-white/75">{line}</p>
+      <button onClick={onClaim} className="mt-6 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-7 py-3.5 text-base font-extrabold text-navy-950 shadow-glow active:scale-95">
+        Add +{points} to the city ✨
+      </button>
+    </motion.div>
+  );
+}
+
+/* ============================ Dispatcher ============================ */
+export default function MiniGame({ game, onWin, onClose }: { game: MiniGameDef; onWin: (points: number) => void; onClose: () => void }) {
+  return (
+    <Portal>
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 24 }}
+      className="fixed inset-0 z-[90] flex flex-col bg-gradient-to-b from-navy-900 via-ink to-ink"
     >
       <div className="flex items-center justify-between px-4 pt-4 safe-top">
         <div>
@@ -58,239 +138,383 @@ export default function MiniGame({
             {game.emoji} {game.name}
           </h3>
         </div>
-        <button onClick={onClose} className="rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold text-white/80">
+        <button onClick={onClose} className="rounded-full bg-white/10 px-3.5 py-1.5 text-sm font-semibold text-white/80 active:scale-95">
           Close
         </button>
       </div>
 
-      {isChoice ? (
-        <ChoiceGame game={game} onWin={onWin} />
-      ) : (
-        <TapGame game={game} cfg={TAP_CFG[game.id] ?? TAP_CFG.light} onWin={onWin} />
-      )}
+      {game.id === "light" && <LightCity def={game} onWin={onWin} />}
+      {game.id === "plant" && <PlantHope def={game} onWin={onWin} />}
+      {game.id === "fruit" && <CatchFruit def={game} onWin={onWin} />}
+      {game.id === "neighbor" && <HelpNeighbor def={game} onWin={onWin} />}
+      {!["light", "plant", "fruit", "neighbor"].includes(game.id) && <EncourageCrowd def={game} onWin={onWin} />}
     </motion.div>
+    </Portal>
   );
 }
 
-// ---------- Tap game ----------
-function TapGame({ game, cfg, onWin }: { game: MiniGameDef; cfg: Cfg; onWin: (p: number) => void }) {
-  const [targets, setTargets] = useState<Target[]>([]);
+/* ============================ 1. Light the City ============================ */
+function LightCity({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => void }) {
+  const GOAL = 18;
+  const COLS = 5, ROWS = 4;
+  const [lit, setLit] = useState<boolean[]>(() => Array(COLS * ROWS).fill(false));
+  const [cloud, setCloud] = useState<number | null>(null); // index cluster under cloud
   const [score, setScore] = useState(0);
-  const [time, setTime] = useState(22);
-  const [status, setStatus] = useState<"play" | "win" | "timeup">("play");
-  const idRef = useRef(0);
+  const [combo, setCombo] = useState(0);
+  const [won, setWon] = useState(false);
   const scoreRef = useRef(0);
+  const comboTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { fire, layer } = useJuice();
 
-  const finishWin = useCallback(() => {
-    if (scoreRef.current >= 0) {
-      setStatus("win");
-    }
-  }, []);
-
-  // Spawner
+  // Storm cloud drifts in and darkens a couple of windows
   useEffect(() => {
-    if (status !== "play") return;
-    const spawn = setInterval(() => {
-      setTargets((prev) => {
-        if (prev.length >= 5) return prev;
-        const good = Math.random() > 0.32;
-        const pool = good ? cfg.good : cfg.bad;
-        const t: Target = {
-          id: idRef.current++,
-          x: 8 + Math.random() * 78,
-          y: 10 + Math.random() * 74,
-          emoji: pool[Math.floor(Math.random() * pool.length)],
-          good,
-        };
-        // auto-despawn
-        setTimeout(() => setTargets((cur) => cur.filter((x) => x.id !== t.id)), 1700);
-        return [...prev, t];
-      });
-    }, 650);
-    return () => clearInterval(spawn);
-  }, [status, cfg]);
-
-  // Timer
-  useEffect(() => {
-    if (status !== "play") return;
+    if (won) return;
     const iv = setInterval(() => {
-      setTime((t) => {
-        if (t <= 1) {
-          clearInterval(iv);
-          setStatus((s) => (s === "play" ? "timeup" : s));
-          return 0;
-        }
-        return t - 1;
+      setCloud(() => Math.floor(Math.random() * (COLS * ROWS)));
+      setLit((prev) => {
+        const idx = Math.floor(Math.random() * prev.length);
+        if (!prev[idx]) return prev;
+        const next = [...prev];
+        next[idx] = false;
+        return next;
       });
-    }, 1000);
+      setTimeout(() => setCloud(null), 1400);
+    }, 2600);
     return () => clearInterval(iv);
-  }, [status]);
+  }, [won]);
 
-  function tap(t: Target) {
-    setTargets((prev) => prev.filter((x) => x.id !== t.id));
-    if (!t.good) return;
-    const next = scoreRef.current + 1;
-    scoreRef.current = next;
-    setScore(next);
-    if (next >= cfg.goal) {
-      finishWin();
-    }
+  function bump() {
+    const n = scoreRef.current + 1;
+    scoreRef.current = n;
+    setScore(n);
+    setCombo((c) => c + 1);
+    if (comboTimer.current) clearTimeout(comboTimer.current);
+    comboTimer.current = setTimeout(() => setCombo(0), 1400);
+    if (n >= GOAL) setWon(true);
   }
 
-  function replay() {
-    scoreRef.current = 0;
-    setScore(0);
-    setTime(22);
-    setTargets([]);
-    setStatus("play");
+  function tapWindow(i: number, e: React.MouseEvent) {
+    if (won || lit[i]) return;
+    setLit((prev) => {
+      const next = [...prev];
+      next[i] = true;
+      return next;
+    });
+    const col = i % COLS, row = Math.floor(i / COLS);
+    fire(12 + col * 19, 22 + row * 20, { text: "+1", count: 7, colors: ["#FFE9A8", "#F5A623"] });
+    bump();
   }
-
-  const pct = Math.min(100, Math.round((score / cfg.goal) * 100));
 
   return (
-    <div className="flex flex-1 flex-col px-4 pb-6">
-      {/* HUD */}
-      <div className="mb-2 mt-3 flex items-center justify-between text-sm">
-        <span className="font-semibold text-white">
-          {score}/{cfg.goal} {cfg.goodLabel}
-        </span>
-        <span className={`font-bold ${time <= 5 ? "text-rose-300" : "text-white/70"}`}>⏱ {time}s</span>
-      </div>
-      <div className="mb-3 h-2 w-full overflow-hidden rounded-full bg-white/10">
-        <motion.div className="h-full rounded-full bg-gradient-to-r from-gold-400 to-gold-600" animate={{ width: `${pct}%` }} />
-      </div>
-
-      {/* Play area */}
-      <div className="relative flex-1 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-purple-900/20 to-navy-900/40">
+    <div className="flex flex-1 flex-col pb-6">
+      <HUD score={score} goal={GOAL} combo={combo} label="windows lit" />
+      <p className="px-4 pt-1 text-center text-xs text-white/50">Tap the dark windows to bring the city to life ✨</p>
+      <div className="relative mx-4 mt-3 flex-1 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-[#1a1230] to-[#0b0616]">
+        {/* buildings */}
+        <div className="absolute inset-x-3 bottom-0 top-6 grid grid-cols-5 gap-2">
+          {Array.from({ length: COLS * ROWS }).map((_, i) => (
+            <button
+              key={i}
+              onClick={(e) => tapWindow(i, e)}
+              className="rounded-md transition-colors duration-300"
+              style={{
+                background: lit[i]
+                  ? "radial-gradient(circle at 50% 40%, #FFE9A8, #F5A623)"
+                  : "rgba(255,255,255,0.06)",
+                boxShadow: lit[i] ? "0 0 16px rgba(245,166,35,0.7)" : "none",
+              }}
+            />
+          ))}
+        </div>
+        {/* storm cloud */}
         <AnimatePresence>
-          {status === "play" &&
-            targets.map((t) => (
-              <motion.button
-                key={t.id}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0, opacity: 0 }}
-                onClick={() => tap(t)}
-                style={{ left: `${t.x}%`, top: `${t.y}%` }}
-                className="absolute grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-3xl active:scale-90"
-              >
-                <span className={t.good ? "drop-shadow-[0_0_10px_rgba(245,166,35,0.6)]" : "opacity-80"}>{t.emoji}</span>
-              </motion.button>
-            ))}
-        </AnimatePresence>
-
-        {status === "play" && (
-          <p className="pointer-events-none absolute inset-x-0 bottom-3 text-center text-xs text-white/50">
-            Tap the {cfg.good.join(" ")} — avoid the {cfg.bad.join(" ")}
-          </p>
-        )}
-
-        <AnimatePresence>
-          {status !== "play" && (
+          {cloud !== null && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="absolute inset-0 flex flex-col items-center justify-center bg-ink/70 p-6 text-center backdrop-blur"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 30 }}
+              onClick={() => {
+                fire(50, 30, { text: "+3", count: 12, colors: ["#c084fc", "#a855f7"] });
+                scoreRef.current = Math.min(GOAL, scoreRef.current + 2);
+                setScore(scoreRef.current);
+                bump();
+                setCloud(null);
+              }}
+              style={{ left: `${8 + (cloud % COLS) * 19}%`, top: `${14 + Math.floor(cloud / COLS) * 20}%` }}
+              className="absolute cursor-pointer text-4xl"
             >
-              <CaptainGoodness size={96} />
-              {status === "win" ? (
-                <>
-                  <h4 className="mt-2 font-display text-2xl font-bold text-white">Amazing! 🎉</h4>
-                  <p className="mt-1 text-sm text-white/70">You helped revive another part of the city!</p>
-                  <button
-                    onClick={() => onWin(game.points)}
-                    className="mt-5 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-6 py-3 font-bold text-navy-950 shadow-glow active:scale-95"
-                  >
-                    Claim +{game.points} Light Points
-                  </button>
-                </>
-              ) : (
-                <>
-                  <h4 className="mt-2 font-display text-xl font-bold text-white">So close! 💛</h4>
-                  <p className="mt-1 text-sm text-white/70">No mission is too small — give it another go!</p>
-                  <button onClick={replay} className="mt-5 rounded-2xl bg-white/10 px-6 py-3 font-bold text-white active:scale-95">
-                    Try again
-                  </button>
-                </>
-              )}
+              🌧️
             </motion.div>
           )}
         </AnimatePresence>
+        {layer}
+        <AnimatePresence>{won && <WinOverlay points={def.points} onClaim={() => onWin(def.points)} />}</AnimatePresence>
       </div>
     </div>
   );
 }
 
-// ---------- Choice game ----------
-function ChoiceGame({ game, onWin }: { game: MiniGameDef; onWin: (p: number) => void }) {
+/* ============================ 2. Plant Hope ============================ */
+const PLANTS = ["🌱", "🌷", "🌻", "🌳", "🌸", "🌼"];
+function PlantHope({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => void }) {
+  const GOAL = 15;
+  const [plots, setPlots] = useState<(string | null)[]>(() => Array(GOAL).fill(null));
+  const [score, setScore] = useState(0);
+  const [combo, setCombo] = useState(0);
+  const [won, setWon] = useState(false);
+  const scoreRef = useRef(0);
+  const comboTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { fire, layer } = useJuice();
+
+  function plant(i: number) {
+    if (won || plots[i]) return;
+    const emoji = PLANTS[Math.floor(Math.random() * PLANTS.length)];
+    setPlots((prev) => {
+      const next = [...prev];
+      next[i] = emoji;
+      return next;
+    });
+    const col = i % 5, row = Math.floor(i / 5);
+    fire(14 + col * 18, 24 + row * 26, { text: "🌿", count: 8, colors: ["#4bb873", "#ff6fae", "#ffd23f"] });
+    const n = scoreRef.current + 1;
+    scoreRef.current = n;
+    setScore(n);
+    setCombo((c) => c + 1);
+    if (comboTimer.current) clearTimeout(comboTimer.current);
+    comboTimer.current = setTimeout(() => setCombo(0), 1400);
+    if (n >= GOAL) setWon(true);
+  }
+
+  const green = Math.min(1, score / GOAL);
+  return (
+    <div className="flex flex-1 flex-col pb-6">
+      <HUD score={score} goal={GOAL} combo={combo} label="planted" />
+      <p className="px-4 pt-1 text-center text-xs text-white/50">Tap the soil to plant hope across the park 🌱</p>
+      <div
+        className="relative mx-4 mt-3 flex-1 overflow-hidden rounded-2xl border border-white/10"
+        style={{ background: `linear-gradient(to bottom, rgba(80,120,60,${0.15 + green * 0.5}), rgba(40,70,40,${0.3 + green * 0.5}))` }}
+      >
+        <div className="absolute inset-4 grid grid-cols-5 content-center gap-3">
+          {plots.map((p, i) => (
+            <button key={i} onClick={() => plant(i)} className="grid aspect-square place-items-center rounded-full" style={{ background: p ? "transparent" : "rgba(60,40,25,0.5)", border: p ? "none" : "2px dashed rgba(255,255,255,0.15)" }}>
+              {p && (
+                <motion.span initial={{ scale: 0, y: 8 }} animate={{ scale: 1, y: 0 }} transition={{ type: "spring", stiffness: 300, damping: 14 }} className="text-2xl">
+                  {p}
+                </motion.span>
+              )}
+            </button>
+          ))}
+        </div>
+        {layer}
+        <AnimatePresence>{won && <WinOverlay points={def.points} onClaim={() => onWin(def.points)} />}</AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+/* ============================ 3. Catch the Fruit ============================ */
+type Faller = { id: number; x: number; emoji: string; good: boolean };
+const GOOD_FRUIT = ["❤️", "😊", "🕊️", "🌿", "🌟", "🍎", "🍇"];
+const BAD_FRUIT = ["📱", "😠", "💤"];
+function CatchFruit({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => void }) {
+  const GOAL = 12;
+  const [fallers, setFallers] = useState<Faller[]>([]);
+  const [score, setScore] = useState(0);
+  const [combo, setCombo] = useState(0);
+  const [won, setWon] = useState(false);
+  const scoreRef = useRef(0);
+  const idRef = useRef(0);
+  const comboTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { fire, layer } = useJuice();
+
+  useEffect(() => {
+    if (won) return;
+    const iv = setInterval(() => {
+      setFallers((prev) => {
+        if (prev.length >= 6) return prev;
+        const good = Math.random() > 0.3;
+        return [...prev, { id: idRef.current++, x: 8 + Math.random() * 80, emoji: (good ? GOOD_FRUIT : BAD_FRUIT)[Math.floor(Math.random() * (good ? GOOD_FRUIT : BAD_FRUIT).length)], good }];
+      });
+    }, 620);
+    return () => clearInterval(iv);
+  }, [won]);
+
+  function catchIt(f: Faller) {
+    setFallers((prev) => prev.filter((x) => x.id !== f.id));
+    if (f.good) {
+      const n = scoreRef.current + 1;
+      scoreRef.current = n;
+      setScore(n);
+      setCombo((c) => c + 1);
+      if (comboTimer.current) clearTimeout(comboTimer.current);
+      comboTimer.current = setTimeout(() => setCombo(0), 1300);
+      fire(f.x, 82, { text: "+1", count: 7, colors: ["#ff6fae", "#ffd23f", "#4bb873"] });
+      if (n >= GOAL) setWon(true);
+    } else {
+      setCombo(0);
+      fire(f.x, 82, { count: 5, colors: ["#888"] });
+    }
+  }
+
+  return (
+    <div className="flex flex-1 flex-col pb-6">
+      <HUD score={score} goal={GOAL} combo={combo} label="fruit caught" />
+      <p className="px-4 pt-1 text-center text-xs text-white/50">Catch the fruit of the Spirit — skip the {BAD_FRUIT.join(" ")} distractions!</p>
+      <div className="relative mx-4 mt-3 flex-1 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-sky-500/10 to-navy-900/40">
+        <AnimatePresence>
+          {!won &&
+            fallers.map((f) => (
+              <motion.button
+                key={f.id}
+                initial={{ top: "-8%", opacity: 1 }}
+                animate={{ top: "104%" }}
+                exit={{ opacity: 0, scale: 1.4 }}
+                transition={{ duration: 2.9, ease: "linear" }}
+                onAnimationComplete={() => setFallers((prev) => prev.filter((x) => x.id !== f.id))}
+                onClick={() => catchIt(f)}
+                style={{ left: `${f.x}%`, position: "absolute" }}
+                className="text-4xl active:scale-90"
+              >
+                <span className={f.good ? "drop-shadow-[0_0_10px_rgba(245,166,35,0.5)]" : "opacity-75"}>{f.emoji}</span>
+              </motion.button>
+            ))}
+        </AnimatePresence>
+        {layer}
+        <AnimatePresence>{won && <WinOverlay points={def.points} onClaim={() => onWin(def.points)} />}</AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+/* ============================ 4. Encourage the Crowd ============================ */
+type Person = { id: number; x: number; y: number; happy: boolean };
+function EncourageCrowd({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => void }) {
+  const GOAL = 12;
+  const [people, setPeople] = useState<Person[]>([]);
+  const [score, setScore] = useState(0);
+  const [combo, setCombo] = useState(0);
+  const [won, setWon] = useState(false);
+  const scoreRef = useRef(0);
+  const idRef = useRef(0);
+  const comboTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { fire, layer } = useJuice();
+
+  useEffect(() => {
+    if (won) return;
+    const seed = () => setPeople((prev) => (prev.length >= 5 ? prev : [...prev, { id: idRef.current++, x: 10 + Math.random() * 78, y: 12 + Math.random() * 70, happy: false }]));
+    seed();
+    const iv = setInterval(seed, 800);
+    return () => clearInterval(iv);
+  }, [won]);
+
+  function encourage(p: Person) {
+    if (p.happy) return;
+    setPeople((prev) => prev.map((x) => (x.id === p.id ? { ...x, happy: true } : x)));
+    fire(p.x, p.y, { text: "❤️", count: 8, colors: ["#ff6fae", "#ffd23f", "#a855f7"] });
+    const n = scoreRef.current + 1;
+    scoreRef.current = n;
+    setScore(n);
+    setCombo((c) => c + 1);
+    if (comboTimer.current) clearTimeout(comboTimer.current);
+    comboTimer.current = setTimeout(() => setCombo(0), 1400);
+    setTimeout(() => setPeople((prev) => prev.filter((x) => x.id !== p.id)), 500);
+    if (n >= GOAL) setWon(true);
+  }
+
+  return (
+    <div className="flex flex-1 flex-col pb-6">
+      <HUD score={score} goal={GOAL} combo={combo} label="encouraged" />
+      <p className="px-4 pt-1 text-center text-xs text-white/50">Tap someone who looks discouraged to send them hope 💛</p>
+      <div className="relative mx-4 mt-3 flex-1 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-purple-900/20 to-navy-900/40">
+        <AnimatePresence>
+          {!won &&
+            people.map((p) => (
+              <motion.button
+                key={p.id}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0, opacity: 0 }}
+                onClick={() => encourage(p)}
+                style={{ left: `${p.x}%`, top: `${p.y}%`, position: "absolute" }}
+                className="-translate-x-1/2 -translate-y-1/2 text-4xl active:scale-90"
+              >
+                {p.happy ? "😄" : "😔"}
+              </motion.button>
+            ))}
+        </AnimatePresence>
+        {layer}
+        <AnimatePresence>{won && <WinOverlay points={def.points} onClaim={() => onWin(def.points)} />}</AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+/* ============================ 5. Help Your Neighbor ============================ */
+const SCENARIOS = [
+  { q: "Someone dropped their groceries.", options: ["Walk away", "Help pick them up", "Laugh"], answer: 1 },
+  { q: "A new kid is standing alone at the festival.", options: ["Ignore them", "Point and stare", "Say hi & invite them over"], answer: 2 },
+  { q: "Your friend is feeling discouraged.", options: ["Encourage them", "Change the subject", "Tell them to toughen up"], answer: 0 },
+  { q: "A volunteer looks tired serving all day.", options: ["Complain to them", "Say thank you", "Ignore them"], answer: 1 },
+  { q: "You see litter on the festival grounds.", options: ["Step over it", "Pick it up", "Blame someone"], answer: 1 },
+];
+
+function HelpNeighbor({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => void }) {
   const [round, setRound] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);
-  const [done, setDone] = useState(false);
-  const scenario = NEIGHBOR[round];
+  const [won, setWon] = useState(false);
+  const s = SCENARIOS[round];
 
   function pick(i: number) {
     if (picked !== null) return;
     setPicked(i);
     setTimeout(() => {
-      if (i === scenario.answer) {
-        if (round + 1 >= NEIGHBOR.length) setDone(true);
+      if (i === s.answer) {
+        if (round + 1 >= SCENARIOS.length) setWon(true);
         else {
           setRound((r) => r + 1);
           setPicked(null);
         }
       } else {
-        setPicked(null); // gentle retry, no penalty
+        setPicked(null);
       }
-    }, 700);
-  }
-
-  if (done) {
-    return (
-      <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
-        <CaptainGoodness size={110} />
-        <h4 className="mt-2 font-display text-2xl font-bold text-white">Kindness wins! 🤲</h4>
-        <p className="mt-1 text-sm text-white/70">You chose to help your neighbor every time.</p>
-        <button
-          onClick={() => onWin(game.points)}
-          className="mt-5 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-6 py-3 font-bold text-navy-950 shadow-glow active:scale-95"
-        >
-          Claim +{game.points} Light Points
-        </button>
-      </div>
-    );
+    }, 750);
   }
 
   return (
-    <div className="flex flex-1 flex-col px-5 pb-8 pt-4">
-      <p className="mb-1 text-center text-xs font-semibold uppercase tracking-widest text-purple-300">
-        Round {round + 1} of {NEIGHBOR.length}
-      </p>
-      <div className="my-auto">
-        <p className="mb-6 text-center font-display text-2xl font-bold leading-snug text-white">{scenario.q}</p>
-        <div className="space-y-3">
-          {scenario.options.map((opt, i) => {
-            const isPick = picked === i;
-            const right = i === scenario.answer;
-            return (
-              <button
-                key={opt}
-                onClick={() => pick(i)}
-                className={`w-full rounded-2xl border p-4 text-left text-[15px] font-semibold transition active:scale-[0.99] ${
-                  isPick
-                    ? right
-                      ? "border-emerald-400 bg-emerald-500/20 text-white"
-                      : "border-rose-400 bg-rose-500/15 text-white"
-                    : "border-white/12 bg-white/5 text-white/85"
-                }`}
-              >
-                {opt}
-                {isPick && right && " ✅"}
-                {isPick && !right && " — try kindness 💛"}
-              </button>
-            );
-          })}
-        </div>
+    <div className="relative flex flex-1 flex-col px-5 pb-8 pt-4">
+      {/* progress dots */}
+      <div className="mb-6 flex justify-center gap-2">
+        {SCENARIOS.map((_, i) => (
+          <span key={i} className={`h-2 w-2 rounded-full ${i < round || won ? "bg-gold" : i === round ? "bg-gold/50" : "bg-white/15"}`} />
+        ))}
       </div>
+      <div className="my-auto">
+        <AnimatePresence mode="wait">
+          <motion.div key={round} initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -24 }}>
+            <p className="mb-6 text-center font-display text-2xl font-bold leading-snug text-white">{s.q}</p>
+            <div className="space-y-3">
+              {s.options.map((opt, i) => {
+                const isPick = picked === i;
+                const right = i === s.answer;
+                return (
+                  <button
+                    key={opt}
+                    onClick={() => pick(i)}
+                    className={`w-full rounded-2xl border p-4 text-left text-[15px] font-semibold transition active:scale-[0.99] ${
+                      isPick ? (right ? "border-emerald-400 bg-emerald-500/20 text-white" : "border-rose-400 bg-rose-500/15 text-white") : "border-white/12 bg-white/5 text-white/85"
+                    }`}
+                  >
+                    {opt}
+                    {isPick && right && " ✅"}
+                    {isPick && !right && " — try kindness 💛"}
+                  </button>
+                );
+              })}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+      <AnimatePresence>{won && <WinOverlay points={def.points} onClaim={() => onWin(def.points)} />}</AnimatePresence>
     </div>
   );
 }

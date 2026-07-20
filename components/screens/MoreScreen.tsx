@@ -1,26 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ScreenHeader from "@/components/ScreenHeader";
 import Reveal from "@/components/Reveal";
 import MovementScreen from "./MovementScreen";
 import DiscipleshipScreen from "./DiscipleshipScreen";
+import DonateScreen from "./DonateScreen";
 import MapScreen from "./MapScreen";
 import ConnectScreen from "./ConnectScreen";
-import { FlameIcon, MapIcon, BellIcon, ArrowRight, ChevronLeft, Users } from "@/components/icons";
+import { FlameIcon, MapIcon, BellIcon, ArrowRight, ChevronLeft, Users, Heart } from "@/components/icons";
 
-type View = "hub" | "movement" | "discipleship" | "map" | "connect";
+type View = "hub" | "movement" | "discipleship" | "give" | "map" | "connect";
 
 const CARDS: { id: View; title: string; sub: string; Icon: React.ComponentType<{ width?: number; height?: number }>; emoji: string }[] = [
   { id: "movement", title: "The Movement", sub: "More than a festival — a movement that remains", Icon: FlameIcon, emoji: "🔥" },
   { id: "discipleship", title: "Discipleship & Partners", sub: "Keep the fire burning · churches & ministries", Icon: Users, emoji: "🤝" },
+  { id: "give", title: "Give / Donate", sub: "Sow into good ground · tax receipt provided", Icon: Heart, emoji: "❤️" },
   { id: "map", title: "Festival Map", sub: "Getting to Gage Park & finding your way", Icon: MapIcon, emoji: "🗺️" },
   { id: "connect", title: "Connect", sub: "Join the community, follow & get involved", Icon: BellIcon, emoji: "💬" },
 ];
 
-export default function MoreScreen() {
+export default function MoreScreen({ resetSignal = 0 }: { resetSignal?: number }) {
   const [view, setView] = useState<View>("hub");
+
+  // Returning to the "More" tab always shows the hub.
+  useEffect(() => {
+    setView("hub");
+  }, [resetSignal]);
 
   return (
     <div>
@@ -63,6 +70,7 @@ export default function MoreScreen() {
             </div>
             {view === "movement" && <MovementScreen />}
             {view === "discipleship" && <DiscipleshipScreen />}
+            {view === "give" && <DonateScreen />}
             {view === "map" && <MapScreen />}
             {view === "connect" && <ConnectScreen />}
           </motion.div>

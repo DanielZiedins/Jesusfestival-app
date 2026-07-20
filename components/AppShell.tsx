@@ -2,15 +2,23 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import BottomNav, { type TabId } from "./BottomNav";
 import InstallPrompt from "./InstallPrompt";
 import Splash from "./Splash";
 import Onboarding from "./Onboarding";
 import HomeScreen from "./screens/HomeScreen";
-import ScheduleScreen from "./screens/ScheduleScreen";
-import GameScreen from "./screens/GameScreen";
-import NewsScreen from "./screens/NewsScreen";
-import MoreScreen from "./screens/MoreScreen";
+
+// Code-split secondary screens so the first load (Home) stays fast.
+const ScreenLoader = () => (
+  <div className="flex min-h-[60vh] items-center justify-center">
+    <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/15 border-t-gold-400" />
+  </div>
+);
+const ScheduleScreen = dynamic(() => import("./screens/ScheduleScreen"), { loading: ScreenLoader });
+const GameScreen = dynamic(() => import("./screens/GameScreen"), { loading: ScreenLoader });
+const NewsScreen = dynamic(() => import("./screens/NewsScreen"), { loading: ScreenLoader });
+const MoreScreen = dynamic(() => import("./screens/MoreScreen"), { loading: ScreenLoader });
 
 export default function AppShell() {
   const [tab, setTab] = useState<TabId>("home");
@@ -30,7 +38,11 @@ export default function AppShell() {
     return () => clearTimeout(t);
   }, []);
 
+  // Bumping this whenever "More" is tapped tells MoreScreen to return to its hub.
+  const [moreSignal, setMoreSignal] = useState(0);
+
   const go = (next: TabId) => {
+    if (next === "more") setMoreSignal((s) => s + 1);
     if (next === tab) {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
@@ -63,7 +75,7 @@ export default function AppShell() {
           {tab === "schedule" && <ScheduleScreen />}
           {tab === "game" && <GameScreen />}
           {tab === "news" && <NewsScreen />}
-          {tab === "more" && <MoreScreen />}
+          {tab === "more" && <MoreScreen resetSignal={moreSignal} />}
         </motion.div>
       </main>
 

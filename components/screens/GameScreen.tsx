@@ -6,6 +6,7 @@ import Reveal, { Eyebrow } from "@/components/Reveal";
 import CaptainGoodness from "@/components/game/CaptainGoodness";
 import CityScene from "@/components/game/CityScene";
 import MiniGame from "@/components/game/MiniGame";
+import Portal from "@/components/Portal";
 import { Check, Play, Trophy, Sparkle } from "@/components/icons";
 import {
   BIBLE_TRANSLATION,
@@ -167,6 +168,14 @@ export default function GameScreen() {
               <>The whole city is revived — keep the light going! 🎉</>
             )}
           </p>
+          {city && (
+            <div className="mt-3 flex items-center gap-2 rounded-xl bg-white/5 px-3 py-2">
+              <span className="text-base">🙌</span>
+              <p className="text-[12px] leading-tight text-white/70">
+                <span className="font-bold text-gold-400">{city.missions.toLocaleString()}</span> acts of goodness done by the community — <span className="text-white/80">you have a part to play!</span>
+              </p>
+            </div>
+          )}
         </div>
       </Reveal>
 
@@ -469,7 +478,8 @@ function VerseChallengeModal({ v, done, onComplete, onClose }: { v: VC; done: bo
 
 function ModalShell({ children, onClose }: { children: React.ReactNode; onClose: () => void }) {
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[75] flex items-end justify-center bg-ink/70 backdrop-blur-sm" onClick={onClose}>
+    <Portal>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[90] flex items-end justify-center bg-ink/70 backdrop-blur-sm" onClick={onClose}>
       <motion.div
         initial={{ y: "100%" }}
         animate={{ y: 0 }}
@@ -482,6 +492,7 @@ function ModalShell({ children, onClose }: { children: React.ReactNode; onClose:
         {children}
       </motion.div>
     </motion.div>
+    </Portal>
   );
 }
 
@@ -490,7 +501,8 @@ function Celebration({ data, onClose }: { data: { label: string; verse?: { text:
   const pieces = Array.from({ length: 28 });
   const colors = ["#F5A623", "#9333EA", "#a855f7", "#FFC24D", "#4bb873", "#ff6fae"];
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[85] flex items-center justify-center bg-ink/80 backdrop-blur" onClick={onClose}>
+    <Portal>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[95] flex items-center justify-center bg-ink/80 backdrop-blur" onClick={onClose}>
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {pieces.map((_, i) => (
           <motion.span
@@ -517,6 +529,7 @@ function Celebration({ data, onClose }: { data: { label: string; verse?: { text:
         </button>
       </motion.div>
     </motion.div>
+    </Portal>
   );
 }
 

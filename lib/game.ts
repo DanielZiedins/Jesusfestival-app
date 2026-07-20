@@ -21,15 +21,15 @@ export type Fruit = {
 };
 
 export const FRUITS: Fruit[] = [
-  { id: "love", name: "Love", emoji: "❤️", color: "text-rose-300", blurb: "Choosing the good of others.", mission: "Show someone love through an encouraging word.", miniGame: "hearts", verse: { text: "Let all that you do be done in love.", ref: "1 Corinthians 16:14" } },
-  { id: "joy", name: "Joy", emoji: "😊", color: "text-gold-400", blurb: "Gladness that comes from God.", mission: "Tell someone one thing that gives you joy.", miniGame: "notes", verse: { text: "The joy of the Lord is your strength.", ref: "Nehemiah 8:10" } },
-  { id: "peace", name: "Peace", emoji: "🕊️", color: "text-sky-300", blurb: "Calm and trust in God.", mission: "Take one quiet minute to pray.", miniGame: "calm", verse: { text: "Peace I leave with you; my peace I give you.", ref: "John 14:27" } },
-  { id: "patience", name: "Patience", emoji: "⏳", color: "text-amber-300", blurb: "Waiting with a good heart.", mission: "Let someone else go first.", miniGame: "bloom", verse: { text: "Be patient with everyone.", ref: "1 Thessalonians 5:14" } },
-  { id: "kindness", name: "Kindness", emoji: "🤝", color: "text-emerald-300", blurb: "Doing good to others.", mission: "Do one unexpected act of kindness.", miniGame: "care", verse: { text: "Be kind and compassionate to one another.", ref: "Ephesians 4:32" } },
-  { id: "goodness", name: "Goodness", emoji: "🌟", color: "text-yellow-300", blurb: "Choosing what is right.", mission: "Choose to do the right thing today.", miniGame: "clouds", verse: { text: "Do not be overcome by evil, but overcome evil with good.", ref: "Romans 12:21" } },
+  { id: "love", name: "Love", emoji: "❤️", color: "text-rose-300", blurb: "Choosing the good of others.", mission: "Show someone love through an encouraging word.", miniGame: "encourage", verse: { text: "Let all that you do be done in love.", ref: "1 Corinthians 16:14" } },
+  { id: "joy", name: "Joy", emoji: "😊", color: "text-gold-400", blurb: "Gladness that comes from God.", mission: "Tell someone one thing that gives you joy.", miniGame: "fruit", verse: { text: "The joy of the Lord is your strength.", ref: "Nehemiah 8:10" } },
+  { id: "peace", name: "Peace", emoji: "🕊️", color: "text-sky-300", blurb: "Calm and trust in God.", mission: "Take one quiet minute to pray.", miniGame: "plant", verse: { text: "Peace I leave with you; my peace I give you.", ref: "John 14:27" } },
+  { id: "patience", name: "Patience", emoji: "⏳", color: "text-amber-300", blurb: "Waiting with a good heart.", mission: "Let someone else go first.", miniGame: "plant", verse: { text: "Be patient with everyone.", ref: "1 Thessalonians 5:14" } },
+  { id: "kindness", name: "Kindness", emoji: "🤝", color: "text-emerald-300", blurb: "Doing good to others.", mission: "Do one unexpected act of kindness.", miniGame: "encourage", verse: { text: "Be kind and compassionate to one another.", ref: "Ephesians 4:32" } },
+  { id: "goodness", name: "Goodness", emoji: "🌟", color: "text-yellow-300", blurb: "Choosing what is right.", mission: "Choose to do the right thing today.", miniGame: "light", verse: { text: "Do not be overcome by evil, but overcome evil with good.", ref: "Romans 12:21" } },
   { id: "faithfulness", name: "Faithfulness", emoji: "🛡️", color: "text-purple-300", blurb: "Keeping your word.", mission: "Complete something you promised to do.", miniGame: "light", verse: { text: "Let love and faithfulness never leave you.", ref: "Proverbs 3:3" } },
-  { id: "gentleness", name: "Gentleness", emoji: "🌿", color: "text-teal-300", blurb: "Strength that is tender.", mission: "Speak gently to someone today.", miniGame: "care", verse: { text: "Let your gentleness be evident to all.", ref: "Philippians 4:5" } },
-  { id: "selfcontrol", name: "Self-Control", emoji: "🧭", color: "text-indigo-300", blurb: "Pausing before reacting.", mission: "Pause before reacting when something frustrates you.", miniGame: "path", verse: { text: "God gave us a spirit of power and love and self-control.", ref: "2 Timothy 1:7" } },
+  { id: "gentleness", name: "Gentleness", emoji: "🌿", color: "text-teal-300", blurb: "Strength that is tender.", mission: "Speak gently to someone today.", miniGame: "encourage", verse: { text: "Let your gentleness be evident to all.", ref: "Philippians 4:5" } },
+  { id: "selfcontrol", name: "Self-Control", emoji: "🧭", color: "text-indigo-300", blurb: "Pausing before reacting.", mission: "Pause before reacting when something frustrates you.", miniGame: "neighbor", verse: { text: "God gave us a spirit of power and love and self-control.", ref: "2 Timothy 1:7" } },
 ];
 
 // ---------- Missions ----------
@@ -107,10 +107,10 @@ export const VERSE_CHALLENGES: VerseChallenge[] = [
 export type MiniGame = { id: string; name: string; blurb: string; emoji: string; points: number };
 
 export const MINI_GAMES: MiniGame[] = [
-  { id: "light", name: "Light the City", emoji: "💡", blurb: "Tap the dark streetlights to turn them on — avoid the storm clouds!", points: 80 },
-  { id: "plant", name: "Plant Hope", emoji: "🌱", blurb: "Tap empty ground to plant trees and flowers across the city.", points: 80 },
+  { id: "light", name: "Light the City", emoji: "💡", blurb: "Tap the dark windows to bring the whole skyline to life.", points: 80 },
+  { id: "plant", name: "Plant Hope", emoji: "🌱", blurb: "Tap the soil to plant trees and flowers across the park.", points: 80 },
   { id: "fruit", name: "Catch the Fruit", emoji: "🍎", blurb: "Catch the fruit of the Spirit — dodge the distractions!", points: 90 },
-  { id: "clean", name: "Clean the Park", emoji: "🧹", blurb: "Tap the litter to clean up the park before time runs out.", points: 80 },
+  { id: "encourage", name: "Encourage the Crowd", emoji: "💛", blurb: "Tap someone who looks discouraged and send them hope.", points: 80 },
   { id: "neighbor", name: "Help Your Neighbor", emoji: "🤲", blurb: "Choose the kind, helpful response in each situation.", points: 70 },
 ];
 
