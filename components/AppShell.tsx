@@ -5,21 +5,28 @@ import { AnimatePresence, motion } from "framer-motion";
 import BottomNav, { type TabId } from "./BottomNav";
 import InstallPrompt from "./InstallPrompt";
 import Splash from "./Splash";
+import Onboarding from "./Onboarding";
 import HomeScreen from "./screens/HomeScreen";
 import ScheduleScreen from "./screens/ScheduleScreen";
-import MapScreen from "./screens/MapScreen";
-import MovementScreen from "./screens/MovementScreen";
-import ConnectScreen from "./screens/ConnectScreen";
+import GameScreen from "./screens/GameScreen";
+import NewsScreen from "./screens/NewsScreen";
+import MoreScreen from "./screens/MoreScreen";
 
 export default function AppShell() {
   const [tab, setTab] = useState<TabId>("home");
-  // Splash is client-only (mounted gate) to avoid SSR/AnimatePresence hydration mismatch.
+  // Splash + onboarding are client-only (mounted gate) to avoid SSR/AnimatePresence hydration mismatch.
   const [mounted, setMounted] = useState(false);
   const [splash, setSplash] = useState(true);
+  const [onboard, setOnboard] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     const t = setTimeout(() => setSplash(false), 1900);
+    try {
+      if (!localStorage.getItem("jf-joined")) setOnboard(true);
+    } catch {
+      /* ignore */
+    }
     return () => clearTimeout(t);
   }, []);
 
@@ -41,6 +48,9 @@ export default function AppShell() {
       </div>
 
       <AnimatePresence>{mounted && splash && <Splash key="splash" />}</AnimatePresence>
+      <AnimatePresence>
+        {mounted && !splash && onboard && <Onboarding key="onboard" onDone={() => setOnboard(false)} />}
+      </AnimatePresence>
 
       <main className="relative z-10 mx-auto min-h-screen max-w-lg pb-28">
         <motion.div
@@ -51,9 +61,9 @@ export default function AppShell() {
         >
           {tab === "home" && <HomeScreen go={go} />}
           {tab === "schedule" && <ScheduleScreen />}
-          {tab === "map" && <MapScreen />}
-          {tab === "movement" && <MovementScreen />}
-          {tab === "connect" && <ConnectScreen />}
+          {tab === "game" && <GameScreen />}
+          {tab === "news" && <NewsScreen />}
+          {tab === "more" && <MoreScreen />}
         </motion.div>
       </main>
 

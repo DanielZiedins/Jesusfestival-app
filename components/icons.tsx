@@ -131,3 +131,42 @@ export const Heart = (p: P) => (
     <path d="M12 20s-7-4.6-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.4-7 10-7 10Z" />
   </svg>
 );
+
+export const GameIcon = (p: P) => (
+  <svg {...base(p)}>
+    <path d="M6.5 8h11a4 4 0 0 1 3.9 4.9l-.8 3.4A2.5 2.5 0 0 1 16.4 17l-1.3-1.6a2 2 0 0 0-1.5-.7h-3.2a2 2 0 0 0-1.5.7L7.6 17a2.5 2.5 0 0 1-4.3-.7l-.8-3.4A4 4 0 0 1 6.5 8Z" />
+    <path d="M8 11.5v2M7 12.5h2" />
+    <circle cx="15.5" cy="11.5" r="0.6" fill="currentColor" />
+    <circle cx="17" cy="13" r="0.6" fill="currentColor" />
+  </svg>
+);
+
+export const NewsIcon = (p: P) => (
+  <svg {...base(p)}>
+    <path d="M4 5h13v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5Z" />
+    <path d="M17 8h2a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2" />
+    <path d="M7 8.5h7M7 12h7M7 15.5h4" />
+  </svg>
+);
+
+export const MoreIcon = (p: P) => (
+  <svg {...base(p)}>
+    <circle cx="5" cy="12" r="1.4" fill="currentColor" stroke="none" />
+    <circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none" />
+    <circle cx="19" cy="12" r="1.4" fill="currentColor" stroke="none" />
+  </svg>
+);
+
+export const ChevronLeft = (p: P) => (
+  <svg {...base(p)}>
+    <path d="M15 6l-6 6 6 6" />
+  </svg>
+);
+
+export const Trophy = (p: P) => (
+  <svg {...base(p)}>
+    <path d="M7 4h10v4a5 5 0 0 1-10 0V4Z" />
+    <path d="M7 5H4v2a3 3 0 0 0 3 3M17 5h3v2a3 3 0 0 1-3 3" />
+    <path d="M12 13v4M9 21h6M10 17h4l.5 4h-5L10 17Z" />
+  </svg>
+);

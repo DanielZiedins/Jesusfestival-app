@@ -8,14 +8,17 @@ import {
   IMG,
   EXPECT,
   ARTISTS,
+  ARTISTS_NOTE,
   TIMELINE,
   IMPACT,
   LINKS,
   MOMENTS,
+  SCRIPTURES,
 } from "@/lib/content";
 import Countdown from "@/components/Countdown";
 import Reveal, { Eyebrow } from "@/components/Reveal";
 import ParallaxImage from "@/components/ParallaxImage";
+import Scripture from "@/components/Scripture";
 import type { TabId } from "@/components/BottomNav";
 import {
   ArrowRight,
@@ -27,6 +30,7 @@ import {
   Heart,
   Play,
   FlameIcon,
+  GameIcon,
 } from "@/components/icons";
 
 const EXPECT_ICON: Record<string, React.ComponentType<{ width?: number; height?: number }>> = {
@@ -68,9 +72,15 @@ export default function HomeScreen({ go }: { go: (t: TabId) => void }) {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1, type: "spring", stiffness: 200, damping: 16 }}
-            className="mb-5 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-sky-glow to-navy-700 text-white shadow-glow"
+            className="relative mb-4"
           >
-            <CrossIcon width={34} height={34} />
+            <div className="absolute inset-0 -z-10 rounded-full bg-purple-500/30 blur-2xl" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand/logo-mark-white.png"
+              alt="Jesus Festival"
+              className="h-20 w-auto drop-shadow-[0_0_20px_rgba(147,51,234,0.5)]"
+            />
           </motion.div>
 
           <motion.div
@@ -222,7 +232,7 @@ export default function HomeScreen({ go }: { go: (t: TabId) => void }) {
           <Eyebrow>Artists confirmed</Eyebrow>
           <h2 className="mt-2 font-display text-3xl font-bold text-white">The 2026 Lineup</h2>
           <p className="mx-auto mt-2 max-w-xs text-sm text-white/60">
-            More artists &amp; details coming soon.
+            {ARTISTS_NOTE}
           </p>
         </Reveal>
         <div className="mx-auto max-w-md space-y-3">
@@ -249,7 +259,48 @@ export default function HomeScreen({ go }: { go: (t: TabId) => void }) {
               </a>
             </Reveal>
           ))}
+
+          <Reveal delay={0.16}>
+            <div className="flex items-center gap-4 rounded-2xl border border-dashed border-purple-400/40 bg-purple-500/10 p-4">
+              <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-purple-600/30 text-2xl">🤫</div>
+              <div>
+                <h3 className="font-display text-base font-bold text-white">A Friday night surprise…</h3>
+                <p className="mt-0.5 text-[13px] leading-snug text-white/65">
+                  Our special guest is under wraps — and more artists are on the way. Turn on updates to hear it first!
+                </p>
+              </div>
+            </div>
+          </Reveal>
         </div>
+
+        <Reveal className="mx-auto mt-6 max-w-md">
+          <Scripture text={SCRIPTURES[6].text} reference={SCRIPTURES[6].ref} />
+        </Reveal>
+      </section>
+
+      {/* ===== REVIVE THE CITY teaser ===== */}
+      <section className="mt-14 px-4">
+        <Reveal className="mx-auto max-w-md">
+          <button
+            onClick={() => go("game")}
+            className="group relative w-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-purple-700/40 via-navy-800 to-ink p-5 text-left active:scale-[0.99]"
+          >
+            <div className="pointer-events-none absolute -right-8 -top-10 h-40 w-40 rounded-full bg-gold/20 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-10 -left-8 h-40 w-40 rounded-full bg-purple-500/30 blur-3xl" />
+            <div className="relative flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-gold-400">
+              <GameIcon width={15} height={15} /> New · Play together
+            </div>
+            <h3 className="relative mt-2 font-display text-3xl font-extrabold leading-tight text-white">
+              Revive the City 🌇
+            </h3>
+            <p className="relative mt-1.5 max-w-xs text-sm leading-relaxed text-white/70">
+              Every prayer, kind act, and encouragement brings light to the city. Play with Captain Goodness and help the whole community revive Hamilton together.
+            </p>
+            <span className="relative mt-4 inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2 text-sm font-bold text-navy-950">
+              <Play width={15} height={15} /> Start playing
+            </span>
+          </button>
+        </Reveal>
       </section>
 
       {/* ===== TIMELINE (parallax) ===== */}
@@ -313,7 +364,7 @@ export default function HomeScreen({ go }: { go: (t: TabId) => void }) {
         </div>
         <Reveal delay={0.1}>
           <button
-            onClick={() => go("movement")}
+            onClick={() => go("more")}
             className="mx-auto mt-4 flex max-w-md items-center justify-center gap-2 rounded-xl border border-gold/40 bg-gold/10 py-3 font-display text-sm font-bold text-gold-400 active:scale-[0.98] w-full"
           >
             <FlameIcon width={17} height={17} /> See the Movement <ArrowRight width={16} height={16} />

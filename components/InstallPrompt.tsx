@@ -78,8 +78,9 @@ export default function InstallPrompt() {
           className="pointer-events-auto fixed inset-x-3 bottom-[88px] z-50 mx-auto max-w-md"
         >
           <div className="glass-strong flex items-center gap-3 rounded-2xl p-3 shadow-card">
-            <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-sky-glow to-navy-700">
-              <span className="font-display text-lg font-bold text-white">✝</span>
+            <div className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl bg-gradient-to-br from-navy-800 to-ink ring-1 ring-purple-500/40">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/brand/logo-mark-white.png" alt="" className="h-7 w-auto" />
             </div>
             <div className="min-w-0 flex-1">
               <p className="text-sm font-semibold text-white">Add to Home Screen</p>

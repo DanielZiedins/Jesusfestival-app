@@ -59,15 +59,16 @@ export const SCHEDULE = {
       label: "Friday",
       date: "September 4",
       theme: "Pure Worship Night",
-      window: "6:30 PM – 9:00 PM",
+      window: "6:00 PM – 9:00 PM",
       blurb:
-        "A focused night of worship, prayer, and hearts lifted to Jesus. No vendors, no distractions — just His presence.",
+        "A focused night of worship, prayer, and hearts lifted to Jesus. Come early to find your spot — worship begins at 6:30 PM.",
       accent: "ember",
+      comingSoon: false,
       items: [
-        { time: "6:30 PM", title: "Doors & Gathering", note: "Find your spot as the sun sets over Gage Park" },
-        { time: "7:00 PM", title: "Pure Worship Begins", note: "Open Heaven leads the city in worship" },
-        { time: "8:00 PM", title: "Prayer & The Word", note: "A moment to encounter Jesus together" },
-        { time: "8:30 PM", title: "Ant Lee", note: "A joyful voice of purpose for this generation" },
+        { time: "6:00 PM", title: "Come Early & Find Your Spot", note: "Gates open — arrive at 6:00 PM (or earlier!) to settle in before worship" },
+        { time: "6:30 PM", title: "Pure Worship Begins", note: "The whole city lifts one name as the sun sets over Gage Park" },
+        { time: "Surprise", title: "Special Guest — Announcing Soon", note: "Our Friday night guest is a surprise… you won't want to miss it! 🤫", surprise: true },
+        { time: "Later", title: "Prayer & The Word", note: "A moment to encounter Jesus together" },
       ],
     },
     {
@@ -77,18 +78,16 @@ export const SCHEDULE = {
       theme: "Family Festival Day",
       window: "10:00 AM – 6:00 PM",
       blurb:
-        "Food trucks, vendors, live music, bouncy castles, games, community, and joy. A full day for the whole family.",
+        "Food trucks, vendors, live music, bouncy castles, games, community, and joy. A full day for the whole family. Full schedule coming soon!",
       accent: "gold",
-      items: [
-        { time: "10:00 AM", title: "Festival Opens", note: "Kids Zone, vendors & food trucks open" },
-        { time: "11:00 AM", title: "Live Music & Testimonies", note: "The Bandshell stage comes alive" },
-        { time: "1:00 PM", title: "Games & Family Fun", note: "Inflatables, lawn games, carnival fun" },
-        { time: "3:00 PM", title: "Worship & The Gospel", note: "The name of Jesus lifted over Hamilton" },
-        { time: "5:00 PM", title: "Baptisms & Celebration", note: "New life celebrated in the heart of the city" },
-      ],
+      comingSoon: true,
+      items: [],
     },
   ],
 };
+
+// Teaser shown under the Artists section on the home screen.
+export const ARTISTS_NOTE = "More artists announcing very soon — Stay tuned!";
 
 export const EXPECT = [
   { icon: "worship", title: "Worship", text: "Thousands worshipping the King of Kings together." },
@@ -165,6 +164,60 @@ export const MOVEMENT = {
     ref: "Matthew 28:18–19",
   },
 };
+
+// Discipleship — keeping the fire burning together.
+export const DISCIPLESHIP = {
+  eyebrow: "After the festival",
+  title: "Keep the Fire Burning",
+  intro:
+    "The festival is a spark — discipleship is the fire that keeps burning. Real change doesn't happen in a weekend; it happens in relationship. Stay connected, keep worshipping, keep praying, and walk this out with others who love Jesus.",
+  points: [
+    {
+      icon: "flame",
+      title: "Don't let the fire go out",
+      text: "Encounters fade fast when we walk alone. Feed the fire daily — the Word, prayer, and worship keep your heart burning.",
+    },
+    {
+      icon: "community",
+      title: "You were made for connection",
+      text: "We grow together. Find a church, join a group, and do life with people who will cheer you on and carry you when it's hard.",
+    },
+    {
+      icon: "gospel",
+      title: "Pass it on",
+      text: "The best way to keep what you've received is to give it away. Encourage someone, share Jesus, and make disciples.",
+    },
+  ],
+  scripture: {
+    text: "And let us consider how we may spur one another on toward love and good deeds, not giving up meeting together.",
+    ref: "Hebrews 10:24–25",
+  },
+  churches: [
+    { name: "Bethel Gospel Tabernacle", href: "https://bethelhamilton.com/" },
+    { name: "Hamilton Christian Fellowship", href: "https://hcfchurch.ca/" },
+    { name: "CIA Church", href: "https://www.ciachurch.com/" },
+    { name: "Transformation Centre", href: "https://transformationcentre.ca/" },
+  ],
+  ministries: [
+    { name: "Love on Hamilton", href: "https://loveonhamilton.com/" },
+    { name: "e3 Canada", href: "https://e3ministry.ca/" },
+    { name: "Sons of Scripture", href: "https://sonsofscripture.com/" },
+    { name: "Daughters of Scripture", href: "https://daughtersofscripture.org/" },
+    { name: "Health to You Ministry", href: "https://www.healthtoyouministry.ca/" },
+  ],
+};
+
+// Encouraging scripture used as accents throughout the app.
+export const SCRIPTURES = [
+  { text: "I am the light of the world. Whoever follows me will never walk in darkness.", ref: "John 8:12" },
+  { text: "Your word is a lamp for my feet, a light on my path.", ref: "Psalm 119:105" },
+  { text: "Be strong and courageous. Do not be afraid; the Lord your God will be with you.", ref: "Joshua 1:9" },
+  { text: "I can do all things through Christ who strengthens me.", ref: "Philippians 4:13" },
+  { text: "Let all that you do be done in love.", ref: "1 Corinthians 16:14" },
+  { text: "The joy of the Lord is your strength.", ref: "Nehemiah 8:10" },
+  { text: "You are the light of the world. A town built on a hill cannot be hidden.", ref: "Matthew 5:14" },
+  { text: "Your kingdom come, your will be done, on earth as it is in heaven.", ref: "Matthew 6:10" },
+];
 
 export const CITIES = [
   { city: "Hamilton", region: "Ontario", note: "Where it began", active: true },

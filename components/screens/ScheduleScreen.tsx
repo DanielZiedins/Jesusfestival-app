@@ -89,29 +89,44 @@ export default function ScheduleScreen() {
             <p className="mt-2 text-[13px] leading-snug text-white/65">{active.blurb}</p>
           </div>
 
-          <div className="relative space-y-2.5 pl-1">
-            {active.items.map((item, i) => (
-              <Reveal key={item.title} delay={i * 0.05} y={14}>
-                <div className="flex gap-3.5">
-                  <div className="flex w-16 shrink-0 flex-col items-end pt-0.5">
-                    <span className="font-display text-sm font-bold text-white">{item.time}</span>
-                  </div>
-                  <div className="relative flex flex-col items-center">
-                    <span className="mt-1.5 h-3 w-3 rounded-full bg-gold ring-4 ring-gold/15" />
-                    {i < active.items.length - 1 && <span className="mt-1 h-full w-px flex-1 bg-white/12" />}
-                  </div>
-                  <div className="flex-1 pb-3">
-                    <h3 className="font-display text-[15px] font-bold text-white">{item.title}</h3>
-                    <p className="mt-0.5 text-[13px] leading-snug text-white/55">{item.note}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          {active.comingSoon ? (
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center">
+              <div className="text-4xl">🗓️</div>
+              <h3 className="mt-3 font-display text-2xl font-bold text-white">Schedule Coming Soon</h3>
+              <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-white/65">
+                The full {active.label} lineup is being finalized — running <span className="font-semibold text-gold-400">{active.window}</span>. Turn on updates to be the first to know!
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="relative space-y-2.5 pl-1">
+                {active.items.map((item, i) => {
+                  const surprise = (item as { surprise?: boolean }).surprise === true;
+                  return (
+                    <Reveal key={item.title} delay={i * 0.05} y={14}>
+                      <div className="flex gap-3.5">
+                        <div className="flex w-16 shrink-0 flex-col items-end pt-0.5">
+                          <span className={`font-display text-sm font-bold ${surprise ? "text-purple-300" : "text-white"}`}>{item.time}</span>
+                        </div>
+                        <div className="relative flex flex-col items-center">
+                          <span className={`mt-1.5 h-3 w-3 rounded-full ring-4 ${surprise ? "bg-purple-400 ring-purple-400/20" : "bg-gold ring-gold/15"}`} />
+                          {i < active.items.length - 1 && <span className="mt-1 h-full w-px flex-1 bg-white/12" />}
+                        </div>
+                        <div className={`flex-1 pb-3 ${surprise ? "rounded-xl border border-purple-400/25 bg-purple-500/10 px-3 py-2" : ""}`}>
+                          <h3 className="font-display text-[15px] font-bold text-white">{item.title}</h3>
+                          <p className="mt-0.5 text-[13px] leading-snug text-white/55">{item.note}</p>
+                        </div>
+                      </div>
+                    </Reveal>
+                  );
+                })}
+              </div>
 
-          <p className="mt-2 rounded-xl bg-white/[0.03] p-3 text-center text-[12px] italic text-white/45">
-            Set times are a preview and subject to change. Final schedule coming soon.
-          </p>
+              <p className="mt-2 rounded-xl bg-white/[0.03] p-3 text-center text-[12px] italic text-white/45">
+                Set times are a preview and subject to change. Final schedule coming soon.
+              </p>
+            </>
+          )}
         </motion.div>
       </AnimatePresence>
 

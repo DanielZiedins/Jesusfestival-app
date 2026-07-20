@@ -1,17 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HomeIcon, CalendarIcon, MapIcon, FlameIcon, BellIcon } from "./icons";
+import { HomeIcon, CalendarIcon, GameIcon, NewsIcon, MoreIcon } from "./icons";
 import type { ComponentType, SVGProps } from "react";
 
-export type TabId = "home" | "schedule" | "map" | "movement" | "connect";
+export type TabId = "home" | "schedule" | "game" | "news" | "more";
 
 const TABS: { id: TabId; label: string; Icon: ComponentType<SVGProps<SVGSVGElement>> }[] = [
   { id: "home", label: "Home", Icon: HomeIcon },
   { id: "schedule", label: "Schedule", Icon: CalendarIcon },
-  { id: "map", label: "Map", Icon: MapIcon },
-  { id: "movement", label: "Movement", Icon: FlameIcon },
-  { id: "connect", label: "Connect", Icon: BellIcon },
+  { id: "game", label: "Game", Icon: GameIcon },
+  { id: "news", label: "News", Icon: NewsIcon },
+  { id: "more", label: "More", Icon: MoreIcon },
 ];
 
 export default function BottomNav({
