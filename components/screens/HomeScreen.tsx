@@ -11,6 +11,7 @@ import {
   TIMELINE,
   IMPACT,
   LINKS,
+  MOMENTS,
 } from "@/lib/content";
 import Countdown from "@/components/Countdown";
 import Reveal, { Eyebrow } from "@/components/Reveal";
@@ -177,6 +178,42 @@ export default function HomeScreen({ go }: { go: (t: TabId) => void }) {
             );
           })}
         </div>
+      </section>
+
+      {/* ===== MOMENTS (real photos) ===== */}
+      <section className="mt-14">
+        <Reveal className="mb-4 px-4 text-center">
+          <Eyebrow>Real moments</Eyebrow>
+          <h2 className="mt-2 font-display text-3xl font-bold text-white">Scenes from Gage Park</h2>
+          <p className="mx-auto mt-2 max-w-xs text-sm text-white/60">
+            Real photos from past Jesus Festivals in Hamilton.
+          </p>
+        </Reveal>
+        <Reveal>
+          <div className="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2">
+            {MOMENTS.map((m, i) => (
+              <div
+                key={m.src}
+                className="relative aspect-[4/5] w-56 shrink-0 snap-center overflow-hidden rounded-2xl border border-white/10 shadow-card"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={m.src}
+                  alt={m.caption}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-3">
+                  <p className="text-[12px] font-semibold leading-snug text-white">{m.caption}</p>
+                </div>
+                <div className="absolute right-2.5 top-2.5 rounded-full bg-purple-600/80 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white backdrop-blur">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </section>
 
       {/* ===== ARTISTS ===== */}

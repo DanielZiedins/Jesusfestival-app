@@ -172,6 +172,13 @@ export const CITIES = [
   { city: "Your City", region: "The Nations", note: "Could be next", active: false },
 ];
 
+// Real, authentic photos from past Jesus Festivals at Gage Park.
+export const MOMENTS = [
+  { src: "/photos/moment-games.jpg", caption: "Big Throw Down — games for the whole family" },
+  { src: "/photos/moment-community.jpg", caption: "Ministries & community on the grass" },
+  { src: "/photos/moment-prayer.jpg", caption: "Praying for the city at the Gage Park fountain" },
+];
+
 export const RECAPS = [
   {
     year: "2025",
