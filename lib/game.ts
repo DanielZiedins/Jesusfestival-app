@@ -191,3 +191,173 @@ export async function contributePoints(points: number, missions = 0): Promise<Ci
     return null;
   }
 }
+
+/* ================= Community: daily mission, fruit meters, weekly boss, spotlight ================= */
+
+export const DAILY_GOAL = 5000;
+export const BOSS_GOAL = 3000;
+const BOSS_HIT = 4; // how much each Kingdom act pushes back the weekly challenge
+
+// One shared mission for everyone, per day.
+export const DAILY_GLOBAL = [
+  { id: "invite", emoji: "💌", text: "Invite one friend to Jesus Festival", reward: "Sunrise Over Hamilton", fruit: "love" },
+  { id: "pray", emoji: "🙏", text: "Pray for someone by name", reward: "Glowing Church Bells", fruit: "peace" },
+  { id: "scripture", emoji: "📖", text: "Read one chapter of Scripture", reward: "Streets of Light", fruit: "faithfulness" },
+  { id: "encourage", emoji: "💛", text: "Encourage someone today", reward: "Gardens in Bloom", fruit: "love" },
+  { id: "testimony", emoji: "🎤", text: "Share one thing God has done for you", reward: "Fireworks Over the Bay", fruit: "joy" },
+  { id: "serve", emoji: "🤝", text: "Help someone in need", reward: "The River Runs Blue", fruit: "kindness" },
+  { id: "kind", emoji: "✨", text: "Do a random act of kindness", reward: "Blossoming City Parks", fruit: "kindness" },
+  { id: "city", emoji: "🏙️", text: "Pray for the city of Hamilton", reward: "Skyline Ablaze with Light", fruit: "peace" },
+  { id: "worship", emoji: "🎶", text: "Spend a few minutes in worship", reward: "Worship Fills the Streets", fruit: "joy" },
+  { id: "forgive", emoji: "🕊️", text: "Forgive someone and let it go", reward: "Gentle Morning Mist", fruit: "gentleness" },
+];
+
+export function dailyMission(d = new Date()) {
+  return DAILY_GLOBAL[dayOfYear(d) % DAILY_GLOBAL.length];
+}
+
+// A weekly symbolic challenge the whole community overcomes (never scary imagery).
+export const WEEKLY_BOSSES = [
+  { id: "fear", name: "Fear", emoji: "🌫️", defeatedBy: "Prayer & courage", verse: { text: "God gave us a spirit not of fear, but of power, love and self-control.", ref: "2 Timothy 1:7" } },
+  { id: "division", name: "Division", emoji: "🧩", defeatedBy: "Unity & love", verse: { text: "How good and pleasant it is when God's people live together in unity!", ref: "Psalm 133:1" } },
+  { id: "loneliness", name: "Loneliness", emoji: "🚪", defeatedBy: "Welcoming & inviting", verse: { text: "God sets the lonely in families.", ref: "Psalm 68:6" } },
+  { id: "hopelessness", name: "Hopelessness", emoji: "🌥️", defeatedBy: "Acts of love & hope", verse: { text: "Arise, shine, for your light has come.", ref: "Isaiah 60:1" } },
+  { id: "pride", name: "Pride", emoji: "⛰️", defeatedBy: "Humility & service", verse: { text: "Act justly, love mercy, and walk humbly with your God.", ref: "Micah 6:8" } },
+  { id: "bitterness", name: "Bitterness", emoji: "💧", defeatedBy: "Forgiveness", verse: { text: "Be kind and compassionate, forgiving each other.", ref: "Ephesians 4:32" } },
+  { id: "apathy", name: "Apathy", emoji: "😴", defeatedBy: "Showing up & serving", verse: { text: "Let your light shine before others.", ref: "Matthew 5:16" } },
+  { id: "discouragement", name: "Discouragement", emoji: "🌧️", defeatedBy: "Encouragement", verse: { text: "Be strong and courageous. Do not be afraid.", ref: "Joshua 1:9" } },
+];
+
+export function weeklyBoss(d = new Date()) {
+  return WEEKLY_BOSSES[isoWeekNumber(d) % WEEKLY_BOSSES.length];
+}
+
+// ----- date/week keys (match Postgres current_date & IYYY-"W"IW) -----
+export function todayKey(d = new Date()): string {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+function isoWeekParts(d = new Date()): { year: number; week: number } {
+  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const dayNum = (date.getUTCDay() + 6) % 7; // Mon=0
+  date.setUTCDate(date.getUTCDate() - dayNum + 3); // Thursday of this week
+  const firstThursday = new Date(Date.UTC(date.getUTCFullYear(), 0, 4));
+  const ftDayNum = (firstThursday.getUTCDay() + 6) % 7;
+  firstThursday.setUTCDate(firstThursday.getUTCDate() - ftDayNum + 3);
+  const week = 1 + Math.round((date.getTime() - firstThursday.getTime()) / (7 * 86400000));
+  return { year: date.getUTCFullYear(), week };
+}
+export function isoWeekNumber(d = new Date()): number {
+  return isoWeekParts(d).week;
+}
+export function isoWeekKey(d = new Date()): string {
+  const { year, week } = isoWeekParts(d);
+  return `${year}-W${String(week).padStart(2, "0")}`;
+}
+
+// Captain Goodness community level (levels up as the whole community completes missions).
+export function captainLevel(missions: number): { level: number; pct: number; toNext: number } {
+  const per = 25;
+  const level = Math.floor(missions / per) + 1;
+  const into = missions % per;
+  return { level, pct: Math.round((into / per) * 100), toNext: per - into };
+}
+
+export type FruitMeters = Record<string, number>;
+export function fruitLevel(count: number): { level: number; pct: number } {
+  const per = 500;
+  return { level: Math.floor(count / per) + 1, pct: Math.round(((count % per) / per) * 100) };
+}
+
+// Which fruit a mission category feeds.
+export const CATEGORY_FRUIT: Record<string, string> = {
+  Prayer: "peace",
+  Kindness: "kindness",
+  Church: "love",
+  Faith: "faithfulness",
+};
+
+export type Spotlight = { id: string; name: string | null; church: string | null; action: string; created_at: string };
+
+export async function fetchDaily(): Promise<number> {
+  try {
+    const { data } = await supabase.from("revive_daily").select("count").eq("day", todayKey()).maybeSingle();
+    return Number(data?.count ?? 0);
+  } catch {
+    return 0;
+  }
+}
+
+export async function doDaily(): Promise<number | null> {
+  try {
+    const { data } = await supabase.rpc("revive_do_daily", { p_day: todayKey() });
+    return data == null ? null : Number(data);
+  } catch {
+    return null;
+  }
+}
+
+export async function fetchFruitMeters(): Promise<FruitMeters> {
+  try {
+    const { data } = await supabase.from("revive_fruit").select("fruit_id, count");
+    const out: FruitMeters = {};
+    (data ?? []).forEach((r: { fruit_id: string; count: number }) => (out[r.fruit_id] = Number(r.count)));
+    return out;
+  } catch {
+    return {};
+  }
+}
+
+export async function fetchBoss(): Promise<number> {
+  try {
+    const { data } = await supabase.from("revive_boss").select("progress").eq("week", isoWeekKey()).maybeSingle();
+    return Number(data?.progress ?? 0);
+  } catch {
+    return 0;
+  }
+}
+
+export async function fetchSpotlight(): Promise<Spotlight[]> {
+  try {
+    const { data } = await supabase.from("revive_spotlight").select("id, name, church, action, created_at").order("created_at", { ascending: false }).limit(40);
+    return (data as Spotlight[]) ?? [];
+  } catch {
+    return [];
+  }
+}
+
+export async function addSpotlight(name: string | null, church: string | null, action: string): Promise<void> {
+  try {
+    await supabase.rpc("revive_add_spotlight", { p_name: name, p_church: church, p_action: action });
+  } catch {
+    /* ignore */
+  }
+}
+
+// One call: adds to the city + a fruit + this week's boss. Returns new totals.
+export async function contributeCommunity(
+  points: number,
+  missions: number,
+  fruit: string | null
+): Promise<{ city: CityProgress; boss: number } | null> {
+  try {
+    const { data } = await supabase.rpc("revive_contribute", {
+      p_points: points,
+      p_missions: missions,
+      p_fruit: fruit,
+      p_week: isoWeekKey(),
+      p_boss: BOSS_HIT,
+    });
+    if (!data) return null;
+    const total = Number(data.total ?? 0);
+    return {
+      city: { total, missions: Number(data.missions ?? 0), pct: Math.min(100, Math.round((total / CITY_TARGET) * 100)) },
+      boss: Number(data.boss ?? 0),
+    };
+  } catch {
+    return null;
+  }
+}

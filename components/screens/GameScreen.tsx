@@ -7,24 +7,44 @@ import CaptainGoodness from "@/components/game/CaptainGoodness";
 import CityScene from "@/components/game/CityScene";
 import MiniGame from "@/components/game/MiniGame";
 import Portal from "@/components/Portal";
+import AmbientFX from "@/components/game/AmbientFX";
+import DailyMission from "@/components/game/DailyMission";
+import WeeklyBoss from "@/components/game/WeeklyBoss";
+import FruitMeters from "@/components/game/FruitMeters";
+import CaptainLevel from "@/components/game/CaptainLevel";
+import KingdomSpotlight from "@/components/game/KingdomSpotlight";
 import { Check, Play, Trophy, Sparkle } from "@/components/icons";
 import {
   BIBLE_TRANSLATION,
-  CITY_TARGET,
+  BOSS_GOAL,
+  DAILY_GOAL,
+  CATEGORY_FRUIT,
   FRUITS,
   MILESTONES,
   MINI_GAMES,
   VERSE_CHALLENGES,
-  contributePoints,
+  captainLevel,
+  contributeCommunity,
+  dailyMission,
+  doDaily,
+  fetchBoss,
   fetchCityProgress,
+  fetchDaily,
+  fetchFruitMeters,
+  fetchSpotlight,
+  addSpotlight,
   loadState,
   missionsForToday,
   saveState,
+  todayKey,
+  weeklyBoss,
   type CityProgress,
   type Fruit,
+  type FruitMeters as FruitMetersT,
   type GameState,
   type MiniGame as MiniGameDef,
   type Mission,
+  type Spotlight,
   type VerseChallenge as VC,
 } from "@/lib/game";
 
@@ -45,26 +65,40 @@ export default function GameScreen() {
   const [state, setState] = useState<GameState>(() => loadState());
   const [city, setCity] = useState<CityProgress | null>(null);
   const cityRef = useRef<CityProgress | null>(null);
+  const [boss, setBoss] = useState(0);
+  const bossRef = useRef(0);
+  const [fruits, setFruits] = useState<FruitMetersT>({});
+  const [daily, setDaily] = useState(0);
+  const [dailyDone, setDailyDone] = useState(false);
+  const [spotlight, setSpotlight] = useState<Spotlight[]>([]);
+  const [optIn, setOptIn] = useState(true);
   const [line, setLine] = useState(CAPTAIN_LINES[0]);
 
   const [gameCtx, setGameCtx] = useState<{ game: MiniGameDef; fruitId?: string } | null>(null);
   const [fruitOpen, setFruitOpen] = useState<Fruit | null>(null);
   const [verseOpen, setVerseOpen] = useState<VC | null>(null);
-  const [celebrate, setCelebrate] = useState<{ label: string; verse?: { text: string; ref: string } } | null>(null);
+  const [celebrate, setCelebrate] = useState<{ label: string; subtitle?: string; verse?: { text: string; ref: string } } | null>(null);
 
   const missions = useMemo(() => missionsForToday(), []);
+  const dm = useMemo(() => dailyMission(), []);
+  const bossMeta = useMemo(() => weeklyBoss(), []);
 
   useEffect(() => {
-    fetchCityProgress().then((c) => {
-      setCity(c);
-      cityRef.current = c;
-    });
+    fetchCityProgress().then((c) => { setCity(c); cityRef.current = c; });
+    fetchBoss().then((b) => { setBoss(b); bossRef.current = b; });
+    fetchFruitMeters().then(setFruits);
+    fetchDaily().then(setDaily);
+    fetchSpotlight().then(setSpotlight);
+    try {
+      setDailyDone(localStorage.getItem(`jf-daily-${todayKey()}`) === "1");
+      setOptIn(localStorage.getItem("jf-spotlight") !== "0");
+    } catch {
+      /* ignore */
+    }
   }, []);
 
   useEffect(() => {
-    const iv = setInterval(() => {
-      setLine(CAPTAIN_LINES[Math.floor(Math.random() * CAPTAIN_LINES.length)]);
-    }, 6000);
+    const iv = setInterval(() => setLine(CAPTAIN_LINES[Math.floor(Math.random() * CAPTAIN_LINES.length)]), 6000);
     return () => clearInterval(iv);
   }, []);
 
@@ -72,30 +106,54 @@ export default function GameScreen() {
     setState(next);
     saveState(next);
   }
-
-  async function contribute(points: number, missionsInc = 0) {
-    const prevPct = cityRef.current?.pct ?? 0;
-    const res = await contributePoints(points, missionsInc);
-    if (res) {
-      setCity(res);
-      cityRef.current = res;
-      const crossed = MILESTONES.filter((m) => prevPct < m.pct && res.pct >= m.pct);
-      if (crossed.length) {
-        const top = crossed[crossed.length - 1];
-        setCelebrate({ label: top.label, verse: top.verse });
-      }
-    }
-  }
-
   function say(msg: string) {
     setLine(msg);
+  }
+
+  function spotlightPost(action: string) {
+    let name: string | null = null;
+    let church: string | null = null;
+    try {
+      name = localStorage.getItem("jf-name");
+      church = localStorage.getItem("jf-church");
+    } catch {
+      /* ignore */
+    }
+    if (!optIn || !name) return;
+    addSpotlight(name, church, action);
+    setSpotlight((prev) => [{ id: `local-${prev.length}-${action}`, name, church, action, created_at: new Date().toISOString() }, ...prev].slice(0, 40));
+  }
+
+  // Every Kingdom act feeds the shared city + a fruit + this week's challenge.
+  async function community(points: number, missionsInc: number, fruit: string | null) {
+    const prevPct = cityRef.current?.pct ?? 0;
+    const prevBoss = bossRef.current;
+    const prevLevel = captainLevel(cityRef.current?.missions ?? 0).level;
+    if (fruit) setFruits((f) => ({ ...f, [fruit]: (f[fruit] ?? 0) + 1 }));
+    const res = await contributeCommunity(points, missionsInc, fruit);
+    if (!res) return;
+    setCity(res.city);
+    cityRef.current = res.city;
+    setBoss(res.boss);
+    bossRef.current = res.boss;
+    const crossed = MILESTONES.filter((m) => prevPct < m.pct && res.city.pct >= m.pct);
+    const newLevel = captainLevel(res.city.missions).level;
+    if (prevBoss > 0 && prevBoss < BOSS_GOAL && res.boss >= BOSS_GOAL) {
+      setCelebrate({ label: `${bossMeta.name} Overcome! 🎉`, subtitle: `The community pushed back ${bossMeta.name.toLowerCase()} through ${bossMeta.defeatedBy.toLowerCase()}.`, verse: bossMeta.verse });
+    } else if (crossed.length) {
+      const top = crossed[crossed.length - 1];
+      setCelebrate({ label: top.label, verse: top.verse });
+    } else if (newLevel > prevLevel) {
+      setCelebrate({ label: `Captain Goodness reached Level ${newLevel}! 🦸`, subtitle: "The whole community leveled him up — his light shines brighter!" });
+    }
   }
 
   function completeMission(m: Mission) {
     if (state.missions.includes(m.id)) return;
     persist({ ...state, points: state.points + m.points, missions: addArr(state.missions, m.id) });
-    say("You helped revive another part of the city! 🌇");
-    contribute(m.points, 1);
+    say("You helped revive the city! 🌇");
+    community(m.points, 1, CATEGORY_FRUIT[m.category] ?? "goodness");
+    spotlightPost(m.text.toLowerCase());
   }
 
   function winGame(game: MiniGameDef, fruitId?: string) {
@@ -108,7 +166,7 @@ export default function GameScreen() {
     };
     persist(next);
     say(fruitId ? "The fruit of the Spirit grows in you! 🌿" : "You brought more light to the city! ✨");
-    contribute(game.points, 0);
+    community(game.points, 0, fruitId ?? "goodness");
     setGameCtx(null);
   }
 
@@ -116,72 +174,91 @@ export default function GameScreen() {
     if (state.verses.includes(v.id)) return;
     persist({ ...state, points: state.points + v.points, verses: addArr(state.verses, v.id), badges: addArr(state.badges, `verse:${v.id}`) });
     say("God's Word is getting stronger in your heart! 📖");
-    contribute(v.points, 0);
+    community(v.points, 0, "faithfulness");
     setVerseOpen(null);
+  }
+
+  async function doDailyMission() {
+    if (dailyDone) return;
+    setDailyDone(true);
+    try {
+      localStorage.setItem(`jf-daily-${todayKey()}`, "1");
+    } catch {
+      /* ignore */
+    }
+    const prevDaily = daily;
+    const newCount = await doDaily();
+    if (newCount != null) setDaily(newCount);
+    say("Thank you for doing today's mission — the whole city moves forward! 🌇");
+    community(120, 1, dm.fruit);
+    spotlightPost(dm.text.toLowerCase());
+    if (newCount != null && prevDaily < DAILY_GOAL && newCount >= DAILY_GOAL) {
+      setCelebrate({ label: "Today's Global Mission Complete! 🎉", subtitle: `The community unlocked "${dm.reward}"!`, verse: { text: "Let your light shine before others, that they may see your good deeds and glorify your Father in heaven.", ref: "Matthew 5:16" } });
+    }
+  }
+
+  function toggleOptIn() {
+    setOptIn((v) => {
+      const next = !v;
+      try {
+        localStorage.setItem("jf-spotlight", next ? "1" : "0");
+      } catch {
+        /* ignore */
+      }
+      return next;
+    });
   }
 
   const pct = city?.pct ?? 0;
   const nextMilestone = MILESTONES.find((m) => m.pct > pct);
   const badgeCount = state.badges.length;
+  const cap = captainLevel(city?.missions ?? 0);
 
   return (
     <div className="px-4 pb-4">
-      {/* Hero */}
-      <div className="pt-6 text-center safe-top">
-        <Eyebrow>Play together</Eyebrow>
-        <h1 className="mt-2 font-display text-4xl font-extrabold tracking-tight text-white">Revive the City</h1>
-      </div>
+      {/* ===== HERO: Revive Hamilton ===== */}
+      <div className="relative -mx-4 overflow-hidden px-4 pb-1">
+        <AmbientFX pct={pct} />
+        <div className="relative pt-6 text-center safe-top">
+          <Eyebrow>The whole city, together</Eyebrow>
+          <h1 className="mt-2 font-display text-4xl font-extrabold tracking-tight text-white">Revive the City</h1>
+          <p className="mx-auto mt-2 max-w-xs text-[13px] leading-relaxed text-white/60">
+            Hamilton has lost its color. As we complete real Kingdom missions together, God is bringing it back to life.
+          </p>
+        </div>
 
-      {/* Captain + speech */}
-      <div className="mt-4 flex items-end gap-2">
-        <CaptainGoodness size={96} />
-        <motion.div
-          key={line}
-          initial={{ opacity: 0, y: 8, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          className="relative mb-3 flex-1 rounded-2xl rounded-bl-sm border border-white/10 bg-white/5 p-3 text-sm font-medium text-white/90"
-        >
-          <span className="mb-0.5 block text-[10px] font-bold uppercase tracking-widest text-gold-400">Captain Goodness</span>
-          {line}
-        </motion.div>
-      </div>
-
-      {/* Community progress */}
-      <Reveal className="mt-3">
-        <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-purple-900/30 to-ink/50 p-4">
-          <div className="mb-2 flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-widest text-purple-200">Community light</span>
-            <span className="font-display text-2xl font-extrabold text-gold-400">{pct}%</span>
-          </div>
-          <div className="h-3 w-full overflow-hidden rounded-full bg-white/10">
-            <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-purple-500 via-gold-400 to-gold-500"
-              initial={{ width: 0 }}
-              animate={{ width: `${pct}%` }}
-              transition={{ duration: 1, ease: "easeOut" }}
-            />
+        <div className="relative mt-4 rounded-3xl border border-gold/25 bg-gradient-to-br from-purple-900/40 to-ink/60 p-5 text-center">
+          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-purple-200">Revive Hamilton</p>
+          <motion.p key={pct} initial={{ scale: 0.85, opacity: 0.6 }} animate={{ scale: 1, opacity: 1 }} className="text-gradient-gold font-display text-6xl font-black leading-none">
+            {pct}%
+          </motion.p>
+          <div className="mx-auto mt-3 h-3.5 w-full max-w-xs overflow-hidden rounded-full bg-white/10">
+            <motion.div className="h-full rounded-full bg-gradient-to-r from-purple-500 via-gold-400 to-gold-500" initial={{ width: 0 }} animate={{ width: `${pct}%` }} transition={{ duration: 1.1, ease: "easeOut" }} />
           </div>
           <p className="mt-2 text-xs text-white/60">
-            {nextMilestone ? (
-              <>Next: <span className="text-white/80">{nextMilestone.label}</span> at {nextMilestone.pct}%</>
-            ) : (
-              <>The whole city is revived — keep the light going! 🎉</>
-            )}
+            {nextMilestone ? <>Next: <span className="text-white/85">{nextMilestone.label}</span> at {nextMilestone.pct}%</> : <>The whole city is revived! 🎉</>}
           </p>
-          {city && (
-            <div className="mt-3 flex items-center gap-2 rounded-xl bg-white/5 px-3 py-2">
-              <span className="text-base">🙌</span>
-              <p className="text-[12px] leading-tight text-white/70">
-                <span className="font-bold text-gold-400">{city.missions.toLocaleString()}</span> acts of goodness done by the community — <span className="text-white/80">you have a part to play!</span>
-              </p>
-            </div>
-          )}
+          {city && <p className="mt-1 text-[11px] text-gold-400">🙌 {city.missions.toLocaleString()} Kingdom acts by the community — you have a part to play!</p>}
         </div>
+
+        <div className="relative mt-4">
+          <CityScene pct={pct} />
+        </div>
+      </div>
+
+      {/* Captain Goodness — community level */}
+      <Reveal className="mt-4">
+        <CaptainLevel level={cap.level} pct={cap.pct} toNext={cap.toNext} line={line} />
       </Reveal>
 
-      {/* City scene */}
+      {/* Daily global mission */}
       <Reveal className="mt-4">
-        <CityScene pct={pct} />
+        <DailyMission mission={dm} count={daily} goal={DAILY_GOAL} done={dailyDone} onDo={doDailyMission} />
+      </Reveal>
+
+      {/* Weekly Kingdom challenge */}
+      <Reveal className="mt-4">
+        <WeeklyBoss boss={bossMeta} progress={boss} goal={BOSS_GOAL} />
       </Reveal>
 
       {/* Your stats */}
@@ -189,6 +266,16 @@ export default function GameScreen() {
         <Stat icon={<Sparkle width={18} height={18} />} label="Your Light Points" value={state.points.toLocaleString()} />
         <Stat icon={<Trophy width={18} height={18} />} label="Badges earned" value={String(badgeCount)} />
       </div>
+
+      {/* Community fruit meters */}
+      <Section title="The City's Fruit" hint="Galatians 5:22–23 — grown by the whole community.">
+        <FruitMeters meters={fruits} />
+      </Section>
+
+      {/* Kingdom Spotlight */}
+      <Section title="Kingdom Spotlight" hint="Celebrating what God is doing through His people.">
+        <KingdomSpotlight entries={spotlight} optIn={optIn} onToggleOptIn={toggleOptIn} />
+      </Section>
 
       {/* Daily missions */}
       <Section title="Today's Missions" hint="Tap “I did it!” after you complete one.">
@@ -497,7 +584,7 @@ function ModalShell({ children, onClose }: { children: React.ReactNode; onClose:
 }
 
 // ---------- Milestone celebration ----------
-function Celebration({ data, onClose }: { data: { label: string; verse?: { text: string; ref: string } }; onClose: () => void }) {
+function Celebration({ data, onClose }: { data: { label: string; subtitle?: string; verse?: { text: string; ref: string } }; onClose: () => void }) {
   const pieces = Array.from({ length: 28 });
   const colors = ["#F5A623", "#9333EA", "#a855f7", "#FFC24D", "#4bb873", "#ff6fae"];
   return (
@@ -516,8 +603,9 @@ function Celebration({ data, onClose }: { data: { label: string; verse?: { text:
       </div>
       <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="relative mx-6 max-w-sm rounded-3xl border border-white/10 bg-gradient-to-b from-navy-900 to-ink p-7 text-center">
         <CaptainGoodness size={110} />
-        <p className="mt-1 text-[11px] font-bold uppercase tracking-widest text-purple-300">Milestone unlocked</p>
+        <p className="mt-1 text-[11px] font-bold uppercase tracking-widest text-purple-300">Community celebration</p>
         <h3 className="mt-1 font-display text-2xl font-extrabold text-gold-400">{data.label}</h3>
+        {data.subtitle && <p className="mt-1.5 text-sm text-white/75">{data.subtitle}</p>}
         {data.verse && (
           <figure className="mt-4">
             <blockquote className="text-sm italic text-white/85">&ldquo;{data.verse.text}&rdquo;</blockquote>

@@ -39,6 +39,7 @@ export default function Onboarding({ onDone }: { onDone: () => void }) {
     try {
       localStorage.setItem("jf-joined", "1");
       localStorage.setItem("jf-name", name.trim().split(" ")[0]);
+      if (church.trim()) localStorage.setItem("jf-church", church.trim());
     } catch {
       /* ignore */
     }
