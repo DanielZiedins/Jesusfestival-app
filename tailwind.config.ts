@@ -8,27 +8,38 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#05060f",
+        // Official Jesus Festival identity: black + royal purple + gold.
+        ink: "#0a0510",
         navy: {
-          950: "#060a1f",
-          900: "#0a1030",
-          800: "#101a4a",
-          700: "#1a276e",
+          950: "#0b0616",
+          900: "#170a29",
+          800: "#2a0f4d",
+          700: "#4a1d8a",
         },
         gold: {
-          DEFAULT: "#f5c451",
-          400: "#ffd76e",
-          500: "#f5c451",
-          600: "#e0a92f",
+          DEFAULT: "#f5a623",
+          400: "#ffc24d",
+          500: "#f5a623",
+          600: "#d98a00",
         },
+        // "ember" slot repurposed as the purple accent (keeps class names working).
         ember: {
-          DEFAULT: "#ff6b35",
-          400: "#ff8a5b",
-          500: "#ff6b35",
-          600: "#e8451c",
+          DEFAULT: "#9333ea",
+          400: "#a855f7",
+          500: "#9333ea",
+          600: "#7a1fc9",
+        },
+        purple: {
+          DEFAULT: "#9333ea",
+          300: "#c084fc",
+          400: "#a855f7",
+          500: "#9333ea",
+          600: "#7e22ce",
+          700: "#5b1898",
+          900: "#2a0a3f",
         },
         sky: {
-          glow: "#05e5ff",
+          glow: "#a855f7",
         },
       },
       fontFamily: {
@@ -36,9 +47,10 @@ const config: Config = {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        glow: "0 0 40px -4px rgba(245,196,81,0.45)",
-        "glow-ember": "0 0 50px -6px rgba(255,107,53,0.5)",
-        card: "0 20px 50px -20px rgba(0,0,0,0.7)",
+        glow: "0 0 40px -4px rgba(245,166,35,0.45)",
+        "glow-ember": "0 0 50px -6px rgba(147,51,234,0.55)",
+        "glow-purple": "0 0 50px -6px rgba(147,51,234,0.55)",
+        card: "0 20px 50px -20px rgba(0,0,0,0.75)",
       },
       keyframes: {
         float: {

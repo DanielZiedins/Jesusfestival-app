@@ -7,8 +7,8 @@
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#05060f",
-  "theme_color": "#05060f",
+  "background_color": "#0a0510",
+  "theme_color": "#0a0510",
   "categories": ["lifestyle", "events", "music"],
   "icons": [
     {

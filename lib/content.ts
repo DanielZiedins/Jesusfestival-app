@@ -8,6 +8,7 @@ export const SITE = {
     "The official Jesus Festival app. Hamilton 2026 — September 4–5 at Gage Park. Celebration. Worship. Unity. More than a festival — a movement.",
   eventDatesISO: "2026-09-04T18:30:00-04:00", // Friday 6:30pm Pure Worship Night
   tagline: "Celebration. Worship. Unity.",
+  motto: "Love God. Love People. Change the World.",
   location: "Gage Park, Hamilton, Ontario",
   address: "1000 Main St E, Hamilton, ON L8M 1N2, Canada",
   dates: "September 4–5, 2026",
@@ -16,6 +17,8 @@ export const SITE = {
 
 // Remote imagery from the live JesusFestival.ca CDN.
 export const IMG = {
+  // Official local brand asset.
+  banner: "/brand/banner.png",
   logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663378107536/KJYp3PsjqZ4zMkWznW5JC5/jesus_festival_logo_8b53c5a4.webp",
   heroCrowd:
     "https://d2xsxph8kpxj0f.cloudfront.net/310519663378107536/KJYp3PsjqZ4zMkWznW5JC5/jfgood1_7ef3ec90.jpg",

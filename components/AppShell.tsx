@@ -13,9 +13,12 @@ import ConnectScreen from "./screens/ConnectScreen";
 
 export default function AppShell() {
   const [tab, setTab] = useState<TabId>("home");
+  // Splash is client-only (mounted gate) to avoid SSR/AnimatePresence hydration mismatch.
+  const [mounted, setMounted] = useState(false);
   const [splash, setSplash] = useState(true);
 
   useEffect(() => {
+    setMounted(true);
     const t = setTimeout(() => setSplash(false), 1900);
     return () => clearTimeout(t);
   }, []);
@@ -33,11 +36,11 @@ export default function AppShell() {
     <div className="relative min-h-screen bg-ink">
       {/* Ambient background */}
       <div className="pointer-events-none fixed inset-0 z-0">
-        <div className="absolute -top-40 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-navy-700/25 blur-[120px]" />
-        <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-ember/10 blur-[120px]" />
+        <div className="absolute -top-40 left-1/4 h-96 w-96 -translate-x-1/2 rounded-full bg-purple-600/30 blur-[120px]" />
+        <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-gold/12 blur-[120px]" />
       </div>
 
-      <AnimatePresence>{splash && <Splash key="splash" />}</AnimatePresence>
+      <AnimatePresence>{mounted && splash && <Splash key="splash" />}</AnimatePresence>
 
       <main className="relative z-10 mx-auto min-h-screen max-w-lg pb-28">
         <motion.div

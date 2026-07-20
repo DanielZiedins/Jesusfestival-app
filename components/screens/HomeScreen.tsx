@@ -110,6 +110,17 @@ export default function HomeScreen({ go }: { go: (t: TabId) => void }) {
             <MapPin width={15} height={15} />
             <span className="font-medium">{SITE.location}</span>
           </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.65 }}
+            className="mt-4 text-[11px] font-bold uppercase tracking-[0.18em]"
+          >
+            <span className="text-purple-300">Love God.</span>{" "}
+            <span className="text-white/90">Love People.</span>{" "}
+            <span className="text-gold-400">Change the World.</span>
+          </motion.p>
         </motion.div>
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink to-transparent" />
