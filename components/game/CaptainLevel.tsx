@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import CaptainGoodness from "./CaptainGoodness";
+import CaptainGoodness, { type Reaction } from "./CaptainGoodness";
 
 // Captain Goodness levels up as the WHOLE community completes missions.
 export default function CaptainLevel({
@@ -9,11 +9,13 @@ export default function CaptainLevel({
   pct,
   toNext,
   line,
+  reaction = "idle",
 }: {
   level: number;
   pct: number;
   toNext: number;
   line: string;
+  reaction?: Reaction;
 }) {
   const glow = Math.min(0.7, 0.25 + level * 0.05);
   return (
@@ -28,7 +30,7 @@ export default function CaptainLevel({
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           />
           <div className="relative">
-            <CaptainGoodness size={92} />
+            <CaptainGoodness size={92} reaction={reaction} />
           </div>
         </div>
 

@@ -46,13 +46,13 @@ export async function joinFestival(input: MemberInput): Promise<{ ok: boolean; e
   }
 }
 
-export type SignupLocation = { country: string; lat: number; lng: number; n: number };
+export type SignupLocation = { label: string; lat: number; lng: number; n: number };
 
 export async function fetchSignupLocations(): Promise<SignupLocation[]> {
   try {
     const { data } = await supabase.rpc("revive_signup_locations");
-    return (data ?? []).map((r: { country: string; lat: number; lng: number; n: number }) => ({
-      country: r.country,
+    return (data ?? []).map((r: { label: string; lat: number; lng: number; n: number }) => ({
+      label: r.label,
       lat: Number(r.lat),
       lng: Number(r.lng),
       n: Number(r.n),

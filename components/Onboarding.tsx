@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { joinFestival } from "@/lib/supabase";
-import { COUNTRIES, findCountry } from "@/lib/geo";
+import { COUNTRIES, findCountry, geocodeCity } from "@/lib/geo";
 import { hasProfanity, tidy } from "@/lib/clean";
 import { ArrowRight, Check, Sparkle } from "./icons";
 
@@ -43,7 +43,16 @@ export default function Onboarding({ onDone }: { onDone: () => void }) {
     setBusy(true);
     setError(null);
     const geo = findCountry(country);
-    const res = await joinFestival({ full_name: name, email, phone, church, country, city, lat: geo?.lat, lng: geo?.lng });
+    let lat = geo?.lat;
+    let lng = geo?.lng;
+    if (city.trim()) {
+      const g = await geocodeCity(city, country);
+      if (g) {
+        lat = g.lat;
+        lng = g.lng;
+      }
+    }
+    const res = await joinFestival({ full_name: name, email, phone, church, country, city, lat, lng });
     if (!res.ok) {
       setError("We couldn't save that — check your connection and try again.");
       setBusy(false);

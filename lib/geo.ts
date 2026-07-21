@@ -28,3 +28,24 @@ export function findCountry(name?: string | null): Country | undefined {
   if (!name) return undefined;
   return COUNTRIES.find((c) => c.name === name);
 }
+
+// City-level accuracy: geocode a city name to lat/lng (free, no key, CORS-friendly).
+// Falls back to null so the caller can use the country centroid instead.
+export async function geocodeCity(city: string, country?: string): Promise<{ lat: number; lng: number } | null> {
+  const q = city.trim();
+  if (!q) return null;
+  try {
+    const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=5&language=en&format=json`;
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const data = await res.json();
+    const results: { latitude: number; longitude: number; country?: string }[] = data?.results ?? [];
+    if (!results.length) return null;
+    // Prefer a result in the selected country if we can match it.
+    const match = country ? results.find((r) => (r.country || "").toLowerCase() === country.toLowerCase()) : undefined;
+    const pick = match ?? results[0];
+    return { lat: pick.latitude, lng: pick.longitude };
+  } catch {
+    return null;
+  }
+}

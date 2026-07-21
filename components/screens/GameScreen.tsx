@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Reveal, { Eyebrow } from "@/components/Reveal";
-import CaptainGoodness from "@/components/game/CaptainGoodness";
+import CaptainGoodness, { type Reaction } from "@/components/game/CaptainGoodness";
 import CityScene from "@/components/game/CityScene";
 import MiniGame from "@/components/game/MiniGame";
 import Portal from "@/components/Portal";
@@ -14,6 +14,7 @@ import FruitMeters from "@/components/game/FruitMeters";
 import CaptainLevel from "@/components/game/CaptainLevel";
 import KingdomSpotlight from "@/components/game/KingdomSpotlight";
 import GameIntro from "@/components/game/GameIntro";
+import ActivityTicker from "@/components/game/ActivityTicker";
 import { usePresence } from "@/lib/useLive";
 import { notifyMilestone, subscribeToPush, pushEnabled } from "@/lib/push";
 import { Check, Play, Trophy, Sparkle, BellIcon } from "@/components/icons";
@@ -82,7 +83,15 @@ export default function GameScreen() {
   const [streak, setStreak] = useState(0);
   const [pushOn, setPushOn] = useState(false);
   const [line, setLine] = useState(CAPTAIN_LINES[0]);
+  const [reaction, setReaction] = useState<Reaction>("idle");
+  const reactTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const players = usePresence();
+
+  function react(r: Reaction) {
+    setReaction(r);
+    if (reactTimer.current) clearTimeout(reactTimer.current);
+    reactTimer.current = setTimeout(() => setReaction("idle"), 3200);
+  }
 
   const [gameCtx, setGameCtx] = useState<{ game: MiniGameDef; fruitId?: string } | null>(null);
   const [fruitOpen, setFruitOpen] = useState<Fruit | null>(null);
@@ -188,6 +197,7 @@ export default function GameScreen() {
     if (state.missions.includes(m.id)) return;
     haptic(14);
     persist({ ...state, points: state.points + m.points, missions: addArr(state.missions, m.id) });
+    react("cheer");
     say("You helped revive the city! 🌇");
     community(m.points, 1, CATEGORY_FRUIT[m.category] ?? "goodness");
     spotlightPost(m.text.toLowerCase());
@@ -203,6 +213,7 @@ export default function GameScreen() {
       badges: fruitId ? addArr(state.badges, `fruit:${fruitId}`) : state.badges,
     };
     persist(next);
+    react("celebrate");
     say(fruitId ? "The fruit of the Spirit grows in you! 🌿" : "You brought more light to the city! ✨");
     community(game.points, 0, fruitId ?? "goodness");
     setGameCtx(null);
@@ -212,6 +223,7 @@ export default function GameScreen() {
     if (state.verses.includes(v.id)) return;
     haptic(14);
     persist({ ...state, points: state.points + v.points, verses: addArr(state.verses, v.id), badges: addArr(state.badges, `verse:${v.id}`) });
+    react("cheer");
     say("God's Word is getting stronger in your heart! 📖");
     community(v.points, 0, "faithfulness");
     setVerseOpen(null);
@@ -230,6 +242,7 @@ export default function GameScreen() {
     const prevDaily = daily;
     const newCount = await doDaily();
     if (newCount != null) setDaily(newCount);
+    react("celebrate");
     say("Thank you for doing today's mission — the whole city moves forward! 🌇");
     community(120, 1, dm.fruit);
     spotlightPost(dm.text.toLowerCase());
@@ -326,38 +339,43 @@ export default function GameScreen() {
       </div>
 
       {/* Captain Goodness — community level */}
-      <Reveal className="mt-4">
-        <CaptainLevel level={cap.level} pct={cap.pct} toNext={cap.toNext} line={line} />
+      <Reveal className="mt-8">
+        <SectionIntro emoji="🦸" title="Meet Captain Goodness" text="Your cheerful guide! The whole community levels him up — every good deed makes his light shine brighter." />
+        <CaptainLevel level={cap.level} pct={cap.pct} toNext={cap.toNext} line={line} reaction={reaction} />
       </Reveal>
 
+      {/* Live activity ticker */}
+      {spotlight.length > 0 && (
+        <Reveal className="mt-4">
+          <ActivityTicker entries={spotlight} />
+        </Reveal>
+      )}
+
       {/* Daily global mission */}
-      <Reveal className="mt-4">
+      <Reveal className="mt-12">
+        <SectionIntro emoji="🌟" title="Today's Global Mission" text="One simple mission for everyone, every day. Do it in real life, then tap the button — and watch the whole community's progress grow!" />
         <DailyMission mission={dm} count={daily} goal={DAILY_GOAL} done={dailyDone} onDo={doDailyMission} />
       </Reveal>
 
+      <Motivate text="💛 Your one act today joins thousands of others. Together, we light up the city!" />
+
       {/* Weekly Kingdom challenge */}
-      <Reveal className="mt-4">
+      <Reveal className="mt-12">
+        <SectionIntro emoji="⚔️" title="This Week's Challenge" text="Each week we face one challenge together — like Fear or Discouragement. Every mission, game, and prayer pushes it back until light wins!" />
         <WeeklyBoss boss={bossMeta} progress={boss} goal={BOSS_GOAL} />
       </Reveal>
 
       {/* Your stats */}
-      <div className="mt-4 grid grid-cols-2 gap-3">
-        <Stat icon={<Sparkle width={18} height={18} />} label="Your Light Points" value={state.points.toLocaleString()} />
-        <Stat icon={<Trophy width={18} height={18} />} label="Badges earned" value={String(badgeCount)} />
-      </div>
-
-      {/* Community fruit meters */}
-      <Section title="The City's Fruit" hint="Galatians 5:22–23 — grown by the whole community.">
-        <FruitMeters meters={fruits} />
-      </Section>
-
-      {/* Kingdom Spotlight */}
-      <Section title="Kingdom Spotlight" hint="Celebrating what God is doing through His people.">
-        <KingdomSpotlight entries={spotlight} optIn={optIn} onToggleOptIn={toggleOptIn} />
-      </Section>
+      <Reveal className="mt-12">
+        <SectionIntro emoji="✨" title="Your Journey" text="Your personal Light Points and badges. Every point you earn is also added to the whole city!" />
+        <div className="grid grid-cols-2 gap-3">
+          <Stat icon={<Sparkle width={18} height={18} />} label="Your Light Points" value={state.points.toLocaleString()} />
+          <Stat icon={<Trophy width={18} height={18} />} label="Badges earned" value={String(badgeCount)} />
+        </div>
+      </Reveal>
 
       {/* Daily missions */}
-      <Section title="Today's Missions" hint="Tap “I did it!” after you complete one.">
+      <Section emoji="🙌" title="Your Missions Today" text="Three simple, real-life missions — pray, encourage, invite. Do one out in the real world, then come back and tap “I did it!”">
         <div className="space-y-2.5">
           {missions.map((m) => {
             const done = state.missions.includes(m.id);
@@ -378,8 +396,10 @@ export default function GameScreen() {
         </div>
       </Section>
 
+      <Motivate text="🔥 Every mission matters. No act of love is ever too small — keep going, hero!" />
+
       {/* Mini-games */}
-      <Section title="Play a Mini-Game" hint="Quick, fun, and every win adds light to the city.">
+      <Section emoji="🎮" title="Play a Mini-Game" text="Quick, colorful games for all ages — tap to light windows, plant flowers, catch fruit. Every win adds real light to the city!">
         <div className="grid grid-cols-2 gap-3">
           {MINI_GAMES.map((g) => (
             <button
@@ -399,7 +419,7 @@ export default function GameScreen() {
       </Section>
 
       {/* Fruit journey */}
-      <Section title="Fruit of the Spirit Journey" hint="Galatians 5:22–23 — one badge for each.">
+      <Section emoji="🍇" title="Fruit of the Spirit Journey" text="Nine beautiful qualities from Galatians 5:22–23 — like Love, Joy & Kindness. Tap one to get a mission, a verse, and a game — and earn its badge!">
         <div className="grid grid-cols-3 gap-2.5">
           {FRUITS.map((f) => {
             const earned = state.fruit.includes(f.id);
@@ -418,8 +438,15 @@ export default function GameScreen() {
         </div>
       </Section>
 
+      {/* Community fruit meters */}
+      <Section emoji="🌳" title="The City's Fruit" text="Watch the fruit of the Spirit grow across the whole city — every prayer grows Peace, every kind act grows Kindness. We grow it together!">
+        <FruitMeters meters={fruits} />
+      </Section>
+
+      <Motivate text="🌆 “Let your light shine before others…” — Matthew 5:16. Hamilton gets brighter with every act!" />
+
       {/* Verse challenges */}
-      <Section title="Bible Verse Challenges" hint={`Grow God's Word in your heart · ${BIBLE_TRANSLATION}`}>
+      <Section emoji="📖" title="Bible Verse Challenges" text={`Fun little puzzles that plant God's Word in your heart (${BIBLE_TRANSLATION}). Solve them to earn points and badges!`}>
         <div className="space-y-2.5">
           {VERSE_CHALLENGES.map((v) => {
             const done = state.verses.includes(v.id);
@@ -437,6 +464,28 @@ export default function GameScreen() {
           })}
         </div>
       </Section>
+
+      {/* Spread the word */}
+      <Section emoji="📣" title="Spread the Word" text="The easiest mission of all — share the app or the festival with your friends on social media. Every share brings more people into the light!">
+        <ShareMissions
+          done={state.badges.filter((b) => b.startsWith("share-"))}
+          onShared={(id, points) => {
+            if (state.badges.includes(id)) return;
+            haptic(16);
+            persist({ ...state, points: state.points + points, badges: addArr(state.badges, id) });
+            react("celebrate");
+            say("You're spreading the light — thank you! 📣✨");
+            community(points, 0, "love");
+          }}
+        />
+      </Section>
+
+      {/* Kingdom Spotlight */}
+      <Section emoji="🌟" title="Kingdom Spotlight" text="A rotating celebration of real people doing real good — never a competition, just encouragement. Add your first name & church to join in!">
+        <KingdomSpotlight entries={spotlight} optIn={optIn} onToggleOptIn={toggleOptIn} />
+      </Section>
+
+      <Motivate text="🙏 We're not building an app — we're building unity. Fix your eyes on Jesus, and let's revive this city together. All for His glory!" />
 
       <p className="mt-8 text-center text-[11px] leading-relaxed text-white/40">
         The city transformation is symbolic — a picture of hope. Real goodness comes from following Jesus. 💛
@@ -501,14 +550,81 @@ function Stat({ icon, label, value }: { icon: React.ReactNode; label: string; va
   );
 }
 
-function Section({ title, hint, children }: { title: string; hint?: string; children: React.ReactNode }) {
+// A friendly, spacious section header anyone can understand at a glance.
+function SectionIntro({ emoji, title, text }: { emoji: string; title: string; text: string }) {
   return (
-    <Reveal className="mt-7">
-      <h2 className="font-display text-xl font-bold text-white">{title}</h2>
-      {hint && <p className="mb-3 mt-0.5 text-xs text-white/55">{hint}</p>}
-      {!hint && <div className="mb-3" />}
+    <div className="mb-4">
+      <div className="mb-2 flex items-center gap-2.5">
+        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-purple-600/40 to-navy-800 text-lg">{emoji}</span>
+        <h2 className="font-display text-xl font-bold text-white">{title}</h2>
+      </div>
+      <p className="text-[13px] leading-relaxed text-white/60">{text}</p>
+    </div>
+  );
+}
+
+function Section({ emoji, title, text, children }: { emoji: string; title: string; text: string; children: React.ReactNode }) {
+  return (
+    <Reveal className="mt-12">
+      <SectionIntro emoji={emoji} title={title} text={text} />
       {children}
     </Reveal>
+  );
+}
+
+// A short spark of motivation between sections.
+function Motivate({ text }: { text: string }) {
+  return (
+    <Reveal className="mt-8">
+      <p className="rounded-2xl border border-gold/20 bg-gradient-to-r from-gold/10 to-transparent px-4 py-3 text-center text-[13px] font-medium leading-relaxed text-white/80">
+        {text}
+      </p>
+    </Reveal>
+  );
+}
+
+// Spread-the-word missions: share the app / JesusFestival.ca on social media.
+function ShareMissions({ done, onShared }: { done: string[]; onShared: (id: string, points: number) => void }) {
+  const items = [
+    { id: "share-app", emoji: "📲", title: "Share the app with a friend", text: "Send JesusFestival.App to someone who'd love this.", url: "https://www.jesusfestival.app", msg: "Join me on the Jesus Festival app — we're reviving Hamilton together! 🌆", points: 100 },
+    { id: "share-site", emoji: "🌐", title: "Share JesusFestival.ca", text: "Post the festival site so your friends can discover it.", url: "https://www.jesusfestival.ca", msg: "Jesus Festival is coming to Hamilton Sept 4–5 — free festival at Gage Park! 🙌", points: 100 },
+  ];
+
+  async function share(it: (typeof items)[number]) {
+    let shared = false;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: "Jesus Festival", text: it.msg, url: it.url });
+        shared = true;
+      } else {
+        await navigator.clipboard.writeText(`${it.msg} ${it.url}`);
+        shared = true;
+        alert("Link copied — paste it anywhere! 📋");
+      }
+    } catch {
+      /* user cancelled the share sheet */
+    }
+    if (shared && !done.includes(it.id)) onShared(it.id, it.points);
+  }
+
+  return (
+    <div className="space-y-2.5">
+      {items.map((it) => {
+        const isDone = done.includes(it.id);
+        return (
+          <div key={it.id} className={`flex items-center gap-3 rounded-2xl border p-3.5 ${isDone ? "border-emerald-400/30 bg-emerald-500/10" : "border-white/10 bg-white/5"}`}>
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-purple-600/40 to-navy-800 text-xl">{it.emoji}</span>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-bold text-white">{it.title}</p>
+              <p className="text-[12px] leading-snug text-white/55">{it.text}</p>
+            </div>
+            <button onClick={() => share(it)} className={`shrink-0 rounded-xl px-3 py-2 text-xs font-bold transition active:scale-95 ${isDone ? "bg-emerald-500/20 text-emerald-200" : "bg-gold text-navy-950"}`}>
+              {isDone ? <Check width={16} height={16} /> : `Share +${it.points}`}
+            </button>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 

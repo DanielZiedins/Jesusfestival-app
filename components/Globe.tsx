@@ -82,10 +82,16 @@ export default function Globe() {
             if (!front) return null;
             const size = 2.5 + Math.min(9, Math.sqrt(l.n) * 2.2);
             const op = 0.45 + 0.55 * Math.max(0, p.z);
+            const showLabel = p.z > 0.45; // only label markers clearly facing us
             return (
-              <g key={l.country} opacity={op}>
+              <g key={l.label} opacity={op}>
                 <motion.circle cx={p.x} cy={p.y} r={size + 4} fill="#F5A623" opacity={0.25} animate={{ r: [size + 3, size + 8, size + 3], opacity: [0.28, 0, 0.28] }} transition={{ duration: 2.2, repeat: Infinity }} />
                 <circle cx={p.x} cy={p.y} r={size} fill="#FFD173" stroke="#fff" strokeWidth="1" />
+                {showLabel && (
+                  <text x={p.x} y={p.y - size - 5} textAnchor="middle" fontSize="9" fontWeight="700" fill="#fff" style={{ paintOrder: "stroke" }} stroke="#0a0510" strokeWidth="2.5">
+                    {l.label}
+                  </text>
+                )}
               </g>
             );
           })}
