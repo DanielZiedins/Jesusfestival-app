@@ -9,7 +9,7 @@ import MiniGame from "@/components/game/MiniGame";
 import Portal from "@/components/Portal";
 import AmbientFX from "@/components/game/AmbientFX";
 import DailyMission from "@/components/game/DailyMission";
-import WeeklyBoss from "@/components/game/WeeklyBoss";
+import WeeklyBoss, { type StrikeTarget } from "@/components/game/WeeklyBoss";
 import FruitMeters from "@/components/game/FruitMeters";
 import CaptainLevel from "@/components/game/CaptainLevel";
 import KingdomSpotlight from "@/components/game/KingdomSpotlight";
@@ -42,6 +42,7 @@ import {
   fetchFruitMeters,
   fetchSpotlight,
   addSpotlight,
+  isoWeekKey,
   loadState,
   missionsForToday,
   saveState,
@@ -86,6 +87,7 @@ export default function GameScreen() {
   const [optIn, setOptIn] = useState(true);
   const [showIntro, setShowIntro] = useState(false);
   const [streak, setStreak] = useState(0);
+  const [myStrikes, setMyStrikes] = useState(0);
   const [pushOn, setPushOn] = useState(false);
   const [line, setLine] = useState(CAPTAIN_LINES[0]);
   const [reaction, setReaction] = useState<Reaction>("idle");
@@ -120,11 +122,19 @@ export default function GameScreen() {
       setOptIn(localStorage.getItem("jf-spotlight") !== "0");
       if (localStorage.getItem("jf-game-intro") !== "done") setShowIntro(true);
       setStreak(getStreak());
+      setMyStrikes(Number(localStorage.getItem(`jf-strikes-${isoWeekKey()}`) || "0"));
       setPushOn(pushEnabled());
     } catch {
       /* ignore */
     }
   }, []);
+
+  // Jump straight into the action from the Weekly Challenge strike buttons.
+  function strike(target: StrikeTarget) {
+    haptic(10);
+    const el = document.getElementById(`section-${target}`);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 
   async function enablePush() {
     const res = await subscribeToPush();
@@ -187,6 +197,16 @@ export default function GameScreen() {
     cityRef.current = res.city;
     setBoss(res.boss);
     bossRef.current = res.boss;
+    // Every confirmed act is a personal "strike" on this week's challenge.
+    setMyStrikes((s) => {
+      const next = s + 1;
+      try {
+        localStorage.setItem(`jf-strikes-${isoWeekKey()}`, String(next));
+      } catch {
+        /* ignore */
+      }
+      return next;
+    });
     if (!baselineKnown) return;
     const crossed = MILESTONES.filter((m) => prevPct < m.pct && res.city.pct >= m.pct);
     const newLevel = captainLevel(res.city.missions).level;
@@ -400,6 +420,13 @@ export default function GameScreen() {
             This is <span className="font-semibold text-white/80">Hamilton</span>. Every act of love turns the lights on, grows the gardens, and lifts the cross higher — until the whole city shines. 🌆
           </p>
         </div>
+
+        {/* Community heartbeat — live proof we're moving together */}
+        <div className="relative mt-3 grid grid-cols-3 gap-2">
+          <HeartbeatChip emoji="🌟" value={daily.toLocaleString()} label="did today's mission" />
+          <HeartbeatChip emoji="⚔️" value={`${Math.min(100, Math.round((boss / BOSS_GOAL) * 100))}%`} label={`${bossMeta.name.toLowerCase()} pushed back`} />
+          <HeartbeatChip emoji="🙌" value={(city?.missions ?? 0).toLocaleString()} label="Kingdom acts so far" />
+        </div>
       </div>
 
       {/* Captain Goodness — community level */}
@@ -426,7 +453,7 @@ export default function GameScreen() {
       {/* Weekly Kingdom challenge */}
       <Reveal className="mt-12">
         <SectionIntro emoji="⚔️" title="This Week's Challenge" text="Each week we face one challenge together — like Fear or Discouragement. Every mission, game, and prayer pushes it back until light wins!" />
-        <WeeklyBoss boss={bossMeta} progress={boss} goal={BOSS_GOAL} />
+        <WeeklyBoss boss={bossMeta} progress={boss} goal={BOSS_GOAL} myStrikes={myStrikes} onStrike={strike} />
       </Reveal>
 
       {/* Your stats */}
@@ -439,7 +466,7 @@ export default function GameScreen() {
       </Reveal>
 
       {/* Daily missions */}
-      <Section emoji="🙌" title="Your Missions Today" text="Three simple, real-life missions — pray, encourage, invite. Do one out in the real world, then come back and tap “I did it!”">
+      <Section id="section-missions" emoji="🙌" title="Your Missions Today" text="Three simple, real-life missions — pray, encourage, invite. Do one out in the real world, then come back and tap “I did it!”">
         <div className="space-y-2.5">
           {missions.map((m) => {
             const done = state.missions.includes(missionKey(m.id));
@@ -463,7 +490,7 @@ export default function GameScreen() {
       <Motivate text="🔥 Every mission matters. No act of love is ever too small — keep going, hero!" />
 
       {/* Mini-games */}
-      <Section emoji="🎮" title="Play a Mini-Game" text="Quick, colorful games for all ages — tap to light windows, plant flowers, catch fruit. Every win adds real light to the city!">
+      <Section id="section-games" emoji="🎮" title="Play a Mini-Game" text="Quick, colorful games for all ages — tap to light windows, plant flowers, catch fruit. Every win adds real light to the city!">
         <div className="grid grid-cols-2 gap-3">
           {MINI_GAMES.map((g) => (
             <button
@@ -510,7 +537,7 @@ export default function GameScreen() {
       <Motivate text="🌆 “Let your light shine before others…” — Matthew 5:16. Hamilton gets brighter with every act!" />
 
       {/* Verse challenges */}
-      <Section emoji="📖" title="Bible Verse Challenges" text={`Fun little puzzles that plant God's Word in your heart (${BIBLE_TRANSLATION}). Solve them to earn points and badges!`}>
+      <Section id="section-verses" emoji="📖" title="Bible Verse Challenges" text={`Fun little puzzles that plant God's Word in your heart (${BIBLE_TRANSLATION}). Solve them to earn points and badges!`}>
         <div className="space-y-2.5">
           {VERSE_CHALLENGES.map((v) => {
             const done = state.verses.includes(v.id);
@@ -631,6 +658,16 @@ function Stat({ icon, label, value }: { icon: React.ReactNode; label: string; va
 }
 
 // A friendly, spacious section header anyone can understand at a glance.
+function HeartbeatChip({ emoji, value, label }: { emoji: string; value: string; label: string }) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/[0.05] px-2 py-2.5 text-center">
+      <div className="text-base leading-none">{emoji}</div>
+      <div className="mt-1 font-display text-lg font-extrabold leading-none text-gold-400">{value}</div>
+      <div className="mt-1 text-[9.5px] leading-tight text-white/55">{label}</div>
+    </div>
+  );
+}
+
 function SectionIntro({ emoji, title, text }: { emoji: string; title: string; text: string }) {
   return (
     <div className="mb-4">
@@ -643,11 +680,13 @@ function SectionIntro({ emoji, title, text }: { emoji: string; title: string; te
   );
 }
 
-function Section({ emoji, title, text, children }: { emoji: string; title: string; text: string; children: React.ReactNode }) {
+function Section({ emoji, title, text, id, children }: { emoji: string; title: string; text: string; id?: string; children: React.ReactNode }) {
   return (
     <Reveal className="mt-12">
-      <SectionIntro emoji={emoji} title={title} text={text} />
-      {children}
+      <section id={id} className="scroll-mt-4">
+        <SectionIntro emoji={emoji} title={title} text={text} />
+        {children}
+      </section>
     </Reveal>
   );
 }

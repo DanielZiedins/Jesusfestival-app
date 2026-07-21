@@ -255,7 +255,7 @@ export async function contributePoints(points: number, missions = 0): Promise<Ci
 
 export const DAILY_GOAL = 5000;
 export const BOSS_GOAL = 3000;
-const BOSS_HIT = 4; // how much each Kingdom act pushes back the weekly challenge
+export const BOSS_HIT = 4; // how much each Kingdom act pushes back the weekly challenge
 
 // One shared mission for everyone, per day.
 export const DAILY_GLOBAL = [
