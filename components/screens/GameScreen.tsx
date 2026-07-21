@@ -17,8 +17,9 @@ import GameIntro from "@/components/game/GameIntro";
 import ActivityTicker from "@/components/game/ActivityTicker";
 import MilestoneJourney from "@/components/game/MilestoneJourney";
 import { QuizList, QuizModal } from "@/components/game/BibleQuiz";
+import ChurchCrew from "@/components/game/ChurchCrew";
 import { usePresence } from "@/lib/useLive";
-import { notifyMilestone, subscribeToPush, pushEnabled } from "@/lib/push";
+import { notifyMilestone, notifyBossVictory, subscribeToPush, pushEnabled } from "@/lib/push";
 import { Check, Play, Trophy, Sparkle, BellIcon } from "@/components/icons";
 import {
   BIBLE_TRANSLATION,
@@ -212,6 +213,7 @@ export default function GameScreen() {
     const newLevel = captainLevel(res.city.missions).level;
     if (prevBoss > 0 && prevBoss < BOSS_GOAL && res.boss >= BOSS_GOAL) {
       haptic([80, 40, 80, 40, 140]);
+      notifyBossVictory(); // server verifies the goal + dedupes, then pushes the victory to everyone
       setCelebrate({ label: `${bossMeta.name} Overcome! 🎉`, subtitle: `The community pushed back ${bossMeta.name.toLowerCase()} through ${bossMeta.defeatedBy.toLowerCase()}.`, verse: bossMeta.verse });
     } else if (crossed.length) {
       const top = crossed[crossed.length - 1];
@@ -577,6 +579,10 @@ export default function GameScreen() {
       </Section>
 
       {/* Kingdom Spotlight */}
+      <Section emoji="⛪" title="Church Crew" text="Rally your congregation! Join your church's crew with a code — or start one and share it. Every Kingdom act you do counts for your church family too. Celebrated together, never ranked!">
+        <ChurchCrew />
+      </Section>
+
       <Section emoji="🌟" title="Kingdom Spotlight" text="A rotating celebration of real people doing real good — never a competition, just encouragement. Add your first name & church to join in!">
         <KingdomSpotlight entries={spotlight} optIn={optIn} onToggleOptIn={toggleOptIn} />
       </Section>

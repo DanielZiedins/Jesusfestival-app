@@ -437,7 +437,79 @@ export async function addSpotlight(name: string | null, church: string | null, a
   }
 }
 
-// One call: adds to the city + a fruit + this week's boss. Returns new totals.
+/* ---------- Church Crews: rally your congregation with a code ---------- */
+export type Crew = { code: string; church: string; members: number; acts: number };
+
+export function myCrew(): { code: string; church: string } | null {
+  try {
+    const code = localStorage.getItem("jf-crew-code");
+    const church = localStorage.getItem("jf-crew-church");
+    return code && church ? { code, church } : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveCrew(code: string, church: string) {
+  try {
+    localStorage.setItem("jf-crew-code", code);
+    localStorage.setItem("jf-crew-church", church);
+  } catch {
+    /* ignore */
+  }
+}
+
+export function leaveCrew() {
+  try {
+    localStorage.removeItem("jf-crew-code");
+    localStorage.removeItem("jf-crew-church");
+  } catch {
+    /* ignore */
+  }
+}
+
+export async function crewCreate(church: string): Promise<{ ok: boolean; crew?: Crew; error?: string }> {
+  try {
+    const { data, error } = await supabase.rpc("crew_create", { p_church: church });
+    if (error || !data?.ok) return { ok: false, error: data?.error || "Couldn't create the crew — try again." };
+    saveCrew(data.code, data.church);
+    return { ok: true, crew: { code: data.code, church: data.church, members: 1, acts: 0 } };
+  } catch {
+    return { ok: false, error: "Couldn't create the crew — check your connection." };
+  }
+}
+
+export async function crewJoin(code: string): Promise<{ ok: boolean; crew?: Crew; error?: string }> {
+  try {
+    const { data, error } = await supabase.rpc("crew_join", { p_code: code });
+    if (error || !data?.ok) return { ok: false, error: data?.error || "Code not found." };
+    saveCrew(data.code, data.church);
+    return { ok: true, crew: { code: data.code, church: data.church, members: Number(data.members), acts: Number(data.acts) } };
+  } catch {
+    return { ok: false, error: "Couldn't join — check your connection." };
+  }
+}
+
+export async function crewGet(code: string): Promise<Crew | null> {
+  try {
+    const { data } = await supabase.rpc("crew_get", { p_code: code });
+    if (!data?.ok) return null;
+    return { code: data.code, church: data.church, members: Number(data.members), acts: Number(data.acts) };
+  } catch {
+    return null;
+  }
+}
+
+export async function crewsSample(): Promise<Crew[]> {
+  try {
+    const { data } = await supabase.rpc("crews_sample");
+    return (data ?? []).map((r: { church: string; members: number; acts: number }) => ({ code: "", church: r.church, members: Number(r.members), acts: Number(r.acts) }));
+  } catch {
+    return [];
+  }
+}
+
+// One call: adds to the city + a fruit + this week's boss (+ your crew). Returns new totals.
 export async function contributeCommunity(
   points: number,
   missions: number,
@@ -450,6 +522,7 @@ export async function contributeCommunity(
       p_fruit: fruit,
       p_week: isoWeekKey(),
       p_boss: BOSS_HIT,
+      p_crew: myCrew()?.code ?? null,
     });
     if (!data) return null;
     const total = Number(data.total ?? 0);

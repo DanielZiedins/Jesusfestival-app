@@ -76,6 +76,20 @@ export function notifyMilestone(pct: number): void {
   }
 }
 
+// Fire-and-forget weekly-victory push (server verifies the goal + dedupes per week).
+export function notifyBossVictory(): void {
+  try {
+    fetch(EDGE_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", apikey: PUBLISHABLE, Authorization: `Bearer ${PUBLISHABLE}` },
+      body: JSON.stringify({ mode: "boss" }),
+      keepalive: true,
+    }).catch(() => {});
+  } catch {
+    /* ignore */
+  }
+}
+
 export async function adminSendPush(passcode: string, title: string, body: string): Promise<{ ok: boolean; sent?: number; error?: string }> {
   try {
     const res = await fetch(EDGE_URL, {
