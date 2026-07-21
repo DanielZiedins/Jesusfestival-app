@@ -15,7 +15,16 @@ export const supabase = createClient(url, key, {
 });
 
 // ---------- Onboarding sign-up ----------
-export type MemberInput = { full_name: string; email: string; phone?: string; church?: string };
+export type MemberInput = {
+  full_name: string;
+  email: string;
+  phone?: string;
+  church?: string;
+  country?: string;
+  city?: string;
+  lat?: number;
+  lng?: number;
+};
 
 export async function joinFestival(input: MemberInput): Promise<{ ok: boolean; error?: string }> {
   try {
@@ -24,12 +33,32 @@ export async function joinFestival(input: MemberInput): Promise<{ ok: boolean; e
       email: input.email.trim().toLowerCase(),
       phone: input.phone?.trim() || null,
       church: input.church?.trim() || null,
+      country: input.country || null,
+      city: input.city?.trim() || null,
+      lat: input.lat ?? null,
+      lng: input.lng ?? null,
       source: "app",
     });
     if (error) return { ok: false, error: error.message };
     return { ok: true };
   } catch (e) {
     return { ok: false, error: e instanceof Error ? e.message : "Something went wrong" };
+  }
+}
+
+export type SignupLocation = { country: string; lat: number; lng: number; n: number };
+
+export async function fetchSignupLocations(): Promise<SignupLocation[]> {
+  try {
+    const { data } = await supabase.rpc("revive_signup_locations");
+    return (data ?? []).map((r: { country: string; lat: number; lng: number; n: number }) => ({
+      country: r.country,
+      lat: Number(r.lat),
+      lng: Number(r.lng),
+      n: Number(r.n),
+    }));
+  } catch {
+    return [];
   }
 }
 

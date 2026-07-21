@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { LINKS, SITE } from "@/lib/content";
-import Reveal from "@/components/Reveal";
+import Reveal, { Eyebrow } from "@/components/Reveal";
 import ScreenHeader from "@/components/ScreenHeader";
 import NotifyForm from "@/components/NotifyForm";
+import Globe3D from "@/components/Globe";
+import Scripture from "@/components/Scripture";
 import { BellIcon, Users, Heart, Sparkle, Share, ArrowRight, Globe, Check } from "@/components/icons";
 
 const INVOLVE = [
@@ -58,6 +60,33 @@ export default function ConnectScreen() {
       <Reveal className="mx-auto max-w-md">
         <NotifyForm />
       </Reveal>
+
+      {/* Where the movement is spreading */}
+      <section className="mt-10">
+        <Reveal className="mx-auto mb-3 max-w-md text-center">
+          <Eyebrow>One family, many places</Eyebrow>
+          <h2 className="mt-2 font-display text-2xl font-bold text-white">The movement is spreading</h2>
+          <p className="mx-auto mt-2 max-w-xs text-sm text-white/60">
+            Every dot is a life joining in — roughly where our community is signing up from.
+          </p>
+        </Reveal>
+        <Reveal className="mx-auto max-w-md">
+          <div className="rounded-3xl border border-white/10 bg-gradient-to-b from-navy-900/60 to-ink/40 p-4">
+            <Globe3D />
+          </div>
+        </Reveal>
+        <Reveal className="mx-auto mt-5 max-w-md">
+          <Scripture
+            text="That all of them may be one, Father, just as you are in me and I am in you… so that the world may believe."
+            reference="John 17:21"
+          />
+        </Reveal>
+        <Reveal className="mx-auto mt-4 max-w-md">
+          <p className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-center text-[13px] leading-relaxed text-white/70">
+            There is something powerful when God&apos;s people move as <span className="font-semibold text-white">one</span>. When we lay down our differences, fix our eyes on <span className="font-semibold text-gold-400">Jesus</span>, and love our city together — heaven touches earth. You&apos;re not just a name on a list; you&apos;re part of what God is doing across this city and beyond. 🙌
+          </p>
+        </Reveal>
+      </section>
 
       {/* Get involved */}
       <section className="mt-8">

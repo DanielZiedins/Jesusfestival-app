@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { joinFestival } from "@/lib/supabase";
+import { COUNTRIES, findCountry } from "@/lib/geo";
+import { hasProfanity, tidy } from "@/lib/clean";
 import { ArrowRight, Check, Sparkle } from "./icons";
 
 const PERKS = [
@@ -19,6 +21,8 @@ export default function Onboarding({ onDone }: { onDone: () => void }) {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [church, setChurch] = useState("");
+  const [country, setCountry] = useState("Canada");
+  const [city, setCity] = useState("");
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -27,10 +31,19 @@ export default function Onboarding({ onDone }: { onDone: () => void }) {
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!valid || busy) return;
+    if (busy) return;
+    if (!name.trim() || !isEmail(email)) {
+      setError("Please add your name and a valid email.");
+      return;
+    }
+    if (hasProfanity(name) || hasProfanity(church) || hasProfanity(city)) {
+      setError("Let's keep it friendly for all ages — please adjust your details.");
+      return;
+    }
     setBusy(true);
     setError(null);
-    const res = await joinFestival({ full_name: name, email, phone, church });
+    const geo = findCountry(country);
+    const res = await joinFestival({ full_name: name, email, phone, church, country, city, lat: geo?.lat, lng: geo?.lng });
     if (!res.ok) {
       setError("We couldn't save that — check your connection and try again.");
       setBusy(false);
@@ -38,8 +51,10 @@ export default function Onboarding({ onDone }: { onDone: () => void }) {
     }
     try {
       localStorage.setItem("jf-joined", "1");
-      localStorage.setItem("jf-name", name.trim().split(" ")[0]);
-      if (church.trim()) localStorage.setItem("jf-church", church.trim());
+      localStorage.setItem("jf-name", tidy(name).split(" ")[0]);
+      if (church.trim()) localStorage.setItem("jf-church", tidy(church, 60));
+      localStorage.setItem("jf-country", country);
+      if (city.trim()) localStorage.setItem("jf-city", tidy(city));
     } catch {
       /* ignore */
     }
@@ -156,6 +171,23 @@ export default function Onboarding({ onDone }: { onDone: () => void }) {
                     />
                   </Field>
                 </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <Field label="Country">
+                    <select value={country} onChange={(e) => setCountry(e.target.value)} className="jf-input">
+                      {COUNTRIES.map((c) => (
+                        <option key={c.name} value={c.name}>
+                          {c.flag} {c.name}
+                        </option>
+                      ))}
+                    </select>
+                  </Field>
+                  <Field label="City / town" optional>
+                    <input value={city} onChange={(e) => setCity(e.target.value)} placeholder="e.g. Hamilton" className="jf-input" />
+                  </Field>
+                </div>
+                <p className="-mt-1 flex items-center gap-1 text-[10px] text-white/40">
+                  🌍 We&apos;ll add you to the map of where the movement is spreading.
+                </p>
 
                 {error && <p className="text-center text-xs font-medium text-rose-300">{error}</p>}
 
