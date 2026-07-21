@@ -99,7 +99,7 @@ function Dashboard({ passcode }: { passcode: string }) {
 
   async function refresh() {
     setCity(await fetchCityProgress());
-    setPosts(await fetchNews());
+    setPosts((await fetchNews()) ?? []);
   }
   useEffect(() => {
     refresh();

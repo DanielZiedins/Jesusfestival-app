@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   HERO,
   SITE,
@@ -45,6 +45,14 @@ const EXPECT_ICON: Record<string, React.ComponentType<{ width?: number; height?:
 };
 
 export default function HomeScreen({ go }: { go: (t: TabId) => void }) {
+  // Verse of the day — set after mount so SSR/client never disagree on the date.
+  const [verseOfDay, setVerseOfDay] = useState(SCRIPTURES[0]);
+  useEffect(() => {
+    const start = new Date(new Date().getFullYear(), 0, 0);
+    const doy = Math.floor((Date.now() - start.getTime()) / 86400000);
+    setVerseOfDay(SCRIPTURES[doy % SCRIPTURES.length]);
+  }, []);
+
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -225,6 +233,16 @@ export default function HomeScreen({ go }: { go: (t: TabId) => void }) {
               </div>
             ))}
           </div>
+        </Reveal>
+      </section>
+
+      {/* ===== VERSE OF THE DAY ===== */}
+      <section className="mt-14 px-4">
+        <Reveal className="mx-auto max-w-md">
+          <div className="mb-3 text-center">
+            <Eyebrow>Verse of the day</Eyebrow>
+          </div>
+          <Scripture text={verseOfDay.text} reference={verseOfDay.ref} />
         </Reveal>
       </section>
 

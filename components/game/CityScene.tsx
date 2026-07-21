@@ -1,10 +1,11 @@
 "use client";
 
+import { memo } from "react";
 import { motion } from "framer-motion";
 
 // An illustrated Hamilton that revives (gray & dark → colorful & glowing) as `pct` rises 0→100.
 // The cross on the hill shines brighter as the city comes alive — the light of the city is Jesus.
-export default function CityScene({ pct }: { pct: number }) {
+function CityScene({ pct }: { pct: number }) {
   const at = (t: number, span = 14) => Math.max(0, Math.min(1, (pct - t) / span));
 
   const daylight = 0.2 + (pct / 100) * 0.8;
@@ -65,12 +66,14 @@ export default function CityScene({ pct }: { pct: number }) {
         <rect width="400" height="240" fill="#1a1330" />
         <rect width="400" height="170" fill="url(#sky)" />
 
-        {/* Stars (fade as day breaks) */}
+        {/* Stars (fade as day breaks) — unmounted entirely once invisible */}
+        {night > 0.02 && (
         <g opacity={night}>
           {[[30, 26], [70, 40], [110, 20], [150, 46], [250, 24], [300, 44], [340, 22], [380, 40], [200, 16], [90, 60], [320, 62], [180, 58]].map(([x, y], k) => (
             <motion.circle key={k} cx={x} cy={y} r={k % 3 === 0 ? 1.6 : 1} fill="#fff" animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 2 + (k % 4), repeat: Infinity, delay: (k % 5) * 0.4 }} />
           ))}
         </g>
+        )}
 
         {/* Sun/moon — rises as the city revives */}
         <circle cx={320} cy={70 - (pct / 100) * 34} r="16" fill="url(#sun)" opacity={0.35 + (pct / 100) * 0.65} />
@@ -82,7 +85,8 @@ export default function CityScene({ pct }: { pct: number }) {
           ))}
         </g>
 
-        {/* Fireworks at high revival */}
+        {/* Fireworks at high revival — only animate when actually visible */}
+        {fireworks > 0.01 && (
         <g opacity={fireworks}>
           {[[110, 55, "#ffd23f"], [300, 45, "#ff6fae"], [210, 35, "#a855f7"]].map(([x, y, c], k) => (
             <g key={k}>
@@ -107,6 +111,7 @@ export default function CityScene({ pct }: { pct: number }) {
             </g>
           ))}
         </g>
+        )}
 
         {/* Distant hills */}
         <path d="M0 150 Q100 120 200 150 T400 150 V240 H0 Z" fill="#2e5a3e" />
@@ -207,3 +212,6 @@ export default function CityScene({ pct }: { pct: number }) {
     </div>
   );
 }
+
+// Re-render only when the community % actually changes.
+export default memo(CityScene);

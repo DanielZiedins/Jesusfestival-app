@@ -72,18 +72,21 @@ export type NewsPost = {
   created_at: string;
 };
 
-export async function fetchNews(): Promise<NewsPost[]> {
+// Returns null on failure so the UI can show a retry state instead of a
+// misleading "no updates yet".
+export async function fetchNews(): Promise<NewsPost[] | null> {
   try {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("jesus_festival_app_news")
       .select("id, title, body, category, pinned, created_at")
       .eq("published", true)
       .order("pinned", { ascending: false })
       .order("created_at", { ascending: false })
       .limit(50);
+    if (error) return null;
     return (data as NewsPost[]) ?? [];
   } catch {
-    return [];
+    return null;
   }
 }
 

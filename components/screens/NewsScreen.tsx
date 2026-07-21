@@ -30,12 +30,19 @@ function timeAgo(iso: string): string {
 }
 
 export default function NewsScreen() {
-  const [posts, setPosts] = useState<NewsPost[] | null>(null);
+  // undefined = loading · null = failed to load · [] = genuinely empty
+  const [posts, setPosts] = useState<NewsPost[] | null | undefined>(undefined);
   const [notify, setNotify] = useState(false);
 
-  useEffect(() => {
+  const load = () => {
+    setPosts(undefined);
     fetchNews().then(setPosts);
+  };
+
+  useEffect(() => {
+    load();
     setNotify(pushEnabled());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function toggleNotify() {
@@ -79,11 +86,18 @@ export default function NewsScreen() {
       </Reveal>
 
       {/* Feed */}
-      {posts === null ? (
+      {posts === undefined ? (
         <div className="space-y-3">
           {[0, 1, 2].map((i) => (
             <div key={i} className="h-28 animate-pulse rounded-2xl bg-white/5" />
           ))}
+        </div>
+      ) : posts === null ? (
+        <div className="py-10 text-center">
+          <p className="text-sm text-white/60">Couldn&apos;t load updates — check your connection.</p>
+          <button onClick={load} className="mt-4 rounded-xl bg-white/10 px-5 py-2.5 text-sm font-bold text-white active:scale-95">
+            Try again
+          </button>
         </div>
       ) : posts.length === 0 ? (
         <p className="py-10 text-center text-sm text-white/50">No updates yet — check back soon!</p>

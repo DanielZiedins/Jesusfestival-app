@@ -25,7 +25,13 @@ export async function subscribeToPush(): Promise<{ ok: boolean; error?: string }
     if (!pushSupported()) return { ok: false, error: "This device doesn't support notifications." };
     const perm = await Notification.requestPermission();
     if (perm !== "granted") return { ok: false, error: "Notifications were not allowed." };
-    const reg = await navigator.serviceWorker.ready;
+    // serviceWorker.ready never settles if registration failed — race a timeout
+    // so the button can't hang forever with no feedback.
+    const reg = await Promise.race([
+      navigator.serviceWorker.ready,
+      new Promise<null>((resolve) => setTimeout(() => resolve(null), 6000)),
+    ]);
+    if (!reg) return { ok: false, error: "Notifications aren't available right now — try reloading the app." };
     let sub = await reg.pushManager.getSubscription();
     if (!sub) {
       sub = await reg.pushManager.subscribe({
@@ -34,7 +40,9 @@ export async function subscribeToPush(): Promise<{ ok: boolean; error?: string }
       });
     }
     const json = sub.toJSON() as { endpoint?: string };
-    await supabase.from("revive_push_subs").upsert({ endpoint: json.endpoint, sub: json }, { onConflict: "endpoint" });
+    // Only report success if the subscription actually stored server-side.
+    const { error } = await supabase.from("revive_push_subs").upsert({ endpoint: json.endpoint, sub: json }, { onConflict: "endpoint" });
+    if (error) return { ok: false, error: "Couldn't save your subscription — check your connection and try again." };
     try {
       localStorage.setItem("jf-push", "1");
     } catch {

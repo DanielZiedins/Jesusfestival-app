@@ -22,12 +22,12 @@ export type Fruit = {
 
 export const FRUITS: Fruit[] = [
   { id: "love", name: "Love", emoji: "❤️", color: "text-rose-300", blurb: "Choosing the good of others.", mission: "Show someone love through an encouraging word.", miniGame: "encourage", verse: { text: "Let all that you do be done in love.", ref: "1 Corinthians 16:14" } },
-  { id: "joy", name: "Joy", emoji: "😊", color: "text-gold-400", blurb: "Gladness that comes from God.", mission: "Tell someone one thing that gives you joy.", miniGame: "fruit", verse: { text: "The joy of the Lord is your strength.", ref: "Nehemiah 8:10" } },
-  { id: "peace", name: "Peace", emoji: "🕊️", color: "text-sky-300", blurb: "Calm and trust in God.", mission: "Take one quiet minute to pray.", miniGame: "plant", verse: { text: "Peace I leave with you; my peace I give you.", ref: "John 14:27" } },
+  { id: "joy", name: "Joy", emoji: "😊", color: "text-gold-400", blurb: "Gladness that comes from God.", mission: "Tell someone one thing that gives you joy.", miniGame: "rhythm", verse: { text: "The joy of the Lord is your strength.", ref: "Nehemiah 8:10" } },
+  { id: "peace", name: "Peace", emoji: "🕊️", color: "text-sky-300", blurb: "Calm and trust in God.", mission: "Take one quiet minute to pray.", miniGame: "river", verse: { text: "Peace I leave with you; my peace I give you.", ref: "John 14:27" } },
   { id: "patience", name: "Patience", emoji: "⏳", color: "text-amber-300", blurb: "Waiting with a good heart.", mission: "Let someone else go first.", miniGame: "plant", verse: { text: "Be patient with everyone.", ref: "1 Thessalonians 5:14" } },
   { id: "kindness", name: "Kindness", emoji: "🤝", color: "text-emerald-300", blurb: "Doing good to others.", mission: "Do one unexpected act of kindness.", miniGame: "encourage", verse: { text: "Be kind and compassionate to one another.", ref: "Ephesians 4:32" } },
   { id: "goodness", name: "Goodness", emoji: "🌟", color: "text-yellow-300", blurb: "Choosing what is right.", mission: "Choose to do the right thing today.", miniGame: "light", verse: { text: "Do not be overcome by evil, but overcome evil with good.", ref: "Romans 12:21" } },
-  { id: "faithfulness", name: "Faithfulness", emoji: "🛡️", color: "text-purple-300", blurb: "Keeping your word.", mission: "Complete something you promised to do.", miniGame: "light", verse: { text: "Let love and faithfulness never leave you.", ref: "Proverbs 3:3" } },
+  { id: "faithfulness", name: "Faithfulness", emoji: "🛡️", color: "text-purple-300", blurb: "Keeping your word.", mission: "Complete something you promised to do.", miniGame: "build", verse: { text: "Let love and faithfulness never leave you.", ref: "Proverbs 3:3" } },
   { id: "gentleness", name: "Gentleness", emoji: "🌿", color: "text-teal-300", blurb: "Strength that is tender.", mission: "Speak gently to someone today.", miniGame: "encourage", verse: { text: "Let your gentleness be evident to all.", ref: "Philippians 4:5" } },
   { id: "selfcontrol", name: "Self-Control", emoji: "🧭", color: "text-indigo-300", blurb: "Pausing before reacting.", mission: "Pause before reacting when something frustrates you.", miniGame: "neighbor", verse: { text: "God gave us a spirit of power and love and self-control.", ref: "2 Timothy 1:7" } },
 ];
@@ -78,8 +78,9 @@ export function missionsForToday(seed = dayOfYear()): Mission[] {
 }
 
 function dayOfYear(d = new Date()): number {
-  const start = new Date(d.getFullYear(), 0, 0);
-  return Math.floor((d.getTime() - start.getTime()) / 86400000);
+  // Compute from UTC calendar dates so DST never shifts the day boundary
+  // (a local-epoch diff is an hour short all summer — including festival week).
+  return Math.round((Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) - Date.UTC(d.getFullYear(), 0, 0)) / 86400000);
 }
 
 // ---------- Verse challenges ----------
@@ -103,6 +104,58 @@ export const VERSE_CHALLENGES: VerseChallenge[] = [
   { id: "v7", level: "Intermediate", type: "order", ref: "Ephesians 4:32", words: ["Be", "kind", "and", "compassionate", "to", "one", "another"], points: 90 },
 ];
 
+// ---------- Bible quizzes ----------
+export type QuizQuestion = { q: string; options: string[]; answer: number };
+export type Quiz = { id: string; level: string; emoji: string; title: string; blurb: string; points: number; questions: QuizQuestion[] };
+
+export const QUIZZES: Quiz[] = [
+  {
+    id: "quiz-easy",
+    level: "Easy",
+    emoji: "🌱",
+    title: "Bible Beginnings",
+    blurb: "Perfect for kids & first-timers!",
+    points: 100,
+    questions: [
+      { q: "Who built the ark?", options: ["Moses", "Noah", "David"], answer: 1 },
+      { q: "Where was Jesus born?", options: ["Nazareth", "Jerusalem", "Bethlehem"], answer: 2 },
+      { q: "What did David use to face Goliath?", options: ["A sword", "A sling and a stone", "A spear"], answer: 1 },
+      { q: "Who was swallowed by a great fish?", options: ["Jonah", "Peter", "Paul"], answer: 0 },
+      { q: "How many days did God create the world in (before resting)?", options: ["Six", "Ten", "Three"], answer: 0 },
+    ],
+  },
+  {
+    id: "quiz-medium",
+    level: "Medium",
+    emoji: "🌿",
+    title: "Growing Deeper",
+    blurb: "For everyone who knows the stories!",
+    points: 150,
+    questions: [
+      { q: "How many disciples did Jesus choose?", options: ["Ten", "Twelve", "Seven"], answer: 1 },
+      { q: "What was Jesus' first miracle?", options: ["Walking on water", "Feeding 5,000", "Turning water into wine"], answer: 2 },
+      { q: "Who denied Jesus three times?", options: ["Judas", "Peter", "Thomas"], answer: 1 },
+      { q: "Which book comes first in the New Testament?", options: ["Mark", "Genesis", "Matthew"], answer: 2 },
+      { q: "What did Jesus feed 5,000 people with?", options: ["5 loaves & 2 fish", "Manna from heaven", "Figs & honey"], answer: 0 },
+    ],
+  },
+  {
+    id: "quiz-challenge",
+    level: "Challenge",
+    emoji: "🌳",
+    title: "Kingdom Champion",
+    blurb: "The big one — can you get all 5?",
+    points: 200,
+    questions: [
+      { q: "On which road did Saul meet Jesus?", options: ["Road to Emmaus", "Road to Damascus", "Road to Jericho"], answer: 1 },
+      { q: "How many fruits of the Spirit are listed in Galatians 5?", options: ["Seven", "Nine", "Twelve"], answer: 1 },
+      { q: "Who climbed a sycamore tree to see Jesus?", options: ["Zacchaeus", "Nicodemus", "Matthew"], answer: 0 },
+      { q: "What is the shortest verse in the Bible?", options: ["“Jesus wept.”", "“Rejoice always.”", "“Pray continually.”"], answer: 0 },
+      { q: "Which sea did Jesus calm with “Peace, be still”?", options: ["Sea of Galilee", "Red Sea", "Dead Sea"], answer: 0 },
+    ],
+  },
+];
+
 // ---------- Mini-games ----------
 export type MiniGame = { id: string; name: string; blurb: string; emoji: string; points: number };
 
@@ -110,21 +163,24 @@ export const MINI_GAMES: MiniGame[] = [
   { id: "light", name: "Light the City", emoji: "💡", blurb: "Tap the dark windows to bring the whole skyline to life.", points: 80 },
   { id: "plant", name: "Plant Hope", emoji: "🌱", blurb: "Tap the soil to plant trees and flowers across the park.", points: 80 },
   { id: "fruit", name: "Catch the Fruit", emoji: "🍎", blurb: "Catch the fruit of the Spirit — dodge the distractions!", points: 90 },
+  { id: "rhythm", name: "Worship Rhythm", emoji: "🎵", blurb: "Tap the notes as they reach the glow — feel the beat of worship!", points: 90 },
+  { id: "river", name: "River of Life", emoji: "💧", blurb: "Clear the rocks so bright water can flow through the city.", points: 80 },
+  { id: "build", name: "Build the Church", emoji: "🏗️", blurb: "Stack the pieces in the right order and raise the cross!", points: 90 },
   { id: "encourage", name: "Encourage the Crowd", emoji: "💛", blurb: "Tap someone who looks discouraged and send them hope.", points: 80 },
   { id: "neighbor", name: "Help Your Neighbor", emoji: "🤲", blurb: "Choose the kind, helpful response in each situation.", points: 70 },
 ];
 
 // ---------- Milestones ----------
-export type Milestone = { pct: number; label: string; verse?: { text: string; ref: string } };
+export type Milestone = { pct: number; label: string; emoji: string; tease: string; verse?: { text: string; ref: string } };
 
 export const MILESTONES: Milestone[] = [
-  { pct: 10, label: "The first streetlights turn on" },
-  { pct: 25, label: "The parks become colorful" },
-  { pct: 40, label: "The river begins to flow" },
-  { pct: 55, label: "Homes & neighborhoods light up" },
-  { pct: 70, label: "The churches begin to glow" },
-  { pct: 85, label: "The festival stage comes alive" },
-  { pct: 100, label: "The whole city is revived!", verse: { text: "Your kingdom come, your will be done, on earth as it is in heaven.", ref: "Matthew 6:10" } },
+  { pct: 10, label: "The first streetlights turn on", emoji: "💡", tease: "Warm light returns to the streets" },
+  { pct: 25, label: "The parks become colorful", emoji: "🌷", tease: "Trees & flowers bloom everywhere" },
+  { pct: 40, label: "The river begins to flow", emoji: "💧", tease: "Crystal-blue water runs through the city" },
+  { pct: 55, label: "Homes & neighborhoods light up", emoji: "🏘️", tease: "Families appear, windows glow gold" },
+  { pct: 70, label: "The churches begin to glow", emoji: "⛪", tease: "A rainbow rises over the church" },
+  { pct: 85, label: "The festival stage comes alive", emoji: "🎪", tease: "Stage lights + music fill the park" },
+  { pct: 100, label: "The whole city is revived!", emoji: "🎆", tease: "Fireworks, celebration & the cross shining bright", verse: { text: "Your kingdom come, your will be done, on earth as it is in heaven.", ref: "Matthew 6:10" } },
 ];
 
 // ---------- Personal state (localStorage) ----------
@@ -163,18 +219,21 @@ export function saveState(s: GameState) {
 // ---------- Shared community progress (Supabase) ----------
 export type CityProgress = { total: number; missions: number; pct: number };
 
-export async function fetchCityProgress(): Promise<CityProgress> {
+// Returns null on failure so callers can tell "unknown" apart from a real 0
+// (a false 0 baseline would fire bogus milestone celebrations on the next act).
+export async function fetchCityProgress(): Promise<CityProgress | null> {
   try {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("revive_city_progress")
       .select("total_light_points, missions_completed")
       .eq("id", 1)
       .single();
-    const total = Number(data?.total_light_points ?? 0);
-    const missions = Number(data?.missions_completed ?? 0);
+    if (error || !data) return null;
+    const total = Number(data.total_light_points ?? 0);
+    const missions = Number(data.missions_completed ?? 0);
     return { total, missions, pct: Math.min(100, Math.round((total / CITY_TARGET) * 100)) };
   } catch {
-    return { total: 0, missions: 0, pct: 0 };
+    return null;
   }
 }
 

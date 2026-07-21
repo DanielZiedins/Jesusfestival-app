@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { fetchSignupLocations, type SignupLocation } from "@/lib/supabase";
+import { CONTINENTS } from "@/lib/continents";
 
 const R = 130;
 const CX = 150;
@@ -17,9 +18,28 @@ function project(lat: number, lng: number, rot: number) {
   return { x: CX + R * x, y: CY - R * y, z };
 }
 
+// Build an SVG path for a lat/lng polygon; back-facing vertices are clamped to
+// the horizon circle so continents slide smoothly around the limb of the Earth.
+function polygonPath(points: [number, number][], rot: number): string | null {
+  let maxZ = -1;
+  const pts = points.map(([lat, lng]) => {
+    const p = project(lat, lng, rot);
+    if (p.z > maxZ) maxZ = p.z;
+    if (p.z < 0) {
+      const dx = p.x - CX;
+      const dy = p.y - CY;
+      const d = Math.sqrt(dx * dx + dy * dy) || 1;
+      return { x: CX + (dx / d) * R, y: CY + (dy / d) * R };
+    }
+    return { x: p.x, y: p.y };
+  });
+  if (maxZ < 0.02) return null; // fully behind the globe
+  return `M${pts.map((p) => `${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join("L")}Z`;
+}
+
 export default function Globe() {
   const [locs, setLocs] = useState<SignupLocation[]>([]);
-  const [rot, setRot] = useState(0);
+  const [rot, setRot] = useState(200); // start over the Americas (Hamilton!)
   const raf = useRef<number | null>(null);
 
   useEffect(() => {
@@ -28,10 +48,16 @@ export default function Globe() {
 
   useEffect(() => {
     let last = performance.now();
+    let acc = 0;
     const loop = (now: number) => {
       const dt = now - last;
       last = now;
-      setRot((r) => (r + dt * 0.012) % 360); // slow, steady spin
+      acc += dt;
+      // ~25fps rotation updates — plenty smooth for a slow spin, easy on phones.
+      if (acc >= 40) {
+        setRot((r) => (r + acc * 0.012) % 360);
+        acc = 0;
+      }
       raf.current = requestAnimationFrame(loop);
     };
     raf.current = requestAnimationFrame(loop);
@@ -40,8 +66,13 @@ export default function Globe() {
     };
   }, []);
 
+  const land = useMemo(
+    () => CONTINENTS.map((c) => ({ name: c.name, d: polygonPath(c.points, rot) })).filter((c) => c.d),
+    [rot]
+  );
+
   const total = locs.reduce((s, l) => s + l.n, 0);
-  const countries = locs.length;
+  const places = locs.length;
 
   return (
     <div className="flex flex-col items-center">
@@ -54,35 +85,45 @@ export default function Globe() {
               <stop offset="0.6" stopColor="#1b4a86" />
               <stop offset="1" stopColor="#0c1f3f" />
             </radialGradient>
+            <linearGradient id="landG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#5fbf7a" />
+              <stop offset="1" stopColor="#2e7d4f" />
+            </linearGradient>
             <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
               <stop offset="0.82" stopColor="#a855f7" stopOpacity="0" />
               <stop offset="1" stopColor="#a855f7" stopOpacity="0.5" />
             </radialGradient>
+            <radialGradient id="shade" cx="0.35" cy="0.3" r="0.9">
+              <stop offset="0.55" stopColor="#000" stopOpacity="0" />
+              <stop offset="1" stopColor="#000" stopOpacity="0.45" />
+            </radialGradient>
+            <clipPath id="sphere">
+              <circle cx={CX} cy={CY} r={R} />
+            </clipPath>
           </defs>
 
           {/* atmosphere */}
           <circle cx={CX} cy={CY} r={R + 6} fill="url(#glow)" />
-          {/* ocean sphere */}
+          {/* ocean */}
           <circle cx={CX} cy={CY} r={R} fill="url(#ocean)" />
 
-          {/* latitude lines (static — circles of latitude are rotation-invariant) */}
-          {[-60, -30, 0, 30, 60].map((lat) => {
-            const phi = (lat * Math.PI) / 180;
-            const ry = R * Math.cos(phi) * 0.28;
-            const cy = CY - R * Math.sin(phi);
-            const rx = R * Math.cos(phi);
-            return <ellipse key={lat} cx={CX} cy={cy} rx={rx} ry={ry} fill="none" stroke="#ffffff" strokeOpacity={0.1} strokeWidth="1" />;
-          })}
-          <line x1={CX} y1={CY - R} x2={CX} y2={CY + R} stroke="#ffffff" strokeOpacity={0.08} strokeWidth="1" />
+          {/* continents */}
+          <g clipPath="url(#sphere)">
+            {land.map((c) => (
+              <path key={c.name} d={c.d!} fill="url(#landG)" stroke="#1d4d33" strokeWidth="0.6" opacity="0.95" />
+            ))}
+          </g>
 
-          {/* markers */}
+          {/* soft sphere shading for depth */}
+          <circle cx={CX} cy={CY} r={R} fill="url(#shade)" />
+
+          {/* signup markers */}
           {locs.map((l) => {
             const p = project(l.lat, l.lng, rot);
-            const front = p.z > -0.1;
-            if (!front) return null;
-            const size = 2.5 + Math.min(9, Math.sqrt(l.n) * 2.2);
+            if (p.z < -0.05) return null;
+            const size = 2.5 + Math.min(8, Math.sqrt(l.n) * 2);
             const op = 0.45 + 0.55 * Math.max(0, p.z);
-            const showLabel = p.z > 0.45; // only label markers clearly facing us
+            const showLabel = p.z > 0.55;
             return (
               <g key={l.label} opacity={op}>
                 <motion.circle cx={p.x} cy={p.y} r={size + 4} fill="#F5A623" opacity={0.25} animate={{ r: [size + 3, size + 8, size + 3], opacity: [0.28, 0, 0.28] }} transition={{ duration: 2.2, repeat: Infinity }} />
@@ -104,7 +145,7 @@ export default function Globe() {
       <div className="mt-2 text-center">
         <p className="font-display text-lg font-bold text-white">
           {total > 0 ? `${total.toLocaleString()} joining` : "Be the first to join"}
-          {countries > 0 && <span className="text-white/50"> · {countries} {countries === 1 ? "country" : "countries"}</span>}
+          {places > 0 && <span className="text-white/50"> · {places} {places === 1 ? "place" : "places"}</span>}
         </p>
         <p className="text-[12px] text-white/55">…and the movement is spreading. Add your light! 🌍</p>
       </div>

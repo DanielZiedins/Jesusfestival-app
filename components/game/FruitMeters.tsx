@@ -1,9 +1,10 @@
 "use client";
 
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { FRUITS, fruitLevel, type FruitMeters as Meters } from "@/lib/game";
 
-export default function FruitMeters({ meters }: { meters: Meters }) {
+function FruitMeters({ meters }: { meters: Meters }) {
   return (
     <div className="space-y-2.5">
       {FRUITS.map((f, i) => {
@@ -40,3 +41,5 @@ export default function FruitMeters({ meters }: { meters: Meters }) {
     </div>
   );
 }
+
+export default memo(FruitMeters);

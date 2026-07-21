@@ -15,6 +15,8 @@ import CaptainLevel from "@/components/game/CaptainLevel";
 import KingdomSpotlight from "@/components/game/KingdomSpotlight";
 import GameIntro from "@/components/game/GameIntro";
 import ActivityTicker from "@/components/game/ActivityTicker";
+import MilestoneJourney from "@/components/game/MilestoneJourney";
+import { QuizList, QuizModal } from "@/components/game/BibleQuiz";
 import { usePresence } from "@/lib/useLive";
 import { notifyMilestone, subscribeToPush, pushEnabled } from "@/lib/push";
 import { Check, Play, Trophy, Sparkle, BellIcon } from "@/components/icons";
@@ -53,6 +55,7 @@ import {
   type Mission,
   type Spotlight,
   type VerseChallenge as VC,
+  type Quiz,
 } from "@/lib/game";
 
 const CAPTAIN_LINES = [
@@ -67,6 +70,8 @@ const CAPTAIN_LINES = [
 ];
 
 const addArr = (arr: string[], v: string) => (arr.includes(v) ? arr : [...arr, v]);
+// Daily missions are scoped to the date so a fresh set is completable each day.
+const missionKey = (id: string) => `${todayKey()}#${id}`;
 
 export default function GameScreen() {
   const [state, setState] = useState<GameState>(() => loadState());
@@ -85,6 +90,7 @@ export default function GameScreen() {
   const [line, setLine] = useState(CAPTAIN_LINES[0]);
   const [reaction, setReaction] = useState<Reaction>("idle");
   const reactTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const dailyBusy = useRef(false);
   const players = usePresence();
 
   function react(r: Reaction) {
@@ -96,6 +102,7 @@ export default function GameScreen() {
   const [gameCtx, setGameCtx] = useState<{ game: MiniGameDef; fruitId?: string } | null>(null);
   const [fruitOpen, setFruitOpen] = useState<Fruit | null>(null);
   const [verseOpen, setVerseOpen] = useState<VC | null>(null);
+  const [quizOpen, setQuizOpen] = useState<Quiz | null>(null);
   const [celebrate, setCelebrate] = useState<{ label: string; subtitle?: string; verse?: { text: string; ref: string } } | null>(null);
 
   const missions = useMemo(() => missionsForToday(), []);
@@ -167,6 +174,9 @@ export default function GameScreen() {
 
   // Every Kingdom act feeds the shared city + a fruit + this week's challenge.
   async function community(points: number, missionsInc: number, fruit: string | null) {
+    // Only celebrate crossings when we actually know the starting point —
+    // a failed initial fetch must not fire every milestone at once.
+    const baselineKnown = cityRef.current !== null;
     const prevPct = cityRef.current?.pct ?? 0;
     const prevBoss = bossRef.current;
     const prevLevel = captainLevel(cityRef.current?.missions ?? 0).level;
@@ -177,6 +187,7 @@ export default function GameScreen() {
     cityRef.current = res.city;
     setBoss(res.boss);
     bossRef.current = res.boss;
+    if (!baselineKnown) return;
     const crossed = MILESTONES.filter((m) => prevPct < m.pct && res.city.pct >= m.pct);
     const newLevel = captainLevel(res.city.missions).level;
     if (prevBoss > 0 && prevBoss < BOSS_GOAL && res.boss >= BOSS_GOAL) {
@@ -194,9 +205,9 @@ export default function GameScreen() {
   }
 
   function completeMission(m: Mission) {
-    if (state.missions.includes(m.id)) return;
+    if (state.missions.includes(missionKey(m.id))) return;
     haptic(14);
-    persist({ ...state, points: state.points + m.points, missions: addArr(state.missions, m.id) });
+    persist({ ...state, points: state.points + m.points, missions: addArr(state.missions, missionKey(m.id)) });
     react("cheer");
     say("You helped revive the city! 🌇");
     community(m.points, 1, CATEGORY_FRUIT[m.category] ?? "goodness");
@@ -229,8 +240,29 @@ export default function GameScreen() {
     setVerseOpen(null);
   }
 
+  function completeQuiz(q: Quiz) {
+    const badge = `quiz:${q.id}`;
+    if (state.badges.includes(badge)) return;
+    haptic(16);
+    persist({ ...state, points: state.points + q.points, badges: addArr(state.badges, badge) });
+    react("celebrate");
+    say("You know your Bible — amazing! 📖🎉");
+    community(q.points, 0, "faithfulness");
+    setQuizOpen(null);
+  }
+
   async function doDailyMission() {
-    if (dailyDone) return;
+    if (dailyDone || dailyBusy.current) return;
+    dailyBusy.current = true;
+    const prevDaily = daily;
+    // Confirm the shared counter FIRST — never mark done if the network failed,
+    // so the user can retry instead of silently losing their contribution.
+    const newCount = await doDaily();
+    dailyBusy.current = false;
+    if (newCount == null) {
+      say("Hmm — I couldn't reach the city. Check your connection and try again! 📶");
+      return;
+    }
     haptic(18);
     setDailyDone(true);
     setStreak(recordStreak());
@@ -239,14 +271,12 @@ export default function GameScreen() {
     } catch {
       /* ignore */
     }
-    const prevDaily = daily;
-    const newCount = await doDaily();
-    if (newCount != null) setDaily(newCount);
+    setDaily(newCount);
     react("celebrate");
     say("Thank you for doing today's mission — the whole city moves forward! 🌇");
     community(120, 1, dm.fruit);
     spotlightPost(dm.text.toLowerCase());
-    if (newCount != null && prevDaily < DAILY_GOAL && newCount >= DAILY_GOAL) {
+    if (prevDaily < DAILY_GOAL && newCount >= DAILY_GOAL) {
       setCelebrate({ label: "Today's Global Mission Complete! 🎉", subtitle: `The community unlocked "${dm.reward}"!`, verse: { text: "Let your light shine before others, that they may see your good deeds and glorify your Father in heaven.", ref: "Matthew 5:16" } });
     }
   }
@@ -316,18 +346,52 @@ export default function GameScreen() {
           </div>
         </div>
 
-        <div className="relative mt-4 rounded-3xl border border-gold/25 bg-gradient-to-br from-purple-900/40 to-ink/60 p-5 text-center">
+        <div className="relative mt-4 overflow-hidden rounded-3xl border border-gold/25 bg-gradient-to-br from-purple-900/40 to-ink/60 p-5 text-center">
+          <div className="pointer-events-none absolute -right-10 -top-12 h-36 w-36 rounded-full bg-gold/15 blur-3xl" />
           <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-purple-200">Revive Hamilton</p>
           <motion.p key={pct} initial={{ scale: 0.85, opacity: 0.6 }} animate={{ scale: 1, opacity: 1 }} className="text-gradient-gold font-display text-6xl font-black leading-none">
             {pct}%
           </motion.p>
-          <div className="mx-auto mt-3 h-3.5 w-full max-w-xs overflow-hidden rounded-full bg-white/10">
-            <motion.div className="h-full rounded-full bg-gradient-to-r from-purple-500 via-gold-400 to-gold-500" initial={{ width: 0 }} animate={{ width: `${pct}%` }} transition={{ duration: 1.1, ease: "easeOut" }} />
+
+          {/* Upgraded bar: glow, milestone ticks & a shine sweep */}
+          <div className="relative mx-auto mt-4 h-5 w-full max-w-xs">
+            <div className="absolute inset-0 overflow-hidden rounded-full bg-white/10 ring-1 ring-white/10">
+              <motion.div
+                className="relative h-full rounded-full bg-gradient-to-r from-purple-500 via-gold-400 to-gold-500"
+                style={{ boxShadow: "0 0 18px rgba(245,166,35,0.55)" }}
+                initial={{ width: 0 }}
+                animate={{ width: `${Math.max(pct, 3)}%` }}
+                transition={{ duration: 1.1, ease: "easeOut" }}
+              >
+                <motion.span
+                  className="absolute inset-y-0 w-8 bg-white/40 blur-sm"
+                  animate={{ left: ["-15%", "110%"] }}
+                  transition={{ duration: 2.6, repeat: Infinity, repeatDelay: 1.6, ease: "easeInOut" }}
+                />
+              </motion.div>
+            </div>
+            {/* milestone ticks */}
+            {MILESTONES.map((m) => (
+              <span
+                key={m.pct}
+                className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px]"
+                style={{ left: `${m.pct}%`, opacity: pct >= m.pct ? 1 : 0.4, filter: pct >= m.pct ? "none" : "grayscale(1)" }}
+              >
+                {m.emoji}
+              </span>
+            ))}
           </div>
-          <p className="mt-2 text-xs text-white/60">
-            {nextMilestone ? <>Next: <span className="text-white/85">{nextMilestone.label}</span> at {nextMilestone.pct}%</> : <>The whole city is revived! 🎉</>}
+
+          <p className="mt-3 text-xs text-white/60">
+            {nextMilestone ? <>Next unlock: <span className="text-white/85">{nextMilestone.label}</span> at {nextMilestone.pct}%</> : <>The whole city is revived! 🎉</>}
           </p>
           {city && <p className="mt-1 text-[11px] text-gold-400">🙌 {city.missions.toLocaleString()} Kingdom acts by the community — you have a part to play!</p>}
+        </div>
+
+        {/* What we unlock together */}
+        <div className="relative mt-3">
+          <p className="mb-2 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-white/45">The journey ahead — unlocked together</p>
+          <MilestoneJourney pct={pct} />
         </div>
 
         <div className="relative mt-4">
@@ -378,7 +442,7 @@ export default function GameScreen() {
       <Section emoji="🙌" title="Your Missions Today" text="Three simple, real-life missions — pray, encourage, invite. Do one out in the real world, then come back and tap “I did it!”">
         <div className="space-y-2.5">
           {missions.map((m) => {
-            const done = state.missions.includes(m.id);
+            const done = state.missions.includes(missionKey(m.id));
             return (
               <div key={m.id} className={`flex items-center gap-3 rounded-2xl border p-3.5 ${done ? "border-emerald-400/30 bg-emerald-500/10" : "border-white/10 bg-white/5"}`}>
                 <span className="rounded-full bg-purple-500/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-purple-200">{m.category}</span>
@@ -465,6 +529,11 @@ export default function GameScreen() {
         </div>
       </Section>
 
+      {/* Bible quizzes */}
+      <Section emoji="🧠" title="Bible Quiz" text="Three levels of fun Bible trivia — start easy, work up to Kingdom Champion! Get all 5 right to earn big Light Points. No losing, just learning!">
+        <QuizList done={state.badges.filter((b) => b.startsWith("quiz:")).map((b) => b.slice(5))} onOpen={(q) => setQuizOpen(q)} />
+      </Section>
+
       {/* Spread the word */}
       <Section emoji="📣" title="Spread the Word" text="The easiest mission of all — share the app or the festival with your friends on social media. Every share brings more people into the light!">
         <ShareMissions
@@ -531,6 +600,17 @@ export default function GameScreen() {
 
       <AnimatePresence>
         {celebrate && <Celebration data={celebrate} onClose={() => setCelebrate(null)} />}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {quizOpen && (
+          <QuizModal
+            quiz={quizOpen}
+            done={state.badges.includes(`quiz:${quizOpen.id}`)}
+            onComplete={() => completeQuiz(quizOpen)}
+            onClose={() => setQuizOpen(null)}
+          />
+        )}
       </AnimatePresence>
 
       <AnimatePresence>{showIntro && <GameIntro onDone={closeIntro} />}</AnimatePresence>
@@ -663,6 +743,12 @@ function VerseChallengeModal({ v, done, onComplete, onClose }: { v: VC; done: bo
   const [picked, setPicked] = useState<string | null>(null);
   const [solved, setSolved] = useState(done);
   const [wrong, setWrong] = useState(false);
+  const [claimed, setClaimed] = useState(false);
+  const claim = () => {
+    if (claimed) return; // block double-tap during the exit animation
+    setClaimed(true);
+    onComplete();
+  };
 
   function choose(opt: string) {
     if (v.type !== "choice") return;
@@ -746,8 +832,8 @@ function VerseChallengeModal({ v, done, onComplete, onClose }: { v: VC; done: bo
           <h4 className="mt-2 font-display text-xl font-bold text-white">You got it! 📖</h4>
           <p className="mt-1 text-sm text-white/70">God&apos;s Word is a lamp for your feet.</p>
           {!done ? (
-            <button onClick={onComplete} className="mt-5 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-6 py-3 font-bold text-navy-950 shadow-glow active:scale-95">
-              Claim +{v.points} Light Points
+            <button onClick={claim} disabled={claimed} className="mt-5 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-6 py-3 font-bold text-navy-950 shadow-glow active:scale-95 disabled:opacity-60">
+              {claimed ? "Claimed! ✨" : `Claim +${v.points} Light Points`}
             </button>
           ) : (
             <button onClick={onClose} className="mt-5 rounded-2xl bg-white/10 px-6 py-3 font-bold text-white active:scale-95">

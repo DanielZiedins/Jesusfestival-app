@@ -125,6 +125,49 @@ const EVENT_JSONLD = {
   ],
 };
 
+const FAQ_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "When is Jesus Festival Hamilton 2026?",
+      acceptedAnswer: { "@type": "Answer", text: "September 4–5, 2026 at Gage Park, Hamilton, Ontario. Friday is Pure Worship Night (come early — gates 6:00 PM, worship 6:30 PM) and Saturday is Family Festival Day from 10 AM to 6 PM." },
+    },
+    {
+      "@type": "Question",
+      name: "Is Jesus Festival free?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes! Jesus Festival is a completely free family festival — no tickets needed. Food trucks, live music, kids zone, games, baptisms and worship, all in the heart of Hamilton." },
+    },
+    {
+      "@type": "Question",
+      name: "Where is Jesus Festival held?",
+      acceptedAnswer: { "@type": "Answer", text: "Gage Park, 1000 Main St E, Hamilton, Ontario, Canada." },
+    },
+    {
+      "@type": "Question",
+      name: "What is the Jesus Festival app?",
+      acceptedAnswer: { "@type": "Answer", text: "The official festival app with the schedule, map, news, and Revive the City — a community game where thousands complete real-world Kingdom missions together. Install it free at jesusfestival.app." },
+    },
+    {
+      "@type": "Question",
+      name: "Who is performing at Jesus Festival 2026?",
+      acceptedAnswer: { "@type": "Answer", text: "Ant Lee and Open Heaven are confirmed, with a surprise Friday-night guest and more artists announcing very soon." },
+    },
+  ],
+};
+
+const APP_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Jesus Festival App",
+  url: SITE.url,
+  applicationCategory: "LifestyleApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "CAD" },
+  description: SITE.description,
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -140,7 +183,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-ink antialiased">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(EVENT_JSONLD) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([EVENT_JSONLD, FAQ_JSONLD, APP_JSONLD]) }}
         />
         {children}
         <script

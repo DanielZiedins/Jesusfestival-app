@@ -15,7 +15,9 @@ export default function ActivityTicker({ entries }: { entries: Spotlight[] }) {
   }, [entries.length]);
 
   if (!entries.length) return null;
-  const e = entries[i];
+  // Clamp — the parent list can shrink (optimistic entries replaced by a fetch)
+  // and a stale index must never read past the end.
+  const e = entries[i % entries.length];
 
   return (
     <div className="flex items-center gap-2 overflow-hidden rounded-full border border-white/10 bg-white/5 px-3 py-2">
