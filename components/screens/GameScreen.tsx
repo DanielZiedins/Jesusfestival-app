@@ -13,6 +13,7 @@ import WeeklyBoss from "@/components/game/WeeklyBoss";
 import FruitMeters from "@/components/game/FruitMeters";
 import CaptainLevel from "@/components/game/CaptainLevel";
 import KingdomSpotlight from "@/components/game/KingdomSpotlight";
+import GameIntro from "@/components/game/GameIntro";
 import { Check, Play, Trophy, Sparkle } from "@/components/icons";
 import {
   BIBLE_TRANSLATION,
@@ -72,6 +73,7 @@ export default function GameScreen() {
   const [dailyDone, setDailyDone] = useState(false);
   const [spotlight, setSpotlight] = useState<Spotlight[]>([]);
   const [optIn, setOptIn] = useState(true);
+  const [showIntro, setShowIntro] = useState(false);
   const [line, setLine] = useState(CAPTAIN_LINES[0]);
 
   const [gameCtx, setGameCtx] = useState<{ game: MiniGameDef; fruitId?: string } | null>(null);
@@ -92,10 +94,20 @@ export default function GameScreen() {
     try {
       setDailyDone(localStorage.getItem(`jf-daily-${todayKey()}`) === "1");
       setOptIn(localStorage.getItem("jf-spotlight") !== "0");
+      if (localStorage.getItem("jf-game-intro") !== "done") setShowIntro(true);
     } catch {
       /* ignore */
     }
   }, []);
+
+  function closeIntro() {
+    setShowIntro(false);
+    try {
+      localStorage.setItem("jf-game-intro", "done");
+    } catch {
+      /* ignore */
+    }
+  }
 
   useEffect(() => {
     const iv = setInterval(() => setLine(CAPTAIN_LINES[Math.floor(Math.random() * CAPTAIN_LINES.length)]), 6000);
@@ -225,6 +237,12 @@ export default function GameScreen() {
           <p className="mx-auto mt-2 max-w-xs text-[13px] leading-relaxed text-white/60">
             Hamilton has lost its color. As we complete real Kingdom missions together, God is bringing it back to life.
           </p>
+          <button
+            onClick={() => setShowIntro(true)}
+            className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[11px] font-semibold text-white/70 active:scale-95"
+          >
+            ✨ How it works
+          </button>
         </div>
 
         <div className="relative mt-4 rounded-3xl border border-gold/25 bg-gradient-to-br from-purple-900/40 to-ink/60 p-5 text-center">
@@ -243,6 +261,9 @@ export default function GameScreen() {
 
         <div className="relative mt-4">
           <CityScene pct={pct} />
+          <p className="mt-2 px-2 text-center text-[12px] leading-relaxed text-white/55">
+            This is <span className="font-semibold text-white/80">Hamilton</span>. Every act of love turns the lights on, grows the gardens, and lifts the cross higher — until the whole city shines. 🌆
+          </p>
         </div>
       </div>
 
@@ -404,6 +425,8 @@ export default function GameScreen() {
       <AnimatePresence>
         {celebrate && <Celebration data={celebrate} onClose={() => setCelebrate(null)} />}
       </AnimatePresence>
+
+      <AnimatePresence>{showIntro && <GameIntro onDone={closeIntro} />}</AnimatePresence>
     </div>
   );
 }
