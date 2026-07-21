@@ -6,6 +6,7 @@ import ScreenHeader from "@/components/ScreenHeader";
 import Reveal from "@/components/Reveal";
 import { NewsIcon, BellIcon, Check } from "@/components/icons";
 import { fetchNews, type NewsPost } from "@/lib/supabase";
+import { subscribeToPush, pushEnabled } from "@/lib/push";
 
 const CATEGORY_STYLE: Record<string, string> = {
   update: "bg-purple-500/20 text-purple-200",
@@ -34,28 +35,14 @@ export default function NewsScreen() {
 
   useEffect(() => {
     fetchNews().then(setPosts);
-    try {
-      setNotify(localStorage.getItem("jf-notify") === "1");
-    } catch {
-      /* ignore */
-    }
+    setNotify(pushEnabled());
   }, []);
 
   async function toggleNotify() {
-    if (!notify && typeof Notification !== "undefined") {
-      try {
-        await Notification.requestPermission();
-      } catch {
-        /* ignore */
-      }
-    }
-    const next = !notify;
-    setNotify(next);
-    try {
-      localStorage.setItem("jf-notify", next ? "1" : "0");
-    } catch {
-      /* ignore */
-    }
+    if (notify) return; // already on
+    const res = await subscribeToPush();
+    if (res.ok) setNotify(true);
+    else alert(res.error || "Couldn't turn on updates.");
   }
 
   return (

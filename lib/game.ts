@@ -266,6 +266,47 @@ export function captainLevel(missions: number): { level: number; pct: number; to
   return { level, pct: Math.round((into / per) * 100), toNext: per - into };
 }
 
+// Gentle haptic feedback (no-op where unsupported).
+export function haptic(ms: number | number[] = 12) {
+  try {
+    if (typeof navigator !== "undefined" && "vibrate" in navigator) navigator.vibrate(ms as number);
+  } catch {
+    /* ignore */
+  }
+}
+
+// Personal daily streak (encourages returning each day).
+export function getStreak(): number {
+  try {
+    const s = Number(localStorage.getItem("jf-streak") || "0");
+    const last = localStorage.getItem("jf-streak-date");
+    if (!last) return 0;
+    const y = new Date();
+    y.setDate(y.getDate() - 1);
+    if (last === todayKey() || last === todayKey(y)) return s;
+    return 0;
+  } catch {
+    return 0;
+  }
+}
+
+export function recordStreak(): number {
+  try {
+    const today = todayKey();
+    const last = localStorage.getItem("jf-streak-date");
+    if (last === today) return Number(localStorage.getItem("jf-streak") || "1");
+    const y = new Date();
+    y.setDate(y.getDate() - 1);
+    let streak = Number(localStorage.getItem("jf-streak") || "0");
+    streak = last === todayKey(y) ? streak + 1 : 1;
+    localStorage.setItem("jf-streak", String(streak));
+    localStorage.setItem("jf-streak-date", today);
+    return streak;
+  } catch {
+    return 1;
+  }
+}
+
 export type FruitMeters = Record<string, number>;
 export function fruitLevel(count: number): { level: number; pct: number } {
   const per = 500;

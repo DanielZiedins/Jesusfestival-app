@@ -14,7 +14,9 @@ import FruitMeters from "@/components/game/FruitMeters";
 import CaptainLevel from "@/components/game/CaptainLevel";
 import KingdomSpotlight from "@/components/game/KingdomSpotlight";
 import GameIntro from "@/components/game/GameIntro";
-import { Check, Play, Trophy, Sparkle } from "@/components/icons";
+import { usePresence } from "@/lib/useLive";
+import { notifyMilestone, subscribeToPush, pushEnabled } from "@/lib/push";
+import { Check, Play, Trophy, Sparkle, BellIcon } from "@/components/icons";
 import {
   BIBLE_TRANSLATION,
   BOSS_GOAL,
@@ -25,6 +27,9 @@ import {
   MINI_GAMES,
   VERSE_CHALLENGES,
   captainLevel,
+  getStreak,
+  recordStreak,
+  haptic,
   contributeCommunity,
   dailyMission,
   doDaily,
@@ -74,7 +79,10 @@ export default function GameScreen() {
   const [spotlight, setSpotlight] = useState<Spotlight[]>([]);
   const [optIn, setOptIn] = useState(true);
   const [showIntro, setShowIntro] = useState(false);
+  const [streak, setStreak] = useState(0);
+  const [pushOn, setPushOn] = useState(false);
   const [line, setLine] = useState(CAPTAIN_LINES[0]);
+  const players = usePresence();
 
   const [gameCtx, setGameCtx] = useState<{ game: MiniGameDef; fruitId?: string } | null>(null);
   const [fruitOpen, setFruitOpen] = useState<Fruit | null>(null);
@@ -95,10 +103,22 @@ export default function GameScreen() {
       setDailyDone(localStorage.getItem(`jf-daily-${todayKey()}`) === "1");
       setOptIn(localStorage.getItem("jf-spotlight") !== "0");
       if (localStorage.getItem("jf-game-intro") !== "done") setShowIntro(true);
+      setStreak(getStreak());
+      setPushOn(pushEnabled());
     } catch {
       /* ignore */
     }
   }, []);
+
+  async function enablePush() {
+    const res = await subscribeToPush();
+    if (res.ok) {
+      setPushOn(true);
+      haptic(20);
+    } else {
+      alert(res.error || "Couldn't enable alerts.");
+    }
+  }
 
   function closeIntro() {
     setShowIntro(false);
@@ -151,17 +171,22 @@ export default function GameScreen() {
     const crossed = MILESTONES.filter((m) => prevPct < m.pct && res.city.pct >= m.pct);
     const newLevel = captainLevel(res.city.missions).level;
     if (prevBoss > 0 && prevBoss < BOSS_GOAL && res.boss >= BOSS_GOAL) {
+      haptic([80, 40, 80, 40, 140]);
       setCelebrate({ label: `${bossMeta.name} Overcome! 🎉`, subtitle: `The community pushed back ${bossMeta.name.toLowerCase()} through ${bossMeta.defeatedBy.toLowerCase()}.`, verse: bossMeta.verse });
     } else if (crossed.length) {
       const top = crossed[crossed.length - 1];
+      haptic([80, 40, 80, 40, 140]);
+      notifyMilestone(top.pct); // server verifies + dedupes, then pushes to everyone
       setCelebrate({ label: top.label, verse: top.verse });
     } else if (newLevel > prevLevel) {
+      haptic([60, 40, 60]);
       setCelebrate({ label: `Captain Goodness reached Level ${newLevel}! 🦸`, subtitle: "The whole community leveled him up — his light shines brighter!" });
     }
   }
 
   function completeMission(m: Mission) {
     if (state.missions.includes(m.id)) return;
+    haptic(14);
     persist({ ...state, points: state.points + m.points, missions: addArr(state.missions, m.id) });
     say("You helped revive the city! 🌇");
     community(m.points, 1, CATEGORY_FRUIT[m.category] ?? "goodness");
@@ -169,6 +194,7 @@ export default function GameScreen() {
   }
 
   function winGame(game: MiniGameDef, fruitId?: string) {
+    haptic(14);
     const next: GameState = {
       ...state,
       points: state.points + game.points,
@@ -184,6 +210,7 @@ export default function GameScreen() {
 
   function completeVerse(v: VC) {
     if (state.verses.includes(v.id)) return;
+    haptic(14);
     persist({ ...state, points: state.points + v.points, verses: addArr(state.verses, v.id), badges: addArr(state.badges, `verse:${v.id}`) });
     say("God's Word is getting stronger in your heart! 📖");
     community(v.points, 0, "faithfulness");
@@ -192,7 +219,9 @@ export default function GameScreen() {
 
   async function doDailyMission() {
     if (dailyDone) return;
+    haptic(18);
     setDailyDone(true);
+    setStreak(recordStreak());
     try {
       localStorage.setItem(`jf-daily-${todayKey()}`, "1");
     } catch {
@@ -237,12 +266,41 @@ export default function GameScreen() {
           <p className="mx-auto mt-2 max-w-xs text-[13px] leading-relaxed text-white/60">
             Hamilton has lost its color. As we complete real Kingdom missions together, God is bringing it back to life.
           </p>
-          <button
-            onClick={() => setShowIntro(true)}
-            className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[11px] font-semibold text-white/70 active:scale-95"
-          >
-            ✨ How it works
-          </button>
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
+            <button
+              onClick={() => setShowIntro(true)}
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[11px] font-semibold text-white/70 active:scale-95"
+            >
+              ✨ How it works
+            </button>
+            {!pushOn ? (
+              <button
+                onClick={enablePush}
+                className="inline-flex items-center gap-1.5 rounded-full border border-purple-400/40 bg-purple-500/15 px-3.5 py-1.5 text-[11px] font-semibold text-purple-200 active:scale-95"
+              >
+                <BellIcon width={12} height={12} /> Milestone alerts
+              </button>
+            ) : (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-3.5 py-1.5 text-[11px] font-semibold text-gold-400">
+                <BellIcon width={12} height={12} /> Alerts on
+              </span>
+            )}
+          </div>
+
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1 text-[11px] font-medium text-white/70">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+              </span>
+              {players >= 2 ? `${players} reviving Hamilton now` : "You're reviving Hamilton now"}
+            </span>
+            {streak > 0 && (
+              <span className="inline-flex items-center gap-1 rounded-full bg-gold/10 px-3 py-1 text-[11px] font-bold text-gold-400">
+                🔥 {streak}-day streak
+              </span>
+            )}
+          </div>
         </div>
 
         <div className="relative mt-4 rounded-3xl border border-gold/25 bg-gradient-to-br from-purple-900/40 to-ink/60 p-5 text-center">

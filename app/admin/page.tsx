@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { adminCreateNews, adminResetCity, fetchNews, type NewsPost } from "@/lib/supabase";
 import { fetchCityProgress, CITY_TARGET, type CityProgress } from "@/lib/game";
+import { adminSendPush } from "@/lib/push";
 
 export default function AdminPage() {
   const [passcode, setPasscode] = useState("");
@@ -73,6 +74,28 @@ function Dashboard({ passcode }: { passcode: string }) {
   const [pinned, setPinned] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [pTitle, setPTitle] = useState("");
+  const [pBody, setPBody] = useState("");
+  const [pMsg, setPMsg] = useState<string | null>(null);
+  const [pBusy, setPBusy] = useState(false);
+
+  async function sendPush() {
+    if (!pTitle.trim() || !pBody.trim()) {
+      setPMsg("Title and message are required.");
+      return;
+    }
+    setPBusy(true);
+    setPMsg(null);
+    const res = await adminSendPush(passcode, pTitle, pBody);
+    setPBusy(false);
+    if (!res.ok) {
+      setPMsg(res.error ?? "Failed.");
+      return;
+    }
+    setPTitle("");
+    setPBody("");
+    setPMsg(`Sent to ${res.sent ?? 0} device${res.sent === 1 ? "" : "s"}. 🔔`);
+  }
 
   async function refresh() {
     setCity(await fetchCityProgress());
@@ -151,6 +174,20 @@ function Dashboard({ passcode }: { passcode: string }) {
             {busy ? "Posting…" : "Publish"}
           </button>
           {msg && <p className="text-center text-xs font-semibold text-white/70">{msg}</p>}
+        </div>
+      </section>
+
+      {/* Push notification */}
+      <section className="rounded-2xl border border-white/10 bg-white/5 p-5">
+        <h2 className="mb-1 font-display text-lg font-bold">Send a push notification</h2>
+        <p className="mb-3 text-xs text-white/50">Goes to everyone who turned on alerts. Great for artist reveals & big moments.</p>
+        <div className="space-y-3">
+          <input value={pTitle} onChange={(e) => setPTitle(e.target.value)} placeholder="Title (e.g. 🎤 Friday band revealed!)" className="jf-input" />
+          <textarea value={pBody} onChange={(e) => setPBody(e.target.value)} placeholder="Message…" rows={3} className="jf-input resize-none" />
+          <button onClick={sendPush} disabled={pBusy} className="w-full rounded-xl bg-gradient-to-r from-purple-500 to-purple-700 py-3 font-bold text-white active:scale-[0.98]">
+            {pBusy ? "Sending…" : "Send to all devices"}
+          </button>
+          {pMsg && <p className="text-center text-xs font-semibold text-white/70">{pMsg}</p>}
         </div>
       </section>
 
