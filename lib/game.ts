@@ -533,18 +533,69 @@ export async function crewsSample(): Promise<Crew[]> {
 }
 
 /* ---------- Prayer Wall: the community prays for one another ---------- */
-export type Prayer = { id: string; name: string | null; church: string | null; body: string; kind: "prayer" | "praise"; prayed: number; created_at: string };
+export type Prayer = { id: string; name: string | null; church: string | null; body: string; kind: "prayer" | "praise"; prayed: number; answered: boolean; created_at: string };
+export type PrayerStats = { total_prayed: number; requests: number; praises: number; answered: number };
 
-export async function fetchPrayers(): Promise<Prayer[]> {
+// Returns null on failure so the UI can offer a retry instead of a false "empty wall".
+export async function fetchPrayers(): Promise<Prayer[] | null> {
   try {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("revive_prayers")
-      .select("id, name, church, body, kind, prayed, created_at")
+      .select("id, name, church, body, kind, prayed, answered, created_at")
       .order("created_at", { ascending: false })
-      .limit(40);
+      .limit(60);
+    if (error) return null;
     return (data as Prayer[]) ?? [];
   } catch {
-    return [];
+    return null;
+  }
+}
+
+export async function fetchPrayerStats(): Promise<PrayerStats | null> {
+  try {
+    const { data } = await supabase.rpc("prayer_stats");
+    if (!data) return null;
+    return { total_prayed: Number(data.total_prayed ?? 0), requests: Number(data.requests ?? 0), praises: Number(data.praises ?? 0), answered: Number(data.answered ?? 0) };
+  } catch {
+    return null;
+  }
+}
+
+// Prayers you posted (so only you can mark them answered).
+export function myPrayerIds(): Set<string> {
+  try {
+    return new Set(JSON.parse(localStorage.getItem("jf-my-prayers") || "[]"));
+  } catch {
+    return new Set();
+  }
+}
+function markMyPrayer(id: string) {
+  try {
+    const arr = JSON.parse(localStorage.getItem("jf-my-prayers") || "[]");
+    if (!arr.includes(id)) {
+      arr.push(id);
+      localStorage.setItem("jf-my-prayers", JSON.stringify(arr));
+    }
+  } catch {
+    /* ignore */
+  }
+}
+
+// Secret owner token per prayer (proves you posted it — only you can mark it answered).
+function savePrayerToken(id: string, token: string) {
+  try {
+    const map = JSON.parse(localStorage.getItem("jf-prayer-tokens") || "{}");
+    map[id] = token;
+    localStorage.setItem("jf-prayer-tokens", JSON.stringify(map));
+  } catch {
+    /* ignore */
+  }
+}
+function getPrayerToken(id: string): string | null {
+  try {
+    return JSON.parse(localStorage.getItem("jf-prayer-tokens") || "{}")[id] ?? null;
+  } catch {
+    return null;
   }
 }
 
@@ -552,9 +603,25 @@ export async function prayerAdd(name: string | null, church: string | null, body
   try {
     const { data, error } = await supabase.rpc("prayer_add", { p_name: name, p_church: church, p_body: body, p_kind: kind });
     if (error || !data?.ok) return { ok: false, error: data?.error || "Couldn't post right now — try again." };
-    return { ok: true, prayer: data as Prayer };
+    markMyPrayer(data.id);
+    if (data.token) savePrayerToken(data.id, data.token);
+    const { token: _t, ...prayer } = data as Prayer & { token?: string };
+    return { ok: true, prayer: { ...prayer, answered: Boolean(data.answered) } as Prayer };
   } catch {
     return { ok: false, error: "Couldn't post — check your connection." };
+  }
+}
+
+// The poster marks their own request answered → becomes a celebrated testimony.
+// Requires the secret token minted when they posted (server-verified against a hash).
+export async function prayerAnswer(id: string): Promise<boolean> {
+  const token = getPrayerToken(id);
+  if (!token) return false;
+  try {
+    const { data } = await supabase.rpc("prayer_answer", { p_id: id, p_token: token });
+    return Boolean(data?.ok);
+  } catch {
+    return false;
   }
 }
 

@@ -11,9 +11,10 @@ import MapScreen from "./MapScreen";
 import ConnectScreen from "./ConnectScreen";
 import SettingsScreen from "./SettingsScreen";
 import InstallScreen from "./InstallScreen";
+import PrayerWallScreen from "./PrayerWallScreen";
 import { FlameIcon, MapIcon, BellIcon, ArrowRight, ChevronLeft, Users, Heart, Download, Sparkle } from "@/components/icons";
 
-type View = "hub" | "movement" | "discipleship" | "give" | "map" | "connect" | "settings" | "install";
+type View = "hub" | "prayer" | "movement" | "discipleship" | "give" | "map" | "connect" | "settings" | "install";
 
 const CARDS: { id: View; title: string; sub: string; Icon: React.ComponentType<{ width?: number; height?: number }>; emoji: string }[] = [
   { id: "connect", title: "Connect", sub: "See where the movement is spreading & get involved", Icon: BellIcon, emoji: "🌍" },
@@ -25,12 +26,13 @@ const CARDS: { id: View; title: string; sub: string; Icon: React.ComponentType<{
   { id: "settings", title: "Settings", sub: "Update your name, church & preferences", Icon: Sparkle, emoji: "⚙️" },
 ];
 
-export default function MoreScreen({ resetSignal = 0 }: { resetSignal?: number }) {
+export default function MoreScreen({ resetSignal = 0, openView = null }: { resetSignal?: number; openView?: string | null }) {
   const [view, setView] = useState<View>("hub");
 
-  // Returning to the "More" tab always shows the hub.
+  // Tapping "More" returns to the hub — unless a screen deep-linked to a page.
   useEffect(() => {
-    setView("hub");
+    setView((openView as View) || "hub");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resetSignal]);
 
   return (
@@ -38,6 +40,26 @@ export default function MoreScreen({ resetSignal = 0 }: { resetSignal?: number }
       {view === "hub" ? (
           <motion.div key="hub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="px-4">
             <ScreenHeader eyebrow="Explore more" title="More" subtitle="The movement, discipleship, the map & ways to connect." />
+
+            {/* Featured: Prayer Wall */}
+            <Reveal>
+              <button
+                onClick={() => {
+                  setView("prayer");
+                  window.scrollTo({ top: 0 });
+                }}
+                className="group relative mb-3 flex w-full items-center gap-4 overflow-hidden rounded-2xl border border-gold/30 bg-gradient-to-br from-purple-700/40 via-purple-900/30 to-ink/50 p-4 text-left transition active:scale-[0.99]"
+              >
+                <span className="pointer-events-none absolute -right-8 -top-10 h-32 w-32 rounded-full bg-gold/15 blur-3xl" />
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-gold/25 to-purple-600/30 text-3xl">🙏</span>
+                <span className="relative min-w-0 flex-1">
+                  <span className="block font-display text-xl font-extrabold text-white">Prayer Wall</span>
+                  <span className="block text-xs text-white/65">Lift a prayer, share a praise & pray for the whole city together</span>
+                </span>
+                <ArrowRight width={18} height={18} className="relative shrink-0 text-gold-400 transition group-hover:translate-x-0.5" />
+              </button>
+            </Reveal>
+
             <div className="space-y-3 pb-4">
               {CARDS.map((c, i) => (
                 <Reveal key={c.id} delay={i * 0.05}>
@@ -72,6 +94,7 @@ export default function MoreScreen({ resetSignal = 0 }: { resetSignal?: number }
                 <ChevronLeft width={18} height={18} /> Back
               </button>
             </div>
+            {view === "prayer" && <PrayerWallScreen />}
             {view === "movement" && <MovementScreen />}
             {view === "discipleship" && <DiscipleshipScreen />}
             {view === "give" && <DonateScreen />}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import dynamic from "next/dynamic";
 import BottomNav, { type TabId } from "./BottomNav";
 import InstallPrompt from "./InstallPrompt";
@@ -40,10 +40,15 @@ export default function AppShell() {
 
   // Bumping this whenever "More" is tapped tells MoreScreen to return to its hub.
   const [moreSignal, setMoreSignal] = useState(0);
+  // Optional target sub-view so other screens can deep-link into a More page.
+  const [moreView, setMoreView] = useState<string | null>(null);
 
-  const go = (next: TabId) => {
-    if (next === "more") setMoreSignal((s) => s + 1);
-    if (next === tab) {
+  const go = (next: TabId, sub?: string) => {
+    if (next === "more") {
+      setMoreView(sub ?? null);
+      setMoreSignal((s) => s + 1);
+    }
+    if (next === tab && !sub) {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
@@ -52,6 +57,7 @@ export default function AppShell() {
   };
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="relative min-h-screen bg-ink">
       {/* Ambient background */}
       <div className="pointer-events-none fixed inset-0 z-0">
@@ -75,12 +81,13 @@ export default function AppShell() {
           {tab === "schedule" && <ScheduleScreen />}
           {tab === "game" && <GameScreen />}
           {tab === "news" && <NewsScreen />}
-          {tab === "more" && <MoreScreen resetSignal={moreSignal} />}
+          {tab === "more" && <MoreScreen resetSignal={moreSignal} openView={moreView} />}
         </motion.div>
       </main>
 
       <InstallPrompt />
       <BottomNav active={tab} onChange={go} />
     </div>
+    </MotionConfig>
   );
 }

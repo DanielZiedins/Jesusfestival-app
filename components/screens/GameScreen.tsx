@@ -18,7 +18,6 @@ import ActivityTicker from "@/components/game/ActivityTicker";
 import MilestoneJourney from "@/components/game/MilestoneJourney";
 import { QuizList, QuizModal } from "@/components/game/BibleQuiz";
 import ChurchCrew from "@/components/game/ChurchCrew";
-import PrayerWall from "@/components/game/PrayerWall";
 import { usePresence } from "@/lib/useLive";
 import { notifyMilestone, notifyBossVictory, subscribeToPush, pushEnabled } from "@/lib/push";
 import { Check, Play, Trophy, Sparkle, BellIcon } from "@/components/icons";
@@ -601,20 +600,6 @@ export default function GameScreen() {
       {/* Church Crew */}
       <Section emoji="⛪" title="Church Crew" text="Rally your congregation! Join your church's crew with a code — or start one and share it. Every Kingdom act you do counts for your church family too. Celebrated together, never ranked!">
         <ChurchCrew />
-      </Section>
-
-      {/* Prayer Wall */}
-      <Section emoji="🙏" title="Prayer Wall" text="Share a prayer request or a praise report — and tap 'I'm praying' to stand with others. We carry each other's burdens as one family.">
-        <PrayerWall
-          onPosted={() => {
-            if (state.badges.includes("prayer-posted")) return;
-            haptic(16);
-            persist({ ...state, points: state.points + 80, badges: addArr(state.badges, "prayer-posted") });
-            react("pray");
-            say("Thank you for lifting that up — we're praying with you. 🙏");
-            community(80, 0, "peace");
-          }}
-        />
       </Section>
 
       <Section emoji="🌟" title="Kingdom Spotlight" text="A rotating celebration of real people doing real good — never a competition, just encouragement. Add your first name & church to join in!">

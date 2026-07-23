@@ -44,7 +44,7 @@ const EXPECT_ICON: Record<string, React.ComponentType<{ width?: number; height?:
   community: Users,
 };
 
-export default function HomeScreen({ go }: { go: (t: TabId) => void }) {
+export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => void }) {
   // Verse of the day — set after mount so SSR/client never disagree on the date.
   const [verseOfDay, setVerseOfDay] = useState(SCRIPTURES[0]);
   useEffect(() => {
@@ -318,6 +318,29 @@ export default function HomeScreen({ go }: { go: (t: TabId) => void }) {
             </p>
             <span className="relative mt-4 inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2 text-sm font-bold text-navy-950">
               <Play width={15} height={15} /> Start playing
+            </span>
+          </button>
+        </Reveal>
+      </section>
+
+      {/* ===== PRAYER WALL CTA ===== */}
+      <section className="mt-6 px-4">
+        <Reveal className="mx-auto max-w-md">
+          <button
+            onClick={() => go("more", "prayer")}
+            className="group relative w-full overflow-hidden rounded-3xl border border-gold/25 bg-gradient-to-br from-navy-900 via-purple-900/25 to-ink p-5 text-left active:scale-[0.99]"
+          >
+            <div className="pointer-events-none absolute -left-8 -top-10 h-40 w-40 rounded-full bg-purple-500/25 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-10 -right-8 h-40 w-40 rounded-full bg-gold/15 blur-3xl" />
+            <div className="relative flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-gold-400">
+              🙏 Pray together
+            </div>
+            <h3 className="relative mt-2 font-display text-3xl font-extrabold leading-tight text-white">The Prayer Wall</h3>
+            <p className="relative mt-1.5 max-w-xs text-sm leading-relaxed text-white/70">
+              Lift up a prayer, share a praise, and stand with the whole city in prayer. Where two or three gather in His name, He is there.
+            </p>
+            <span className="relative mt-4 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-2 text-sm font-bold text-gold-400">
+              Open the Prayer Wall <ArrowRight width={15} height={15} />
             </span>
           </button>
         </Reveal>
