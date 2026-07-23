@@ -168,7 +168,30 @@ export const MINI_GAMES: MiniGame[] = [
   { id: "build", name: "Build the Church", emoji: "🏗️", blurb: "Stack the pieces in the right order and raise the cross!", points: 90 },
   { id: "encourage", name: "Encourage the Crowd", emoji: "💛", blurb: "Tap someone who looks discouraged and send them hope.", points: 80 },
   { id: "neighbor", name: "Help Your Neighbor", emoji: "🤲", blurb: "Choose the kind, helpful response in each situation.", points: 70 },
+  { id: "ark", name: "Ark Pairs", emoji: "🐘", blurb: "Flip the cards and match Noah's animals two-by-two!", points: 90 },
 ];
+
+// Best star rating earned per mini-game (1–3), stored locally for replay motivation.
+export function getGameBests(): Record<string, number> {
+  if (typeof window === "undefined") return {};
+  try {
+    return JSON.parse(localStorage.getItem("jf-game-best") || "{}");
+  } catch {
+    return {};
+  }
+}
+export function setGameBest(id: string, stars: number): Record<string, number> {
+  const bests = getGameBests();
+  if (stars > (bests[id] ?? 0)) {
+    bests[id] = stars;
+    try {
+      localStorage.setItem("jf-game-best", JSON.stringify(bests));
+    } catch {
+      /* ignore */
+    }
+  }
+  return bests;
+}
 
 // ---------- Milestones ----------
 export type Milestone = { pct: number; label: string; emoji: string; tease: string; verse?: { text: string; ref: string } };
@@ -506,6 +529,62 @@ export async function crewsSample(): Promise<Crew[]> {
     return (data ?? []).map((r: { church: string; members: number; acts: number }) => ({ code: "", church: r.church, members: Number(r.members), acts: Number(r.acts) }));
   } catch {
     return [];
+  }
+}
+
+/* ---------- Prayer Wall: the community prays for one another ---------- */
+export type Prayer = { id: string; name: string | null; church: string | null; body: string; kind: "prayer" | "praise"; prayed: number; created_at: string };
+
+export async function fetchPrayers(): Promise<Prayer[]> {
+  try {
+    const { data } = await supabase
+      .from("revive_prayers")
+      .select("id, name, church, body, kind, prayed, created_at")
+      .order("created_at", { ascending: false })
+      .limit(40);
+    return (data as Prayer[]) ?? [];
+  } catch {
+    return [];
+  }
+}
+
+export async function prayerAdd(name: string | null, church: string | null, body: string, kind: "prayer" | "praise"): Promise<{ ok: boolean; prayer?: Prayer; error?: string }> {
+  try {
+    const { data, error } = await supabase.rpc("prayer_add", { p_name: name, p_church: church, p_body: body, p_kind: kind });
+    if (error || !data?.ok) return { ok: false, error: data?.error || "Couldn't post right now — try again." };
+    return { ok: true, prayer: data as Prayer };
+  } catch {
+    return { ok: false, error: "Couldn't post — check your connection." };
+  }
+}
+
+// Record a prayer for someone's request (once per device, tracked in localStorage).
+export async function prayerPray(id: string): Promise<number | null> {
+  try {
+    const { data } = await supabase.rpc("prayer_pray", { p_id: id });
+    if (!data?.ok) return null;
+    return Number(data.prayed);
+  } catch {
+    return null;
+  }
+}
+
+export function prayedIds(): Set<string> {
+  try {
+    return new Set(JSON.parse(localStorage.getItem("jf-prayed") || "[]"));
+  } catch {
+    return new Set();
+  }
+}
+export function markPrayed(id: string) {
+  try {
+    const arr = JSON.parse(localStorage.getItem("jf-prayed") || "[]");
+    if (!arr.includes(id)) {
+      arr.push(id);
+      localStorage.setItem("jf-prayed", JSON.stringify(arr));
+    }
+  } catch {
+    /* ignore */
   }
 }
 

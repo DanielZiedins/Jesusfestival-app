@@ -6,6 +6,9 @@ const WORDS = [
   "nigger", "nigga", "retard", "kike", "spic", "chink", "wetback", "tranny",
   "porn", "rape", "rapist", "jerkoff", "wanker", "twat", "bollocks", "prick",
   "douchebag", "dickhead", "jackass",
+  // Mild insults / profanity — kept kid-friendly (avoids "hell"/"hate" which have legit uses)
+  "damn", "damnit", "dammit", "goddamn", "stupid", "idiot", "idiots", "moron",
+  "dumb", "loser", "sucks", "crap", "shut up",
 ];
 const RE = new RegExp(`\\b(${WORDS.join("|")})\\b`, "i");
 

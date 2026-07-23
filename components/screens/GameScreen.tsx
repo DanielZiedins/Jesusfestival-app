@@ -18,6 +18,7 @@ import ActivityTicker from "@/components/game/ActivityTicker";
 import MilestoneJourney from "@/components/game/MilestoneJourney";
 import { QuizList, QuizModal } from "@/components/game/BibleQuiz";
 import ChurchCrew from "@/components/game/ChurchCrew";
+import PrayerWall from "@/components/game/PrayerWall";
 import { usePresence } from "@/lib/useLive";
 import { notifyMilestone, notifyBossVictory, subscribeToPush, pushEnabled } from "@/lib/push";
 import { Check, Play, Trophy, Sparkle, BellIcon } from "@/components/icons";
@@ -43,6 +44,8 @@ import {
   fetchFruitMeters,
   fetchSpotlight,
   addSpotlight,
+  getGameBests,
+  setGameBest,
   isoWeekKey,
   loadState,
   missionsForToday,
@@ -89,6 +92,7 @@ export default function GameScreen() {
   const [showIntro, setShowIntro] = useState(false);
   const [streak, setStreak] = useState(0);
   const [myStrikes, setMyStrikes] = useState(0);
+  const [bests, setBests] = useState<Record<string, number>>({});
   const [pushOn, setPushOn] = useState(false);
   const [line, setLine] = useState(CAPTAIN_LINES[0]);
   const [reaction, setReaction] = useState<Reaction>("idle");
@@ -124,6 +128,7 @@ export default function GameScreen() {
       if (localStorage.getItem("jf-game-intro") !== "done") setShowIntro(true);
       setStreak(getStreak());
       setMyStrikes(Number(localStorage.getItem(`jf-strikes-${isoWeekKey()}`) || "0"));
+      setBests(getGameBests());
       setPushOn(pushEnabled());
     } catch {
       /* ignore */
@@ -236,19 +241,22 @@ export default function GameScreen() {
     spotlightPost(m.text.toLowerCase());
   }
 
-  function winGame(game: MiniGameDef, fruitId?: string) {
+  function winGame(game: MiniGameDef, fruitId: string | undefined, stars: number) {
     haptic(14);
+    const bonus = (stars - 1) * 25; // reward skill: 2★ = +25, 3★ = +50
+    const total = game.points + bonus;
     const next: GameState = {
       ...state,
-      points: state.points + game.points,
+      points: state.points + total,
       games: addArr(state.games, game.id),
       fruit: fruitId ? addArr(state.fruit, fruitId) : state.fruit,
       badges: fruitId ? addArr(state.badges, `fruit:${fruitId}`) : state.badges,
     };
     persist(next);
+    setBests(setGameBest(game.id, stars));
     react("celebrate");
-    say(fruitId ? "The fruit of the Spirit grows in you! 🌿" : "You brought more light to the city! ✨");
-    community(game.points, 0, fruitId ?? "goodness");
+    say(stars === 3 ? "Three stars — flawless! ⭐ The city shines brighter!" : fruitId ? "The fruit of the Spirit grows in you! 🌿" : "You brought more light to the city! ✨");
+    community(total, 0, fruitId ?? "goodness");
     setGameCtx(null);
   }
 
@@ -492,22 +500,34 @@ export default function GameScreen() {
       <Motivate text="🔥 Every mission matters. No act of love is ever too small — keep going, hero!" />
 
       {/* Mini-games */}
-      <Section id="section-games" emoji="🎮" title="Play a Mini-Game" text="Quick, colorful games for all ages — tap to light windows, plant flowers, catch fruit. Every win adds real light to the city!">
+      <Section id="section-games" emoji="🎮" title="Play a Mini-Game" text="Nine quick, colorful games for all ages. Earn up to ⭐⭐⭐ for a flawless run — replay to beat your best and add extra light to the city!">
         <div className="grid grid-cols-2 gap-3">
-          {MINI_GAMES.map((g) => (
-            <button
-              key={g.id}
-              onClick={() => setGameCtx({ game: g })}
-              className="flex flex-col items-start gap-1 rounded-2xl border border-white/10 bg-white/5 p-3.5 text-left transition active:scale-[0.98]"
-            >
-              <span className="text-3xl">{g.emoji}</span>
-              <span className="text-sm font-bold text-white">{g.name}</span>
-              <span className="text-[11px] leading-tight text-white/55">{g.blurb}</span>
-              <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-gold-400">
-                <Play width={12} height={12} /> +{g.points} pts
-              </span>
-            </button>
-          ))}
+          {MINI_GAMES.map((g) => {
+            const best = bests[g.id] ?? 0;
+            const isNew = g.id === "ark";
+            return (
+              <button
+                key={g.id}
+                onClick={() => setGameCtx({ game: g })}
+                className="relative flex flex-col items-start gap-1 rounded-2xl border border-white/10 bg-white/5 p-3.5 text-left transition active:scale-[0.98]"
+              >
+                {isNew && <span className="absolute right-2 top-2 rounded-full bg-gold px-1.5 py-0.5 text-[8px] font-extrabold uppercase tracking-wide text-navy-950">New</span>}
+                <span className="text-3xl">{g.emoji}</span>
+                <span className="text-sm font-bold text-white">{g.name}</span>
+                <span className="text-[11px] leading-tight text-white/55">{g.blurb}</span>
+                <div className="mt-1 flex w-full items-center justify-between">
+                  <span className="inline-flex items-center gap-1 text-[11px] font-bold text-gold-400">
+                    <Play width={12} height={12} /> +{g.points}
+                  </span>
+                  <span className="text-[11px] tracking-tight" title={best ? "Your best" : "Not played yet"}>
+                    {[1, 2, 3].map((i) => (
+                      <span key={i} className={i <= best ? "" : "opacity-20 grayscale"}>⭐</span>
+                    ))}
+                  </span>
+                </div>
+              </button>
+            );
+          })}
         </div>
       </Section>
 
@@ -578,9 +598,23 @@ export default function GameScreen() {
         />
       </Section>
 
-      {/* Kingdom Spotlight */}
+      {/* Church Crew */}
       <Section emoji="⛪" title="Church Crew" text="Rally your congregation! Join your church's crew with a code — or start one and share it. Every Kingdom act you do counts for your church family too. Celebrated together, never ranked!">
         <ChurchCrew />
+      </Section>
+
+      {/* Prayer Wall */}
+      <Section emoji="🙏" title="Prayer Wall" text="Share a prayer request or a praise report — and tap 'I'm praying' to stand with others. We carry each other's burdens as one family.">
+        <PrayerWall
+          onPosted={() => {
+            if (state.badges.includes("prayer-posted")) return;
+            haptic(16);
+            persist({ ...state, points: state.points + 80, badges: addArr(state.badges, "prayer-posted") });
+            react("pray");
+            say("Thank you for lifting that up — we're praying with you. 🙏");
+            community(80, 0, "peace");
+          }}
+        />
       </Section>
 
       <Section emoji="🌟" title="Kingdom Spotlight" text="A rotating celebration of real people doing real good — never a competition, just encouragement. Add your first name & church to join in!">
@@ -599,7 +633,7 @@ export default function GameScreen() {
           <MiniGame
             key="mg"
             game={gameCtx.game}
-            onWin={(pts) => winGame({ ...gameCtx.game, points: pts }, gameCtx.fruitId)}
+            onWin={(pts, stars) => winGame({ ...gameCtx.game, points: pts }, gameCtx.fruitId, stars)}
             onClose={() => setGameCtx(null)}
           />
         )}

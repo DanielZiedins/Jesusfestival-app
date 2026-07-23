@@ -101,9 +101,42 @@ const WIN_LINES = [
   "Small acts, big impact — keep the light going!",
 ];
 
-function WinOverlay({ points, onClaim }: { points: number; onClaim: () => void }) {
+// ---- Star ratings: reward skill, give everyone a reason to play again ----
+const STAR_LINES: Record<number, string> = { 1: "Nicely done!", 2: "Great run!", 3: "Flawless! ⭐" };
+// Combo-based (tap/catch games): a long unbroken chain earns more stars.
+export const starsByCombo = (maxCombo: number, goal: number) => (maxCombo >= goal * 0.8 ? 3 : maxCombo >= goal * 0.45 ? 2 : 1);
+// Mistake-based (choice / order / memory games).
+export const starsByMiss = (miss: number) => (miss === 0 ? 3 : miss <= 2 ? 2 : 1);
+// Bonus Light Points for skill (2★ = +25, 3★ = +50).
+export const starBonus = (stars: number) => (stars - 1) * 25;
+
+function Stars({ stars, size = "lg" }: { stars: number; size?: "sm" | "lg" }) {
+  const cls = size === "lg" ? "text-3xl" : "text-sm";
+  return (
+    <div className="flex items-center justify-center gap-1.5">
+      {[1, 2, 3].map((i) => {
+        const earned = i <= stars;
+        return (
+          <motion.span
+            key={i}
+            initial={{ scale: 0, rotate: -30 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 260, damping: 12, delay: 0.15 + i * 0.18 }}
+            className={`${cls} ${earned ? "" : "opacity-25 grayscale"}`}
+            style={earned ? { filter: "drop-shadow(0 0 6px rgba(245,166,35,0.7))" } : undefined}
+          >
+            ⭐
+          </motion.span>
+        );
+      })}
+    </div>
+  );
+}
+
+function WinOverlay({ points, stars = 3, onClaim }: { points: number; stars?: number; onClaim: () => void }) {
   const [line] = useState(() => WIN_LINES[Math.floor(Math.random() * WIN_LINES.length)]);
   const [claimed, setClaimed] = useState(false);
+  const bonus = starBonus(stars);
   const claim = () => {
     if (claimed) return; // a double-tap during the exit animation must not double-credit
     setClaimed(true);
@@ -116,19 +149,26 @@ function WinOverlay({ points, onClaim }: { points: number; onClaim: () => void }
       className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-ink/80 p-6 text-center backdrop-blur"
     >
       <motion.div initial={{ scale: 0.5, rotate: -8 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: "spring", stiffness: 200, damping: 12 }}>
-        <CaptainGoodness size={104} />
+        <CaptainGoodness size={96} reaction="celebrate" />
       </motion.div>
       <h4 className="mt-2 font-display text-3xl font-extrabold text-white">You did it! 🎉</h4>
-      <p className="mt-1 max-w-xs text-sm text-white/75">{line}</p>
-      <button onClick={claim} disabled={claimed} className="mt-6 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-7 py-3.5 text-base font-extrabold text-navy-950 shadow-glow active:scale-95 disabled:opacity-60">
-        {claimed ? "Added! ✨" : `Add +${points} to the city ✨`}
+      <div className="mt-3">
+        <Stars stars={stars} />
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="mt-1.5 text-sm font-bold text-gold-400">
+          {STAR_LINES[stars]}
+        </motion.p>
+      </div>
+      <p className="mt-2 max-w-xs text-[13px] text-white/70">{line}</p>
+      <button onClick={claim} disabled={claimed} className="mt-5 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-7 py-3.5 text-base font-extrabold text-navy-950 shadow-glow active:scale-95 disabled:opacity-60">
+        {claimed ? "Added! ✨" : `Add +${points + bonus} to the city ✨`}
       </button>
+      {bonus > 0 && !claimed && <p className="mt-2 text-[11px] font-semibold text-purple-200">includes +{bonus} skill bonus 🌟</p>}
     </motion.div>
   );
 }
 
 /* ============================ Dispatcher ============================ */
-export default function MiniGame({ game, onWin, onClose }: { game: MiniGameDef; onWin: (points: number) => void; onClose: () => void }) {
+export default function MiniGame({ game, onWin, onClose }: { game: MiniGameDef; onWin: (points: number, stars: number) => void; onClose: () => void }) {
   return (
     <Portal>
     <motion.div
@@ -156,14 +196,15 @@ export default function MiniGame({ game, onWin, onClose }: { game: MiniGameDef; 
       {game.id === "river" && <RiverOfLife def={game} onWin={onWin} />}
       {game.id === "build" && <BuildChurch def={game} onWin={onWin} />}
       {game.id === "neighbor" && <HelpNeighbor def={game} onWin={onWin} />}
-      {!["light", "plant", "fruit", "rhythm", "river", "build", "neighbor"].includes(game.id) && <EncourageCrowd def={game} onWin={onWin} />}
+      {game.id === "ark" && <ArkPairs def={game} onWin={onWin} />}
+      {!["light", "plant", "fruit", "rhythm", "river", "build", "neighbor", "ark"].includes(game.id) && <EncourageCrowd def={game} onWin={onWin} />}
     </motion.div>
     </Portal>
   );
 }
 
 /* ============================ 1. Light the City ============================ */
-function LightCity({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => void }) {
+function LightCity({ def, onWin }: { def: MiniGameDef; onWin: (p: number, stars: number) => void }) {
   const GOAL = 18;
   const COLS = 5, ROWS = 4;
   const [lit, setLit] = useState<boolean[]>(() => Array(COLS * ROWS).fill(false));
@@ -171,6 +212,7 @@ function LightCity({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => voi
   const [score, setScore] = useState(0);
   const [combo, setCombo] = useState(0);
   const [won, setWon] = useState(false);
+  const [stars] = useState(3); // every window lit is a win — 3★ for all ages
   const scoreRef = useRef(0);
   const comboTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { fire, layer } = useJuice();
@@ -257,7 +299,7 @@ function LightCity({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => voi
           )}
         </AnimatePresence>
         {layer}
-        <AnimatePresence>{won && <WinOverlay points={def.points} onClaim={() => onWin(def.points)} />}</AnimatePresence>
+        <AnimatePresence>{won && <WinOverlay points={def.points} stars={stars} onClaim={() => onWin(def.points, stars)} />}</AnimatePresence>
       </div>
     </div>
   );
@@ -265,12 +307,13 @@ function LightCity({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => voi
 
 /* ============================ 2. Plant Hope ============================ */
 const PLANTS = ["🌱", "🌷", "🌻", "🌳", "🌸", "🌼"];
-function PlantHope({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => void }) {
+function PlantHope({ def, onWin }: { def: MiniGameDef; onWin: (p: number, stars: number) => void }) {
   const GOAL = 15;
   const [plots, setPlots] = useState<(string | null)[]>(() => Array(GOAL).fill(null));
   const [score, setScore] = useState(0);
   const [combo, setCombo] = useState(0);
   const [won, setWon] = useState(false);
+  const [stars] = useState(3);
   const scoreRef = useRef(0);
   const comboTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { fire, layer } = useJuice();
@@ -315,7 +358,7 @@ function PlantHope({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => voi
           ))}
         </div>
         {layer}
-        <AnimatePresence>{won && <WinOverlay points={def.points} onClaim={() => onWin(def.points)} />}</AnimatePresence>
+        <AnimatePresence>{won && <WinOverlay points={def.points} stars={stars} onClaim={() => onWin(def.points, stars)} />}</AnimatePresence>
       </div>
     </div>
   );
@@ -325,13 +368,15 @@ function PlantHope({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => voi
 type Faller = { id: number; x: number; emoji: string; good: boolean; fallPx: number };
 const GOOD_FRUIT = ["❤️", "😊", "🕊️", "🌿", "🌟", "🍎", "🍇"];
 const BAD_FRUIT = ["📱", "😠", "💤"];
-function CatchFruit({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => void }) {
+function CatchFruit({ def, onWin }: { def: MiniGameDef; onWin: (p: number, stars: number) => void }) {
   const GOAL = 12;
   const [fallers, setFallers] = useState<Faller[]>([]);
   const [score, setScore] = useState(0);
   const [combo, setCombo] = useState(0);
   const [won, setWon] = useState(false);
+  const [stars, setStars] = useState(3);
   const scoreRef = useRef(0);
+  const missRef = useRef(0);
   const idRef = useRef(0);
   const comboTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const areaRef = useRef<HTMLDivElement>(null);
@@ -360,8 +405,12 @@ function CatchFruit({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => vo
       if (comboTimer.current) clearTimeout(comboTimer.current);
       comboTimer.current = setTimeout(() => setCombo(0), 1300);
       fire(f.x, 82, { text: "+1", count: 7, colors: ["#ff6fae", "#ffd23f", "#4bb873"] });
-      if (n >= GOAL) setWon(true);
+      if (n >= GOAL) {
+        setStars(starsByMiss(missRef.current));
+        setWon(true);
+      }
     } else {
+      missRef.current++; // caught a distraction
       setCombo(0);
       fire(f.x, 82, { count: 5, colors: ["#888"] });
     }
@@ -391,7 +440,7 @@ function CatchFruit({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => vo
             ))}
         </AnimatePresence>
         {layer}
-        <AnimatePresence>{won && <WinOverlay points={def.points} onClaim={() => onWin(def.points)} />}</AnimatePresence>
+        <AnimatePresence>{won && <WinOverlay points={def.points} stars={stars} onClaim={() => onWin(def.points, stars)} />}</AnimatePresence>
       </div>
     </div>
   );
@@ -399,12 +448,13 @@ function CatchFruit({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => vo
 
 /* ============================ 4. Encourage the Crowd ============================ */
 type Person = { id: number; x: number; y: number; happy: boolean };
-function EncourageCrowd({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => void }) {
+function EncourageCrowd({ def, onWin }: { def: MiniGameDef; onWin: (p: number, stars: number) => void }) {
   const GOAL = 12;
   const [people, setPeople] = useState<Person[]>([]);
   const [score, setScore] = useState(0);
   const [combo, setCombo] = useState(0);
   const [won, setWon] = useState(false);
+  const [stars] = useState(3);
   const scoreRef = useRef(0);
   const idRef = useRef(0);
   const comboTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -454,7 +504,7 @@ function EncourageCrowd({ def, onWin }: { def: MiniGameDef; onWin: (p: number) =
             ))}
         </AnimatePresence>
         {layer}
-        <AnimatePresence>{won && <WinOverlay points={def.points} onClaim={() => onWin(def.points)} />}</AnimatePresence>
+        <AnimatePresence>{won && <WinOverlay points={def.points} stars={stars} onClaim={() => onWin(def.points, stars)} />}</AnimatePresence>
       </div>
     </div>
   );
@@ -469,10 +519,12 @@ const SCENARIOS = [
   { q: "You see litter on the festival grounds.", options: ["Step over it", "Pick it up", "Blame someone"], answer: 1 },
 ];
 
-function HelpNeighbor({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => void }) {
+function HelpNeighbor({ def, onWin }: { def: MiniGameDef; onWin: (p: number, stars: number) => void }) {
   const [round, setRound] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);
   const [won, setWon] = useState(false);
+  const [stars, setStars] = useState(3);
+  const missRef = useRef(0);
   const s = SCENARIOS[round];
 
   function pick(i: number) {
@@ -480,12 +532,15 @@ function HelpNeighbor({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => 
     setPicked(i);
     setTimeout(() => {
       if (i === s.answer) {
-        if (round + 1 >= SCENARIOS.length) setWon(true);
-        else {
+        if (round + 1 >= SCENARIOS.length) {
+          setStars(starsByMiss(missRef.current));
+          setWon(true);
+        } else {
           setRound((r) => r + 1);
           setPicked(null);
         }
       } else {
+        missRef.current++;
         setPicked(null);
       }
     }, 750);
@@ -523,7 +578,7 @@ function HelpNeighbor({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => 
             </div>
           </motion.div>
       </div>
-      <AnimatePresence>{won && <WinOverlay points={def.points} onClaim={() => onWin(def.points)} />}</AnimatePresence>
+      <AnimatePresence>{won && <WinOverlay points={def.points} stars={stars} onClaim={() => onWin(def.points, stars)} />}</AnimatePresence>
     </div>
   );
 }
@@ -532,13 +587,15 @@ function HelpNeighbor({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => 
 type Note = { id: number; x: number; emoji: string; spawnAt: number; fallPx: number };
 const NOTE_FALL_MS = 2600;
 const NOTE_EMOJI = ["🎵", "🎶", "🎼"];
-function WorshipRhythm({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => void }) {
+function WorshipRhythm({ def, onWin }: { def: MiniGameDef; onWin: (p: number, stars: number) => void }) {
   const GOAL = 10;
   const [notes, setNotes] = useState<Note[]>([]);
   const [score, setScore] = useState(0);
   const [combo, setCombo] = useState(0);
   const [won, setWon] = useState(false);
+  const [stars, setStars] = useState(3);
   const scoreRef = useRef(0);
+  const missRef = useRef(0);
   const idRef = useRef(0);
   const comboTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { fire, layer } = useJuice();
@@ -570,8 +627,12 @@ function WorshipRhythm({ def, onWin }: { def: MiniGameDef; onWin: (p: number) =>
       if (comboTimer.current) clearTimeout(comboTimer.current);
       comboTimer.current = setTimeout(() => setCombo(0), 1500);
       fire(n.x, 78, { text: perfect ? "Perfect!" : "+1", count: perfect ? 12 : 7, colors: ["#FFD173", "#c084fc", "#ff6fae"] });
-      if (nScore >= GOAL) setWon(true);
+      if (nScore >= GOAL) {
+        setStars(starsByMiss(missRef.current));
+        setWon(true);
+      }
     } else {
+      missRef.current++; // tapped off-beat
       setCombo(0);
       fire(n.x, Math.min(90, frac * 100), { count: 4, colors: ["#888"] });
     }
@@ -603,20 +664,21 @@ function WorshipRhythm({ def, onWin }: { def: MiniGameDef; onWin: (p: number) =>
             ))}
         </AnimatePresence>
         {layer}
-        <AnimatePresence>{won && <WinOverlay points={def.points} onClaim={() => onWin(def.points)} />}</AnimatePresence>
+        <AnimatePresence>{won && <WinOverlay points={def.points} stars={stars} onClaim={() => onWin(def.points, stars)} />}</AnimatePresence>
       </div>
     </div>
   );
 }
 
 /* ============================ 7. River of Life ============================ */
-function RiverOfLife({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => void }) {
+function RiverOfLife({ def, onWin }: { def: MiniGameDef; onWin: (p: number, stars: number) => void }) {
   const ROCKS = 12;
   // Boulders (every 4th) take two taps — a little challenge for bigger kids.
   const [hits, setHits] = useState<number[]>(() => Array.from({ length: ROCKS }, (_, i) => (i % 4 === 0 ? 2 : 1)));
   const [score, setScore] = useState(0);
   const [combo, setCombo] = useState(0);
   const [won, setWon] = useState(false);
+  const [stars] = useState(3);
   const scoreRef = useRef(0);
   const comboTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { fire, layer } = useJuice();
@@ -671,7 +733,7 @@ function RiverOfLife({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => v
           ))}
         </div>
         {layer}
-        <AnimatePresence>{won && <WinOverlay points={def.points} onClaim={() => onWin(def.points)} />}</AnimatePresence>
+        <AnimatePresence>{won && <WinOverlay points={def.points} stars={stars} onClaim={() => onWin(def.points, stars)} />}</AnimatePresence>
       </div>
     </div>
   );
@@ -686,11 +748,13 @@ const BUILD_STEPS = [
   { id: 4, label: "Roof", emoji: "🔺" },
   { id: 5, label: "The Cross", emoji: "✝️" },
 ];
-function BuildChurch({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => void }) {
+function BuildChurch({ def, onWin }: { def: MiniGameDef; onWin: (p: number, stars: number) => void }) {
   const [placed, setPlaced] = useState(0);
   const [shuffled] = useState(() => [...BUILD_STEPS].sort(() => Math.random() - 0.5));
   const [wrong, setWrong] = useState<number | null>(null);
   const [won, setWon] = useState(false);
+  const [stars, setStars] = useState(3);
+  const missRef = useRef(0);
   const { fire, layer } = useJuice();
 
   function pick(step: (typeof BUILD_STEPS)[number]) {
@@ -699,8 +763,12 @@ function BuildChurch({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => v
       fire(50, 46, { text: step.emoji, count: 9, colors: ["#FFD173", "#c084fc"] });
       const next = placed + 1;
       setPlaced(next);
-      if (next >= BUILD_STEPS.length) setTimeout(() => setWon(true), 700);
+      if (next >= BUILD_STEPS.length) {
+        setStars(starsByMiss(missRef.current));
+        setTimeout(() => setWon(true), 700);
+      }
     } else {
+      missRef.current++;
       setWrong(step.id);
       setTimeout(() => setWrong(null), 500);
     }
@@ -757,7 +825,101 @@ function BuildChurch({ def, onWin }: { def: MiniGameDef; onWin: (p: number) => v
           })}
         </div>
         {layer}
-        <AnimatePresence>{won && <WinOverlay points={def.points} onClaim={() => onWin(def.points)} />}</AnimatePresence>
+        <AnimatePresence>{won && <WinOverlay points={def.points} stars={stars} onClaim={() => onWin(def.points, stars)} />}</AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+/* ============================ 9. Ark Pairs (memory match) ============================ */
+const ARK_ANIMALS = ["🦁", "🐘", "🦒", "🐧", "🐢", "🦋"];
+type ArkCard = { key: number; animal: string; flipped: boolean; matched: boolean };
+function ArkPairs({ def, onWin }: { def: MiniGameDef; onWin: (p: number, stars: number) => void }) {
+  const PAIRS = ARK_ANIMALS.length;
+  const [cards, setCards] = useState<ArkCard[]>(() =>
+    [...ARK_ANIMALS, ...ARK_ANIMALS]
+      .map((animal, i) => ({ animal, r: i }))
+      .sort(() => Math.random() - 0.5)
+      .map((c, i) => ({ key: i, animal: c.animal, flipped: false, matched: false }))
+  );
+  const [picks, setPicks] = useState<number[]>([]);
+  const [matched, setMatched] = useState(0);
+  const [won, setWon] = useState(false);
+  const [stars, setStars] = useState(3);
+  const [lock, setLock] = useState(false);
+  const matchedRef = useRef(0);
+  const missRef = useRef(0);
+  const { fire, layer } = useJuice();
+
+  function flip(i: number) {
+    if (lock || won) return;
+    const c = cards[i];
+    if (c.flipped || c.matched) return;
+    const nextCards = cards.map((x, idx) => (idx === i ? { ...x, flipped: true } : x));
+    setCards(nextCards);
+    const nextPicks = [...picks, i];
+    if (nextPicks.length < 2) {
+      setPicks(nextPicks);
+      return;
+    }
+    setLock(true);
+    setPicks(nextPicks);
+    const [a, b] = nextPicks;
+    const isMatch = nextCards[a].animal === nextCards[b].animal;
+    setTimeout(() => {
+      if (isMatch) {
+        setCards((prev) => prev.map((x, idx) => (idx === a || idx === b ? { ...x, matched: true } : x)));
+        const m = matchedRef.current + 1;
+        matchedRef.current = m;
+        setMatched(m);
+        fire(50, 40, { text: "Match! 🙌", count: 9, colors: ["#4bb873", "#FFD173", "#c084fc"] });
+        if (m >= PAIRS) {
+          setStars(missRef.current <= 2 ? 3 : missRef.current <= 5 ? 2 : 1);
+          setTimeout(() => setWon(true), 550);
+        }
+      } else {
+        missRef.current++;
+        setCards((prev) => prev.map((x, idx) => (idx === a || idx === b ? { ...x, flipped: false } : x)));
+      }
+      setPicks([]);
+      setLock(false);
+    }, isMatch ? 340 : 820);
+  }
+
+  return (
+    <div className="flex flex-1 flex-col pb-6">
+      <HUD score={matched} goal={PAIRS} combo={0} label="pairs matched" />
+      <p className="px-4 pt-1 text-center text-xs text-white/50">Two of every kind! 🌈 Flip the cards and find the matching pairs.</p>
+      <div className="relative mx-4 mt-3 flex-1 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-[#1a1230] to-[#0b0616] p-4">
+        <div className="grid h-full grid-cols-4 content-center gap-2.5">
+          {cards.map((c, i) => {
+            const show = c.flipped || c.matched;
+            return (
+              <button
+                key={c.key}
+                onClick={() => flip(i)}
+                disabled={show || lock}
+                className={`relative grid aspect-square place-items-center rounded-xl border text-3xl transition active:scale-95 ${
+                  c.matched
+                    ? "border-emerald-400/50 bg-emerald-500/15"
+                    : show
+                    ? "border-gold/50 bg-gold/10"
+                    : "border-purple-400/20 bg-gradient-to-br from-purple-700/40 to-navy-900"
+                }`}
+              >
+                {show ? (
+                  <motion.span key="face" initial={{ scale: 0.3, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 300, damping: 15 }}>
+                    {c.animal}
+                  </motion.span>
+                ) : (
+                  <span className="text-2xl opacity-70">🌈</span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+        {layer}
+        <AnimatePresence>{won && <WinOverlay points={def.points} stars={stars} onClaim={() => onWin(def.points, stars)} />}</AnimatePresence>
       </div>
     </div>
   );
