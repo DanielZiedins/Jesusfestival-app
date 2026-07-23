@@ -255,7 +255,11 @@ export const LINKS = {
   volunteer: "https://www.jesusfestival.ca/volunteer",
   // The volunteer app itself, for people who already have a code. Proxied in
   // under this path by the rewrite in next.config.mjs, so it's same-origin.
-  volunteerApp: "/volunteer",
+  // The trailing slash is load-bearing: the volunteer app is a PWA whose manifest
+  // and service worker are both scoped "/volunteer/", and "/volunteer" is not
+  // inside that scope -- linking without it launches in a browser tab rather
+  // than standalone, and leaves the landing page uncontrolled by its own SW.
+  volunteerApp: "/volunteer/",
   sponsor: "https://www.jesusfestival.ca/sponsors",
   donate: "https://e3ministry.ca/donate/Jesus-Festival",
   eventDetails: "https://www.jesusfestival.ca/event-details",
