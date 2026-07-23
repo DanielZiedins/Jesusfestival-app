@@ -251,7 +251,11 @@ export const LINKS = {
   instagram: "https://www.instagram.com/jesusfestival.ca",
   youtube: "https://www.youtube.com/@JesusFestivalCanada",
   facebookEvent: "https://www.facebook.com/share/1B22HVTfin/",
+  // Where you apply to serve (the festival website's form).
   volunteer: "https://www.jesusfestival.ca/volunteer",
+  // The volunteer app itself, for people who already have a code. Proxied in
+  // under this path by the rewrite in next.config.mjs, so it's same-origin.
+  volunteerApp: "/volunteer",
   sponsor: "https://www.jesusfestival.ca/sponsors",
   donate: "https://e3ministry.ca/donate/Jesus-Festival",
   eventDetails: "https://www.jesusfestival.ca/event-details",

@@ -415,6 +415,27 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
         </Reveal>
       </section>
 
+      {/* ===== VOLUNTEERS ===== */}
+      <section className="mt-14 px-4">
+        <Reveal className="mx-auto max-w-md">
+          <a
+            href={LINKS.volunteerApp}
+            className="relative flex items-center gap-4 overflow-hidden rounded-2xl border border-purple-400/25 bg-gradient-to-br from-purple-600/20 to-transparent p-4 active:scale-[0.99]"
+          >
+            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-purple-500 to-purple-700 text-white">
+              <Users width={22} height={22} />
+            </div>
+            <div className="min-w-0 flex-1">
+              <h3 className="font-display text-base font-bold text-white">Serving with us?</h3>
+              <p className="mt-0.5 text-[13px] leading-snug text-white/60">
+                Enter your volunteer code to find your team, the grounds map & your check-in.
+              </p>
+            </div>
+            <ArrowRight width={18} height={18} className="shrink-0 text-purple-300" />
+          </a>
+        </Reveal>
+      </section>
+
       {/* ===== GIVE ===== */}
       <section className="mt-14 px-4">
         <Reveal className="mx-auto max-w-md">
