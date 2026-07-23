@@ -28,6 +28,12 @@ self.addEventListener("fetch", (event) => {
   // Never cache Supabase / API calls.
   if (url.hostname.includes("supabase")) return;
 
+  // The volunteer app under /volunteer/ is a separate deployment with its own
+  // service worker. This one's scope is "/", so it would otherwise cache the
+  // volunteer app's assets and -- worse -- serve THIS app's homepage as the
+  // offline fallback for a /volunteer/ navigation. Leave that path alone.
+  if (url.pathname === "/volunteer" || url.pathname.startsWith("/volunteer/")) return;
+
   // HTML navigations: network-first so content stays fresh, fall back to cache offline.
   if (request.mode === "navigate") {
     event.respondWith(
