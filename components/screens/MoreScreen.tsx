@@ -14,10 +14,16 @@ import InstallScreen from "./InstallScreen";
 import PrayerWallScreen from "./PrayerWallScreen";
 import { FlameIcon, MapIcon, BellIcon, ArrowRight, ChevronLeft, Users, Heart, Download, Sparkle } from "@/components/icons";
 
-type View = "hub" | "prayer" | "movement" | "discipleship" | "give" | "map" | "connect" | "settings" | "install";
+import { LINKS } from "@/lib/content";
 
-const CARDS: { id: View; title: string; sub: string; Icon: React.ComponentType<{ width?: number; height?: number }>; emoji: string }[] = [
+type View = "hub" | "prayer" | "movement" | "discipleship" | "give" | "map" | "connect" | "settings" | "install" | "volunteer";
+
+// `href` marks a card that leaves this screen entirely (the volunteer app is a
+// separate deployment proxied in under /volunteer) — those render as links
+// rather than switching the local view.
+const CARDS: { id: View; title: string; sub: string; Icon: React.ComponentType<{ width?: number; height?: number }>; emoji: string; href?: string }[] = [
   { id: "connect", title: "Connect", sub: "See where the movement is spreading & get involved", Icon: BellIcon, emoji: "🌍" },
+  { id: "volunteer", title: "Volunteers", sub: "Serving with us? Enter your code & find your team", Icon: Users, emoji: "🙌", href: LINKS.volunteerApp },
   { id: "movement", title: "The Movement", sub: "More than a festival — a movement that remains", Icon: FlameIcon, emoji: "🔥" },
   { id: "discipleship", title: "Discipleship & Partners", sub: "Keep the fire burning · churches & ministries", Icon: Users, emoji: "🤝" },
   { id: "give", title: "Give / Donate", sub: "Sow into good ground · tax receipt provided", Icon: Heart, emoji: "❤️" },
@@ -25,6 +31,22 @@ const CARDS: { id: View; title: string; sub: string; Icon: React.ComponentType<{
   { id: "install", title: "Add to Home Screen", sub: "Install the app & turn on notifications", Icon: Download, emoji: "📲" },
   { id: "settings", title: "Settings", sub: "Update your name, church & preferences", Icon: Sparkle, emoji: "⚙️" },
 ];
+
+const CARD_CLASS =
+  "group flex w-full items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-left transition active:scale-[0.99]";
+
+function CardBody({ card }: { card: (typeof CARDS)[number] }) {
+  return (
+    <>
+      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-purple-600/40 to-navy-800 text-2xl">{card.emoji}</span>
+      <span className="min-w-0 flex-1">
+        <span className="block font-display text-lg font-bold text-white">{card.title}</span>
+        <span className="block text-xs text-white/55">{card.sub}</span>
+      </span>
+      <ArrowRight width={18} height={18} className="text-white/40 transition group-hover:translate-x-0.5 group-hover:text-gold-400" />
+    </>
+  );
+}
 
 export default function MoreScreen({ resetSignal = 0, openView = null }: { resetSignal?: number; openView?: string | null }) {
   const [view, setView] = useState<View>("hub");
@@ -63,20 +85,21 @@ export default function MoreScreen({ resetSignal = 0, openView = null }: { reset
             <div className="space-y-3 pb-4">
               {CARDS.map((c, i) => (
                 <Reveal key={c.id} delay={i * 0.05}>
-                  <button
-                    onClick={() => {
-                      setView(c.id);
-                      window.scrollTo({ top: 0 });
-                    }}
-                    className="group flex w-full items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-left transition active:scale-[0.99]"
-                  >
-                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-purple-600/40 to-navy-800 text-2xl">{c.emoji}</span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block font-display text-lg font-bold text-white">{c.title}</span>
-                      <span className="block text-xs text-white/55">{c.sub}</span>
-                    </span>
-                    <ArrowRight width={18} height={18} className="text-white/40 transition group-hover:translate-x-0.5 group-hover:text-gold-400" />
-                  </button>
+                  {c.href ? (
+                    <a href={c.href} className={CARD_CLASS}>
+                      <CardBody card={c} />
+                    </a>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        setView(c.id);
+                        window.scrollTo({ top: 0 });
+                      }}
+                      className={CARD_CLASS}
+                    >
+                      <CardBody card={c} />
+                    </button>
+                  )}
                 </Reveal>
               ))}
             </div>
