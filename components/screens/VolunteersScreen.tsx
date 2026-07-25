@@ -25,7 +25,9 @@ export default function VolunteersScreen({ onClose }: { onClose: () => void }) {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Jesus Festival Volunteers"
         className="fixed inset-0 z-[80] flex flex-col bg-[#0B0D12]"
       >
         {/* Top bar */}
@@ -50,8 +52,8 @@ export default function VolunteersScreen({ onClose }: { onClose: () => void }) {
           </a>
         </div>
 
-        {/* Embedded volunteer app */}
-        <div className="relative flex-1 bg-[#0B0D12]">
+        {/* Embedded volunteer app — safe-bottom keeps its controls above the iPhone home indicator */}
+        <div className="relative flex-1 bg-[#0B0D12] safe-bottom">
           {!loaded && (
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-8 text-center">
               <div className="h-9 w-9 animate-spin rounded-full border-2 border-white/15 border-t-gold-400" />
@@ -67,7 +69,7 @@ export default function VolunteersScreen({ onClose }: { onClose: () => void }) {
             src={VOLUNTEER_URL}
             title="Jesus Festival Volunteers"
             onLoad={() => setLoaded(true)}
-            allow="clipboard-write; web-share; geolocation"
+            allow="clipboard-write; web-share"
             referrerPolicy="no-referrer-when-downgrade"
             className="h-full w-full border-0 bg-[#0B0D12]"
           />
