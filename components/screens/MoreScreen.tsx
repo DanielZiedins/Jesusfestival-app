@@ -12,9 +12,10 @@ import ConnectScreen from "./ConnectScreen";
 import SettingsScreen from "./SettingsScreen";
 import InstallScreen from "./InstallScreen";
 import PrayerWallScreen from "./PrayerWallScreen";
+import VolunteersScreen from "./VolunteersScreen";
 import { FlameIcon, MapIcon, BellIcon, ArrowRight, ChevronLeft, Users, Heart, Download, Sparkle } from "@/components/icons";
 
-type View = "hub" | "prayer" | "movement" | "discipleship" | "give" | "map" | "connect" | "settings" | "install";
+type View = "hub" | "prayer" | "volunteers" | "movement" | "discipleship" | "give" | "map" | "connect" | "settings" | "install";
 
 const CARDS: { id: View; title: string; sub: string; Icon: React.ComponentType<{ width?: number; height?: number }>; emoji: string }[] = [
   { id: "connect", title: "Connect", sub: "See where the movement is spreading & get involved", Icon: BellIcon, emoji: "🌍" },
@@ -37,7 +38,7 @@ export default function MoreScreen({ resetSignal = 0, openView = null }: { reset
 
   return (
     <div>
-      {view === "hub" ? (
+      {view === "hub" && (
           <motion.div key="hub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="px-4">
             <ScreenHeader eyebrow="Explore more" title="More" subtitle="The movement, discipleship, the map & ways to connect." />
 
@@ -57,6 +58,25 @@ export default function MoreScreen({ resetSignal = 0, openView = null }: { reset
                   <span className="block text-xs text-white/65">Lift a prayer, share a praise & pray for the whole city together</span>
                 </span>
                 <ArrowRight width={18} height={18} className="relative shrink-0 text-gold-400 transition group-hover:translate-x-0.5" />
+              </button>
+            </Reveal>
+
+            {/* Featured: Volunteers */}
+            <Reveal delay={0.05}>
+              <button
+                onClick={() => {
+                  setView("volunteers");
+                  window.scrollTo({ top: 0 });
+                }}
+                className="group relative mb-3 flex w-full items-center gap-4 overflow-hidden rounded-2xl border border-emerald-400/25 bg-gradient-to-br from-emerald-700/25 via-navy-800/40 to-ink/50 p-4 text-left transition active:scale-[0.99]"
+              >
+                <span className="pointer-events-none absolute -right-8 -top-10 h-32 w-32 rounded-full bg-emerald-400/12 blur-3xl" />
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-emerald-500/25 to-gold/20 text-3xl">🙌</span>
+                <span className="relative min-w-0 flex-1">
+                  <span className="block font-display text-xl font-extrabold text-white">Volunteers</span>
+                  <span className="block text-xs text-white/65">Serving at the festival? Enter your code, apply & find your team</span>
+                </span>
+                <ArrowRight width={18} height={18} className="relative shrink-0 text-emerald-300 transition group-hover:translate-x-0.5" />
               </button>
             </Reveal>
 
@@ -81,7 +101,18 @@ export default function MoreScreen({ resetSignal = 0, openView = null }: { reset
               ))}
             </div>
           </motion.div>
-        ) : (
+        )}
+
+      {view === "volunteers" && (
+        <VolunteersScreen
+          onClose={() => {
+            setView("hub");
+            window.scrollTo({ top: 0 });
+          }}
+        />
+      )}
+
+      {view !== "hub" && view !== "volunteers" && (
           <motion.div key={view} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
             <div className="sticky top-0 z-30 bg-ink/80 px-4 pt-4 backdrop-blur safe-top">
               <button
