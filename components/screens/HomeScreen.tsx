@@ -281,15 +281,23 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
           ))}
 
           <Reveal delay={0.16}>
-            <div className="flex items-center gap-4 rounded-2xl border border-dashed border-purple-400/40 bg-purple-500/10 p-4">
-              <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-purple-600/30 text-2xl">🤫</div>
-              <div>
-                <h3 className="font-display text-base font-bold text-white">A Friday night surprise…</h3>
-                <p className="mt-0.5 text-[13px] leading-snug text-white/65">
-                  Our special guest is under wraps — and more artists are on the way. Turn on updates to hear it first!
-                </p>
-              </div>
-            </div>
+            <a
+              href="https://bethelhamilton.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block overflow-hidden rounded-2xl border border-gold/40 bg-gradient-to-br from-ember/20 via-purple-900/30 to-ink/60 p-6 text-center active:scale-[0.99]"
+            >
+              <span className="pointer-events-none absolute -right-12 -top-14 h-40 w-40 rounded-full bg-gold/15 blur-3xl" />
+              <span className="pointer-events-none absolute -left-12 bottom-0 h-32 w-32 rounded-full bg-ember/15 blur-3xl" />
+              <p className="relative text-[11px] font-bold uppercase tracking-[0.28em] text-gold-400">✨ Friday Headliner Revealed</p>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/brand/bethel-logo-white.png" alt="Bethel Gospel Tabernacle" className="relative mx-auto mt-5 h-14 w-auto max-w-[85%] object-contain" />
+              <p className="relative mt-5 font-display text-base font-bold text-white">Leading Pure Worship Night</p>
+              <p className="relative mt-1 text-[13px] text-white/70">Friday, Sept 4 · 6:30–9:00 PM · Gage Park</p>
+              <span className="relative mt-4 inline-flex items-center gap-1.5 rounded-full bg-white/10 px-4 py-2 text-[12px] font-bold text-white transition group-hover:bg-white/15">
+                Visit bethelhamilton.com <ArrowRight width={13} height={13} />
+              </span>
+            </a>
           </Reveal>
         </div>
 

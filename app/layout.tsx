@@ -120,6 +120,7 @@ const EVENT_JSONLD = {
     validFrom: "2026-01-01",
   },
   performer: [
+    { "@type": "MusicGroup", name: "Bethel Gospel Tabernacle" },
     { "@type": "MusicGroup", name: "Open Heaven" },
     { "@type": "PerformingGroup", name: "Ant Lee" },
   ],
@@ -152,7 +153,7 @@ const FAQ_JSONLD = {
     {
       "@type": "Question",
       name: "Who is performing at Jesus Festival 2026?",
-      acceptedAnswer: { "@type": "Answer", text: "Ant Lee and Open Heaven are confirmed, with a surprise Friday-night guest and more artists announcing very soon." },
+      acceptedAnswer: { "@type": "Answer", text: "Bethel Gospel Tabernacle leads Friday's Pure Worship Night (6:30–9:00 PM), with Ant Lee and Open Heaven also confirmed and more artists announcing very soon." },
     },
   ],
 };

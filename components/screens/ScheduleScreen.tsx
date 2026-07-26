@@ -102,19 +102,35 @@ export default function ScheduleScreen() {
               <div className="relative space-y-2.5 pl-1">
                 {active.items.map((item, i) => {
                   const surprise = (item as { surprise?: boolean }).surprise === true;
+                  const featured = (item as { featured?: boolean }).featured === true;
+                  const href = (item as { href?: string }).href;
+                  const box = featured
+                    ? "rounded-xl border border-gold/40 bg-gradient-to-br from-gold/12 to-transparent px-3.5 py-3"
+                    : surprise
+                    ? "rounded-xl border border-purple-400/25 bg-purple-500/10 px-3 py-2"
+                    : "";
                   return (
                     <Reveal key={item.title} delay={i * 0.05} y={14}>
                       <div className="flex gap-3.5">
                         <div className="flex w-16 shrink-0 flex-col items-end pt-0.5">
-                          <span className={`font-display text-sm font-bold ${surprise ? "text-purple-300" : "text-white"}`}>{item.time}</span>
+                          <span className={`font-display text-sm font-bold leading-tight ${surprise ? "text-purple-300" : featured ? "text-gold-400" : "text-white"}`}>{item.time}</span>
                         </div>
                         <div className="relative flex flex-col items-center">
-                          <span className={`mt-1.5 h-3 w-3 rounded-full ring-4 ${surprise ? "bg-purple-400 ring-purple-400/20" : "bg-gold ring-gold/15"}`} />
+                          <span className={`mt-1.5 h-3 w-3 rounded-full ring-4 ${surprise ? "bg-purple-400 ring-purple-400/20" : featured ? "bg-gold ring-gold/25" : "bg-gold ring-gold/15"}`} />
                           {i < active.items.length - 1 && <span className="mt-1 h-full w-px flex-1 bg-white/12" />}
                         </div>
-                        <div className={`flex-1 pb-3 ${surprise ? "rounded-xl border border-purple-400/25 bg-purple-500/10 px-3 py-2" : ""}`}>
+                        <div className={`flex-1 pb-3 ${box}`}>
                           <h3 className="font-display text-[15px] font-bold text-white">{item.title}</h3>
                           <p className="mt-0.5 text-[13px] leading-snug text-white/55">{item.note}</p>
+                          {featured && (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img src="/brand/bethel-logo-white.png" alt="Bethel Gospel Tabernacle" className="mt-2.5 h-7 w-auto max-w-[72%] object-contain opacity-95" />
+                          )}
+                          {href && (
+                            <a href={href} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1 text-[12px] font-bold text-gold-400 active:scale-95">
+                              bethelhamilton.com <ArrowRight width={12} height={12} />
+                            </a>
+                          )}
                         </div>
                       </div>
                     </Reveal>

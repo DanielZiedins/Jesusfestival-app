@@ -61,14 +61,13 @@ export const SCHEDULE = {
       theme: "Pure Worship Night",
       window: "6:00 PM – 9:00 PM",
       blurb:
-        "A focused night of worship, prayer, and hearts lifted to Jesus. Come early to find your spot — worship begins at 6:30 PM.",
+        "A focused night of worship, prayer, and hearts lifted to Jesus — led by Bethel Gospel Tabernacle. Come early to find your spot; worship begins at 6:30 PM.",
       accent: "ember",
       comingSoon: false,
       items: [
         { time: "6:00 PM", title: "Come Early & Find Your Spot", note: "Gates open — arrive at 6:00 PM (or earlier!) to settle in before worship" },
-        { time: "6:30 PM", title: "Pure Worship Begins", note: "The whole city lifts one name as the sun sets over Gage Park" },
-        { time: "Surprise", title: "Special Guest — Announcing Soon", note: "Our Friday night guest is a surprise… you won't want to miss it! 🤫", surprise: true },
-        { time: "Later", title: "Prayer & The Word", note: "A moment to encounter Jesus together" },
+        { time: "6:30 – 9:00 PM", title: "Worship with Bethel Gospel Tabernacle", note: "Our Friday headliner is here! Bethel Gospel Tabernacle leads the whole city in worship as the sun sets over Gage Park.", featured: true, href: "https://bethelhamilton.com/" },
+        { time: "Throughout", title: "Prayer & The Word", note: "Space to encounter Jesus together as one city" },
       ],
     },
     {
@@ -87,7 +86,7 @@ export const SCHEDULE = {
 };
 
 // Teaser shown under the Artists section on the home screen.
-export const ARTISTS_NOTE = "More artists announcing very soon — Stay tuned!";
+export const ARTISTS_NOTE = "Bethel Gospel Tabernacle leads Friday worship — with more artists announcing very soon!";
 
 export const EXPECT = [
   { icon: "worship", title: "Worship", text: "Thousands worshipping the King of Kings together." },
@@ -139,7 +138,7 @@ export const TIMELINE = [
   {
     year: "2026",
     title: "We're coming back",
-    text: "September 4–5 at Gage Park. Ant Lee and Open Heaven return, with more announcements to follow.",
+    text: "September 4–5 at Gage Park. Bethel Gospel Tabernacle leads Friday's Pure Worship Night, with Ant Lee, Open Heaven and more to come.",
   },
 ];
 
