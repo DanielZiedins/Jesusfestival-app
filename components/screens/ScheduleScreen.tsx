@@ -7,6 +7,48 @@ import Reveal, { Eyebrow } from "@/components/Reveal";
 import ScreenHeader from "@/components/ScreenHeader";
 import { CalendarIcon, MapPin, ArrowRight } from "@/components/icons";
 
+// Build a universal .ics (Fri worship + Sat festival day) and hand it to the OS calendar.
+function addFestivalToCalendar() {
+  const ics = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Jesus Festival//Hamilton 2026//EN",
+    "CALSCALE:GREGORIAN",
+    "BEGIN:VEVENT",
+    "UID:jf2026-friday@jesusfestival.app",
+    "DTSTAMP:20260801T120000Z",
+    "DTSTART:20260904T223000Z", // Fri Sept 4, 6:30 PM EDT
+    "DTEND:20260905T010000Z", // 9:00 PM EDT
+    "SUMMARY:Jesus Festival — Pure Worship Night",
+    "LOCATION:Gage Park, 1000 Main St E, Hamilton, ON",
+    "DESCRIPTION:Worship led by Bethel Gospel Tabernacle. Gates 6:00 PM, worship 6:30 PM. https://www.jesusfestival.app",
+    "END:VEVENT",
+    "BEGIN:VEVENT",
+    "UID:jf2026-saturday@jesusfestival.app",
+    "DTSTAMP:20260801T120000Z",
+    "DTSTART:20260905T140000Z", // Sat Sept 5, 10:00 AM EDT
+    "DTEND:20260905T220000Z", // 6:00 PM EDT
+    "SUMMARY:Jesus Festival — Family Festival Day",
+    "LOCATION:Gage Park, 1000 Main St E, Hamilton, ON",
+    "DESCRIPTION:Free family festival — food trucks, kids zone, live music, worship & more. https://www.jesusfestival.app",
+    "END:VEVENT",
+    "END:VCALENDAR",
+  ].join("\r\n");
+  try {
+    const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "jesus-festival-2026.ics";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 3000);
+  } catch {
+    /* ignore */
+  }
+}
+
 export default function ScheduleScreen() {
   const [day, setDay] = useState(SCHEDULE.days[0].id);
   const active = SCHEDULE.days.find((d) => d.id === day) ?? SCHEDULE.days[0];
@@ -147,11 +189,17 @@ export default function ScheduleScreen() {
       </AnimatePresence>
 
       <Reveal className="mx-auto mt-5 max-w-md space-y-2.5">
+        <button
+          onClick={addFestivalToCalendar}
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 py-3 font-display text-sm font-bold text-navy-950 shadow-glow active:scale-[0.98]"
+        >
+          <CalendarIcon width={16} height={16} /> Add to Calendar
+        </button>
         <a
           href={LINKS.eventDetails}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 py-3 font-display text-sm font-bold text-navy-950 shadow-glow active:scale-[0.98]"
+          className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 py-3 text-sm font-bold text-white active:scale-[0.98]"
         >
           Full Event Details <ArrowRight width={16} height={16} />
         </a>

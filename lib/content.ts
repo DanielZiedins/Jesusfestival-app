@@ -192,7 +192,7 @@ export const DISCIPLESHIP = {
     ref: "Hebrews 10:24–25",
   },
   churches: [
-    { name: "Bethel Gospel Tabernacle", href: "https://bethelhamilton.com/" },
+    { name: "Bethel Gospel Tabernacle", href: "https://bethelhamilton.com/", badge: "🎶 Leading Friday worship" },
     { name: "Hamilton Christian Fellowship", href: "https://hcfchurch.ca/" },
     { name: "CIA Church", href: "https://www.ciachurch.com/" },
     { name: "Transformation Centre", href: "https://transformationcentre.ca/" },

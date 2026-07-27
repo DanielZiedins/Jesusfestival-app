@@ -32,7 +32,12 @@ function PartnerList({ title, items }: { title: string; items: { name: string; h
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-purple-600/40 to-navy-800 text-lg">
               ✝
             </span>
-            <span className="min-w-0 flex-1 text-sm font-semibold text-white">{p.name}</span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-sm font-semibold text-white">{p.name}</span>
+              {(p as { badge?: string }).badge && (
+                <span className="mt-1 inline-block rounded-full bg-gold/15 px-2 py-0.5 text-[10px] font-bold text-gold-400">{(p as { badge?: string }).badge}</span>
+              )}
+            </span>
             <ArrowRight width={17} height={17} className="text-white/40 transition group-hover:translate-x-0.5 group-hover:text-gold-400" />
           </a>
         ))}
