@@ -18,6 +18,8 @@ import {
   DONATE,
 } from "@/lib/content";
 import Countdown from "@/components/Countdown";
+import InviteCard from "@/components/InviteCard";
+import { getStreak } from "@/lib/game";
 import Reveal, { Eyebrow } from "@/components/Reveal";
 import ParallaxImage from "@/components/ParallaxImage";
 import Scripture from "@/components/Scripture";
@@ -47,10 +49,20 @@ const EXPECT_ICON: Record<string, React.ComponentType<{ width?: number; height?:
 export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => void }) {
   // Verse of the day — set after mount so SSR/client never disagree on the date.
   const [verseOfDay, setVerseOfDay] = useState(SCRIPTURES[0]);
+  // Personal touch: greet returning members by name, with their streak.
+  const [firstName, setFirstName] = useState<string | null>(null);
+  const [streak, setStreakN] = useState(0);
   useEffect(() => {
     const start = new Date(new Date().getFullYear(), 0, 0);
     const doy = Math.floor((Date.now() - start.getTime()) / 86400000);
     setVerseOfDay(SCRIPTURES[doy % SCRIPTURES.length]);
+    try {
+      const n = localStorage.getItem("jf-name");
+      if (n && n.trim()) setFirstName(n.trim().split(/\s+/)[0]);
+    } catch {
+      /* ignore */
+    }
+    setStreakN(getStreak());
   }, []);
 
   const heroRef = useRef<HTMLDivElement>(null);
@@ -169,6 +181,31 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
             >
               Invite Everyone
             </a>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ===== WELCOME BACK + QUICK ACTIONS ===== */}
+      <section className="mt-10 px-4">
+        <Reveal className="mx-auto max-w-md">
+          <div className="mb-4 flex items-center justify-between gap-2">
+            <div className="min-w-0">
+              <h2 className="truncate font-display text-xl font-extrabold text-white">
+                {firstName ? `Welcome back, ${firstName}! 👋` : "Jump right in 👇"}
+              </h2>
+              <p className="mt-0.5 text-[13px] text-white/55">The city&apos;s coming alive — here&apos;s your next step.</p>
+            </div>
+            {streak > 0 && (
+              <span className="shrink-0 rounded-full border border-gold/30 bg-gold/10 px-3 py-1.5 text-[12px] font-bold text-gold-400">
+                🔥 {streak}-day
+              </span>
+            )}
+          </div>
+          <div className="grid grid-cols-2 gap-2.5">
+            <QuickAction emoji="🎮" title="Revive the City" sub="Missions, games & quizzes" onClick={() => go("game")} accent="gold" />
+            <QuickAction emoji="🙏" title="Prayer Wall" sub="Pray for one another" onClick={() => go("more", "prayer")} accent="purple" />
+            <QuickAction emoji="🙌" title="Volunteers" sub="Serve at the festival" onClick={() => go("more", "volunteers")} accent="emerald" />
+            <QuickAction emoji="❤️" title="Give" sub="Sow into good ground" onClick={() => go("more", "give")} accent="ember" />
           </div>
         </Reveal>
       </section>
@@ -303,6 +340,13 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
 
         <Reveal className="mx-auto mt-6 max-w-md">
           <Scripture text={SCRIPTURES[6].text} reference={SCRIPTURES[6].ref} />
+        </Reveal>
+      </section>
+
+      {/* ===== INVITE CARD ===== */}
+      <section className="mt-14 px-4">
+        <Reveal className="mx-auto max-w-md">
+          <InviteCard />
         </Reveal>
       </section>
 
@@ -504,5 +548,29 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
         </Reveal>
       </section>
     </div>
+  );
+}
+
+// A bold, tappable shortcut tile — gets people where the life is in one tap.
+const QA_ACCENT: Record<string, string> = {
+  gold: "border-gold/30 from-gold/[0.14]",
+  purple: "border-purple-400/30 from-purple-500/[0.16]",
+  emerald: "border-emerald-400/25 from-emerald-500/[0.12]",
+  ember: "border-ember/30 from-ember/[0.14]",
+};
+
+function QuickAction({ emoji, title, sub, onClick, accent }: { emoji: string; title: string; sub: string; onClick: () => void; accent: keyof typeof QA_ACCENT }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`group flex flex-col items-start gap-1 rounded-2xl border bg-gradient-to-br to-transparent p-4 text-left transition active:scale-[0.97] ${QA_ACCENT[accent]}`}
+    >
+      <span className="text-[26px] leading-none drop-shadow">{emoji}</span>
+      <span className="mt-1.5 font-display text-[15px] font-bold leading-tight text-white">{title}</span>
+      <span className="text-[11px] leading-snug text-white/55">{sub}</span>
+      <span className="mt-0.5 inline-flex items-center gap-1 text-[11px] font-bold text-gold-400 transition group-hover:gap-1.5">
+        Open <ArrowRight width={11} height={11} />
+      </span>
+    </button>
   );
 }
