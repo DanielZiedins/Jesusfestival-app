@@ -159,6 +159,38 @@ async function drawCard(name: string | null): Promise<Blob | null> {
   return await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/png"));
 }
 
+// Generate + share the card. Returns how it went so callers can reward the action.
+export async function shareInviteCard(): Promise<"shared" | "downloaded" | null> {
+  let name: string | null = null;
+  try {
+    name = localStorage.getItem("jf-name");
+  } catch {
+    /* ignore */
+  }
+  const blob = await drawCard(name);
+  if (!blob) return null;
+  const file = new File([blob], "jesus-festival-invite.png", { type: "image/png" });
+  const text = "I'll be at Jesus Festival — Sept 4–5 at Gage Park, Hamilton! Join me 🙌 https://www.jesusfestival.app";
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    await navigator.share({ files: [file], text, title: "Jesus Festival 2026" });
+    return "shared";
+  }
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "jesus-festival-invite.png";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 3000);
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch {
+    /* ignore */
+  }
+  return "downloaded";
+}
+
 export default function InviteCard() {
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState<null | "shared" | "downloaded">(null);
@@ -168,37 +200,12 @@ export default function InviteCard() {
     setBusy(true);
     haptic(14);
     try {
-      let name: string | null = null;
-      try {
-        name = localStorage.getItem("jf-name");
-      } catch {
-        /* ignore */
+      const res = await shareInviteCard();
+      if (res) {
+        setDone(res);
+        haptic(20);
+        setTimeout(() => setDone(null), 3500);
       }
-      const blob = await drawCard(name);
-      if (!blob) return;
-      const file = new File([blob], "jesus-festival-invite.png", { type: "image/png" });
-      const text = "I'll be at Jesus Festival — Sept 4–5 at Gage Park, Hamilton! Join me 🙌 https://www.jesusfestival.app";
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        await navigator.share({ files: [file], text, title: "Jesus Festival 2026" });
-        setDone("shared");
-      } else {
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "jesus-festival-invite.png";
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        setTimeout(() => URL.revokeObjectURL(url), 3000);
-        try {
-          await navigator.clipboard.writeText(text);
-        } catch {
-          /* ignore */
-        }
-        setDone("downloaded");
-      }
-      haptic(20);
-      setTimeout(() => setDone(null), 3500);
     } catch {
       /* user cancelled the share sheet */
     } finally {

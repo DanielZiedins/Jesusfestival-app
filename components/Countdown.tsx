@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 function diff(target: number) {
   const now = Date.now();
@@ -31,19 +31,18 @@ function Unit({ label, value, hot, delay }: { label: string; value: string; hot?
         animate={hot ? { opacity: [0.4, 0.9, 0.4] } : { opacity: 0.35 }}
         transition={hot ? { duration: 2, repeat: Infinity, ease: "easeInOut" } : undefined}
       />
+      {/* Keyed remount (no AnimatePresence): a stalled exit animation must never
+          leave orphaned digits behind when rAF is throttled in a background tab. */}
       <div className="relative h-8 sm:h-9">
-        <AnimatePresence mode="popLayout" initial={false}>
-          <motion.div
-            key={value}
-            initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -10, opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="text-gradient-gold absolute inset-x-0 font-display text-[26px] font-black leading-8 tabular-nums sm:text-3xl sm:leading-9"
-          >
-            {value}
-          </motion.div>
-        </AnimatePresence>
+        <motion.div
+          key={value}
+          initial={{ y: 8, opacity: 0.35 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.28, ease: "easeOut" }}
+          className="text-gradient-gold absolute inset-x-0 font-display text-[26px] font-black leading-8 tabular-nums sm:text-3xl sm:leading-9"
+        >
+          {value}
+        </motion.div>
       </div>
       <div className="relative mt-1 text-[9px] font-bold uppercase tracking-[0.22em] text-white/50">
         {label}

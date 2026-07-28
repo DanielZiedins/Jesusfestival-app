@@ -18,6 +18,7 @@ import ActivityTicker from "@/components/game/ActivityTicker";
 import MilestoneJourney from "@/components/game/MilestoneJourney";
 import { QuizList, QuizModal } from "@/components/game/BibleQuiz";
 import ChurchCrew from "@/components/game/ChurchCrew";
+import { shareInviteCard } from "@/components/InviteCard";
 import { usePresence } from "@/lib/useLive";
 import { notifyMilestone, notifyBossVictory, subscribeToPush, pushEnabled } from "@/lib/push";
 import { Check, Play, Trophy, Sparkle, BellIcon } from "@/components/icons";
@@ -729,16 +730,32 @@ function Motivate({ text }: { text: string }) {
 
 // Spread-the-word missions: share the app / JesusFestival.ca on social media.
 function ShareMissions({ done, onShared }: { done: string[]; onShared: (id: string, points: number) => void }) {
+  const [cardBusy, setCardBusy] = useState(false);
   const items = [
+    { id: "share-card", emoji: "📸", title: "Post your invite card", text: "Make your personalized “I'll be there” picture & post it.", card: true, points: 150 },
     { id: "share-app", emoji: "📲", title: "Share the app with a friend", text: "Send JesusFestival.App to someone who'd love this.", url: "https://www.jesusfestival.app", msg: "Join me on the Jesus Festival app — we're reviving Hamilton together! 🌆", points: 100 },
     { id: "share-site", emoji: "🌐", title: "Share JesusFestival.ca", text: "Post the festival site so your friends can discover it.", url: "https://www.jesusfestival.ca", msg: "Jesus Festival is coming to Hamilton Sept 4–5 — free festival at Gage Park! 🙌", points: 100 },
   ];
 
   async function share(it: (typeof items)[number]) {
     let shared = false;
+    // The invite card draws its own image, then opens the share sheet.
+    if (it.card) {
+      if (cardBusy) return;
+      setCardBusy(true);
+      try {
+        shared = (await shareInviteCard()) !== null;
+      } catch {
+        /* cancelled */
+      } finally {
+        setCardBusy(false);
+      }
+      if (shared && !done.includes(it.id)) onShared(it.id, it.points);
+      return;
+    }
     try {
       if (navigator.share) {
-        await navigator.share({ title: "Jesus Festival", text: it.msg, url: it.url });
+        await navigator.share({ title: "Jesus Festival", text: it.msg!, url: it.url! });
         shared = true;
       } else {
         await navigator.clipboard.writeText(`${it.msg} ${it.url}`);
@@ -762,8 +779,8 @@ function ShareMissions({ done, onShared }: { done: string[]; onShared: (id: stri
               <p className="text-sm font-bold text-white">{it.title}</p>
               <p className="text-[12px] leading-snug text-white/55">{it.text}</p>
             </div>
-            <button onClick={() => share(it)} className={`shrink-0 rounded-xl px-3 py-2 text-xs font-bold transition active:scale-95 ${isDone ? "bg-emerald-500/20 text-emerald-200" : "bg-gold text-navy-950"}`}>
-              {isDone ? <Check width={16} height={16} /> : `Share +${it.points}`}
+            <button onClick={() => share(it)} disabled={it.card && cardBusy} className={`shrink-0 rounded-xl px-3 py-2 text-xs font-bold transition active:scale-95 disabled:opacity-60 ${isDone ? "bg-emerald-500/20 text-emerald-200" : "bg-gold text-navy-950"}`}>
+              {isDone ? <Check width={16} height={16} /> : it.card && cardBusy ? "…" : `Share +${it.points}`}
             </button>
           </div>
         );

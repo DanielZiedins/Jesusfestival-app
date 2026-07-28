@@ -19,6 +19,7 @@ import {
 } from "@/lib/content";
 import Countdown from "@/components/Countdown";
 import InviteCard from "@/components/InviteCard";
+import NotifyNudge from "@/components/NotifyNudge";
 import { getStreak } from "@/lib/game";
 import Reveal, { Eyebrow } from "@/components/Reveal";
 import ParallaxImage from "@/components/ParallaxImage";
@@ -200,6 +201,9 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
                 🔥 {streak}-day
               </span>
             )}
+          </div>
+          <div className="mb-3">
+            <NotifyNudge />
           </div>
           <div className="grid grid-cols-2 gap-2.5">
             <QuickAction emoji="🎮" title="Revive the City" sub="Missions, games & quizzes" onClick={() => go("game")} accent="gold" />
