@@ -9,6 +9,7 @@ import {
   EXPECT,
   ARTISTS,
   ARTISTS_NOTE,
+  SCHEDULE,
   TIMELINE,
   IMPACT,
   LINKS,
@@ -297,48 +298,64 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
           </p>
         </Reveal>
         <div className="mx-auto max-w-md space-y-3">
-          {ARTISTS.map((a, i) => (
-            <Reveal key={a.name} delay={i * 0.08}>
-              <a
-                href={a.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-4 overflow-hidden rounded-2xl border border-white/8 bg-white/[0.04] p-3 active:scale-[0.99]"
-              >
-                <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={a.img} alt={a.name} loading="lazy" className="h-full w-full object-cover transition group-hover:scale-105" />
+          {ARTISTS.map((a, i) => {
+            const inner = (
+              <>
+                <div className="relative grid h-20 w-20 shrink-0 place-items-center overflow-hidden rounded-xl bg-gradient-to-br from-purple-700/40 to-navy-900">
+                  {a.img ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={a.img} alt={a.name} loading="lazy" className="h-full w-full object-cover transition group-hover:scale-105" />
+                  ) : a.logo ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={a.logo} alt={a.name} loading="lazy" className="max-h-[62%] w-[84%] object-contain" />
+                  ) : (
+                    <span className="text-3xl text-gold-400/80">♪</span>
+                  )}
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-gold-400">
                     <Music width={13} height={13} /> {a.role}
                   </div>
-                  <h3 className="mt-0.5 font-display text-lg font-bold text-white">{a.name}</h3>
+                  <h3 className="mt-0.5 font-display text-lg font-bold leading-tight text-white">{a.name}</h3>
                   <p className="mt-0.5 line-clamp-2 text-[13px] leading-snug text-white/60">{a.blurb}</p>
                 </div>
-                <ArrowRight width={18} height={18} className="shrink-0 text-white/40" />
-              </a>
-            </Reveal>
-          ))}
+                {a.href && <ArrowRight width={18} height={18} className="shrink-0 text-white/40" />}
+              </>
+            );
+            const cls = "group flex items-center gap-4 overflow-hidden rounded-2xl border border-white/8 bg-white/[0.04] p-3";
+            return (
+              <Reveal key={a.name} delay={Math.min(i * 0.07, 0.35)}>
+                {a.href ? (
+                  <a href={a.href} target="_blank" rel="noopener noreferrer" className={`${cls} active:scale-[0.99]`}>
+                    {inner}
+                  </a>
+                ) : (
+                  <div className={cls}>{inner}</div>
+                )}
+              </Reveal>
+            );
+          })}
 
           <Reveal delay={0.16}>
-            <a
-              href="https://bethelhamilton.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative block overflow-hidden rounded-2xl border border-gold/40 bg-gradient-to-br from-ember/20 via-purple-900/30 to-ink/60 p-6 text-center active:scale-[0.99]"
+            <button
+              onClick={() => go("schedule")}
+              className="group relative block w-full overflow-hidden rounded-2xl border border-gold/40 bg-gradient-to-br from-ember/20 via-purple-900/30 to-ink/60 p-6 text-center active:scale-[0.99]"
             >
               <span className="pointer-events-none absolute -right-12 -top-14 h-40 w-40 rounded-full bg-gold/15 blur-3xl" />
               <span className="pointer-events-none absolute -left-12 bottom-0 h-32 w-32 rounded-full bg-ember/15 blur-3xl" />
-              <p className="relative text-[11px] font-bold uppercase tracking-[0.28em] text-gold-400">✨ Friday Headliner Revealed</p>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/brand/bethel-logo-white.png" alt="Bethel Gospel Tabernacle" className="relative mx-auto mt-5 h-14 w-auto max-w-[85%] object-contain" />
-              <p className="relative mt-5 font-display text-base font-bold text-white">Leading Pure Worship Night</p>
-              <p className="relative mt-1 text-[13px] text-white/70">Friday, Sept 4 · 6:30–9:00 PM · Gage Park</p>
-              <span className="relative mt-4 inline-flex items-center gap-1.5 rounded-full bg-white/10 px-4 py-2 text-[12px] font-bold text-white transition group-hover:bg-white/15">
-                Visit bethelhamilton.com <ArrowRight width={13} height={13} />
+              <p className="relative text-[11px] font-bold uppercase tracking-[0.28em] text-gold-400">🗓️ Full schedule is live</p>
+              <h3 className="relative mt-3 font-display text-2xl font-extrabold leading-tight text-white">
+                Every set time,
+                <br />
+                both days
+              </h3>
+              <p className="relative mx-auto mt-2 max-w-xs text-[13px] leading-relaxed text-white/70">
+                Friday worship with Bethel Gospel Tabernacle, then a full Saturday of worship sets, testimonies & the Gospel — hosted by {SCHEDULE.hosts}.
+              </p>
+              <span className="relative mt-4 inline-flex items-center gap-1.5 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-5 py-2.5 text-[13px] font-extrabold text-navy-950 shadow-glow transition group-active:scale-95">
+                See the schedule <ArrowRight width={14} height={14} />
               </span>
-            </a>
+            </button>
           </Reveal>
         </div>
 

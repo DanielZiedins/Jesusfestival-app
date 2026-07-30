@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { SCHEDULE, SITE, LINKS } from "@/lib/content";
 import Reveal, { Eyebrow } from "@/components/Reveal";
 import ScreenHeader from "@/components/ScreenHeader";
@@ -70,8 +70,8 @@ export default function ScheduleScreen() {
             <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-gold" />
           </span>
           <p className="text-[13px] font-medium text-white/80">
-            <span className="font-bold text-gold-400">{SCHEDULE.status}.</span>{" "}
-            Turn on notifications so you don&apos;t miss set times.
+            <span className="font-bold text-gold-400">{SCHEDULE.status}! 🎉</span>{" "}
+            Hosted by {SCHEDULE.hosts}. Turn on alerts for any last-minute changes.
           </p>
         </div>
       </Reveal>
@@ -107,12 +107,13 @@ export default function ScheduleScreen() {
       </div>
 
       {/* Day detail */}
-      <AnimatePresence mode="wait">
+      {/* Keyed remount, no AnimatePresence: a stalled exit (throttled rAF / battery
+          saver) must never leave the wrong day on screen at the festival. */}
+      <div>
         <motion.div
           key={active.id}
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.28 }}
           className="mx-auto max-w-md"
         >
@@ -143,33 +144,40 @@ export default function ScheduleScreen() {
             <>
               <div className="relative space-y-2.5 pl-1">
                 {active.items.map((item, i) => {
-                  const surprise = (item as { surprise?: boolean }).surprise === true;
-                  const featured = (item as { featured?: boolean }).featured === true;
-                  const href = (item as { href?: string }).href;
-                  const box = featured
-                    ? "rounded-xl border border-gold/40 bg-gradient-to-br from-gold/12 to-transparent px-3.5 py-3"
-                    : surprise
-                    ? "rounded-xl border border-purple-400/25 bg-purple-500/10 px-3 py-2"
-                    : "";
+                  const it = item as { time: string; title: string; note: string; kind?: string; featured?: boolean; href?: string };
+                  const featured = it.featured === true;
+                  const kind = it.kind ?? "moment";
+                  const isArtist = kind === "artist";
+                  const isSpeaker = kind === "speaker";
+                  // Color-codes the day at a glance: gold = music, purple = spoken, white = moment.
+                  const timeColor = isArtist ? "text-gold-400" : isSpeaker ? "text-purple-300" : "text-white/80";
+                  const dotColor = isArtist ? "bg-gold ring-gold/25" : isSpeaker ? "bg-purple-400 ring-purple-400/20" : "bg-white/70 ring-white/15";
                   return (
-                    <Reveal key={item.title} delay={i * 0.05} y={14}>
+                    <Reveal key={`${it.time}-${it.title}`} delay={Math.min(i * 0.035, 0.45)} y={14}>
                       <div className="flex gap-3.5">
-                        <div className="flex w-16 shrink-0 flex-col items-end pt-0.5">
-                          <span className={`font-display text-sm font-bold leading-tight ${surprise ? "text-purple-300" : featured ? "text-gold-400" : "text-white"}`}>{item.time}</span>
+                        <div className="flex w-[68px] shrink-0 flex-col items-end pt-0.5">
+                          <span className={`font-display text-[13px] font-bold leading-tight ${timeColor}`}>{it.time}</span>
                         </div>
                         <div className="relative flex flex-col items-center">
-                          <span className={`mt-1.5 h-3 w-3 rounded-full ring-4 ${surprise ? "bg-purple-400 ring-purple-400/20" : featured ? "bg-gold ring-gold/25" : "bg-gold ring-gold/15"}`} />
+                          <span className={`mt-1.5 h-3 w-3 rounded-full ring-4 ${dotColor}`} />
                           {i < active.items.length - 1 && <span className="mt-1 h-full w-px flex-1 bg-white/12" />}
                         </div>
-                        <div className={`flex-1 pb-3 ${box}`}>
-                          <h3 className="font-display text-[15px] font-bold text-white">{item.title}</h3>
-                          <p className="mt-0.5 text-[13px] leading-snug text-white/55">{item.note}</p>
+                        <div
+                          className={`flex-1 pb-3.5 ${
+                            featured ? "rounded-xl border border-gold/40 bg-gradient-to-br from-gold/12 to-transparent px-3.5 py-3" : ""
+                          }`}
+                        >
+                          <h3 className={`font-display text-[15px] font-bold leading-snug ${isArtist ? "text-white" : "text-white"}`}>
+                            {isArtist && <span className="mr-1.5 text-gold-400">♪</span>}
+                            {it.title}
+                          </h3>
+                          <p className="mt-0.5 text-[12.5px] leading-snug text-white/55">{it.note}</p>
                           {featured && (
                             // eslint-disable-next-line @next/next/no-img-element
                             <img src="/brand/bethel-logo-white.png" alt="Bethel Gospel Tabernacle" className="mt-2.5 h-7 w-auto max-w-[72%] object-contain opacity-95" />
                           )}
-                          {href && (
-                            <a href={href} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1 text-[12px] font-bold text-gold-400 active:scale-95">
+                          {it.href && (
+                            <a href={it.href} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1 text-[12px] font-bold text-gold-400 active:scale-95">
                               bethelhamilton.com <ArrowRight width={12} height={12} />
                             </a>
                           )}
@@ -180,13 +188,13 @@ export default function ScheduleScreen() {
                 })}
               </div>
 
-              <p className="mt-2 rounded-xl bg-white/[0.03] p-3 text-center text-[12px] italic text-white/45">
-                Set times are a preview and subject to change. Final schedule coming soon.
+              <p className="mt-2 rounded-xl bg-white/[0.03] p-3 text-center text-[12px] italic leading-relaxed text-white/45">
+                {SCHEDULE.approximate}
               </p>
             </>
           )}
         </motion.div>
-      </AnimatePresence>
+      </div>
 
       <Reveal className="mx-auto mt-5 max-w-md space-y-2.5">
         <button

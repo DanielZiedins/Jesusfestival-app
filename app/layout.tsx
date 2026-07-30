@@ -123,6 +123,8 @@ const EVENT_JSONLD = {
     { "@type": "MusicGroup", name: "Bethel Gospel Tabernacle" },
     { "@type": "MusicGroup", name: "Open Heaven" },
     { "@type": "PerformingGroup", name: "Ant Lee" },
+    { "@type": "MusicGroup", name: "ACTS Kingdom Sound Worship" },
+    { "@type": "MusicGroup", name: "Friday Night Prayer" },
   ],
 };
 
@@ -153,7 +155,7 @@ const FAQ_JSONLD = {
     {
       "@type": "Question",
       name: "Who is performing at Jesus Festival 2026?",
-      acceptedAnswer: { "@type": "Answer", text: "Bethel Gospel Tabernacle leads Friday's Pure Worship Night (6:30–9:00 PM), with Ant Lee and Open Heaven also confirmed and more artists announcing very soon." },
+      acceptedAnswer: { "@type": "Answer", text: "Bethel Gospel Tabernacle leads Friday's Pure Worship Night (6:30–9:00 PM). Saturday features Open Heaven, ACTS Kingdom Sound Worship, Ant Lee Jr. and Friday Night Prayer, plus speakers and testimonies from 10:00 AM to 6:00 PM, hosted by JJ & Rachel." },
     },
   ],
 };

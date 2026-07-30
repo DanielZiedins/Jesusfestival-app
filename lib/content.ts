@@ -52,7 +52,10 @@ export const HERO = {
 
 // Two-day schedule. Times marked comingSoon show as "full schedule coming soon".
 export const SCHEDULE = {
-  status: "Full set times coming soon",
+  status: "The full schedule is here",
+  hosts: "JJ & Rachel",
+  approximate:
+    "All times are approximate and may shift slightly through the day as we keep things running smoothly. Thanks for your understanding!",
   days: [
     {
       id: "fri",
@@ -65,9 +68,9 @@ export const SCHEDULE = {
       accent: "ember",
       comingSoon: false,
       items: [
-        { time: "6:00 PM", title: "Come Early & Find Your Spot", note: "Gates open — arrive at 6:00 PM (or earlier!) to settle in before worship" },
-        { time: "6:30 – 9:00 PM", title: "Worship with Bethel Gospel Tabernacle", note: "Our Friday headliner is here! Bethel Gospel Tabernacle leads the whole city in worship as the sun sets over Gage Park.", featured: true, href: "https://bethelhamilton.com/" },
-        { time: "Throughout", title: "Prayer & The Word", note: "Space to encounter Jesus together as one city" },
+        { time: "6:00 PM", title: "Come Early & Find Your Spot", note: "Gates open — arrive at 6:00 PM (or earlier!) to settle in before worship", kind: "moment" },
+        { time: "6:30 PM", title: "Worship with Bethel Gospel Tabernacle", note: "Our Friday headliner leads the whole city in worship as the sun sets over Gage Park.", kind: "artist", featured: true, href: "https://bethelhamilton.com/" },
+        { time: "9:00 PM", title: "Event Concludes", note: "Goodnight, Hamilton — see you tomorrow for Family Festival Day!", kind: "moment" },
       ],
     },
     {
@@ -77,16 +80,37 @@ export const SCHEDULE = {
       theme: "Family Festival Day",
       window: "10:00 AM – 6:00 PM",
       blurb:
-        "Food trucks, vendors, live music, bouncy castles, games, community, and joy. A full day for the whole family. Full schedule coming soon!",
+        "A full day for the whole family — worship sets, powerful testimonies, food trucks, bouncy castles, games and joy. Free, all ages, all day.",
       accent: "gold",
-      comingSoon: true,
-      items: [],
+      comingSoon: false,
+      items: [
+        { time: "10:00 AM", title: "Opening Session", note: "Welcome · Prayer · Opening Remarks", kind: "moment" },
+        { time: "11:35 AM", title: "I Am Second / e3 Canada", note: "Speaker", kind: "speaker" },
+        { time: "11:50 AM", title: "Open Heaven — Set 1", note: "Worship", kind: "artist" },
+        { time: "12:20 PM", title: "Joanna Adams", note: "Speaker", kind: "speaker" },
+        { time: "12:40 PM", title: "Shofar Blowing & Pastors on Stage", note: "A moment of unity for the churches of Hamilton", kind: "moment" },
+        { time: "1:00 PM", title: "Open Heaven — Set 2", note: "Worship", kind: "artist" },
+        { time: "1:20 PM", title: "Testimony", note: "Speaker", kind: "speaker" },
+        { time: "1:40 PM", title: "ACTS Kingdom Sound Worship — Set 1", note: "Worship", kind: "artist" },
+        { time: "2:10 PM", title: "Rachel's Testimony", note: "Speaker", kind: "speaker" },
+        { time: "2:30 PM", title: "ACTS Kingdom Sound Worship — Set 2", note: "Worship", kind: "artist" },
+        { time: "2:50 PM", title: "Pastor Charles", note: "Speaker · Bethel Gospel Tabernacle", kind: "speaker" },
+        { time: "3:10 PM", title: "Ant Lee Jr. — Set 1", note: "Christian hip-hop", kind: "artist" },
+        { time: "3:40 PM", title: "Ant Lee Jr. — Testimony", note: "Speaker", kind: "speaker" },
+        { time: "4:00 PM", title: "Ant Lee Jr. — Set 2", note: "Christian hip-hop", kind: "artist" },
+        { time: "4:20 PM", title: "Daughters of Scripture", note: "Speaker", kind: "speaker" },
+        { time: "4:40 PM", title: "Friday Night Prayer — Set 1", note: "Worship", kind: "artist" },
+        { time: "5:10 PM", title: "Sons of Scripture", note: "Speaker", kind: "speaker" },
+        { time: "5:30 PM", title: "Friday Night Prayer — Set 2", note: "Worship", kind: "artist" },
+        { time: "5:50 PM", title: "Closing — Daniel & Katie", note: "Prayer & words of encouragement", kind: "moment" },
+        { time: "6:00 PM", title: "Event Concludes", note: "Go and love your city. 💛", kind: "moment" },
+      ],
     },
   ],
 };
 
 // Teaser shown under the Artists section on the home screen.
-export const ARTISTS_NOTE = "Bethel Gospel Tabernacle leads Friday worship — with more artists announcing very soon!";
+export const ARTISTS_NOTE = "The full lineup is here — two days of worship, testimonies and the Gospel. See the schedule for set times!";
 
 export const EXPECT = [
   { icon: "worship", title: "Worship", text: "Thousands worshipping the King of Kings together." },
@@ -97,13 +121,29 @@ export const EXPECT = [
   { icon: "community", title: "Community", text: "Churches, families & neighbours in one welcoming park." },
 ];
 
-export const ARTISTS = [
+// `img` = square photo · `logo` = wide wordmark on a dark tile · neither = ♪ tile.
+export const ARTISTS: {
+  name: string;
+  role: string;
+  img?: string;
+  logo?: string;
+  blurb: string;
+  href?: string;
+}[] = [
+  {
+    name: "Bethel Gospel Tabernacle",
+    role: "Friday · Pure Worship Night",
+    logo: "/brand/bethel-logo-white.png",
+    blurb:
+      "Leading the whole city in worship on Friday night, 6:30–9:00 PM at Gage Park.",
+    href: "https://bethelhamilton.com/",
+  },
   {
     name: "Ant Lee",
     role: "Christian Hip-Hop · Speaker",
     img: IMG.antLee,
     blurb:
-      "A joyful voice of purpose for this generation — returning to Jesus Festival Hamilton in 2026.",
+      "A joyful voice of purpose for this generation — two Saturday sets plus his testimony.",
     href: "https://www.jesusfestival.ca/artists/ant-lee",
   },
   {
@@ -113,6 +153,16 @@ export const ARTISTS = [
     blurb:
       "A Canadian ministry bringing worship and the Good News of Jesus into communities across the nation.",
     href: "https://www.jesusfestival.ca/artists/open-heaven",
+  },
+  {
+    name: "ACTS Kingdom Sound Worship",
+    role: "Worship",
+    blurb: "Two Saturday afternoon sets lifting one name over Hamilton.",
+  },
+  {
+    name: "Friday Night Prayer",
+    role: "Worship",
+    blurb: "Closing out Saturday with two sets of worship and prayer.",
   },
 ];
 
