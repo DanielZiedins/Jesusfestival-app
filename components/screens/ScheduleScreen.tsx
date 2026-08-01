@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { SCHEDULE, SITE, LINKS } from "@/lib/content";
 import Reveal, { Eyebrow } from "@/components/Reveal";
 import ScreenHeader from "@/components/ScreenHeader";
-import { CalendarIcon, MapPin, ArrowRight } from "@/components/icons";
-import { clientNow, defaultDayId, festivalPhase, getLineup, nowNext, slotId, toggleLineup, type Slot } from "@/lib/festival";
+import { CalendarIcon, MapPin, ArrowRight, Share } from "@/components/icons";
+import { clientNow, defaultDayId, festivalPhase, getLineup, nowNext, shareSlot, slotId, toggleLineup, type Slot } from "@/lib/festival";
 
 // Build a universal .ics (Fri worship + Sat festival day) and hand it to the OS calendar.
 function addFestivalToCalendar() {
@@ -59,6 +59,14 @@ export default function ScheduleScreen() {
   const [lineup, setLineup] = useState<string[]>([]);
   const [onlyMine, setOnlyMine] = useState(false);
   const [now, setNow] = useState<Date | null>(null);
+  const [toast, setToast] = useState<string | null>(null);
+
+  // Self-clearing confirmation for share actions.
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(null), 2400);
+    return () => clearTimeout(t);
+  }, [toast]);
 
   useEffect(() => {
     setLineup(getLineup());
@@ -114,6 +122,7 @@ export default function ScheduleScreen() {
               <button
                 key={d.id}
                 onClick={() => setDay(d.id)}
+                aria-pressed={on}
                 className="relative rounded-xl py-2.5 text-center"
               >
                 {on && (
@@ -178,10 +187,16 @@ export default function ScheduleScreen() {
                     <span className="absolute inline-flex h-full w-full animate-ping-slow rounded-full bg-ember" />
                     <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-ember" />
                   </span>
-                  <p className="min-w-0 text-[13px] text-white/80">
+                  <p className="min-w-0 flex-1 text-[13px] text-white/80">
                     <span className="font-bold text-white">On stage now:</span>{" "}
                     <span className="text-gold-400">{active.items[nowIdx].title}</span>
                   </p>
+                  <button
+                    onClick={() => document.getElementById("jf-now")?.scrollIntoView({ behavior: "smooth", block: "center" })}
+                    className="shrink-0 rounded-full border border-white/20 bg-white/5 px-2.5 py-1 text-[11px] font-bold text-white active:scale-95"
+                  >
+                    Jump
+                  </button>
                 </div>
               )}
 
@@ -226,7 +241,10 @@ export default function ScheduleScreen() {
                   const starred = lineup.includes(id);
                   return (
                     <Reveal key={`${it.time}-${it.title}`} delay={Math.min(i * 0.035, 0.45)} y={14}>
-                      <div className={`flex gap-3.5 transition-opacity ${done ? "opacity-45" : ""}`}>
+                      <div
+                        id={isNow ? "jf-now" : undefined}
+                        className={`flex scroll-mt-24 gap-3.5 transition-opacity ${done ? "opacity-45" : ""}`}
+                      >
                         <div className="flex w-[68px] shrink-0 flex-col items-end pt-0.5">
                           <span className={`font-display text-[13px] font-bold leading-tight ${isNow ? "text-ember" : timeColor}`}>{it.time}</span>
                           {isNow && <span className="mt-1 rounded-full bg-ember px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wider text-white">Now</span>}
@@ -252,6 +270,16 @@ export default function ScheduleScreen() {
                               {isArtist && <span className="mr-1.5 text-gold-400">♪</span>}
                               {it.title}
                             </h3>
+                            <button
+                              onClick={async () => {
+                                const r = await shareSlot(active.label, active.date, it);
+                                if (r) setToast(r === "shared" ? "Shared 🎉" : "Copied — paste it to a friend 💛");
+                              }}
+                              aria-label={`Share ${it.title}`}
+                              className="-mt-0.5 shrink-0 rounded-full p-1.5 text-white/25 transition hover:text-white/50 active:scale-90"
+                            >
+                              <Share width={15} height={15} />
+                            </button>
                             <button
                               onClick={() => setLineup(toggleLineup(id))}
                               aria-pressed={starred}
@@ -294,6 +322,17 @@ export default function ScheduleScreen() {
           )}
         </motion.div>
       </div>
+
+      {toast && (
+        <div
+          role="status"
+          className="pointer-events-none fixed inset-x-0 bottom-24 z-[85] flex justify-center px-4"
+        >
+          <div className="rounded-full border border-gold/40 bg-navy-950/95 px-4 py-2 text-[13px] font-bold text-gold-400 shadow-glow backdrop-blur">
+            {toast}
+          </div>
+        </div>
+      )}
 
       <Reveal className="mx-auto mt-5 max-w-md space-y-2.5">
         <button

@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     "free family festival Hamilton",
     "Hamilton worship night",
     "September 2026 Hamilton events",
-    "Ant Lee",
+    "Ant Lee Jr.",
     "Open Heaven worship",
     "baptism Hamilton",
     "church event Hamilton",
@@ -122,7 +122,7 @@ const EVENT_JSONLD = {
   performer: [
     { "@type": "MusicGroup", name: "Bethel Gospel Tabernacle" },
     { "@type": "MusicGroup", name: "Open Heaven" },
-    { "@type": "PerformingGroup", name: "Ant Lee" },
+    { "@type": "PerformingGroup", name: "Ant Lee Jr." },
     { "@type": "MusicGroup", name: "ACTS Kingdom Sound Worship" },
     { "@type": "MusicGroup", name: "Friday Night Prayer" },
   ],

@@ -20,6 +20,7 @@ import {
 } from "@/lib/content";
 import Countdown from "@/components/Countdown";
 import FestivalLive from "@/components/FestivalLive";
+import LineupCard from "@/components/LineupCard";
 import InviteCard from "@/components/InviteCard";
 import NotifyNudge from "@/components/NotifyNudge";
 import { isLivePhase, useFestivalPhase } from "@/lib/useFestivalPhase";
@@ -219,6 +220,10 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
             <QuickAction emoji="🙏" title="Prayer Wall" sub="Pray for one another" onClick={() => go("more", "prayer")} accent="purple" />
             <QuickAction emoji="🙌" title="Volunteers" sub="Serve at the festival" onClick={() => go("more", "volunteers")} accent="emerald" />
             <QuickAction emoji="❤️" title="Give" sub="Sow into good ground" onClick={() => go("more", "give")} accent="ember" />
+          </div>
+          {/* Renders null until they've starred a set, so it never nags. */}
+          <div className="mt-3">
+            <LineupCard go={go} />
           </div>
         </Reveal>
       </section>

@@ -139,7 +139,7 @@ export const ARTISTS: {
     href: "https://bethelhamilton.com/",
   },
   {
-    name: "Ant Lee",
+    name: "Ant Lee Jr.",
     role: "Christian Hip-Hop · Speaker",
     img: IMG.antLee,
     blurb:
@@ -188,7 +188,7 @@ export const TIMELINE = [
   {
     year: "2026",
     title: "We're coming back",
-    text: "September 4–5 at Gage Park. Bethel Gospel Tabernacle leads Friday's Pure Worship Night, with Ant Lee, Open Heaven and more to come.",
+    text: "September 4–5 at Gage Park. Bethel Gospel Tabernacle leads Friday's Pure Worship Night, with Ant Lee Jr., Open Heaven and more to come.",
   },
 ];
 

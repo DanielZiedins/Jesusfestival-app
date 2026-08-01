@@ -103,6 +103,26 @@ export function getLineup(): string[] {
   }
 }
 
+/**
+ * Share one set. Native share sheet where it exists, clipboard everywhere else;
+ * returns what happened so the caller can confirm it to the user.
+ */
+export async function shareSlot(dayLabel: string, dayDate: string, s: Slot): Promise<"shared" | "copied" | null> {
+  const music = s.kind === "artist" ? "♪ " : "";
+  const text = `${music}${s.title} — ${s.time}, ${dayLabel} ${dayDate} at Jesus Festival, Gage Park. Come with me! https://www.jesusfestival.app/?go=schedule`;
+  try {
+    if (navigator.share) {
+      await navigator.share({ text, title: `${s.title} · Jesus Festival` });
+      return "shared";
+    }
+    await navigator.clipboard.writeText(text);
+    return "copied";
+  } catch {
+    // A cancelled share sheet lands here too — stay quiet rather than cry error.
+    return null;
+  }
+}
+
 export function toggleLineup(id: string): string[] {
   const cur = getLineup();
   const next = cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id];

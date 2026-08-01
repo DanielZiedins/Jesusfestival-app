@@ -5,6 +5,7 @@ import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import dynamic from "next/dynamic";
 import BottomNav, { type TabId } from "./BottomNav";
 import InstallPrompt from "./InstallPrompt";
+import OfflineBanner from "./OfflineBanner";
 import Splash from "./Splash";
 import Onboarding from "./Onboarding";
 import HomeScreen from "./screens/HomeScreen";
@@ -124,6 +125,7 @@ export default function AppShell() {
         </motion.div>
       </main>
 
+      <OfflineBanner />
       <InstallPrompt />
       <BottomNav active={tab} onChange={go} />
     </div>
