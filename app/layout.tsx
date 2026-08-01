@@ -19,7 +19,6 @@ export const viewport: Viewport = {
   themeColor: "#0a0510",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
   viewportFit: "cover",
 };
 
@@ -122,7 +121,7 @@ const EVENT_JSONLD = {
   performer: [
     { "@type": "MusicGroup", name: "Bethel Gospel Tabernacle" },
     { "@type": "MusicGroup", name: "Open Heaven" },
-    { "@type": "PerformingGroup", name: "Ant Lee Jr." },
+    { "@type": "Person", name: "Ant Lee Jr." },
     { "@type": "MusicGroup", name: "ACTS Kingdom Sound Worship" },
     { "@type": "MusicGroup", name: "Friday Night Prayer" },
   ],
@@ -169,6 +168,16 @@ const APP_JSONLD = {
   operatingSystem: "Any",
   offers: { "@type": "Offer", price: "0", priceCurrency: "CAD" },
   description: SITE.description,
+  featureList: [
+    "Two-day festival schedule",
+    "Live run-of-show updates",
+    "Personal lineup",
+    "Festival map and directions",
+    "Prayer Wall",
+    "Revive the City community game",
+    "Offline access",
+    "Push notifications",
+  ],
 };
 
 export default function RootLayout({

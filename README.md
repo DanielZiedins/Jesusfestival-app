@@ -12,10 +12,12 @@ Live at **[JesusFestival.App](https://jesusfestival.app)**.
 - 📱 **Installable PWA** — add to home screen on phone or desktop, works offline
 - ✨ **Native app feel** — bottom tab nav, splash screen, smooth screen transitions
 - 🎢 **Parallax & motion** — scroll-driven parallax, animated hero, live countdown
-- 🗓️ **Schedule** — two-day preview with set times (full schedule coming soon)
-- 🗺️ **Map** — Gage Park zones, directions & getting-here info (interactive map coming soon)
+- 🗓️ **Live schedule** — complete two-day run sheet, My Lineup favourites, per-set sharing, and festival-day “now / next” mode
+- 🗺️ **Plan Your Visit** — live Gage Park map, one-tap directions, zone finder, parking, and transit guidance
 - 🔥 **Movement** — the vision from Hamilton → Niagara → the Nations, impact stats
 - 🔔 **Connect** — email sign-up (wired to Supabase), get involved, share & socials
+- 🙏 **Community** — Prayer Wall, Revive the City missions and games, and volunteer access
+- 🔗 **Shareable routes** — direct URLs for the schedule, map, prayer, news, volunteering, giving, and more
 
 ## Stack
 
@@ -43,6 +45,9 @@ npm run dev                  # http://localhost:3000
 
 All festival content lives in [`lib/content.ts`](lib/content.ts) and imagery is
 sourced from the live [JesusFestival.ca](https://jesusfestival.ca) CDN.
+
+Key app destinations are statically rendered through [`app/[slug]/page.tsx`](app/[slug]/page.tsx),
+with route metadata and client navigation kept in sync by [`lib/routes.ts`](lib/routes.ts).
 
 ---
 

@@ -14,8 +14,9 @@ import InstallScreen from "./InstallScreen";
 import PrayerWallScreen from "./PrayerWallScreen";
 import VolunteersScreen from "./VolunteersScreen";
 import { FlameIcon, MapIcon, BellIcon, ArrowRight, ChevronLeft, Users, Heart, Download, Sparkle } from "@/components/icons";
+import type { MoreView } from "@/lib/routes";
 
-type View = "hub" | "prayer" | "volunteers" | "movement" | "discipleship" | "give" | "map" | "connect" | "settings" | "install";
+type View = "hub" | MoreView;
 
 const CARDS: { id: View; title: string; sub: string; Icon: React.ComponentType<{ width?: number; height?: number }>; emoji: string }[] = [
   { id: "connect", title: "Connect", sub: "See where the movement is spreading & get involved", Icon: BellIcon, emoji: "🌍" },
@@ -27,8 +28,22 @@ const CARDS: { id: View; title: string; sub: string; Icon: React.ComponentType<{
   { id: "settings", title: "Settings", sub: "Update your name, church & preferences", Icon: Sparkle, emoji: "⚙️" },
 ];
 
-export default function MoreScreen({ resetSignal = 0, openView = null }: { resetSignal?: number; openView?: string | null }) {
-  const [view, setView] = useState<View>("hub");
+export default function MoreScreen({
+  resetSignal = 0,
+  openView = null,
+  onViewChange,
+}: {
+  resetSignal?: number;
+  openView?: string | null;
+  onViewChange?: (view: View) => void;
+}) {
+  const [view, setView] = useState<View>((openView as View) || "hub");
+
+  const open = (next: View) => {
+    setView(next);
+    onViewChange?.(next);
+    window.scrollTo({ top: 0 });
+  };
 
   // Tapping "More" returns to the hub — unless a screen deep-linked to a page.
   useEffect(() => {
@@ -46,8 +61,7 @@ export default function MoreScreen({ resetSignal = 0, openView = null }: { reset
             <Reveal>
               <button
                 onClick={() => {
-                  setView("prayer");
-                  window.scrollTo({ top: 0 });
+                  open("prayer");
                 }}
                 className="group relative mb-3 flex w-full items-center gap-4 overflow-hidden rounded-2xl border border-gold/30 bg-gradient-to-br from-purple-700/40 via-purple-900/30 to-ink/50 p-4 text-left transition active:scale-[0.99]"
               >
@@ -65,8 +79,7 @@ export default function MoreScreen({ resetSignal = 0, openView = null }: { reset
             <Reveal delay={0.05}>
               <button
                 onClick={() => {
-                  setView("volunteers");
-                  window.scrollTo({ top: 0 });
+                  open("volunteers");
                 }}
                 className="group relative mb-3 flex w-full items-center gap-4 overflow-hidden rounded-2xl border border-emerald-400/25 bg-gradient-to-br from-emerald-700/25 via-navy-800/40 to-ink/50 p-4 text-left transition active:scale-[0.99]"
               >
@@ -85,8 +98,7 @@ export default function MoreScreen({ resetSignal = 0, openView = null }: { reset
                 <Reveal key={c.id} delay={i * 0.05}>
                   <button
                     onClick={() => {
-                      setView(c.id);
-                      window.scrollTo({ top: 0 });
+                      open(c.id);
                     }}
                     className="group flex w-full items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-left transition active:scale-[0.99]"
                   >
@@ -106,8 +118,7 @@ export default function MoreScreen({ resetSignal = 0, openView = null }: { reset
       {view === "volunteers" && (
         <VolunteersScreen
           onClose={() => {
-            setView("hub");
-            window.scrollTo({ top: 0 });
+            open("hub");
           }}
         />
       )}
@@ -117,8 +128,7 @@ export default function MoreScreen({ resetSignal = 0, openView = null }: { reset
             <div className="sticky top-0 z-30 bg-ink/80 px-4 pt-4 backdrop-blur safe-top">
               <button
                 onClick={() => {
-                  setView("hub");
-                  window.scrollTo({ top: 0 });
+                  open("hub");
                 }}
                 className="inline-flex items-center gap-1 rounded-full bg-white/10 py-1.5 pl-2 pr-3.5 text-sm font-semibold text-white/85 active:scale-95"
               >

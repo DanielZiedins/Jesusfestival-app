@@ -1,9 +1,13 @@
 // Jesus Festival — lightweight offline-first service worker.
-const CACHE = "jf-app-v3";
+const CACHE = "jf-app-v4";
 // Precached so the festival weekend works on a congested park network: the app
 // shell plus the brand art the first screens actually render.
 const APP_SHELL = [
   "/",
+  "/schedule",
+  "/map",
+  "/revive-the-city",
+  "/news",
   "/manifest.webmanifest",
   "/brand/banner.png",
   "/brand/logo-mark-white.png",
@@ -45,8 +49,10 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       fetch(request)
         .then((res) => {
-          const copy = res.clone();
-          caches.open(CACHE).then((c) => c.put(request, copy)).catch(() => {});
+          if (res.ok) {
+            const copy = res.clone();
+            caches.open(CACHE).then((c) => c.put(request, copy)).catch(() => {});
+          }
           return res;
         })
         .catch(() => caches.match(request).then((r) => r || caches.match("/")))

@@ -19,6 +19,38 @@ body {
   overscroll-behavior-y: none;
 }
 
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid #ffc24d;
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  left: 0.75rem;
+  top: 0.75rem;
+  z-index: 100;
+  transform: translateY(-180%);
+  border-radius: 0.75rem;
+  background: #ffc24d;
+  padding: 0.65rem 0.9rem;
+  color: #0b0616;
+  font-size: 0.8rem;
+  font-weight: 800;
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 /* Respect the notch / home indicator on phones */
 .safe-top {
   padding-top: env(safe-area-inset-top);
@@ -105,4 +137,19 @@ body {
 ::selection {
   background: rgba(147, 51, 234, 0.4);
   color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

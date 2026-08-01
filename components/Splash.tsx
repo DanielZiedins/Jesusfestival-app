@@ -12,6 +12,8 @@ import { IMG, SITE } from "@/lib/content";
 export default function Splash({ leaving = false }: { leaving?: boolean }) {
   return (
     <div
+      role="status"
+      aria-label="Loading Jesus Festival"
       className={`fixed inset-0 z-[70] flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-navy-900 via-ink to-ink transition-opacity duration-500 ${
         leaving ? "pointer-events-none opacity-0" : "opacity-100"
       }`}

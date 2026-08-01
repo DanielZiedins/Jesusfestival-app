@@ -1,25 +1,23 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { SITE, LINKS, IMG } from "@/lib/content";
+import { SITE, LINKS } from "@/lib/content";
 import Reveal from "@/components/Reveal";
 import ScreenHeader from "@/components/ScreenHeader";
-import ParallaxImage from "@/components/ParallaxImage";
 import { MapPin, MapIcon, ArrowRight, Sparkle } from "@/components/icons";
 
 const ZONES = [
-  { name: "Main Stage", note: "The Bandshell — worship & the Word", emoji: "🎤" },
-  { name: "Kids Zone", note: "Bouncy castles, games & big smiles", emoji: "🎈" },
-  { name: "Food Trucks", note: "Great food all weekend long", emoji: "🌮" },
-  { name: "Vendor Village", note: "Christian businesses & ministries", emoji: "🛍️" },
-  { name: "Prayer Tent", note: "A place to be prayed for", emoji: "🙏" },
-  { name: "Baptism Area", note: "Celebrating new life", emoji: "💧" },
+  { name: "Main Stage", note: "The Bandshell — worship, testimonies & the Gospel", emoji: "🎤" },
+  { name: "Kids Zone", note: "Bouncy castles, games & family activities", emoji: "🎈" },
+  { name: "Food Trucks", note: "Meals, snacks & space to gather", emoji: "🌮" },
+  { name: "Vendor Village", note: "Christian businesses, churches & ministries", emoji: "🛍️" },
+  { name: "Prayer", note: "A welcoming place to receive prayer", emoji: "🙏" },
+  { name: "Baptisms", note: "Celebrating new life in Jesus", emoji: "💧" },
 ];
 
 const GETTING_HERE = [
-  { label: "Free parking on-site", note: "Arrive early — spots fill up fast" },
-  { label: "Street parking & transit", note: "HSR routes stop nearby" },
-  { label: "Uber, biking & walking", note: "Central Hamilton, easy to reach" },
+  { label: "Free parking on-site", note: "Arrive early — festival parking fills quickly" },
+  { label: "Street parking & HSR transit", note: "Transit stops and street parking are nearby" },
+  { label: "Carpool, Uber, bike or walk", note: "Simple options for a busy festival weekend" },
 ];
 
 export default function MapScreen() {
@@ -28,34 +26,46 @@ export default function MapScreen() {
       <div className="px-4">
         <ScreenHeader
           eyebrow="Gage Park, Hamilton"
-          title="Festival Map"
-          subtitle="An interactive festival map is on the way. Here's how to find us and what to look for."
+          title="Plan Your Visit"
+          subtitle="Open the live map, choose how you're getting here, and know what to look for when you arrive."
           icon={<MapIcon width={22} height={22} />}
         />
       </div>
 
-      {/* Map preview with coming-soon overlay */}
+      {/* Real location map: useful now, while the final on-site zone plan is still being finalized. */}
       <div className="px-4">
         <Reveal className="mx-auto max-w-md">
-          <div className="relative overflow-hidden rounded-3xl border border-white/10">
-            <ParallaxImage
-              src={IMG.vendorRow}
-              alt="Gage Park festival grounds"
-              className="h-56"
-              strength={40}
-              overlay="bg-gradient-to-b from-navy-950/50 to-navy-950/90"
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-              <motion.div
-                animate={{ scale: [1, 1.12, 1] }}
-                transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-                className="grid h-14 w-14 place-items-center rounded-full bg-gold text-navy-950 shadow-glow"
-              >
-                <MapPin width={26} height={26} />
-              </motion.div>
-              <div className="mt-3 rounded-full border border-white/15 bg-black/40 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-gold-400 backdrop-blur">
-                Interactive map coming soon
+          <div className="overflow-hidden rounded-3xl border border-white/10 bg-navy-900 shadow-card">
+            <div className="relative h-64 bg-navy-900">
+              <iframe
+                title="Gage Park map — Jesus Festival location"
+                src="https://www.google.com/maps?q=Gage%20Park%2C%201000%20Main%20St%20E%2C%20Hamilton%2C%20ON&z=15&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0 h-full w-full border-0 grayscale-[0.18] contrast-[1.05]"
+              />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-navy-950/90 to-transparent" />
+              <div className="pointer-events-none absolute bottom-3 left-3 rounded-full border border-white/15 bg-navy-950/85 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-gold-400 backdrop-blur">
+                1000 Main St E · Hamilton
               </div>
+            </div>
+            <div className="grid grid-cols-2 gap-2.5 p-3">
+              <a
+                href={LINKS.directions}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 py-3 font-display text-sm font-bold text-navy-950 shadow-glow active:scale-[0.98]"
+              >
+                <MapPin width={16} height={16} /> Directions
+              </a>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(SITE.address)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/5 py-3 text-sm font-bold text-white active:scale-[0.98]"
+              >
+                Open full map <ArrowRight width={15} height={15} />
+              </a>
             </div>
           </div>
         </Reveal>
@@ -72,16 +82,11 @@ export default function MapScreen() {
               <div className="flex-1">
                 <h3 className="font-display text-lg font-bold text-white">Gage Park</h3>
                 <p className="text-[13px] text-white/60">{SITE.address}</p>
+                <p className="mt-1.5 text-[11px] leading-snug text-white/40">
+                  The final on-site zone placement will appear here closer to festival weekend.
+                </p>
               </div>
             </div>
-            <a
-              href={LINKS.directions}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 py-3 font-display text-sm font-bold text-navy-950 shadow-glow active:scale-[0.98]"
-            >
-              Get Directions <ArrowRight width={16} height={16} />
-            </a>
           </div>
         </Reveal>
       </div>
@@ -91,14 +96,14 @@ export default function MapScreen() {
         <Reveal className="mx-auto mb-3 max-w-md">
           <div className="flex items-center gap-2 text-gold-400">
             <Sparkle width={17} height={17} />
-            <h2 className="font-display text-lg font-bold text-white">What you&apos;ll find</h2>
+            <h2 className="font-display text-lg font-bold text-white">Festival zone finder</h2>
           </div>
         </Reveal>
         <div className="mx-auto grid max-w-md grid-cols-2 gap-3">
           {ZONES.map((z, i) => (
             <Reveal key={z.name} delay={i * 0.05}>
               <div className="h-full rounded-2xl border border-white/8 bg-white/[0.04] p-4">
-                <div className="text-2xl">{z.emoji}</div>
+                <div className="text-2xl" aria-hidden="true">{z.emoji}</div>
                 <h3 className="mt-2 font-display text-[15px] font-bold text-white">{z.name}</h3>
                 <p className="mt-0.5 text-[12px] leading-snug text-white/55">{z.note}</p>
               </div>
@@ -119,7 +124,7 @@ export default function MapScreen() {
           {GETTING_HERE.map((g, i) => (
             <Reveal key={g.label} delay={i * 0.06}>
               <div className="flex items-center gap-3 rounded-xl border border-white/8 bg-white/[0.03] p-3.5">
-                <span className="h-2 w-2 shrink-0 rounded-full bg-gold" />
+                <span className="h-2 w-2 shrink-0 rounded-full bg-gold" aria-hidden="true" />
                 <div>
                   <p className="text-sm font-semibold text-white">{g.label}</p>
                   <p className="text-[12px] text-white/50">{g.note}</p>

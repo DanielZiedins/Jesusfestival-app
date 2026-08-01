@@ -332,12 +332,10 @@ export const DONATE = {
 
 // Teaser: features on the way.
 export const COMING_SOON = [
-  { emoji: "🗺️", title: "Live Festival Map", text: "Find stages, food, baptisms & the Kids Zone in real time." },
+  { emoji: "🗺️", title: "Final Zone Map", text: "Exact stage, food, baptism & Kids Zone placement for festival weekend." },
   { emoji: "📸", title: "Photo Wall", text: "Share your festival moments with the whole community." },
-  { emoji: "🙏", title: "Prayer Wall", text: "Post & pray for requests across the city together." },
   { emoji: "🎟️", title: "Digital Check-In", text: "Save your spot and get personal schedule reminders." },
   { emoji: "📱", title: "QR Missions", text: "Scan around the park to unlock special Revive the City missions." },
-  { emoji: "🔔", title: "Push Notifications", text: "Instant alerts for artist reveals & surprise moments." },
 ];
 
 export const INTERESTS = [

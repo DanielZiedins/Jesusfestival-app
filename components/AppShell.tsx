@@ -9,10 +9,11 @@ import OfflineBanner from "./OfflineBanner";
 import Splash from "./Splash";
 import Onboarding from "./Onboarding";
 import HomeScreen from "./screens/HomeScreen";
+import { destinationFor, pathFor, syncDocumentMeta, type AppDestination } from "@/lib/routes";
 
 // Code-split secondary screens so the first load (Home) stays fast.
 const ScreenLoader = () => (
-  <div className="flex min-h-[60vh] items-center justify-center">
+  <div className="flex min-h-[60vh] items-center justify-center" role="status" aria-label="Loading screen">
     <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/15 border-t-gold-400" />
   </div>
 );
@@ -21,12 +22,12 @@ const GameScreen = dynamic(() => import("./screens/GameScreen"), { loading: Scre
 const NewsScreen = dynamic(() => import("./screens/NewsScreen"), { loading: ScreenLoader });
 const MoreScreen = dynamic(() => import("./screens/MoreScreen"), { loading: ScreenLoader });
 
-// Sub-views of "More" that a ?go= link is allowed to open (see MoreScreen).
+// Sub-views of "More" that an email/push ?go= link is allowed to open.
 const MORE_VIEWS = ["prayer", "volunteers", "connect", "movement", "discipleship", "give", "map", "install", "settings"];
 const TAB_IDS: TabId[] = ["home", "schedule", "game", "news", "more"];
 
-export default function AppShell() {
-  const [tab, setTab] = useState<TabId>("home");
+export default function AppShell({ initialDestination = { tab: "home" } }: { initialDestination?: AppDestination }) {
+  const [tab, setTab] = useState<TabId>(initialDestination.tab);
   // Splash + onboarding are client-only (mounted gate) to avoid SSR/AnimatePresence hydration mismatch.
   const [mounted, setMounted] = useState(false);
   const [splash, setSplash] = useState(true);
@@ -35,6 +36,21 @@ export default function AppShell() {
   // Fade the splash out with CSS, then unmount it unconditionally. Timers keep
   // running when rAF is throttled, so the splash can never get stuck on screen.
   const [splashLeaving, setSplashLeaving] = useState(false);
+
+  // Bumping this whenever "More" is tapped tells MoreScreen to return to its hub.
+  const [moreSignal, setMoreSignal] = useState(0);
+  // Optional target sub-view so other screens can deep-link into a More page.
+  const [moreView, setMoreView] = useState<string | null>(initialDestination.moreView ?? null);
+
+  const setPath = (next: TabId, sub?: string | null, replace = false) => {
+    const path = pathFor(next, sub);
+    if (window.location.pathname === path && !window.location.search) {
+      syncDocumentMeta(path);
+      return;
+    }
+    window.history[replace ? "replaceState" : "pushState"]({}, "", path);
+    syncDocumentMeta(path);
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -51,12 +67,22 @@ export default function AppShell() {
     };
   }, []);
 
-  // Bumping this whenever "More" is tapped tells MoreScreen to return to its hub.
-  const [moreSignal, setMoreSignal] = useState(0);
-  // Optional target sub-view so other screens can deep-link into a More page.
-  const [moreView, setMoreView] = useState<string | null>(null);
+  // Clean URLs make every important destination refreshable and shareable.
+  // Browser back/forward follows the same navigation stack as the bottom tabs.
+  useEffect(() => {
+    const onPopState = () => {
+      const next = destinationFor(window.location.pathname);
+      setTab(next.tab);
+      setMoreView(next.moreView ?? null);
+      if (next.tab === "more") setMoreSignal((s) => s + 1);
+      syncDocumentMeta(window.location.pathname);
+      window.scrollTo({ top: 0, behavior: "auto" });
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
 
-  // Email and push CTAs deep-link straight to a screen: /?go=schedule, /?go=prayer, /?go=game …
+  // Legacy email and push CTAs still deep-link straight to a screen.
   useEffect(() => {
     let target: string | null = null;
     try {
@@ -67,19 +93,12 @@ export default function AppShell() {
     if (!target) return;
     if ((TAB_IDS as string[]).includes(target)) {
       setTab(target as TabId);
+      setPath(target as TabId, null, true);
     } else if (MORE_VIEWS.includes(target)) {
       setMoreView(target);
       setMoreSignal((s) => s + 1);
       setTab("more");
-    }
-    // Drop only `go` so a refresh doesn't keep re-navigating — any other params
-    // (e.g. the ?now= festival-day rehearsal clock) must survive.
-    try {
-      const u = new URL(window.location.href);
-      u.searchParams.delete("go");
-      window.history.replaceState({}, "", u.pathname + (u.searchParams.toString() ? `?${u.searchParams}` : ""));
-    } catch {
-      /* ignore */
+      setPath("more", target, true);
     }
   }, []);
 
@@ -89,46 +108,65 @@ export default function AppShell() {
       setMoreSignal((s) => s + 1);
     }
     if (next === tab && !sub) {
+      // Tapping More while a More sub-screen is open returns to the More hub.
+      if (next === "more" && moreView) setPath("more", null);
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
     setTab(next);
+    setPath(next, sub);
     window.scrollTo({ top: 0, behavior: "auto" });
   };
 
+  const openMoreView = (view: string) => {
+    const next = view === "hub" ? null : view;
+    setMoreView(next);
+    setPath("more", next);
+  };
+
+  const blockedByOverlay = mounted && (splash || onboard);
+
   return (
     <MotionConfig reducedMotion="user">
-    <div className="relative min-h-screen bg-ink">
-      {/* Ambient background */}
-      <div className="pointer-events-none fixed inset-0 z-0">
-        <div className="absolute -top-40 left-1/4 h-96 w-96 -translate-x-1/2 rounded-full bg-purple-600/30 blur-[120px]" />
-        <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-gold/12 blur-[120px]" />
-      </div>
+      <div className="relative min-h-screen bg-ink">
+        <a href="#app-content" className="skip-link">Skip to app content</a>
 
-      {mounted && splash && <Splash leaving={splashLeaving} />}
-      <AnimatePresence>
-        {mounted && !splash && onboard && <Onboarding key="onboard" onDone={() => setOnboard(false)} />}
-      </AnimatePresence>
+        {/* Ambient background */}
+        <div className="pointer-events-none fixed inset-0 z-0" aria-hidden="true">
+          <div className="absolute -top-40 left-1/4 h-96 w-96 -translate-x-1/2 rounded-full bg-purple-600/30 blur-[120px]" />
+          <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-gold/12 blur-[120px]" />
+        </div>
 
-      <main className="relative z-10 mx-auto min-h-screen max-w-lg pb-28">
-        <motion.div
-          key={tab}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+        {mounted && splash && <Splash leaving={splashLeaving} />}
+        <AnimatePresence>
+          {mounted && !splash && onboard && <Onboarding key="onboard" onDone={() => setOnboard(false)} />}
+        </AnimatePresence>
+
+        <main
+          id="app-content"
+          aria-hidden={blockedByOverlay ? true : undefined}
+          className={`relative z-10 mx-auto min-h-screen max-w-lg pb-28 ${blockedByOverlay ? "pointer-events-none" : ""}`}
         >
-          {tab === "home" && <HomeScreen go={go} />}
-          {tab === "schedule" && <ScheduleScreen />}
-          {tab === "game" && <GameScreen />}
-          {tab === "news" && <NewsScreen />}
-          {tab === "more" && <MoreScreen resetSignal={moreSignal} openView={moreView} />}
-        </motion.div>
-      </main>
+          <motion.div
+            key={`${tab}-${moreView ?? "hub"}`}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {tab === "home" && <HomeScreen go={go} />}
+            {tab === "schedule" && <ScheduleScreen />}
+            {tab === "game" && <GameScreen />}
+            {tab === "news" && <NewsScreen />}
+            {tab === "more" && <MoreScreen resetSignal={moreSignal} openView={moreView} onViewChange={openMoreView} />}
+          </motion.div>
+        </main>
 
-      <OfflineBanner />
-      <InstallPrompt />
-      <BottomNav active={tab} onChange={go} />
-    </div>
+        <OfflineBanner />
+        <InstallPrompt />
+        <div aria-hidden={blockedByOverlay ? true : undefined} className={blockedByOverlay ? "pointer-events-none" : ""}>
+          <BottomNav active={tab} onChange={go} />
+        </div>
+      </div>
     </MotionConfig>
   );
 }

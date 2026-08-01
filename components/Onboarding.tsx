@@ -85,6 +85,9 @@ export default function Onboarding({ onDone }: { onDone: () => void }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="join-title"
       className="fixed inset-0 z-[80] overflow-y-auto bg-gradient-to-b from-navy-900 via-ink to-ink"
     >
       <div className="pointer-events-none fixed -left-16 top-10 h-72 w-72 rounded-full bg-purple-600/30 blur-[120px]" />
@@ -119,7 +122,7 @@ export default function Onboarding({ onDone }: { onDone: () => void }) {
                 <div className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-purple-300">
                   <Sparkle width={12} height={12} /> Hamilton 2026
                 </div>
-                <h1 className="mt-3 font-display text-[34px] font-extrabold leading-tight text-white">
+                <h1 id="join-title" className="mt-3 font-display text-[34px] font-extrabold leading-tight text-white">
                   Join the <span className="text-gradient-gold">movement</span>
                 </h1>
                 <p className="mt-2 max-w-xs text-sm leading-relaxed text-white/70">
@@ -145,6 +148,7 @@ export default function Onboarding({ onDone }: { onDone: () => void }) {
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Your name"
                     autoComplete="name"
+                    autoFocus
                     className="jf-input"
                   />
                 </Field>
@@ -210,7 +214,7 @@ export default function Onboarding({ onDone }: { onDone: () => void }) {
               </form>
 
               <button onClick={skip} className="mt-4 w-full text-center text-xs font-medium text-white/45 underline-offset-2 hover:underline">
-                Just exploring? Skip for now
+                Explore the app without signing up
               </button>
               <p className="mt-4 text-center text-[10px] leading-relaxed text-white/35">
                 We&apos;ll only use your info to share Jesus Festival updates. No spam, ever.

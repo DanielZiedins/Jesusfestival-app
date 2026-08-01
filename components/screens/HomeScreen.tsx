@@ -218,8 +218,8 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
           <div className="grid grid-cols-2 gap-2.5">
             <QuickAction emoji="🎮" title="Revive the City" sub="Missions, games & quizzes" onClick={() => go("game")} accent="gold" />
             <QuickAction emoji="🙏" title="Prayer Wall" sub="Pray for one another" onClick={() => go("more", "prayer")} accent="purple" />
-            <QuickAction emoji="🙌" title="Volunteers" sub="Serve at the festival" onClick={() => go("more", "volunteers")} accent="emerald" />
-            <QuickAction emoji="❤️" title="Give" sub="Sow into good ground" onClick={() => go("more", "give")} accent="ember" />
+            <QuickAction emoji="🗺️" title="Plan Your Visit" sub="Live map & directions" onClick={() => go("more", "map")} accent="emerald" />
+            <QuickAction emoji="🙌" title="Volunteers" sub="Serve at the festival" onClick={() => go("more", "volunteers")} accent="ember" />
           </div>
           {/* Renders null until they've starred a set, so it never nags. */}
           <div className="mt-3">
@@ -524,13 +524,13 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
         </Reveal>
       </section>
 
-      {/* ===== COMING SOON ===== */}
+      {/* ===== NEXT UP ===== */}
       <section className="mt-14 px-4">
         <Reveal className="mb-4 text-center">
           <Eyebrow>This is just the beginning</Eyebrow>
-          <h2 className="mt-2 font-display text-3xl font-bold text-white">More is coming 🚀</h2>
+          <h2 className="mt-2 font-display text-3xl font-bold text-white">Next up 🚀</h2>
           <p className="mx-auto mt-2 max-w-xs text-sm text-white/60">
-            We&apos;re building something special. Here&apos;s a peek at what&apos;s on the way — stay tuned!
+            Prayer, notifications, the full schedule and live directions are already here. These are the next festival-day upgrades.
           </p>
         </Reveal>
         <div className="mx-auto grid max-w-md grid-cols-2 gap-3">
