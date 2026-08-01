@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { adminCreateNews, adminResetCity, fetchNews, type NewsPost } from "@/lib/supabase";
 import { fetchCityProgress, CITY_TARGET, type CityProgress } from "@/lib/game";
 import { adminSendPush } from "@/lib/push";
+import EmailPanel from "@/components/admin/EmailPanel";
 
 export default function AdminPage() {
   const [passcode, setPasscode] = useState("");
@@ -190,6 +191,8 @@ function Dashboard({ passcode }: { passcode: string }) {
           {pMsg && <p className="text-center text-xs font-semibold text-white/70">{pMsg}</p>}
         </div>
       </section>
+
+      <EmailPanel passcode={passcode} />
 
       {/* Recent posts */}
       <section className="rounded-2xl border border-white/10 bg-white/5 p-5">

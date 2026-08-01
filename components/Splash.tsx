@@ -3,13 +3,18 @@
 import { motion } from "framer-motion";
 import { IMG, SITE } from "@/lib/content";
 
-export default function Splash() {
+/**
+ * `leaving` drives a plain CSS fade instead of a framer `exit`. An exit
+ * animation only completes if rAF is running, so on a throttled tab or a
+ * low-power device the splash could sit on top of the whole app forever.
+ * A CSS transition costs nothing and the parent unmounts us regardless.
+ */
+export default function Splash({ leaving = false }: { leaving?: boolean }) {
   return (
-    <motion.div
-      initial={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.6 }}
-      className="fixed inset-0 z-[70] flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-navy-900 via-ink to-ink"
+    <div
+      className={`fixed inset-0 z-[70] flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-navy-900 via-ink to-ink transition-opacity duration-500 ${
+        leaving ? "pointer-events-none opacity-0" : "opacity-100"
+      }`}
     >
       <div className="bg-radial-glow absolute inset-0" />
       {/* purple + gold ambient orbs */}
@@ -49,6 +54,6 @@ export default function Splash() {
         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white/70" style={{ animationDelay: "0.2s" }} />
         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-gold" style={{ animationDelay: "0.4s" }} />
       </motion.div>
-    </motion.div>
+    </div>
   );
 }

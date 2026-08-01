@@ -19,8 +19,10 @@ import {
   DONATE,
 } from "@/lib/content";
 import Countdown from "@/components/Countdown";
+import FestivalLive from "@/components/FestivalLive";
 import InviteCard from "@/components/InviteCard";
 import NotifyNudge from "@/components/NotifyNudge";
+import { isLivePhase, useFestivalPhase } from "@/lib/useFestivalPhase";
 import { getStreak } from "@/lib/game";
 import Reveal, { Eyebrow } from "@/components/Reveal";
 import ParallaxImage from "@/components/ParallaxImage";
@@ -49,6 +51,8 @@ const EXPECT_ICON: Record<string, React.ComponentType<{ width?: number; height?:
 };
 
 export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => void }) {
+  // On Sept 4–5 the live card replaces the countdown — showing both is contradictory.
+  const live = isLivePhase(useFestivalPhase());
   // Verse of the day — set after mount so SSR/client never disagree on the date.
   const [verseOfDay, setVerseOfDay] = useState(SCRIPTURES[0]);
   // Personal touch: greet returning members by name, with their streak.
@@ -161,9 +165,13 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink to-transparent" />
       </section>
 
-      {/* ===== COUNTDOWN ===== */}
+      {/* ===== COUNTDOWN (becomes a live tracker on festival days) ===== */}
       <section className="relative -mt-10 px-4">
-        <Reveal className="mx-auto max-w-md">
+        {/* Renders null outside Sept 4–5, so this wrapper collapses to nothing. */}
+        <div className="mx-auto max-w-md">
+          <FestivalLive go={go} />
+        </div>
+        <Reveal className={`mx-auto max-w-md ${live ? "hidden" : ""}`}>
           <div className="mb-3 text-center">
             <Eyebrow>The countdown is on</Eyebrow>
           </div>

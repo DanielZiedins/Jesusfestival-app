@@ -192,10 +192,18 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              if ('serviceWorker' in navigator) {
+              // Skip the service worker on localhost: dev chunk URLs aren't
+              // content-hashed, so cache-first would keep serving stale code
+              // and make edits look like they never applied.
+              var isLocal = ['localhost', '127.0.0.1', '[::1]'].indexOf(location.hostname) !== -1;
+              if ('serviceWorker' in navigator && !isLocal) {
                 window.addEventListener('load', function () {
                   navigator.serviceWorker.register('/sw.js').catch(function () {});
                 });
+              } else if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistrations().then(function (rs) {
+                  rs.forEach(function (r) { r.unregister(); });
+                }).catch(function () {});
               }
             `,
           }}

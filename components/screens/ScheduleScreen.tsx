@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { SCHEDULE, SITE, LINKS } from "@/lib/content";
 import Reveal, { Eyebrow } from "@/components/Reveal";
 import ScreenHeader from "@/components/ScreenHeader";
 import { CalendarIcon, MapPin, ArrowRight } from "@/components/icons";
+import { clientNow, defaultDayId, festivalPhase, getLineup, nowNext, slotId, toggleLineup, type Slot } from "@/lib/festival";
 
 // Build a universal .ics (Fri worship + Sat festival day) and hand it to the OS calendar.
 function addFestivalToCalendar() {
@@ -52,6 +53,34 @@ function addFestivalToCalendar() {
 export default function ScheduleScreen() {
   const [day, setDay] = useState(SCHEDULE.days[0].id);
   const active = SCHEDULE.days.find((d) => d.id === day) ?? SCHEDULE.days[0];
+
+  // Personal lineup + the live clock are client-only, so they're set after mount
+  // to keep the server and first client render identical.
+  const [lineup, setLineup] = useState<string[]>([]);
+  const [onlyMine, setOnlyMine] = useState(false);
+  const [now, setNow] = useState<Date | null>(null);
+
+  useEffect(() => {
+    setLineup(getLineup());
+    setDay(defaultDayId(clientNow()));
+    setNow(clientNow());
+    // A minute is plenty of resolution for a run sheet, and it keeps the
+    // "NOW" marker honest without pinning a timer to every second.
+    const t = setInterval(() => setNow(clientNow()), 60_000);
+    return () => clearInterval(t);
+  }, []);
+
+  const phase = now ? festivalPhase(now) : "before";
+  const isLiveDay = phase === active.id;
+  const { nowIdx, nextIdx } = useMemo(
+    () => (now && isLiveDay ? nowNext(active.id, active.items as Slot[], now) : { nowIdx: -1, nextIdx: -1 }),
+    [now, isLiveDay, active],
+  );
+
+  const mineOnThisDay = active.items.filter((s) => lineup.includes(slotId(active.id, s as Slot))).length;
+  const shown = onlyMine
+    ? active.items.filter((s) => lineup.includes(slotId(active.id, s as Slot)))
+    : active.items;
 
   return (
     <div className="px-4 pb-6">
@@ -142,9 +171,45 @@ export default function ScheduleScreen() {
             </div>
           ) : (
             <>
+              {/* Live-day banner: on Sept 4–5 this screen becomes a run-of-show tracker. */}
+              {isLiveDay && nowIdx >= 0 && (
+                <div className="mb-4 flex items-center gap-3 rounded-2xl border border-ember/40 bg-gradient-to-r from-ember/20 to-transparent p-3.5">
+                  <span className="relative flex h-2.5 w-2.5 shrink-0">
+                    <span className="absolute inline-flex h-full w-full animate-ping-slow rounded-full bg-ember" />
+                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-ember" />
+                  </span>
+                  <p className="min-w-0 text-[13px] text-white/80">
+                    <span className="font-bold text-white">On stage now:</span>{" "}
+                    <span className="text-gold-400">{active.items[nowIdx].title}</span>
+                  </p>
+                </div>
+              )}
+
+              {/* My Lineup filter — only worth showing once something is starred. */}
+              {mineOnThisDay > 0 && (
+                <div className="mb-3.5 flex gap-2">
+                  <button
+                    onClick={() => setOnlyMine(false)}
+                    className={`rounded-full px-3.5 py-1.5 text-[12px] font-bold transition active:scale-95 ${
+                      onlyMine ? "border border-white/15 bg-white/5 text-white/70" : "bg-gradient-to-r from-gold-400 to-gold-600 text-navy-950"
+                    }`}
+                  >
+                    Full day
+                  </button>
+                  <button
+                    onClick={() => setOnlyMine(true)}
+                    className={`rounded-full px-3.5 py-1.5 text-[12px] font-bold transition active:scale-95 ${
+                      onlyMine ? "bg-gradient-to-r from-gold-400 to-gold-600 text-navy-950" : "border border-white/15 bg-white/5 text-white/70"
+                    }`}
+                  >
+                    ⭐ My Lineup · {mineOnThisDay}
+                  </button>
+                </div>
+              )}
+
               <div className="relative space-y-2.5 pl-1">
-                {active.items.map((item, i) => {
-                  const it = item as { time: string; title: string; note: string; kind?: string; featured?: boolean; href?: string };
+                {shown.map((item, i) => {
+                  const it = item as Slot;
                   const featured = it.featured === true;
                   const kind = it.kind ?? "moment";
                   const isArtist = kind === "artist";
@@ -152,25 +217,52 @@ export default function ScheduleScreen() {
                   // Color-codes the day at a glance: gold = music, purple = spoken, white = moment.
                   const timeColor = isArtist ? "text-gold-400" : isSpeaker ? "text-purple-300" : "text-white/80";
                   const dotColor = isArtist ? "bg-gold ring-gold/25" : isSpeaker ? "bg-purple-400 ring-purple-400/20" : "bg-white/70 ring-white/15";
+                  // Indices are relative to the full day, so live markers survive filtering.
+                  const realIdx = active.items.indexOf(item);
+                  const isNow = realIdx === nowIdx;
+                  const isNext = realIdx === nextIdx;
+                  const done = isLiveDay && nowIdx >= 0 && realIdx < nowIdx;
+                  const id = slotId(active.id, it);
+                  const starred = lineup.includes(id);
                   return (
                     <Reveal key={`${it.time}-${it.title}`} delay={Math.min(i * 0.035, 0.45)} y={14}>
-                      <div className="flex gap-3.5">
+                      <div className={`flex gap-3.5 transition-opacity ${done ? "opacity-45" : ""}`}>
                         <div className="flex w-[68px] shrink-0 flex-col items-end pt-0.5">
-                          <span className={`font-display text-[13px] font-bold leading-tight ${timeColor}`}>{it.time}</span>
+                          <span className={`font-display text-[13px] font-bold leading-tight ${isNow ? "text-ember" : timeColor}`}>{it.time}</span>
+                          {isNow && <span className="mt-1 rounded-full bg-ember px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wider text-white">Now</span>}
+                          {isNext && <span className="mt-1 rounded-full border border-gold/40 px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wider text-gold-400">Next</span>}
                         </div>
                         <div className="relative flex flex-col items-center">
-                          <span className={`mt-1.5 h-3 w-3 rounded-full ring-4 ${dotColor}`} />
-                          {i < active.items.length - 1 && <span className="mt-1 h-full w-px flex-1 bg-white/12" />}
+                          <span
+                            className={`mt-1.5 h-3 w-3 rounded-full ring-4 ${isNow ? "bg-ember ring-ember/30" : dotColor}`}
+                          />
+                          {i < shown.length - 1 && <span className="mt-1 h-full w-px flex-1 bg-white/12" />}
                         </div>
                         <div
                           className={`flex-1 pb-3.5 ${
-                            featured ? "rounded-xl border border-gold/40 bg-gradient-to-br from-gold/12 to-transparent px-3.5 py-3" : ""
+                            isNow
+                              ? "rounded-xl border border-ember/50 bg-gradient-to-br from-ember/15 to-transparent px-3.5 py-3"
+                              : featured
+                                ? "rounded-xl border border-gold/40 bg-gradient-to-br from-gold/12 to-transparent px-3.5 py-3"
+                                : ""
                           }`}
                         >
-                          <h3 className={`font-display text-[15px] font-bold leading-snug ${isArtist ? "text-white" : "text-white"}`}>
-                            {isArtist && <span className="mr-1.5 text-gold-400">♪</span>}
-                            {it.title}
-                          </h3>
+                          <div className="flex items-start gap-2">
+                            <h3 className="min-w-0 flex-1 font-display text-[15px] font-bold leading-snug text-white">
+                              {isArtist && <span className="mr-1.5 text-gold-400">♪</span>}
+                              {it.title}
+                            </h3>
+                            <button
+                              onClick={() => setLineup(toggleLineup(id))}
+                              aria-pressed={starred}
+                              aria-label={starred ? `Remove ${it.title} from My Lineup` : `Add ${it.title} to My Lineup`}
+                              className={`-mt-0.5 shrink-0 rounded-full p-1.5 text-[15px] leading-none transition active:scale-90 ${
+                                starred ? "text-gold-400" : "text-white/25 hover:text-white/50"
+                              }`}
+                            >
+                              {starred ? "★" : "☆"}
+                            </button>
+                          </div>
                           <p className="mt-0.5 text-[12.5px] leading-snug text-white/55">{it.note}</p>
                           {featured && (
                             // eslint-disable-next-line @next/next/no-img-element
@@ -187,6 +279,13 @@ export default function ScheduleScreen() {
                   );
                 })}
               </div>
+
+              {onlyMine && shown.length === 0 && (
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center">
+                  <div className="text-3xl">⭐</div>
+                  <p className="mt-2 text-sm text-white/65">Nothing starred for {active.label} yet — tap ☆ on any set to build your lineup.</p>
+                </div>
+              )}
 
               <p className="mt-2 rounded-xl bg-white/[0.03] p-3 text-center text-[12px] italic leading-relaxed text-white/45">
                 {SCHEDULE.approximate}

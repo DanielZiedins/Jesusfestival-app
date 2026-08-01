@@ -1,0 +1,115 @@
+import { SCHEDULE } from "@/lib/content";
+
+/**
+ * Festival-time helpers.
+ *
+ * Everything at Gage Park runs on Hamilton local time (EDT, UTC-4 in early
+ * September), so slot times are anchored to a fixed offset rather than the
+ * viewer's timezone. Someone opening the app from Vancouver should still see
+ * "3:10 PM — Ant Lee Jr." exactly as it is printed on the run sheet.
+ */
+
+const DAY_ISO: Record<string, string> = { fri: "2026-09-04", sat: "2026-09-05" };
+const OFFSET = "-04:00";
+
+/** "3:10 PM" + "sat" → Date. Returns null for anything unparseable. */
+export function slotTime(dayId: string, time: string): Date | null {
+  const iso = DAY_ISO[dayId];
+  const m = /^(\d{1,2}):(\d{2})\s*(AM|PM)$/i.exec(time.trim());
+  if (!iso || !m) return null;
+  let h = Number(m[1]) % 12;
+  if (m[3].toUpperCase() === "PM") h += 12;
+  const d = new Date(`${iso}T${String(h).padStart(2, "0")}:${m[2]}:00${OFFSET}`);
+  return Number.isNaN(d.getTime()) ? null : d;
+}
+
+/**
+ * The clock the live views run on. `?now=2026-09-05T13:00:00-04:00` overrides it
+ * so the team can rehearse festival-day mode before the day arrives. Purely a
+ * display concern — nothing is written or sent based on it.
+ */
+export function clientNow(): Date {
+  try {
+    const raw = new URLSearchParams(window.location.search).get("now");
+    if (raw) {
+      const d = new Date(raw);
+      if (!Number.isNaN(d.getTime())) return d;
+    }
+  } catch {
+    /* ignore */
+  }
+  return new Date();
+}
+
+export type Phase = "before" | "fri" | "sat" | "after";
+
+const FRI_START = new Date(`2026-09-04T17:00:00${OFFSET}`); // doors-open mood starts an hour early
+const FRI_END = new Date(`2026-09-04T21:30:00${OFFSET}`);
+const SAT_START = new Date(`2026-09-05T08:30:00${OFFSET}`);
+const SAT_END = new Date(`2026-09-05T18:30:00${OFFSET}`);
+
+export function festivalPhase(now: Date = new Date()): Phase {
+  const t = now.getTime();
+  if (t >= FRI_START.getTime() && t <= FRI_END.getTime()) return "fri";
+  if (t >= SAT_START.getTime() && t <= SAT_END.getTime()) return "sat";
+  if (t > SAT_END.getTime()) return "after";
+  return "before";
+}
+
+export type Slot = { time: string; title: string; note: string; kind?: string; featured?: boolean; href?: string };
+
+/**
+ * Which slot is on stage and which is up next. A slot runs until the next one
+ * starts, so the final slot of a day is never "now" — it's the closing note.
+ */
+export function nowNext(dayId: string, items: Slot[], now: Date = new Date()): { nowIdx: number; nextIdx: number } {
+  const t = now.getTime();
+  let nowIdx = -1;
+  let nextIdx = -1;
+  for (let i = 0; i < items.length; i++) {
+    const start = slotTime(dayId, items[i].time);
+    if (!start) continue;
+    if (start.getTime() <= t) {
+      const after = i + 1 < items.length ? slotTime(dayId, items[i + 1].time) : null;
+      if (!after || after.getTime() > t) nowIdx = i;
+    } else if (nextIdx === -1) {
+      nextIdx = i;
+    }
+  }
+  return { nowIdx, nextIdx };
+}
+
+/** The day the app should open to: the live day during the festival, else Friday. */
+export function defaultDayId(now: Date = new Date()): string {
+  const p = festivalPhase(now);
+  if (p === "fri" || p === "sat") return p;
+  return SCHEDULE.days[0].id;
+}
+
+// ───────────────────────── My Lineup (local favourites) ─────────────────────────
+
+const KEY = "jf-lineup";
+
+/** Stable id for a slot — time + title survives reordering and re-renders. */
+export const slotId = (dayId: string, s: Slot) => `${dayId}|${s.time}|${s.title}`;
+
+export function getLineup(): string[] {
+  try {
+    const raw = localStorage.getItem(KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    return Array.isArray(arr) ? arr.filter((x) => typeof x === "string") : [];
+  } catch {
+    return [];
+  }
+}
+
+export function toggleLineup(id: string): string[] {
+  const cur = getLineup();
+  const next = cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id];
+  try {
+    localStorage.setItem(KEY, JSON.stringify(next));
+  } catch {
+    /* private mode — favourites just won't persist */
+  }
+  return next;
+}
