@@ -125,6 +125,33 @@ const EVENT_JSONLD = {
     { "@type": "MusicGroup", name: "ACTS Kingdom Sound Worship" },
     { "@type": "MusicGroup", name: "Friday Night Prayer" },
   ],
+  // Each day as its own sub-event gives search engines the real shape of the
+  // weekend — two distinct experiences, each with times and performers.
+  subEvent: [
+    {
+      "@type": "MusicEvent",
+      name: "Pure Worship Night — Jesus Festival",
+      startDate: "2026-09-04T18:00:00-04:00",
+      endDate: "2026-09-04T21:00:00-04:00",
+      description: "A focused night of open-air worship at Gage Park led by Bethel Gospel Tabernacle. Gates 6:00 PM, worship 6:30 PM. Free.",
+      performer: { "@type": "MusicGroup", name: "Bethel Gospel Tabernacle", url: "https://bethelhamilton.com/" },
+      location: { "@type": "Place", name: "Gage Park", address: "1000 Main St E, Hamilton, ON" },
+    },
+    {
+      "@type": "Festival",
+      name: "Family Festival Day — Jesus Festival",
+      startDate: "2026-09-05T10:00:00-04:00",
+      endDate: "2026-09-05T18:00:00-04:00",
+      description: "A free full-day family festival — worship sets by Open Heaven, ACTS Kingdom Sound Worship, Ant Lee Jr. and Friday Night Prayer, plus testimonies, food trucks, kids zone and baptisms. Hosted by JJ & Rachel.",
+      performer: [
+        { "@type": "MusicGroup", name: "Open Heaven" },
+        { "@type": "MusicGroup", name: "ACTS Kingdom Sound Worship" },
+        { "@type": "Person", name: "Ant Lee Jr." },
+        { "@type": "MusicGroup", name: "Friday Night Prayer" },
+      ],
+      location: { "@type": "Place", name: "Gage Park", address: "1000 Main St E, Hamilton, ON" },
+    },
+  ],
 };
 
 const FAQ_JSONLD = {
@@ -215,6 +242,14 @@ export default function RootLayout({
     <html lang="en" className={`${display.variable} ${sans.variable}`}>
       <head>
         <link rel="preconnect" href="https://d2xsxph8kpxj0f.cloudfront.net" crossOrigin="" />
+        {/* The Home hero is the LCP element on the main entry — start fetching it
+            before the client bundle even parses. */}
+        <link
+          rel="preload"
+          as="image"
+          href="https://d2xsxph8kpxj0f.cloudfront.net/310519663378107536/KJYp3PsjqZ4zMkWznW5JC5/jfgood1_7ef3ec90.jpg"
+          fetchPriority="high"
+        />
         <link rel="preconnect" href="https://www.jesusfestival.ca" />
         <link rel="dns-prefetch" href="https://vmpkiwfvnlzraabtjkig.supabase.co" />
       </head>

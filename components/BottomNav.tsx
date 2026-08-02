@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { HomeIcon, CalendarIcon, GameIcon, NewsIcon, MoreIcon } from "./icons";
+import { isLivePhase, useFestivalPhase } from "@/lib/useFestivalPhase";
 import type { ComponentType, SVGProps } from "react";
 
 export type TabId = "home" | "schedule" | "game" | "news" | "more";
@@ -21,6 +22,9 @@ export default function BottomNav({
   active: TabId;
   onChange: (t: TabId) => void;
 }) {
+  // On Sept 4–5 the Schedule tab carries a live pulse — the run of show is
+  // the one thing everyone at the park is checking.
+  const live = isLivePhase(useFestivalPhase());
   return (
     <nav className="pointer-events-auto fixed inset-x-0 bottom-0 z-40 safe-bottom">
       <div className="mx-auto max-w-md px-3 pb-3">
@@ -35,6 +39,12 @@ export default function BottomNav({
                 aria-label={label}
                 aria-current={on ? "page" : undefined}
               >
+                {live && id === "schedule" && !on && (
+                  <span aria-hidden className="absolute right-[22%] top-1.5 flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping-slow rounded-full bg-ember" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-ember" />
+                  </span>
+                )}
                 {on && (
                   <motion.span
                     layoutId="tab-pill"

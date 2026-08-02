@@ -30,11 +30,23 @@ self.addEventListener("activate", (event) => {
     caches
       .keys()
       .then((keys) =>
-        Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
+        Promise.all(keys.filter((k) => k !== CACHE && k !== IMG_CACHE).map((k) => caches.delete(k)))
       )
   );
   self.clients.claim();
 });
+
+// Drop the oldest image entries once the cap is reached — festival photos are
+// worth keeping offline, but not without a ceiling.
+async function trimImageCache() {
+  try {
+    const cache = await caches.open(IMG_CACHE);
+    const keys = await cache.keys();
+    for (let i = 0; i < keys.length - IMG_MAX_ENTRIES; i++) await cache.delete(keys[i]);
+  } catch (e) {
+    /* ignore */
+  }
+}
 
 self.addEventListener("fetch", (event) => {
   const { request } = event;
@@ -43,6 +55,24 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   // Never cache Supabase / API calls.
   if (url.hostname.includes("supabase")) return;
+
+  // Festival photos (CDN): cache-first so they're instant on repeat visits and
+  // still there when the park network dies. Opaque responses are fine here —
+  // they're only ever used as <img> sources.
+  if (url.hostname === IMG_HOST) {
+    event.respondWith(
+      caches.match(request).then(
+        (cached) =>
+          cached ||
+          fetch(request).then((res) => {
+            const copy = res.clone();
+            caches.open(IMG_CACHE).then((c) => c.put(request, copy)).then(trimImageCache).catch(() => {});
+            return res;
+          })
+      )
+    );
+    return;
+  }
 
   // HTML navigations: network-first so content stays fresh, fall back to cache offline.
   if (request.mode === "navigate") {
