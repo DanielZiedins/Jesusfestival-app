@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { SCHEDULE } from "@/lib/content";
-import { clientNow, getLineup, slotId, slotTime, type Slot } from "@/lib/festival";
+import { clientNow, exportLineupIcs, getLineup, slotId, slotTime, type Slot } from "@/lib/festival";
 import type { TabId } from "@/components/BottomNav";
-import { ArrowRight } from "@/components/icons";
+import { ArrowRight, CalendarIcon } from "@/components/icons";
 
 type Picked = { day: (typeof SCHEDULE.days)[number]; slot: Slot; start: Date | null };
 
@@ -16,6 +16,13 @@ type Picked = { day: (typeof SCHEDULE.days)[number]; slot: Slot; start: Date | n
 export default function LineupCard({ go }: { go: (t: TabId, sub?: string) => void }) {
   const [picks, setPicks] = useState<Picked[] | null>(null);
   const [now, setNow] = useState<Date | null>(null);
+  const [note, setNote] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!note) return;
+    const t = setTimeout(() => setNote(null), 2600);
+    return () => clearTimeout(t);
+  }, [note]);
 
   useEffect(() => {
     const read = () => {
@@ -86,12 +93,24 @@ export default function LineupCard({ go }: { go: (t: TabId, sub?: string) => voi
         </p>
       )}
 
-      <button
-        onClick={() => go("schedule")}
-        className="relative mt-4 flex w-full items-center justify-center gap-1.5 rounded-xl border border-gold/40 bg-gold/10 py-2.5 text-[13px] font-bold text-gold-400 active:scale-[0.98]"
-      >
-        Open my lineup <ArrowRight width={14} height={14} />
-      </button>
+      <div className="relative mt-4 grid grid-cols-2 gap-2">
+        <button
+          onClick={() => go("schedule")}
+          className="flex items-center justify-center gap-1.5 rounded-xl border border-gold/40 bg-gold/10 py-2.5 text-[13px] font-bold text-gold-400 active:scale-[0.98]"
+        >
+          Open lineup <ArrowRight width={14} height={14} />
+        </button>
+        <button
+          onClick={() => {
+            const n = exportLineupIcs(SCHEDULE.days as { id: string; label: string; items: Slot[] }[]);
+            setNote(n ? `${n} set${n === 1 ? "" : "s"} sent to your calendar — with 15-min reminders ⏰` : "Couldn't export — try again");
+          }}
+          className="flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 py-2.5 text-[13px] font-bold text-navy-950 shadow-glow active:scale-[0.98]"
+        >
+          <CalendarIcon width={14} height={14} /> Remind me
+        </button>
+      </div>
+      {note && <p role="status" className="relative mt-2.5 text-center text-[12px] font-semibold text-gold-400">{note}</p>}
     </div>
   );
 }

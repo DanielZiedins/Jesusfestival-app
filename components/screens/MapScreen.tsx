@@ -14,6 +14,15 @@ const ZONES = [
   { name: "Baptisms", note: "Celebrating new life in Jesus", emoji: "💧" },
 ];
 
+const BRING = [
+  { emoji: "🪑", label: "Lawn chair or blanket", note: "The lawn fills up fast — claim your spot" },
+  { emoji: "🧴", label: "Sunscreen & a hat", note: "Saturday runs 10–6 in the open sun" },
+  { emoji: "💧", label: "Water bottle", note: "Stay hydrated all day" },
+  { emoji: "🧥", label: "A layer for Friday night", note: "It cools off once the sun sets" },
+  { emoji: "👟", label: "Comfy shoes", note: "You'll wander food trucks & Vendor Village" },
+  { emoji: "🤝", label: "A friend", note: "The one thing that matters most" },
+];
+
 const GETTING_HERE = [
   { label: "Free parking on-site", note: "Arrive early — festival parking fills quickly" },
   { label: "Street parking & HSR transit", note: "Transit stops and street parking are nearby" },
@@ -106,6 +115,29 @@ export default function MapScreen() {
                 <div className="text-2xl" aria-hidden="true">{z.emoji}</div>
                 <h3 className="mt-2 font-display text-[15px] font-bold text-white">{z.name}</h3>
                 <p className="mt-0.5 text-[12px] leading-snug text-white/55">{z.note}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* What to bring */}
+      <section className="mt-8 px-4">
+        <Reveal className="mx-auto mb-3 max-w-md">
+          <div className="flex items-center gap-2 text-gold-400">
+            <Sparkle width={17} height={17} />
+            <h2 className="font-display text-lg font-bold text-white">What to bring</h2>
+          </div>
+        </Reveal>
+        <div className="mx-auto max-w-md space-y-2.5">
+          {BRING.map((b, i) => (
+            <Reveal key={b.label} delay={i * 0.05}>
+              <div className="flex items-center gap-3 rounded-xl border border-white/8 bg-white/[0.03] p-3.5">
+                <span className="text-xl">{b.emoji}</span>
+                <div>
+                  <p className="text-sm font-semibold text-white">{b.label}</p>
+                  <p className="text-[12px] text-white/50">{b.note}</p>
+                </div>
               </div>
             </Reveal>
           ))}

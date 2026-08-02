@@ -123,6 +123,65 @@ export async function shareSlot(dayLabel: string, dayDate: string, s: Slot): Pro
   }
 }
 
+/**
+ * Export the starred sets as an .ics file — one VEVENT per set, each with a
+ * 15-minute-before alarm. A set runs until the next slot on its day starts
+ * (30 min for the final slot). Returns how many events were written.
+ */
+export function exportLineupIcs(days: { id: string; label: string; items: Slot[] }[]): number {
+  const ids = new Set(getLineup());
+  const fmt = (d: Date) =>
+    d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
+  const events: string[] = [];
+
+  for (const day of days) {
+    day.items.forEach((s, i) => {
+      if (!ids.has(slotId(day.id, s))) return;
+      const start = slotTime(day.id, s.time);
+      if (!start) return;
+      const nextStart = i + 1 < day.items.length ? slotTime(day.id, day.items[i + 1].time) : null;
+      const end = nextStart ?? new Date(start.getTime() + 30 * 60000);
+      const uid = `jf2026-${day.id}-${s.time.replace(/[^0-9]/g, "")}@jesusfestival.app`;
+      const title = s.title.replace(/[,;\\]/g, " ");
+      events.push(
+        [
+          "BEGIN:VEVENT",
+          `UID:${uid}`,
+          "DTSTAMP:20260801T120000Z",
+          `DTSTART:${fmt(start)}`,
+          `DTEND:${fmt(end)}`,
+          `SUMMARY:${s.kind === "artist" ? "♪ " : ""}${title} — Jesus Festival`,
+          "LOCATION:Gage Park\\, 1000 Main St E\\, Hamilton\\, ON",
+          `DESCRIPTION:${s.note.replace(/[,;\\]/g, " ")} · https://www.jesusfestival.app`,
+          "BEGIN:VALARM",
+          "ACTION:DISPLAY",
+          `DESCRIPTION:${title} starts in 15 minutes at Gage Park`,
+          "TRIGGER:-PT15M",
+          "END:VALARM",
+          "END:VEVENT",
+        ].join("\r\n"),
+      );
+    });
+  }
+  if (!events.length) return 0;
+
+  const ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Jesus Festival//My Lineup 2026//EN", "CALSCALE:GREGORIAN", ...events, "END:VCALENDAR"].join("\r\n");
+  try {
+    const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "my-jesus-festival-lineup.ics";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 3000);
+  } catch {
+    return 0;
+  }
+  return events.length;
+}
+
 export function toggleLineup(id: string): string[] {
   const cur = getLineup();
   const next = cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id];

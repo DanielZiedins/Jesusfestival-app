@@ -32,6 +32,7 @@ import type { TabId } from "@/components/BottomNav";
 import {
   ArrowRight,
   MapPin,
+  Share,
   Sparkle,
   Music,
   CrossIcon,
@@ -59,6 +60,12 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
   // Personal touch: greet returning members by name, with their streak.
   const [firstName, setFirstName] = useState<string | null>(null);
   const [streak, setStreakN] = useState(0);
+  const [verseNote, setVerseNote] = useState<string | null>(null);
+  useEffect(() => {
+    if (!verseNote) return;
+    const t = setTimeout(() => setVerseNote(null), 2600);
+    return () => clearTimeout(t);
+  }, [verseNote]);
   useEffect(() => {
     const start = new Date(new Date().getFullYear(), 0, 0);
     const doy = Math.floor((Date.now() - start.getTime()) / 86400000);
@@ -298,6 +305,30 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
             <Eyebrow>Verse of the day</Eyebrow>
           </div>
           <Scripture text={verseOfDay.text} reference={verseOfDay.ref} />
+          <div className="mt-3 text-center">
+            <button
+              onClick={async () => {
+                const text = `"${verseOfDay.text}" — ${verseOfDay.ref}\n\nShared from the Jesus Festival app 💛 https://www.jesusfestival.app`;
+                try {
+                  if (navigator.share) {
+                    await navigator.share({ text, title: verseOfDay.ref });
+                    setVerseNote("Shared 🎉");
+                  } else {
+                    await navigator.clipboard.writeText(text);
+                    setVerseNote("Copied — send it to someone 💛");
+                  }
+                } catch {
+                  /* cancelled share sheet — stay quiet */
+                }
+              }}
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[12px] font-bold text-white/80 active:scale-95"
+            >
+              <Share width={13} height={13} /> Send this verse to someone
+            </button>
+            {verseNote && (
+              <p role="status" className="mt-2 text-[12px] font-semibold text-gold-400">{verseNote}</p>
+            )}
+          </div>
         </Reveal>
       </section>
 
