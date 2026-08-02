@@ -1,6 +1,6 @@
 "use client";
 
-import { MOVEMENT, CITIES, IMPACT, LINKS, IMG } from "@/lib/content";
+import { MOVEMENT, CITIES, IMPACT, LINKS, IMG, KINGDOM_SITES } from "@/lib/content";
 import Reveal, { Eyebrow } from "@/components/Reveal";
 import ScreenHeader from "@/components/ScreenHeader";
 import ParallaxImage from "@/components/ParallaxImage";
@@ -117,6 +117,42 @@ export default function MovementScreen() {
                 </div>
                 <div className="text-[13px] leading-snug text-white/65">{m.label}</div>
               </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* The Kingdom Network — the family of sites this movement lives across */}
+      <section className="mt-12 px-4">
+        <Reveal className="mx-auto mb-4 max-w-md text-center">
+          <Eyebrow>One movement, many doors</Eyebrow>
+          <h2 className="mt-2 font-display text-3xl font-bold text-white">Explore the Kingdom Network</h2>
+          <p className="mx-auto mt-2 max-w-xs text-sm text-white/60">
+            Jesus Festival is one expression of something much bigger. Step through any of these doors.
+          </p>
+        </Reveal>
+        <div className="mx-auto max-w-md space-y-2.5">
+          {KINGDOM_SITES.map((s, i) => (
+            <Reveal key={s.domain} delay={Math.min(i * 0.05, 0.3)}>
+              <a
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-start gap-3.5 rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition active:scale-[0.99]"
+              >
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-purple-600/40 to-navy-800 text-xl">
+                  {s.emoji}
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="flex items-baseline gap-2">
+                    <span className="font-display text-[15px] font-bold text-white">{s.name}</span>
+                    <span className="truncate text-[11px] font-semibold text-gold-400">{s.domain}</span>
+                  </span>
+                  <span className="mt-0.5 block text-[11px] font-bold uppercase tracking-wider text-purple-300">{s.tag}</span>
+                  <span className="mt-1 block text-[12.5px] leading-snug text-white/60">{s.blurb}</span>
+                </span>
+                <ArrowRight width={16} height={16} className="mt-1 shrink-0 text-white/40 transition group-hover:translate-x-0.5 group-hover:text-gold-400" />
+              </a>
             </Reveal>
           ))}
         </div>

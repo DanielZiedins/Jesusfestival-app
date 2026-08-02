@@ -344,3 +344,74 @@ export const INTERESTS = [
   { id: "volunteer", label: "Volunteer" },
   { id: "prayer", label: "Prayer & Discipleship" },
 ] as const;
+
+// The wider family of Kingdom sites behind the festival. Surfaced in the
+// Movement screen, the newsfeed spotlights, and the weekly emails — real
+// outbound links with descriptive text, which is also what search engines
+// need to connect the network together.
+export const KINGDOM_SITES = [
+  {
+    name: "Thy Kingdom Network",
+    url: "https://www.thykingdom.net",
+    domain: "ThyKingdom.net",
+    emoji: "👑",
+    tag: "The network behind it all",
+    blurb: "The home base of the whole movement — the team, the vision, and every Kingdom project under one roof. Start here to see how it all connects.",
+  },
+  {
+    name: "Love on The World",
+    url: "https://www.loveontheworld.com",
+    domain: "LoveonTheWorld.com",
+    emoji: "🌍",
+    tag: "Take His love everywhere",
+    blurb: "A movement of practical love — taking the love of Jesus beyond the church walls and into the whole world, one act of love at a time.",
+  },
+  {
+    name: "Love on Mission",
+    url: "https://www.loveonmission.world",
+    domain: "LoveonMission.world",
+    emoji: "🗺️",
+    tag: "The Great Commission, mapped",
+    blurb: "See where the Gospel is on the move around the globe — a living world map of missions you can pray for, follow, and join.",
+  },
+  {
+    name: "Love on Hamilton",
+    url: "https://www.loveonhamilton.com",
+    domain: "LoveonHamilton.com",
+    emoji: "🏙️",
+    tag: "Our city, loved well",
+    blurb: "The same heart as the festival, all year round — practical love poured out on Hamilton's streets and neighbourhoods.",
+  },
+  {
+    name: "Oikos Map",
+    url: "https://www.oikosmap.com",
+    domain: "OikosMap.com",
+    emoji: "🧭",
+    tag: "Reach the people closest to you",
+    blurb: "A free tool that helps you map the people God has already placed around you — family, friends, coworkers — and pray them toward Jesus.",
+  },
+  {
+    name: "Seek First",
+    url: "https://www.seekfirst.world",
+    domain: "SeekFirst.World",
+    emoji: "🔥",
+    tag: "The Kingdom, first",
+    blurb: "A call back to the first thing: seek first the Kingdom of God. Vision, encouragement and a collective of people putting Him first.",
+  },
+  {
+    name: "I Am Reborn",
+    url: "https://www.iamreborn.net",
+    domain: "IAmReborn.net",
+    emoji: "🕊️",
+    tag: "Your new life starts here",
+    blurb: "Just said yes to Jesus — or thinking about it? This is the place for your next step into new life, made simple and full of hope.",
+  },
+  {
+    name: "Daniel & Katie",
+    url: "https://www.kd-ziedins.com",
+    domain: "KD-Ziedins.com",
+    emoji: "💛",
+    tag: "Love Overflow",
+    blurb: "Meet Daniel & Katie — the family behind the movement — and the Love Overflow heart that carries all of it.",
+  },
+];

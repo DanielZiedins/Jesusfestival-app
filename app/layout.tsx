@@ -159,6 +159,32 @@ const FAQ_JSONLD = {
   ],
 };
 
+/**
+ * Ties the festival to the wider network of Kingdom sites. `sameAs` is how
+ * search engines learn these properties belong to one organization — every
+ * domain listed here gets an authority signal from jesusfestival.app.
+ */
+const ORG_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.thykingdom.net/#org",
+  name: "Thy Kingdom Network",
+  url: "https://www.thykingdom.net",
+  logo: `${SITE.url}/icons/icon-512.png`,
+  slogan: "Love God. Love People. Change the World.",
+  sameAs: [
+    "https://www.jesusfestival.ca",
+    "https://www.jesusfestival.app",
+    "https://www.loveontheworld.com",
+    "https://www.loveonmission.world",
+    "https://www.loveonhamilton.com",
+    "https://www.oikosmap.com",
+    "https://www.kd-ziedins.com",
+    "https://www.seekfirst.world",
+    "https://www.iamreborn.net",
+  ],
+};
+
 const APP_JSONLD = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -195,7 +221,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-ink antialiased">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify([EVENT_JSONLD, FAQ_JSONLD, APP_JSONLD]) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([EVENT_JSONLD, FAQ_JSONLD, APP_JSONLD, ORG_JSONLD]) }}
         />
         {children}
         <script

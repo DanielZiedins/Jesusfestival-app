@@ -12,7 +12,40 @@ const CATEGORY_STYLE: Record<string, string> = {
   update: "bg-purple-500/20 text-purple-200",
   lineup: "bg-gold/20 text-gold-400",
   schedule: "bg-emerald-500/20 text-emerald-200",
+  spotlight: "bg-ember/20 text-ember",
 };
+
+/**
+ * Turn https:// URLs in a post body into tappable links (shown by hostname so
+ * the card stays readable). Everything else stays plain text — post bodies are
+ * data, never markup.
+ */
+function LinkedBody({ text }: { text: string }) {
+  const parts = text.split(/(https:\/\/[^\s]+)/g);
+  return (
+    <p className="mt-1.5 text-sm leading-relaxed text-white/70">
+      {parts.map((part, i) => {
+        if (!part.startsWith("https://")) return <span key={i}>{part}</span>;
+        const clean = part.replace(/[).,;!?]+$/, "");
+        const trail = part.slice(clean.length);
+        let label = clean;
+        try {
+          label = new URL(clean).hostname.replace(/^www\./, "");
+        } catch {
+          /* leave the raw URL as the label */
+        }
+        return (
+          <span key={i}>
+            <a href={clean} target="_blank" rel="noopener noreferrer" className="font-bold text-gold-400 underline decoration-gold-400/40 underline-offset-2 active:opacity-70">
+              {label}
+            </a>
+            {trail}
+          </span>
+        );
+      })}
+    </p>
+  );
+}
 
 function timeAgo(iso: string): string {
   const then = new Date(iso).getTime();
@@ -121,7 +154,7 @@ export default function NewsScreen() {
                 <span className="ml-auto text-[11px] text-white/40">{timeAgo(p.created_at)}</span>
               </div>
               <h3 className="font-display text-lg font-bold leading-snug text-white">{p.title}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-white/70">{p.body}</p>
+              <LinkedBody text={p.body} />
             </motion.article>
           ))}
         </div>
