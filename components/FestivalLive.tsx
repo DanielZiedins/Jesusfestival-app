@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { SCHEDULE } from "@/lib/content";
-import { clientNow, festivalPhase, nowNext, type Slot } from "@/lib/festival";
+import { clientNow, festivalPhase, nowNext, slotTime, type Slot } from "@/lib/festival";
 import type { TabId } from "@/components/BottomNav";
 import { ArrowRight, MapPin } from "@/components/icons";
 
@@ -32,6 +32,14 @@ export default function FestivalLive({ go }: { go: (t: TabId, sub?: string) => v
   const { nowIdx, nextIdx } = nowNext(phase, items, now);
   const current = nowIdx >= 0 ? items[nowIdx] : null;
   const next = nextIdx >= 0 ? items[nextIdx] : null;
+
+  // How far through the day's run of show we are — first slot to last slot.
+  const first = slotTime(phase, items[0].time);
+  const last = slotTime(phase, items[items.length - 1].time);
+  const dayPct =
+    first && last && last > first
+      ? Math.max(0, Math.min(100, Math.round(((now.getTime() - first.getTime()) / (last.getTime() - first.getTime())) * 100)))
+      : 0;
 
   return (
     <motion.div
@@ -78,6 +86,19 @@ export default function FestivalLive({ go }: { go: (t: TabId, sub?: string) => v
           <div className="min-w-0">
             <p className="truncate font-display text-[14px] font-bold text-white">{next.title}</p>
             <p className="text-[12px] text-white/55">{next.time}</p>
+          </div>
+        </div>
+      )}
+
+      {dayPct > 0 && (
+        <div className="relative mt-4">
+          <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-white/40">
+            <span>{items[0].time}</span>
+            <span className="text-white/55">{dayPct}% through the day</span>
+            <span>{items[items.length - 1].time}</span>
+          </div>
+          <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-white/10">
+            <div className="h-full rounded-full bg-gradient-to-r from-gold-400 to-ember" style={{ width: `${dayPct}%` }} />
           </div>
         </div>
       )}

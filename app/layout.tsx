@@ -180,6 +180,16 @@ const FAQ_JSONLD = {
     },
     {
       "@type": "Question",
+      name: "What should I bring to Jesus Festival?",
+      acceptedAnswer: { "@type": "Answer", text: "Bring a lawn chair or blanket (the lawn fills up fast), sunscreen and a hat for Saturday, a water bottle, a layer for Friday evening, comfy shoes — and a friend. Food trucks run Saturday; no tickets are needed." },
+    },
+    {
+      "@type": "Question",
+      name: "Is there parking at Jesus Festival?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes — free festival parking is available on-site at Gage Park but fills quickly, so arrive early. Street parking and HSR transit stops are nearby, and carpooling, rideshare, biking or walking all work well." },
+    },
+    {
+      "@type": "Question",
       name: "Who is performing at Jesus Festival 2026?",
       acceptedAnswer: { "@type": "Answer", text: "Bethel Gospel Tabernacle leads Friday's Pure Worship Night (6:30–9:00 PM). Saturday features Open Heaven, ACTS Kingdom Sound Worship, Ant Lee Jr. and Friday Night Prayer, plus speakers and testimonies from 10:00 AM to 6:00 PM, hosted by JJ & Rachel." },
     },
@@ -248,7 +258,7 @@ export default function RootLayout({
           rel="preload"
           as="image"
           href="https://d2xsxph8kpxj0f.cloudfront.net/310519663378107536/KJYp3PsjqZ4zMkWznW5JC5/jfgood1_7ef3ec90.jpg"
-          fetchPriority="high"
+          {...({ fetchpriority: "high" } as Record<string, string>)}
         />
         <link rel="preconnect" href="https://www.jesusfestival.ca" />
         <link rel="dns-prefetch" href="https://vmpkiwfvnlzraabtjkig.supabase.co" />
