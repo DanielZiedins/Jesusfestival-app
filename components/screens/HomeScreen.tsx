@@ -20,6 +20,8 @@ import {
 } from "@/lib/content";
 import Countdown from "@/components/Countdown";
 import FestivalLive from "@/components/FestivalLive";
+import FestivalWeather from "@/components/FestivalWeather";
+import LiveImpact from "@/components/LiveImpact";
 import LineupCard from "@/components/LineupCard";
 import InviteCard from "@/components/InviteCard";
 import NotifyNudge from "@/components/NotifyNudge";
@@ -234,6 +236,12 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
           </div>
         </Reveal>
       </section>
+
+      {/* ===== LIVE COMMUNITY NUMBERS (renders null until data arrives) ===== */}
+      <LiveImpact go={go} />
+
+      {/* ===== WEEKEND FORECAST (hidden until ~16 days out) ===== */}
+      <FestivalWeather />
 
       {/* ===== WHAT TO EXPECT ===== */}
       <section className="mt-14 px-4">
