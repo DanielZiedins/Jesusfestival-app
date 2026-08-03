@@ -5,6 +5,7 @@ import { adminCreateNews, adminResetCity, fetchNews, type NewsPost } from "@/lib
 import { fetchCityProgress, CITY_TARGET, type CityProgress } from "@/lib/game";
 import { adminSendPush } from "@/lib/push";
 import EmailPanel from "@/components/admin/EmailPanel";
+import PhotoQueue from "@/components/admin/PhotoQueue";
 
 export default function AdminPage() {
   const [passcode, setPasscode] = useState("");
@@ -191,6 +192,8 @@ function Dashboard({ passcode }: { passcode: string }) {
           {pMsg && <p className="text-center text-xs font-semibold text-white/70">{pMsg}</p>}
         </div>
       </section>
+
+      <PhotoQueue passcode={passcode} />
 
       <EmailPanel passcode={passcode} />
 

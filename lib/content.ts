@@ -333,7 +333,6 @@ export const DONATE = {
 // Teaser: features on the way.
 export const COMING_SOON = [
   { emoji: "🗺️", title: "Final Zone Map", text: "Exact stage, food, baptism & Kids Zone placement for festival weekend." },
-  { emoji: "📸", title: "Photo Wall", text: "Share your festival moments with the whole community." },
   { emoji: "🎟️", title: "Digital Check-In", text: "Save your spot and get personal schedule reminders." },
   { emoji: "📱", title: "QR Missions", text: "Scan around the park to unlock special Revive the City missions." },
 ];

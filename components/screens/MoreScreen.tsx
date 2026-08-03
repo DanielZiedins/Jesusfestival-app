@@ -12,13 +12,15 @@ import ConnectScreen from "./ConnectScreen";
 import SettingsScreen from "./SettingsScreen";
 import InstallScreen from "./InstallScreen";
 import PrayerWallScreen from "./PrayerWallScreen";
+import PhotoWallScreen from "./PhotoWallScreen";
 import VolunteersScreen from "./VolunteersScreen";
-import { FlameIcon, MapIcon, BellIcon, ArrowRight, ChevronLeft, Users, Heart, Download, Sparkle } from "@/components/icons";
+import { FlameIcon, MapIcon, BellIcon, ArrowRight, ChevronLeft, Users, Heart, Download, Sparkle, Camera } from "@/components/icons";
 import type { MoreView } from "@/lib/routes";
 
 type View = "hub" | MoreView;
 
 const CARDS: { id: View; title: string; sub: string; Icon: React.ComponentType<{ width?: number; height?: number }>; emoji: string }[] = [
+  { id: "photos", title: "Photo Wall", sub: "Real moments from the community — share yours", Icon: Camera, emoji: "📸" },
   { id: "connect", title: "Connect", sub: "See where the movement is spreading & get involved", Icon: BellIcon, emoji: "🌍" },
   { id: "movement", title: "The Movement", sub: "More than a festival — a movement that remains", Icon: FlameIcon, emoji: "🔥" },
   { id: "discipleship", title: "Discipleship & Partners", sub: "Keep the fire burning · churches & ministries", Icon: Users, emoji: "🤝" },
@@ -136,6 +138,7 @@ export default function MoreScreen({
               </button>
             </div>
             {view === "prayer" && <PrayerWallScreen />}
+            {view === "photos" && <PhotoWallScreen />}
             {view === "movement" && <MovementScreen />}
             {view === "discipleship" && <DiscipleshipScreen />}
             {view === "give" && <DonateScreen />}
