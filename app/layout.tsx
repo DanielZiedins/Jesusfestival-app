@@ -37,7 +37,10 @@ export const metadata: Metadata = {
     title: "Jesus Festival",
   },
   formatDetection: { telephone: false },
-  alternates: { canonical: SITE.url },
+  alternates: {
+    canonical: SITE.url,
+    types: { "application/rss+xml": `${SITE.url}/feed.xml` },
+  },
   category: "events",
   authors: [{ name: "Jesus Festival" }],
   creator: "Jesus Festival",

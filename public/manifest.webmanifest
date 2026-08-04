@@ -9,28 +9,63 @@
   "orientation": "portrait",
   "background_color": "#0a0510",
   "theme_color": "#0a0510",
-  "categories": ["lifestyle", "events", "music"],
+  "categories": [
+    "lifestyle",
+    "events",
+    "music"
+  ],
   "shortcuts": [
     {
       "name": "Festival Schedule",
       "short_name": "Schedule",
       "description": "Open the two-day Jesus Festival schedule",
       "url": "/schedule",
-      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Festival Map",
       "short_name": "Map",
       "description": "Open the Gage Park map and directions",
       "url": "/map",
-      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Revive the City",
       "short_name": "Play",
       "description": "Open daily Kingdom missions and games",
       "url": "/revive-the-city",
-      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Photo Wall",
+      "short_name": "Photos",
+      "description": "Share and browse festival moments",
+      "url": "/photos",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     }
   ],
   "icons": [
