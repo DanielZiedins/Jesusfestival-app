@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import ScreenHeader from "@/components/ScreenHeader";
 import Reveal from "@/components/Reveal";
 import { fetchPhotos, photoUrl, submitPhoto, type Photo } from "@/lib/photos";
 import { Camera, Sparkle } from "@/components/icons";
+import { useOverlay } from "@/lib/useOverlay";
 
 /**
  * The community Photo Wall. Anyone can submit a moment; nothing appears until
@@ -23,27 +24,18 @@ export default function PhotoWallScreen() {
   const fileRef = useRef<HTMLInputElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
 
+  const closeLightbox = useCallback(() => setLightbox(null), []);
+
   const load = () => {
     setPhotos(undefined);
     fetchPhotos().then(setPhotos);
   };
   useEffect(load, []);
 
-  // While the lightbox is open: Escape closes it and the page behind stays put.
-  // Without the scroll lock the gallery scrolls under the overlay on touch.
+  // Scroll lock + Escape, shared with every other full-screen overlay.
+  useOverlay(!!lightbox, closeLightbox);
   useEffect(() => {
-    if (!lightbox) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setLightbox(null);
-    };
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", onKey);
-    closeRef.current?.focus();
-    return () => {
-      document.body.style.overflow = prev;
-      window.removeEventListener("keydown", onKey);
-    };
+    if (lightbox) closeRef.current?.focus();
   }, [lightbox]);
 
   // Object URLs leak unless revoked when replaced or unmounted.

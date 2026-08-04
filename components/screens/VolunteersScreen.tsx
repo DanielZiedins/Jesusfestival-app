@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Portal from "@/components/Portal";
+import { useOverlay } from "@/lib/useOverlay";
 import { ChevronLeft } from "@/components/icons";
 
 // The official Jesus Festival Volunteer portal (built & hosted by the volunteer team),
@@ -12,6 +13,9 @@ const VOLUNTEER_URL = "https://zealous-desert-0f13fd40f.7.azurestaticapps.net/vo
 export default function VolunteersScreen({ onClose }: { onClose: () => void }) {
   const [loaded, setLoaded] = useState(false);
   const [slow, setSlow] = useState(false);
+
+  // Full-screen embed: lock the page behind it and let Escape back out.
+  useOverlay(true, onClose);
 
   // If it hasn't loaded in a few seconds, gently surface the open-in-browser fallback.
   useEffect(() => {

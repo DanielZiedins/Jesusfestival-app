@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { joinFestival } from "@/lib/supabase";
 import { COUNTRIES, findCountry, geocodeCity } from "@/lib/geo";
 import { hasProfanity, tidy } from "@/lib/clean";
+import { useOverlay } from "@/lib/useOverlay";
 import { ArrowRight, Check, Sparkle } from "./icons";
 
 const PERKS = [
@@ -26,6 +27,10 @@ export default function Onboarding({ onDone }: { onDone: () => void }) {
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Scroll lock only: this gate has its own explicit "explore without signing
+  // up" choice, so Escape must not silently dismiss it.
+  useOverlay(true);
 
   const valid = name.trim().length >= 2 && isEmail(email);
 
