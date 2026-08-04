@@ -21,12 +21,30 @@ export default function PhotoWallScreen() {
   const [preview, setPreview] = useState<string | null>(null);
   const [lightbox, setLightbox] = useState<Photo | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
 
   const load = () => {
     setPhotos(undefined);
     fetchPhotos().then(setPhotos);
   };
   useEffect(load, []);
+
+  // While the lightbox is open: Escape closes it and the page behind stays put.
+  // Without the scroll lock the gallery scrolls under the overlay on touch.
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+    };
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    closeRef.current?.focus();
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [lightbox]);
 
   // Object URLs leak unless revoked when replaced or unmounted.
   useEffect(() => {
@@ -178,7 +196,13 @@ export default function PhotoWallScreen() {
           <div className="mt-4 text-center">
             {lightbox.caption && <p className="text-[15px] font-semibold text-white">{lightbox.caption}</p>}
             {lightbox.name && <p className="mt-1 text-[12px] text-white/55">— {lightbox.name.split(/\s+/)[0]}</p>}
-            <p className="mt-4 text-[12px] font-bold uppercase tracking-wider text-white/40">Tap anywhere to close</p>
+            <button
+              ref={closeRef}
+              onClick={() => setLightbox(null)}
+              className="mt-4 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-[12px] font-bold uppercase tracking-wider text-white/80 active:scale-95"
+            >
+              Close
+            </button>
           </div>
         </div>
       )}

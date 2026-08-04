@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { BLOG_POSTS, postBySlug, sortedPosts } from "@/lib/blog";
 import { KINGDOM_SITES, SITE } from "@/lib/content";
 import Rich from "@/components/blog/Rich";
+import { ReadingProgress, ShareArticle } from "@/components/blog/ArticleChrome";
 
 export function generateStaticParams() {
   return BLOG_POSTS.map((p) => ({ slug: p.slug }));
@@ -73,6 +74,8 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
     <main className="mx-auto min-h-screen max-w-2xl px-5 pb-20 pt-10">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
+      <ReadingProgress />
+
       <nav aria-label="Breadcrumb" className="text-[12px] font-bold uppercase tracking-[0.18em] text-white/40">
         <Link href="/" className="hover:text-gold-400">Festival</Link>
         <span className="px-2">/</span>
@@ -101,6 +104,8 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
         <div className="mt-2">
           <Rich blocks={post.body} />
         </div>
+
+        <ShareArticle title={post.title} url={`${SITE.url}/blog/${post.slug}`} />
       </article>
 
       {related.length > 0 && (
