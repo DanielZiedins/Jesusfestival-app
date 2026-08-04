@@ -348,14 +348,42 @@ export const INTERESTS = [
 // Movement screen, the newsfeed spotlights, and the weekly emails — real
 // outbound links with descriptive text, which is also what search engines
 // need to connect the network together.
-export const KINGDOM_SITES = [
+export const KINGDOM_SITES: {
+  name: string;
+  url: string;
+  domain: string;
+  emoji: string;
+  tag: string;
+  blurb: string;
+  group: "movement" | "growth" | "business";
+}[] = [
+  // ---------- the movement ----------
   {
     name: "Thy Kingdom Network",
     url: "https://www.thykingdom.net",
     domain: "ThyKingdom.net",
     emoji: "👑",
     tag: "The network behind it all",
-    blurb: "The home base of the whole movement — the team, the vision, and every Kingdom project under one roof. Start here to see how it all connects.",
+    blurb: "The home base of the whole movement — the team, the vision, and every Kingdom project under one roof.",
+    group: "movement",
+  },
+  {
+    name: "Jesus Festival",
+    url: "https://www.jesusfestival.ca",
+    domain: "JesusFestival.ca",
+    emoji: "🎪",
+    tag: "The festival website",
+    blurb: "Event details, volunteering, vendors, sponsorship and everything you need to plan your visit to Gage Park.",
+    group: "movement",
+  },
+  {
+    name: "Jesus Festival Movement",
+    url: "https://www.jesusfestivalmovement.com",
+    domain: "JesusFestivalMovement.com",
+    emoji: "🔥",
+    tag: "Start one in your city",
+    blurb: "Feel the stir to gather your own city? This is the blueprint for bringing a Jesus Festival where you live.",
+    group: "movement",
   },
   {
     name: "Love on The World",
@@ -363,7 +391,8 @@ export const KINGDOM_SITES = [
     domain: "LoveonTheWorld.com",
     emoji: "🌍",
     tag: "Take His love everywhere",
-    blurb: "A movement of practical love — taking the love of Jesus beyond the church walls and into the whole world, one act of love at a time.",
+    blurb: "A movement of practical love — taking the love of Jesus beyond church walls and into the whole world.",
+    group: "movement",
   },
   {
     name: "Love on Mission",
@@ -371,7 +400,8 @@ export const KINGDOM_SITES = [
     domain: "LoveonMission.world",
     emoji: "🗺️",
     tag: "The Great Commission, mapped",
-    blurb: "See where the Gospel is on the move around the globe — a living world map of missions you can pray for, follow, and join.",
+    blurb: "A living world map of missions you can see, pray for, follow and join across the globe.",
+    group: "movement",
   },
   {
     name: "Love on Hamilton",
@@ -379,7 +409,37 @@ export const KINGDOM_SITES = [
     domain: "LoveonHamilton.com",
     emoji: "🏙️",
     tag: "Our city, loved well",
-    blurb: "The same heart as the festival, all year round — practical love poured out on Hamilton's streets and neighbourhoods.",
+    blurb: "The festival heart all year round — practical love poured out on Hamilton's streets and neighbourhoods.",
+    group: "movement",
+  },
+  {
+    name: "Kingdom Response",
+    url: "https://www.kingdomresponse.com",
+    domain: "KingdomResponse.com",
+    emoji: "🚨",
+    tag: "The Church, first on the scene",
+    blurb: "Church-led disaster relief — mobilising believers to show up with help and hope when crisis hits.",
+    group: "movement",
+  },
+  {
+    name: "Seek First",
+    url: "https://www.seekfirst.world",
+    domain: "SeekFirst.World",
+    emoji: "✨",
+    tag: "The Kingdom, first",
+    blurb: "A call back to the first thing: seek first the Kingdom of God — and watch everything else fall into place.",
+    group: "movement",
+  },
+
+  // ---------- growing in faith ----------
+  {
+    name: "I Am Reborn",
+    url: "https://www.iamreborn.net",
+    domain: "IAmReborn.net",
+    emoji: "🕊️",
+    tag: "Your new life starts here",
+    blurb: "Just said yes to Jesus — or thinking about it? Your next step into new life, made simple and full of hope.",
+    group: "growth",
   },
   {
     name: "Oikos Map",
@@ -387,23 +447,17 @@ export const KINGDOM_SITES = [
     domain: "OikosMap.com",
     emoji: "🧭",
     tag: "Reach the people closest to you",
-    blurb: "A free tool that helps you map the people God has already placed around you — family, friends, coworkers — and pray them toward Jesus.",
+    blurb: "A free tool that maps the people God has already placed around you — and helps you pray them toward Jesus.",
+    group: "growth",
   },
   {
-    name: "Seek First",
-    url: "https://www.seekfirst.world",
-    domain: "SeekFirst.World",
-    emoji: "🔥",
-    tag: "The Kingdom, first",
-    blurb: "A call back to the first thing: seek first the Kingdom of God. Vision, encouragement and a collective of people putting Him first.",
-  },
-  {
-    name: "I Am Reborn",
-    url: "https://www.iamreborn.net",
-    domain: "IAmReborn.net",
-    emoji: "🕊️",
-    tag: "Your new life starts here",
-    blurb: "Just said yes to Jesus — or thinking about it? This is the place for your next step into new life, made simple and full of hope.",
+    name: "Kingdom Base",
+    url: "https://kingdombase.app",
+    domain: "KingdomBase.App",
+    emoji: "📖",
+    tag: "Never lose track of a soul",
+    blurb: "An evangelism companion for following up with real people, real conversations and real next steps.",
+    group: "growth",
   },
   {
     name: "Daniel & Katie",
@@ -411,6 +465,54 @@ export const KINGDOM_SITES = [
     domain: "KD-Ziedins.com",
     emoji: "💛",
     tag: "Love Overflow",
-    blurb: "Meet Daniel & Katie — the family behind the movement — and the Love Overflow heart that carries all of it.",
+    blurb: "Meet the family behind the movement and the Love Overflow heart that carries all of it.",
+    group: "growth",
+  },
+  {
+    name: "Daniel Ziedins",
+    url: "https://www.danielziedins.com",
+    domain: "DanielZiedins.com",
+    emoji: "🎤",
+    tag: "Vision, writing & speaking",
+    blurb: "The story, the writing and the message behind building Kingdom things in the everyday world.",
+    group: "growth",
+  },
+
+  // ---------- Kingdom business ----------
+  {
+    name: "Lions Den Alliance",
+    url: "https://www.lionsdenalliance.com",
+    domain: "LionsDenAlliance.com",
+    emoji: "🦁",
+    tag: "An alliance of Kingdom businesses",
+    blurb: "Christian business owners refusing to separate Sunday from Monday — building companies that carry the Kingdom.",
+    group: "business",
+  },
+  {
+    name: "TaskSimply",
+    url: "https://www.tasksimply.com",
+    domain: "TaskSimply.com",
+    emoji: "✅",
+    tag: "Steward your days well",
+    blurb: "Tasks, teams and budgets in one calm place — because faithfulness in the small things starts with order.",
+    group: "business",
+  },
+  {
+    name: "SIX33 Outpost",
+    url: "https://www.six33outpost.com",
+    domain: "SIX33Outpost.com",
+    emoji: "🛡️",
+    tag: "Wear the message",
+    blurb: "Bold Christian apparel for people who want their everyday clothes to start Kingdom conversations.",
+    group: "business",
+  },
+  {
+    name: "SIX33 Legends",
+    url: "https://www.six33legends.com",
+    domain: "SIX33Legends.com",
+    emoji: "⚔️",
+    tag: "Story that stirs faith",
+    blurb: "A cinematic universe built to make courage, sacrifice and faith feel as epic as they truly are.",
+    group: "business",
   },
 ];

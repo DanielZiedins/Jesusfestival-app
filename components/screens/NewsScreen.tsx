@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ScreenHeader from "@/components/ScreenHeader";
 import Reveal from "@/components/Reveal";
-import { NewsIcon, BellIcon, Check } from "@/components/icons";
+import { NewsIcon, BellIcon, Check, ArrowRight } from "@/components/icons";
 import { fetchNews, type NewsPost } from "@/lib/supabase";
 import { subscribeToPush, pushEnabled } from "@/lib/push";
 
@@ -116,6 +116,23 @@ export default function NewsScreen() {
             </p>
           </div>
         </button>
+      </Reveal>
+
+      {/* Blog — real articles, statically rendered so they're shareable & indexable */}
+      <Reveal>
+        <a
+          href="/blog"
+          className="mb-5 flex items-center gap-3 rounded-2xl border border-gold/25 bg-gradient-to-r from-gold/10 to-transparent p-3.5 active:scale-[0.99]"
+        >
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-purple-600/40 to-navy-800 text-lg" aria-hidden>
+            ✍️
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-sm font-semibold text-white">Read the blog</span>
+            <span className="block text-xs text-white/60">Encouragement, practical faith &amp; the story behind it all</span>
+          </span>
+          <ArrowRight width={17} height={17} className="shrink-0 text-gold-400" />
+        </a>
       </Reveal>
 
       {/* Feed */}
