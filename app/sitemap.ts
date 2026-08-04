@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const posts = sortedPosts();
   const blog: MetadataRoute.Sitemap = [
+    { url: `${SITE.url}/network`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE.url}/blog`, changeFrequency: "weekly", priority: 0.8 },
     ...posts.map((post) => ({
       url: `${SITE.url}/blog/${post.slug}`,
