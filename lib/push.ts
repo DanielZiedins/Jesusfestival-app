@@ -40,8 +40,12 @@ export async function subscribeToPush(): Promise<{ ok: boolean; error?: string }
       });
     }
     const json = sub.toJSON() as { endpoint?: string };
-    // Only report success if the subscription actually stored server-side.
-    const { error } = await supabase.from("revive_push_subs").upsert({ endpoint: json.endpoint, sub: json }, { onConflict: "endpoint" });
+    // Registers through a SECURITY DEFINER RPC rather than writing the table
+    // directly: a plain .upsert() is INSERT ... ON CONFLICT DO UPDATE, which
+    // Postgres also requires a SELECT policy for — and adding one would expose
+    // every subscriber's push endpoint. This route stores the subscription
+    // without granting anyone read access.
+    const { error } = await supabase.rpc("push_subscribe", { p_endpoint: json.endpoint, p_sub: json });
     if (error) return { ok: false, error: "Couldn't save your subscription — check your connection and try again." };
     try {
       localStorage.setItem("jf-push", "1");
