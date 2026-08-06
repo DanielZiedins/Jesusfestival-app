@@ -15,6 +15,7 @@ const FLOWS: { group: string; items: { id: string; label: string }[] }[] = [
       { id: "bethel", label: "🎶 Bethel — Friday headliner" },
       { id: "lineup", label: "🎤 Lineup update" },
       { id: "launch", label: "🎉 The app leveled up" },
+      { id: "shop", label: "🛍️ The Kingdom Shop is open" },
     ],
   },
   {
