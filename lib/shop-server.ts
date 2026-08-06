@@ -75,7 +75,9 @@ function normalize(product: RawProduct): ShopProduct | null {
 
 async function fetchCollection(handle: string, limit: number): Promise<ShopProduct[] | null> {
   try {
-    const response = await fetch(`${SHOP_URL}/collections/${handle}/products.json?limit=${limit}`, {
+    // Pin the catalog context to Canada so Vercel's U.S. build region cannot
+    // silently localize dollar amounts to USD while the app labels them CAD.
+    const response = await fetch(`${SHOP_URL}/collections/${handle}/products.json?limit=${limit}&country=CA`, {
       headers: { Accept: "application/json" },
       next: { revalidate: 900 },
     });
