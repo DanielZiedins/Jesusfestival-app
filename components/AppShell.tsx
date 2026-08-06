@@ -24,7 +24,7 @@ const NewsScreen = dynamic(() => import("./screens/NewsScreen"), { loading: Scre
 const MoreScreen = dynamic(() => import("./screens/MoreScreen"), { loading: ScreenLoader });
 
 // Sub-views of "More" that an email/push ?go= link is allowed to open.
-const MORE_VIEWS = ["prayer", "volunteers", "connect", "movement", "discipleship", "give", "map", "install", "settings", "photos"];
+const MORE_VIEWS = ["prayer", "volunteers", "connect", "movement", "discipleship", "give", "map", "install", "settings", "photos", "shop"];
 const TAB_IDS: TabId[] = ["home", "schedule", "game", "news", "more"];
 
 export default function AppShell({ initialDestination = { tab: "home" } }: { initialDestination?: AppDestination }) {

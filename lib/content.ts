@@ -480,6 +480,15 @@ export const KINGDOM_SITES: {
 
   // ---------- Kingdom business ----------
   {
+    name: "The Kingdom Shop",
+    url: "https://thykingdom.shop",
+    domain: "ThyKingdom.Shop",
+    emoji: "🛍️",
+    tag: "Wear the message",
+    blurb: "Faith-based apparel and gear — including the official Jesus Festival collection. Every order sows back into the mission.",
+    group: "business",
+  },
+  {
     name: "Lions Den Alliance",
     url: "https://www.lionsdenalliance.com",
     domain: "LionsDenAlliance.com",

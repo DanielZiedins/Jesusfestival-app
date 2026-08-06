@@ -10,7 +10,8 @@ export type MoreView =
   | "connect"
   | "settings"
   | "install"
-  | "photos";
+  | "photos"
+  | "shop";
 
 export type AppDestination = {
   tab: TabId;
@@ -33,6 +34,7 @@ export const APP_ROUTES: Record<string, AppDestination> = {
   "/settings": { tab: "more", moreView: "settings" },
   "/install": { tab: "more", moreView: "install" },
   "/photos": { tab: "more", moreView: "photos" },
+  "/shop": { tab: "more", moreView: "shop" },
 };
 
 export const APP_ROUTE_META: Record<string, { title: string; description: string }> = {
@@ -71,6 +73,10 @@ export const APP_ROUTE_META: Record<string, { title: string; description: string
   "/give": {
     title: "Give to Jesus Festival",
     description: "Help keep Jesus Festival free and fuel worship, outreach, baptisms, and year-round discipleship.",
+  },
+  "/shop": {
+    title: "Jesus Festival Shop",
+    description: "Official Jesus Festival apparel from ThyKingdom.Shop — wear the message, start conversations, and fuel the mission behind the festival.",
   },
   "/photos": {
     title: "Jesus Festival Photo Wall",
@@ -129,6 +135,7 @@ const MORE_PATHS: Record<MoreView, string> = {
   map: "/map",
   connect: "/connect",
   photos: "/photos",
+  shop: "/shop",
   settings: "/settings",
   install: "/install",
 };
@@ -155,6 +162,7 @@ export const INDEXABLE_ROUTES = [
   "/discipleship",
   "/give",
   "/photos",
+  "/shop",
   "/map",
   "/connect",
   "/install",

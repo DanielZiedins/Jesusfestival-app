@@ -423,6 +423,28 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
         </Reveal>
       </section>
 
+      {/* ===== FESTIVAL SHOP ===== */}
+      <section className="mt-6 px-4">
+        <Reveal className="mx-auto max-w-md">
+          <button
+            onClick={() => go("more", "shop")}
+            className="relative flex w-full items-center gap-4 overflow-hidden rounded-2xl border border-gold/25 bg-gradient-to-br from-purple-900/25 via-gold/[0.08] to-transparent p-4 text-left active:scale-[0.99]"
+          >
+            <span className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gold/15 blur-3xl" />
+            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-2xl">
+              🛍️
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-display text-base font-bold text-white">The Festival Shop is open!</span>
+              <span className="mt-0.5 block text-[13px] leading-snug text-white/60">
+                Official Jesus Festival tees &amp; Kingdom apparel — wear the message.
+              </span>
+            </span>
+            <ArrowRight width={18} height={18} className="shrink-0 text-gold-400" />
+          </button>
+        </Reveal>
+      </section>
+
       {/* ===== REVIVE THE CITY teaser ===== */}
       <section className="mt-14 px-4">
         <Reveal className="mx-auto max-w-md">

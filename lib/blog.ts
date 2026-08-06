@@ -31,6 +31,36 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "wear-the-message",
+    title: "What You Wear Can Start the Conversation",
+    description:
+      "Most Gospel conversations don't start with a sermon — they start with a question. On faith-worn-out-loud, the new Kingdom Shop, and the official Jesus Festival collection.",
+    eyebrow: "Wear the message",
+    emoji: "🛍️",
+    date: "2026-08-05",
+    readMins: 4,
+    body: [
+      { t: "p", text: "Here's a small evangelism secret nobody puts on conference slides: an enormous number of Gospel conversations don't start with an invitation or an argument. They start with a question. *\"What's your shirt about?\"*" },
+      { t: "p", text: "A question is the easiest opening in the world, because the other person started it. No awkward pivot, no working up the nerve. They asked. You just answer honestly." },
+      { t: "h2", text: "Faith was never meant to be invisible" },
+      { t: "p", text: "There's a healthy caution in Christians who don't want faith to be a costume — Jesus had strong words for religion worn as performance. But there's a difference between performing and being unashamed. One is about looking impressive; the other is about being findable." },
+      { t: "quote", text: "For I am not ashamed of the gospel, because it is the power of God that brings salvation to everyone who believes.", ref: "Romans 1:16" },
+      { t: "p", text: "A shirt won't save anyone. But it marks you as safe to ask — and in a lonely, quietly curious city, being safe to ask is no small ministry." },
+      { t: "h2", text: "So we opened a shop" },
+      { t: "p", text: "[The Kingdom Shop](https://thykingdom.shop) is the new home for apparel across the whole network — bold, well-made designs built to open conversations, from Seek First pieces to Love on Hamilton gear. And because you're reading this here: it carries the [official Jesus Festival collection](https://thykingdom.shop/collections/jesus-festival), including this year's festival tee." },
+      { t: "p", text: "You can browse it right inside the app — open the [Festival Shop](https://www.jesusfestival.app/shop) — and checkout happens securely on the store." },
+      { t: "h2", text: "Where the money goes" },
+      { t: "p", text: "This is the part we care most about: the shop exists to fund the mission, not the other way around. Orders sow back into the Kingdom work behind this festival — the same heart as [SIX33 Outpost](https://www.six33outpost.com), and the same conviction the [Lions Den Alliance](https://www.lionsdenalliance.com) businesses carry: commerce, done right, is a Kingdom engine." },
+      { t: "list", items: [
+        "**Wear it to the festival.** Spot each other across Gage Park — one family, visibly.",
+        "**Wear it after.** September 6 is when the shirt starts its real job.",
+        "**Give one away.** A hoodie handed to a friend says more than most sermons.",
+      ] },
+      { t: "p", text: "And when someone does ask about your shirt — don't panic, don't preach. Just tell them what Jesus has actually done for you. That's the whole conversation. The shirt just opened the door." },
+    ],
+    related: ["ThyKingdom.Shop", "SIX33Outpost.com", "LionsDenAlliance.com"],
+  },
+  {
     slug: "why-a-free-festival",
     title: "Why We Give a Whole City a Free Festival",
     description:
