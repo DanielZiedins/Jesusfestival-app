@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { SCHEDULE, SITE, LINKS } from "@/lib/content";
-import Reveal, { Eyebrow } from "@/components/Reveal";
+import Reveal from "@/components/Reveal";
 import ScreenHeader from "@/components/ScreenHeader";
 import { CalendarIcon, MapPin, ArrowRight, Share } from "@/components/icons";
 import { clientNow, defaultDayId, festivalPhase, getLineup, nowNext, shareSlot, slotId, toggleLineup, type Slot } from "@/lib/festival";

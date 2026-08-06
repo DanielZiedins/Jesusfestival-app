@@ -1,5 +1,11 @@
 // Jesus Festival — lightweight offline-first service worker.
-const CACHE = "jf-app-v4";
+const CACHE = "jf-app-v5";
+const IMG_CACHE = "jf-images-v1";
+const IMG_MAX_ENTRIES = 80;
+const IMG_HOSTS = new Set([
+  "d2xsxph8kpxj0f.cloudfront.net",
+  "cdn.shopify.com",
+]);
 // Precached so the festival weekend works on a congested park network: the app
 // shell plus the brand art the first screens actually render.
 const APP_SHELL = [
@@ -8,6 +14,8 @@ const APP_SHELL = [
   "/map",
   "/revive-the-city",
   "/news",
+  "/photos",
+  "/shop",
   "/manifest.webmanifest",
   "/brand/banner.png",
   "/brand/logo-mark-white.png",
@@ -43,7 +51,7 @@ async function trimImageCache() {
     const cache = await caches.open(IMG_CACHE);
     const keys = await cache.keys();
     for (let i = 0; i < keys.length - IMG_MAX_ENTRIES; i++) await cache.delete(keys[i]);
-  } catch (e) {
+  } catch {
     /* ignore */
   }
 }
@@ -53,20 +61,22 @@ self.addEventListener("fetch", (event) => {
   if (request.method !== "GET") return;
 
   const url = new URL(request.url);
-  // Never cache Supabase / API calls.
-  if (url.hostname.includes("supabase")) return;
+  // Never cache live API calls. The API/server controls its own freshness.
+  if (url.hostname.includes("supabase") || (url.origin === self.location.origin && url.pathname.startsWith("/api/"))) return;
 
   // Festival photos (CDN): cache-first so they're instant on repeat visits and
   // still there when the park network dies. Opaque responses are fine here —
   // they're only ever used as <img> sources.
-  if (url.hostname === IMG_HOST) {
+  if (IMG_HOSTS.has(url.hostname)) {
     event.respondWith(
       caches.match(request).then(
         (cached) =>
           cached ||
           fetch(request).then((res) => {
-            const copy = res.clone();
-            caches.open(IMG_CACHE).then((c) => c.put(request, copy)).then(trimImageCache).catch(() => {});
+            if (res.ok || res.type === "opaque") {
+              const copy = res.clone();
+              caches.open(IMG_CACHE).then((c) => c.put(request, copy)).then(trimImageCache).catch(() => {});
+            }
             return res;
           })
       )
@@ -113,7 +123,7 @@ self.addEventListener("push", (event) => {
   let data = {};
   try {
     data = event.data ? event.data.json() : {};
-  } catch (e) {
+  } catch {
     data = { title: "Jesus Festival", body: event.data ? event.data.text() : "" };
   }
   const title = data.title || "Jesus Festival";
@@ -136,7 +146,7 @@ self.addEventListener("notificationclick", (event) => {
         if ("focus" in c) {
           try {
             c.navigate(target);
-          } catch (e) {
+          } catch {
             /* ignore */
           }
           return c.focus();

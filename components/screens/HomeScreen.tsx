@@ -97,7 +97,7 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
       <section ref={heroRef} className="relative h-[92vh] min-h-[600px] w-full overflow-hidden">
         <motion.div style={{ y: bgY, scale: bgScale }} className="absolute inset-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={IMG.heroCrowd} alt="Jesus Festival worship" {...({ fetchpriority: "high" } as Record<string, string>)} decoding="async" className="h-full w-full object-cover" />
+          <img src={IMG.heroCrowd} alt="Jesus Festival worship" fetchPriority="high" decoding="async" className="h-full w-full object-cover" />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/25 to-ink" />
         <div className="absolute inset-0 bg-radial-glow" />

@@ -11,6 +11,7 @@ import Splash from "./Splash";
 import Onboarding from "./Onboarding";
 import HomeScreen from "./screens/HomeScreen";
 import { destinationFor, pathFor, syncDocumentMeta, type AppDestination } from "@/lib/routes";
+import type { ShopData } from "@/lib/shop";
 
 // Code-split secondary screens so the first load (Home) stays fast.
 const ScreenLoader = () => (
@@ -27,7 +28,13 @@ const MoreScreen = dynamic(() => import("./screens/MoreScreen"), { loading: Scre
 const MORE_VIEWS = ["prayer", "volunteers", "connect", "movement", "discipleship", "give", "map", "install", "settings", "photos", "shop"];
 const TAB_IDS: TabId[] = ["home", "schedule", "game", "news", "more"];
 
-export default function AppShell({ initialDestination = { tab: "home" } }: { initialDestination?: AppDestination }) {
+export default function AppShell({
+  initialDestination = { tab: "home" },
+  initialShopData,
+}: {
+  initialDestination?: AppDestination;
+  initialShopData?: ShopData;
+}) {
   const [tab, setTab] = useState<TabId>(initialDestination.tab);
   // Splash + onboarding are client-only (mounted gate) to avoid SSR/AnimatePresence hydration mismatch.
   const [mounted, setMounted] = useState(false);
@@ -161,7 +168,14 @@ export default function AppShell({ initialDestination = { tab: "home" } }: { ini
             {tab === "schedule" && <ScheduleScreen />}
             {tab === "game" && <GameScreen />}
             {tab === "news" && <NewsScreen />}
-            {tab === "more" && <MoreScreen resetSignal={moreSignal} openView={moreView} onViewChange={openMoreView} />}
+            {tab === "more" && (
+              <MoreScreen
+                resetSignal={moreSignal}
+                openView={moreView}
+                onViewChange={openMoreView}
+                initialShopData={initialShopData}
+              />
+            )}
           </motion.div>
         </main>
 

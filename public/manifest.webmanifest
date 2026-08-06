@@ -66,6 +66,19 @@
           "type": "image/png"
         }
       ]
+    },
+    {
+      "name": "Festival Shop",
+      "short_name": "Shop",
+      "description": "Shop the official Jesus Festival collection",
+      "url": "/shop",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     }
   ],
   "icons": [

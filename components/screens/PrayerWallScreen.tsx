@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Portal from "@/components/Portal";
 import Reveal, { Eyebrow } from "@/components/Reveal";
@@ -22,7 +22,7 @@ import {
   type Prayer,
   type PrayerStats,
 } from "@/lib/game";
-import { ArrowRight, Check, Share, BellIcon } from "@/components/icons";
+import { ArrowRight, Share, BellIcon } from "@/components/icons";
 
 const UNITY_VERSES = [
   { text: "For where two or three gather in my name, there am I with them.", ref: "Matthew 18:20" },

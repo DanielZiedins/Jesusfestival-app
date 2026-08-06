@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { IMG, SITE } from "@/lib/content";
+import { IMG } from "@/lib/content";
 
 /**
  * `leaving` drives a plain CSS fade instead of a framer `exit`. An exit

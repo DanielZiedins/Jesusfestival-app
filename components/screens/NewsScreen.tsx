@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import ScreenHeader from "@/components/ScreenHeader";
 import Reveal from "@/components/Reveal";
@@ -75,7 +76,6 @@ export default function NewsScreen() {
   useEffect(() => {
     load();
     setNotify(pushEnabled());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function toggleNotify() {
@@ -120,7 +120,7 @@ export default function NewsScreen() {
 
       {/* Blog — real articles, statically rendered so they're shareable & indexable */}
       <Reveal>
-        <a
+        <Link
           href="/blog"
           className="mb-5 flex items-center gap-3 rounded-2xl border border-gold/25 bg-gradient-to-r from-gold/10 to-transparent p-3.5 active:scale-[0.99]"
         >
@@ -132,7 +132,7 @@ export default function NewsScreen() {
             <span className="block text-xs text-white/60">Encouragement, practical faith &amp; the story behind it all</span>
           </span>
           <ArrowRight width={17} height={17} className="shrink-0 text-gold-400" />
-        </a>
+        </Link>
       </Reveal>
 
       {/* Feed */}

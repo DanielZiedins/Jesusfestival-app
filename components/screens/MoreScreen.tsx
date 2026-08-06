@@ -17,6 +17,7 @@ import ShopScreen from "./ShopScreen";
 import VolunteersScreen from "./VolunteersScreen";
 import { FlameIcon, MapIcon, BellIcon, ArrowRight, ChevronLeft, Users, Heart, Download, Sparkle, Camera } from "@/components/icons";
 import type { MoreView } from "@/lib/routes";
+import type { ShopData } from "@/lib/shop";
 
 type View = "hub" | MoreView;
 
@@ -36,10 +37,12 @@ export default function MoreScreen({
   resetSignal = 0,
   openView = null,
   onViewChange,
+  initialShopData,
 }: {
   resetSignal?: number;
   openView?: string | null;
   onViewChange?: (view: View) => void;
+  initialShopData?: ShopData;
 }) {
   const [view, setView] = useState<View>((openView as View) || "hub");
 
@@ -141,7 +144,7 @@ export default function MoreScreen({
             </div>
             {view === "prayer" && <PrayerWallScreen />}
             {view === "photos" && <PhotoWallScreen />}
-            {view === "shop" && <ShopScreen />}
+            {view === "shop" && <ShopScreen initialData={initialShopData} />}
             {view === "movement" && <MovementScreen />}
             {view === "discipleship" && <DiscipleshipScreen />}
             {view === "give" && <DonateScreen />}

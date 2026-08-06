@@ -605,7 +605,8 @@ export async function prayerAdd(name: string | null, church: string | null, body
     if (error || !data?.ok) return { ok: false, error: data?.error || "Couldn't post right now — try again." };
     markMyPrayer(data.id);
     if (data.token) savePrayerToken(data.id, data.token);
-    const { token: _t, ...prayer } = data as Prayer & { token?: string };
+    const prayer = { ...data } as Prayer & { token?: string };
+    delete prayer.token;
     return { ok: true, prayer: { ...prayer, answered: Boolean(data.answered) } as Prayer };
   } catch {
     return { ok: false, error: "Couldn't post — check your connection." };
