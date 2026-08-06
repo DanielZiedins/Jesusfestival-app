@@ -58,6 +58,46 @@ export async function subscribeToPush(): Promise<{ ok: boolean; error?: string }
   }
 }
 
+/**
+ * Silently repair subscriptions broken by the RLS bug that rejected every
+ * registration (see migration fix_push_subscribe_rls).
+ *
+ * Anyone who tapped "turn on notifications" before the fix granted browser
+ * permission but never got stored server-side — so they believe alerts are on
+ * and would receive nothing. Because permission is already granted,
+ * re-subscribing raises no prompt and is invisible to them.
+ *
+ * Also covers the ordinary case of a browser rotating its push endpoint.
+ */
+export async function resubscribeIfPermitted(): Promise<void> {
+  try {
+    if (!pushSupported()) return;
+    if (Notification.permission !== "granted") return;
+
+    const reg = await Promise.race([
+      navigator.serviceWorker.ready,
+      new Promise<null>((resolve) => setTimeout(() => resolve(null), 6000)),
+    ]);
+    if (!reg) return;
+
+    const sub = await reg.pushManager.getSubscription();
+    if (!sub) return; // nothing to repair — they never completed a subscribe
+    const json = sub.toJSON() as { endpoint?: string };
+    if (!json.endpoint) return;
+
+    const { error } = await supabase.rpc("push_subscribe", { p_endpoint: json.endpoint, p_sub: json });
+    if (!error) {
+      try {
+        localStorage.setItem("jf-push", "1");
+      } catch {
+        /* ignore */
+      }
+    }
+  } catch {
+    /* best-effort repair — never surface anything to the user */
+  }
+}
+
 export function pushEnabled(): boolean {
   try {
     return typeof Notification !== "undefined" && Notification.permission === "granted" && localStorage.getItem("jf-push") === "1";

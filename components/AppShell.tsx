@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import BottomNav, { type TabId } from "./BottomNav";
 import InstallPrompt from "./InstallPrompt";
 import OfflineBanner from "./OfflineBanner";
+import { resubscribeIfPermitted } from "@/lib/push";
 import Splash from "./Splash";
 import Onboarding from "./Onboarding";
 import HomeScreen from "./screens/HomeScreen";
@@ -54,6 +55,9 @@ export default function AppShell({ initialDestination = { tab: "home" } }: { ini
 
   useEffect(() => {
     setMounted(true);
+    // Repair any push subscription that never stored server-side (silent — the
+    // browser permission is already granted, so nobody is re-prompted).
+    void resubscribeIfPermitted();
     const fade = setTimeout(() => setSplashLeaving(true), 1900);
     const gone = setTimeout(() => setSplash(false), 2400);
     try {
