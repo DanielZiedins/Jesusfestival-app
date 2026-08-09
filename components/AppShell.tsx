@@ -10,6 +10,7 @@ import { resubscribeIfPermitted } from "@/lib/push";
 import Splash from "./Splash";
 import Onboarding from "./Onboarding";
 import HomeScreen from "./screens/HomeScreen";
+import DiscoveryFooter from "./DiscoveryFooter";
 import { destinationFor, pathFor, syncDocumentMeta, type AppDestination } from "@/lib/routes";
 import type { ShopData } from "@/lib/shop";
 
@@ -177,6 +178,7 @@ export default function AppShell({
               />
             )}
           </motion.div>
+          <DiscoveryFooter />
         </main>
 
         <OfflineBanner />
