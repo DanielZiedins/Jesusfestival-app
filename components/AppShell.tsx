@@ -66,16 +66,29 @@ export default function AppShell({
     // Repair any push subscription that never stored server-side (silent — the
     // browser permission is already granted, so nobody is re-prompted).
     void resubscribeIfPermitted();
-    const fade = setTimeout(() => setSplashLeaving(true), 1900);
-    const gone = setTimeout(() => setSplash(false), 2400);
+    // Give first-time visitors the branded welcome, but never make returning
+    // visitors sit through it again in the same browsing session.
+    let seenSplash = false;
+    try {
+      seenSplash = sessionStorage.getItem("jf-splash-seen") === "yes";
+      sessionStorage.setItem("jf-splash-seen", "yes");
+    } catch {
+      /* ignore */
+    }
+    if (seenSplash) {
+      setSplashLeaving(true);
+      setSplash(false);
+    }
+    const fade = seenSplash ? undefined : setTimeout(() => setSplashLeaving(true), 1050);
+    const gone = seenSplash ? undefined : setTimeout(() => setSplash(false), 1400);
     try {
       if (!localStorage.getItem("jf-joined")) setOnboard(true);
     } catch {
       /* ignore */
     }
     return () => {
-      clearTimeout(fade);
-      clearTimeout(gone);
+      if (fade) clearTimeout(fade);
+      if (gone) clearTimeout(gone);
     };
   }, []);
 

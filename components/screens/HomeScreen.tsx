@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import {
   HERO,
   SITE,
@@ -25,6 +26,7 @@ import LiveImpact from "@/components/LiveImpact";
 import LineupCard from "@/components/LineupCard";
 import InviteCard from "@/components/InviteCard";
 import NotifyNudge from "@/components/NotifyNudge";
+import FestivalWeekendPass from "@/components/FestivalWeekendPass";
 import { isLivePhase, useFestivalPhase } from "@/lib/useFestivalPhase";
 import { getStreak } from "@/lib/game";
 import Reveal, { Eyebrow } from "@/components/Reveal";
@@ -96,8 +98,7 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
       {/* ===== HERO ===== */}
       <section ref={heroRef} className="relative h-[92vh] min-h-[600px] w-full overflow-hidden">
         <motion.div style={{ y: bgY, scale: bgScale }} className="absolute inset-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={IMG.heroCrowd} alt="Jesus Festival worship" fetchPriority="high" decoding="async" className="h-full w-full object-cover" />
+          <Image src={IMG.heroCrowd} alt="A crowd worshipping together at Jesus Festival" fill priority sizes="(max-width: 512px) 100vw, 512px" className="object-cover" />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/25 to-ink" />
         <div className="absolute inset-0 bg-radial-glow" />
@@ -113,10 +114,11 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
             className="relative mb-4"
           >
             <div className="absolute inset-0 -z-10 rounded-full bg-purple-500/30 blur-2xl" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/brand/logo-mark-white.png"
               alt="Jesus Festival"
+              width={160}
+              height={80}
               className="h-20 w-auto drop-shadow-[0_0_20px_rgba(147,51,234,0.5)]"
             />
           </motion.div>
@@ -205,6 +207,13 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
         </Reveal>
       </section>
 
+      {/* ===== MY FESTIVAL WEEKEND ===== */}
+      <section className="mt-6 px-4">
+        <Reveal className="mx-auto max-w-md">
+          <FestivalWeekendPass />
+        </Reveal>
+      </section>
+
       {/* ===== WELCOME BACK + QUICK ACTIONS ===== */}
       <section className="mt-10 px-4">
         <Reveal className="mx-auto max-w-md">
@@ -244,7 +253,7 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
       <FestivalWeather />
 
       {/* ===== WHAT TO EXPECT ===== */}
-      <section className="mt-14 px-4">
+      <section className="render-later mt-14 px-4">
         <Reveal className="mb-5 text-center">
           <Eyebrow>Two powerful days</Eyebrow>
           <h2 className="mt-2 font-display text-3xl font-bold text-white">What to Expect</h2>
@@ -307,7 +316,7 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
       </section>
 
       {/* ===== VERSE OF THE DAY ===== */}
-      <section className="mt-14 px-4">
+      <section className="render-later mt-14 px-4">
         <Reveal className="mx-auto max-w-md">
           <div className="mb-3 text-center">
             <Eyebrow>Verse of the day</Eyebrow>
@@ -341,7 +350,7 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
       </section>
 
       {/* ===== ARTISTS ===== */}
-      <section className="mt-14 px-4">
+      <section className="render-later mt-14 px-4">
         <Reveal className="mb-4 text-center">
           <Eyebrow>Artists confirmed</Eyebrow>
           <h2 className="mt-2 font-display text-3xl font-bold text-white">The 2026 Lineup</h2>
@@ -417,14 +426,14 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
       </section>
 
       {/* ===== INVITE CARD ===== */}
-      <section className="mt-14 px-4">
+      <section className="render-later mt-14 px-4">
         <Reveal className="mx-auto max-w-md">
           <InviteCard />
         </Reveal>
       </section>
 
       {/* ===== FESTIVAL SHOP ===== */}
-      <section className="mt-6 px-4">
+      <section className="render-later mt-6 px-4">
         <Reveal className="mx-auto max-w-md">
           <button
             onClick={() => go("more", "shop")}
@@ -446,7 +455,7 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
       </section>
 
       {/* ===== REVIVE THE CITY teaser ===== */}
-      <section className="mt-14 px-4">
+      <section className="render-later mt-14 px-4">
         <Reveal className="mx-auto max-w-md">
           <button
             onClick={() => go("game")}
@@ -471,7 +480,7 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
       </section>
 
       {/* ===== PRAYER WALL CTA ===== */}
-      <section className="mt-6 px-4">
+      <section className="render-later mt-6 px-4">
         <Reveal className="mx-auto max-w-md">
           <button
             onClick={() => go("more", "prayer")}
@@ -494,7 +503,7 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
       </section>
 
       {/* ===== TIMELINE (parallax) ===== */}
-      <section className="relative mt-16">
+      <section className="render-later relative mt-16">
         <ParallaxImage
           src={IMG.rainbow}
           alt="Worship with a rainbow over Hamilton"
@@ -535,7 +544,7 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
       </section>
 
       {/* ===== IMPACT STRIP ===== */}
-      <section className="mt-14 px-4">
+      <section className="render-later mt-14 px-4">
         <Reveal className="mb-4 text-center">
           <Eyebrow>The impact</Eyebrow>
           <h2 className="mt-2 font-display text-2xl font-bold text-white">
@@ -563,7 +572,7 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
       </section>
 
       {/* ===== GIVE ===== */}
-      <section className="mt-14 px-4">
+      <section className="render-later mt-14 px-4">
         <Reveal className="mx-auto max-w-md">
           <a
             href={DONATE.href}
@@ -586,7 +595,7 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
       </section>
 
       {/* ===== NEXT UP ===== */}
-      <section className="mt-14 px-4">
+      <section className="render-later mt-14 px-4">
         <Reveal className="mb-4 text-center">
           <Eyebrow>This is just the beginning</Eyebrow>
           <h2 className="mt-2 font-display text-3xl font-bold text-white">Next up 🚀</h2>
@@ -611,7 +620,7 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
       </section>
 
       {/* ===== RECAP CTA ===== */}
-      <section className="mt-14 px-4">
+      <section className="render-later mt-14 px-4">
         <Reveal className="mx-auto max-w-md">
           <a
             href={LINKS.youtube}
@@ -632,7 +641,7 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
       </section>
 
       {/* ===== VERSE ===== */}
-      <section className="mt-14 px-6">
+      <section className="render-later mt-14 px-6">
         <Reveal className="mx-auto max-w-md text-center">
           <p className="font-display text-lg italic leading-relaxed text-white/85">
             &ldquo;Oh give thanks to the Lord, for He is good, for His steadfast love endures forever.&rdquo;

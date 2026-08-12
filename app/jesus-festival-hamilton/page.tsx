@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import FestivalWeekendPass from "@/components/FestivalWeekendPass";
 import { ARTISTS, EXPECT, IMG, LINKS, SCHEDULE, SITE } from "@/lib/content";
 import {
   breadcrumbJsonLd,
@@ -102,6 +103,10 @@ export default function FestivalGuidePage() {
             </div>
           ))}
         </section>
+
+        <div className="mx-auto mt-8 max-w-xl">
+          <FestivalWeekendPass compact />
+        </div>
 
         <section className="mt-16" aria-labelledby="weekend-heading">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-gold-400">Two powerful days</p>
