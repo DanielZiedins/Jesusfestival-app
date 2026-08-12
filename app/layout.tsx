@@ -261,7 +261,7 @@ export default function RootLayout({
           rel="preload"
           as="image"
           href="https://d2xsxph8kpxj0f.cloudfront.net/310519663378107536/KJYp3PsjqZ4zMkWznW5JC5/jfgood1_7ef3ec90.jpg"
-          {...({ fetchpriority: "high" } as Record<string, string>)}
+          fetchPriority="high"
         />
         <link rel="preconnect" href="https://www.jesusfestival.ca" />
         <link rel="dns-prefetch" href="https://vmpkiwfvnlzraabtjkig.supabase.co" />

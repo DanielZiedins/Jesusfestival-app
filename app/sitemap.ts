@@ -7,7 +7,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const app: MetadataRoute.Sitemap = INDEXABLE_ROUTES.map((path) => ({
     url: `${SITE.url}${path === "/" ? "" : path}`,
     changeFrequency: path === "/news" ? "daily" : "weekly",
-    priority: path === "/" ? 1 : path === "/schedule" || path === "/map" ? 0.9 : 0.75,
+    priority:
+      path === "/"
+        ? 1
+        : path === "/schedule" || path === "/map" || path === "/i-said-yes"
+          ? 0.9
+          : 0.75,
   }));
 
   const posts = sortedPosts();

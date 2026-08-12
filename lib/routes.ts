@@ -1,6 +1,7 @@
 import type { TabId } from "@/components/BottomNav";
 
 export type MoreView =
+  | "yes"
   | "prayer"
   | "volunteers"
   | "movement"
@@ -24,6 +25,7 @@ export const APP_ROUTES: Record<string, AppDestination> = {
   "/revive-the-city": { tab: "game" },
   "/news": { tab: "news" },
   "/more": { tab: "more" },
+  "/i-said-yes": { tab: "more", moreView: "yes" },
   "/prayer": { tab: "more", moreView: "prayer" },
   "/volunteer": { tab: "more", moreView: "volunteers" },
   "/movement": { tab: "more", moreView: "movement" },
@@ -53,6 +55,11 @@ export const APP_ROUTE_META: Record<string, { title: string; description: string
   "/news": {
     title: "Jesus Festival News",
     description: "Artist reveals, schedule updates, festival announcements, and important news from the Jesus Festival team.",
+  },
+  "/i-said-yes": {
+    title: "I Said Yes to Jesus | First Steps",
+    description:
+      "Said yes to Jesus? Here is what happens next — the prayer, seven first steps, honest answers, and churches in Hamilton who would love to walk with you.",
   },
   "/prayer": {
     title: "Jesus Festival Prayer Wall",
@@ -127,6 +134,7 @@ const TAB_PATHS: Record<TabId, string> = {
 };
 
 const MORE_PATHS: Record<MoreView, string> = {
+  yes: "/i-said-yes",
   prayer: "/prayer",
   volunteers: "/volunteer",
   movement: "/movement",
@@ -154,6 +162,7 @@ export function destinationFor(pathname: string): AppDestination {
 export const INDEXABLE_ROUTES = [
   "/",
   "/schedule",
+  "/i-said-yes",
   "/revive-the-city",
   "/news",
   "/prayer",

@@ -5,13 +5,28 @@ import Reveal, { Eyebrow } from "@/components/Reveal";
 
 /**
  * Weekend forecast for Gage Park via Open-Meteo (free, keyless). Forecasts only
- * exist ~16 days out, so this renders nothing until roughly Aug 20 and then
- * lights up on its own as the festival approaches — no flag to flip.
+ * exist ~16 days out, so this renders nothing until late August and then lights
+ * up on its own as the festival approaches — no flag to flip.
+ *
+ * The window has to be checked before asking: Open-Meteo rejects an
+ * out-of-range `start_date` with a 400 rather than an empty result, so firing
+ * the request early means a failed request and a console error on every single
+ * page load for months.
  */
 const API =
   "https://api.open-meteo.com/v1/forecast?latitude=43.243&longitude=-79.828" +
   "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max" +
   "&timezone=America%2FToronto&start_date=2026-09-04&end_date=2026-09-05";
+
+// Friday of the festival, and how far ahead Open-Meteo will actually forecast.
+const FESTIVAL_START = Date.parse("2026-09-04T00:00:00-04:00");
+const FESTIVAL_END = Date.parse("2026-09-06T00:00:00-04:00");
+const FORECAST_HORIZON_DAYS = 15;
+
+function forecastAvailable(now = Date.now()): boolean {
+  if (now >= FESTIVAL_END) return false; // afterwards there's nothing to forecast
+  return FESTIVAL_START - now <= FORECAST_HORIZON_DAYS * 86_400_000;
+}
 
 // WMO weather codes, grouped just finely enough to be honest.
 function describe(code: number): { emoji: string; label: string } {
@@ -32,11 +47,12 @@ export default function FestivalWeather() {
   const [days, setDays] = useState<Day[] | null>(null);
 
   useEffect(() => {
+    if (!forecastAvailable()) return; // too early (or all over) — don't ask
     let cancelled = false;
     fetch(API)
-      .then((r) => r.json())
+      .then((r) => (r.ok ? r.json() : null))
       .then((j) => {
-        if (cancelled) return;
+        if (cancelled || !j || j.error) return;
         const d = j?.daily;
         if (!d?.time?.length || d.time.length < 2) return; // out of range → stay hidden
         const names = [

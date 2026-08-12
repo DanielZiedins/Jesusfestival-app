@@ -1,26 +1,46 @@
 // Jesus Festival — lightweight offline-first service worker.
-const CACHE = "jf-app-v4";
-// Precached so the festival weekend works on a congested park network: the app
-// shell plus the brand art the first screens actually render.
+const CACHE = "jf-app-v5";
+
+// Photo caches. Festival imagery is worth keeping offline (Gage Park's network
+// buckles once a few thousand phones arrive), but never without a ceiling.
+const IMG_CACHE = "jf-img-v2";
+const IMG_MAX_ENTRIES = 140;
+// The JesusFestival.ca CDN that serves the hero/lineup photography.
+const IMG_HOST = "d2xsxph8kpxj0f.cloudfront.net";
+// Photo Wall uploads live in Supabase Storage. Storage objects are cacheable
+// images; every other Supabase path (REST, RPC, realtime) must stay live.
+const isStorageImage = (url) =>
+  url.hostname.endsWith(".supabase.co") && url.pathname.startsWith("/storage/v1/object/public/");
+const isPhoto = (url) => url.hostname === IMG_HOST || isStorageImage(url);
+
+// Precached so the festival weekend works on a congested park network: every
+// screen someone might need standing in Gage Park with one bar of signal.
 const APP_SHELL = [
   "/",
   "/schedule",
   "/map",
   "/revive-the-city",
   "/news",
+  "/prayer",
+  "/i-said-yes",
+  "/more",
   "/manifest.webmanifest",
   "/brand/banner.png",
   "/brand/logo-mark-white.png",
+  "/brand/logo-mark-gold.png",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
 ];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE).then((cache) =>
-      // Individually, so one missing asset can't abort the whole precache.
-      Promise.all(APP_SHELL.map((u) => cache.add(u).catch(() => {})))
-    ).catch(() => {})
+    caches
+      .open(CACHE)
+      .then((cache) =>
+        // Individually, so one missing asset can't abort the whole precache.
+        Promise.all(APP_SHELL.map((u) => cache.add(u).catch(() => {})))
+      )
+      .catch(() => {})
   );
   self.skipWaiting();
 });
@@ -32,12 +52,12 @@ self.addEventListener("activate", (event) => {
       .then((keys) =>
         Promise.all(keys.filter((k) => k !== CACHE && k !== IMG_CACHE).map((k) => caches.delete(k)))
       )
+      .catch(() => {})
   );
   self.clients.claim();
 });
 
-// Drop the oldest image entries once the cap is reached — festival photos are
-// worth keeping offline, but not without a ceiling.
+// Drop the oldest image entries once the cap is reached.
 async function trimImageCache() {
   try {
     const cache = await caches.open(IMG_CACHE);
@@ -52,14 +72,17 @@ self.addEventListener("fetch", (event) => {
   const { request } = event;
   if (request.method !== "GET") return;
 
-  const url = new URL(request.url);
-  // Never cache Supabase / API calls.
-  if (url.hostname.includes("supabase")) return;
+  let url;
+  try {
+    url = new URL(request.url);
+  } catch (e) {
+    return;
+  }
 
-  // Festival photos (CDN): cache-first so they're instant on repeat visits and
-  // still there when the park network dies. Opaque responses are fine here —
-  // they're only ever used as <img> sources.
-  if (url.hostname === IMG_HOST) {
+  // Festival photos (CDN + Photo Wall uploads): cache-first so they're instant
+  // on repeat visits and still there when the park network dies. Opaque
+  // responses are fine — they're only ever used as <img> sources.
+  if (isPhoto(url)) {
     event.respondWith(
       caches.match(request).then(
         (cached) =>
@@ -73,6 +96,9 @@ self.addEventListener("fetch", (event) => {
     );
     return;
   }
+
+  // Never cache live Supabase data (REST, RPC, realtime, auth).
+  if (url.hostname.includes("supabase")) return;
 
   // HTML navigations: network-first so content stays fresh, fall back to cache offline.
   if (request.mode === "navigate") {
@@ -105,6 +131,27 @@ self.addEventListener("fetch", (event) => {
           })
           .catch(() => cached)
     )
+  );
+});
+
+// ---- Save the festival essentials for offline, on demand ----
+// The Install screen posts this before people leave for Gage Park, so the
+// schedule, map and next-steps guide are guaranteed to be there with no signal.
+self.addEventListener("message", (event) => {
+  if (!event.data || event.data.type !== "jf-cache-essentials") return;
+  const reply = (ok) => {
+    try {
+      event.source && event.source.postMessage({ type: "jf-cache-essentials-done", ok });
+    } catch (e) {
+      /* ignore */
+    }
+  };
+  event.waitUntil(
+    caches
+      .open(CACHE)
+      .then((cache) => Promise.all(APP_SHELL.map((u) => cache.add(u).catch(() => {}))))
+      .then(() => reply(true))
+      .catch(() => reply(false))
   );
 });
 

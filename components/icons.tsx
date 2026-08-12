@@ -177,3 +177,10 @@ export const Trophy = (p: P) => (
     <path d="M12 13v4M9 21h6M10 17h4l.5 4h-5L10 17Z" />
   </svg>
 );
+
+export const Search = (p: P) => (
+  <svg {...base(p)}>
+    <circle cx="11" cy="11" r="7" />
+    <path d="m20 20-3.6-3.6" />
+  </svg>
+);

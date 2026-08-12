@@ -110,15 +110,26 @@ export default function FestivalLive({ go }: { go: (t: TabId, sub?: string) => v
         >
           Full run of show <ArrowRight width={15} height={15} />
         </button>
-        <a
-          href="https://maps.google.com/?q=Gage+Park,+1000+Main+St+E,+Hamilton,+ON"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={() => go("more", "map")}
           className="flex items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/5 py-3 text-sm font-bold text-white active:scale-95"
         >
-          <MapPin width={15} height={15} /> Directions
-        </a>
+          <MapPin width={15} height={15} /> Park map
+        </button>
       </div>
+
+      {/* On the day itself, this is the moment it matters most. */}
+      <button
+        onClick={() => go("more", "yes")}
+        className="relative mt-2.5 flex w-full items-center gap-2.5 rounded-xl border border-gold/35 bg-gold/[0.09] px-3.5 py-3 text-left active:scale-[0.99]"
+      >
+        <span className="text-lg" aria-hidden="true">🕊️</span>
+        <span className="min-w-0 flex-1 text-[12.5px] font-semibold leading-snug text-white">
+          Said yes to Jesus today?{" "}
+          <span className="font-normal text-white/60">Here&apos;s what happens now.</span>
+        </span>
+        <ArrowRight width={15} height={15} className="shrink-0 text-gold-400" />
+      </button>
     </motion.div>
   );
 }

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ScreenHeader from "@/components/ScreenHeader";
 import Reveal from "@/components/Reveal";
+import SearchPill from "@/components/SearchPill";
 import MovementScreen from "./MovementScreen";
 import DiscipleshipScreen from "./DiscipleshipScreen";
 import DonateScreen from "./DonateScreen";
@@ -12,6 +13,7 @@ import ConnectScreen from "./ConnectScreen";
 import SettingsScreen from "./SettingsScreen";
 import InstallScreen from "./InstallScreen";
 import PrayerWallScreen from "./PrayerWallScreen";
+import NewLifeScreen from "./NewLifeScreen";
 import PhotoWallScreen from "./PhotoWallScreen";
 import ShopScreen from "./ShopScreen";
 import VolunteersScreen from "./VolunteersScreen";
@@ -36,10 +38,12 @@ export default function MoreScreen({
   resetSignal = 0,
   openView = null,
   onViewChange,
+  onSearch,
 }: {
   resetSignal?: number;
   openView?: string | null;
   onViewChange?: (view: View) => void;
+  onSearch?: () => void;
 }) {
   const [view, setView] = useState<View>((openView as View) || "hub");
 
@@ -61,8 +65,40 @@ export default function MoreScreen({
           <motion.div key="hub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="px-4">
             <ScreenHeader eyebrow="Explore more" title="More" subtitle="The movement, discipleship, the map & ways to connect." />
 
-            {/* Featured: Prayer Wall */}
+            {onSearch && (
+              <div className="mb-4">
+                <SearchPill onClick={onSearch} />
+              </div>
+            )}
+
+            {/* Featured: the whole reason the festival exists — so it sits above everything else. */}
             <Reveal>
+              <button
+                onClick={() => {
+                  open("yes");
+                }}
+                className="group relative mb-3 flex w-full items-center gap-4 overflow-hidden rounded-2xl border border-gold/40 bg-gradient-to-br from-gold/[0.16] via-purple-800/30 to-ink/60 p-4 text-left transition active:scale-[0.99]"
+              >
+                <span className="pointer-events-none absolute -right-8 -top-12 h-36 w-36 rounded-full bg-gold/25 blur-3xl" />
+                <span className="pointer-events-none absolute -bottom-10 -left-8 h-32 w-32 rounded-full bg-purple-500/25 blur-3xl" />
+                <span className="relative grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-3xl text-navy-950">
+                  🕊️
+                </span>
+                <span className="relative min-w-0 flex-1">
+                  <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-gold-400">
+                    Start here
+                  </span>
+                  <span className="block font-display text-xl font-extrabold text-white">I said yes to Jesus</span>
+                  <span className="block text-xs leading-snug text-white/70">
+                    What just happened, and the first steps — no sign-up, no email
+                  </span>
+                </span>
+                <ArrowRight width={18} height={18} className="relative shrink-0 text-gold-400 transition group-hover:translate-x-0.5" />
+              </button>
+            </Reveal>
+
+            {/* Featured: Prayer Wall */}
+            <Reveal delay={0.04}>
               <button
                 onClick={() => {
                   open("prayer");
@@ -139,6 +175,7 @@ export default function MoreScreen({
                 <ChevronLeft width={18} height={18} /> Back
               </button>
             </div>
+            {view === "yes" && <NewLifeScreen go={(v) => open(v as View)} />}
             {view === "prayer" && <PrayerWallScreen />}
             {view === "photos" && <PhotoWallScreen />}
             {view === "shop" && <ShopScreen />}

@@ -10,6 +10,34 @@ type Platform = "ios" | "android" | "desktop";
 export default function InstallScreen() {
   const [platform, setPlatform] = useState<Platform>("desktop");
   const [installed, setInstalled] = useState(false);
+  const [offline, setOffline] = useState<"idle" | "saving" | "done" | "error">("idle");
+
+  /**
+   * Ask the service worker to precache every festival-critical route. The reply
+   * comes back on the same client, so a timeout is the fallback — a worker that
+   * never answers must not leave the button spinning forever.
+   */
+  function cacheOffline() {
+    const sw = navigator.serviceWorker?.controller;
+    if (!sw) {
+      setOffline("error");
+      return;
+    }
+    setOffline("saving");
+    let settled = false;
+    const finish = (ok: boolean) => {
+      if (settled) return;
+      settled = true;
+      navigator.serviceWorker.removeEventListener("message", onMessage);
+      setOffline(ok ? "done" : "error");
+    };
+    const onMessage = (e: MessageEvent) => {
+      if (e.data?.type === "jf-cache-essentials-done") finish(e.data.ok !== false);
+    };
+    navigator.serviceWorker.addEventListener("message", onMessage);
+    sw.postMessage({ type: "jf-cache-essentials" });
+    setTimeout(() => finish(false), 12_000);
+  }
 
   useEffect(() => {
     const ua = navigator.userAgent || "";
@@ -92,6 +120,39 @@ export default function InstallScreen() {
           </Reveal>
         </>
       )}
+
+      {/* Save the essentials before leaving for the park, where the network dies. */}
+      <Reveal className="mt-4">
+        <div className="rounded-2xl border border-gold/30 bg-gradient-to-br from-gold/[0.09] to-transparent p-4">
+          <p className="text-sm font-bold text-white">📵 Going to Gage Park? Save it offline first</p>
+          <p className="mt-1.5 text-[13px] leading-relaxed text-white/70">
+            A few thousand phones in one park will finish off the signal. Tap this once before you leave and
+            the schedule, the map, your spot and the next-steps guide all keep working with no bars at all.
+          </p>
+          <button
+            onClick={cacheOffline}
+            disabled={offline === "saving" || offline === "done"}
+            className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 py-3 font-display text-sm font-bold text-navy-950 shadow-glow transition active:scale-[0.98] disabled:opacity-60"
+          >
+            {offline === "saving" ? (
+              "Saving…"
+            ) : offline === "done" ? (
+              <>
+                <Check width={16} height={16} /> Saved for offline
+              </>
+            ) : (
+              <>
+                <Download width={16} height={16} /> Save the festival essentials
+              </>
+            )}
+          </button>
+          {offline === "error" && (
+            <p role="status" className="mt-2 text-center text-[12px] font-semibold text-rose-300">
+              Couldn&apos;t save just now — install the app first, then try again.
+            </p>
+          )}
+        </div>
+      </Reveal>
 
       <Reveal className="mt-4">
         <div className="rounded-2xl border border-purple-400/25 bg-purple-500/10 p-4">

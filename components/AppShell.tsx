@@ -19,12 +19,14 @@ const ScreenLoader = () => (
   </div>
 );
 const ScheduleScreen = dynamic(() => import("./screens/ScheduleScreen"), { loading: ScreenLoader });
+// Search is a pure overlay — never part of the first paint.
+const SearchOverlay = dynamic(() => import("./SearchOverlay"), { ssr: false });
 const GameScreen = dynamic(() => import("./screens/GameScreen"), { loading: ScreenLoader });
 const NewsScreen = dynamic(() => import("./screens/NewsScreen"), { loading: ScreenLoader });
 const MoreScreen = dynamic(() => import("./screens/MoreScreen"), { loading: ScreenLoader });
 
 // Sub-views of "More" that an email/push ?go= link is allowed to open.
-const MORE_VIEWS = ["prayer", "volunteers", "connect", "movement", "discipleship", "give", "map", "install", "settings", "photos", "shop"];
+const MORE_VIEWS = ["yes", "prayer", "volunteers", "connect", "movement", "discipleship", "give", "map", "install", "settings", "photos", "shop"];
 const TAB_IDS: TabId[] = ["home", "schedule", "game", "news", "more"];
 
 export default function AppShell({ initialDestination = { tab: "home" } }: { initialDestination?: AppDestination }) {
@@ -42,6 +44,7 @@ export default function AppShell({ initialDestination = { tab: "home" } }: { ini
   const [moreSignal, setMoreSignal] = useState(0);
   // Optional target sub-view so other screens can deep-link into a More page.
   const [moreView, setMoreView] = useState<string | null>(initialDestination.moreView ?? null);
+  const [search, setSearch] = useState(false);
 
   const setPath = (next: TabId, sub?: string | null, replace = false) => {
     const path = pathFor(next, sub);
@@ -84,6 +87,23 @@ export default function AppShell({ initialDestination = { tab: "home" } }: { ini
     };
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
+  // ⌘K / Ctrl-K opens search anywhere; "/" does too, unless you're typing.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const k = e.key.toLowerCase();
+      const typing = /^(input|textarea|select)$/i.test((e.target as HTMLElement)?.tagName ?? "");
+      if ((e.metaKey || e.ctrlKey) && k === "k") {
+        e.preventDefault();
+        setSearch(true);
+      } else if (k === "/" && !typing && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        e.preventDefault();
+        setSearch(true);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, []);
 
   // Legacy email and push CTAs still deep-link straight to a screen.
@@ -157,13 +177,22 @@ export default function AppShell({ initialDestination = { tab: "home" } }: { ini
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
           >
-            {tab === "home" && <HomeScreen go={go} />}
+            {tab === "home" && <HomeScreen go={go} onSearch={() => setSearch(true)} />}
             {tab === "schedule" && <ScheduleScreen />}
             {tab === "game" && <GameScreen />}
             {tab === "news" && <NewsScreen />}
-            {tab === "more" && <MoreScreen resetSignal={moreSignal} openView={moreView} onViewChange={openMoreView} />}
+            {tab === "more" && (
+              <MoreScreen
+                resetSignal={moreSignal}
+                openView={moreView}
+                onViewChange={openMoreView}
+                onSearch={() => setSearch(true)}
+              />
+            )}
           </motion.div>
         </main>
+
+        {search && <SearchOverlay onClose={() => setSearch(false)} go={go} />}
 
         <OfflineBanner />
         <InstallPrompt />

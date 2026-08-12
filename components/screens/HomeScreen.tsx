@@ -25,6 +25,7 @@ import LiveImpact from "@/components/LiveImpact";
 import LineupCard from "@/components/LineupCard";
 import InviteCard from "@/components/InviteCard";
 import NotifyNudge from "@/components/NotifyNudge";
+import SearchPill from "@/components/SearchPill";
 import { isLivePhase, useFestivalPhase } from "@/lib/useFestivalPhase";
 import { getStreak } from "@/lib/game";
 import Reveal, { Eyebrow } from "@/components/Reveal";
@@ -54,7 +55,13 @@ const EXPECT_ICON: Record<string, React.ComponentType<{ width?: number; height?:
   community: Users,
 };
 
-export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => void }) {
+export default function HomeScreen({
+  go,
+  onSearch,
+}: {
+  go: (t: TabId, sub?: string) => void;
+  onSearch?: () => void;
+}) {
   // On Sept 4–5 the live card replaces the countdown — showing both is contradictory.
   const live = isLivePhase(useFestivalPhase());
   // Verse of the day — set after mount so SSR/client never disagree on the date.
@@ -97,7 +104,7 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
       <section ref={heroRef} className="relative h-[92vh] min-h-[600px] w-full overflow-hidden">
         <motion.div style={{ y: bgY, scale: bgScale }} className="absolute inset-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={IMG.heroCrowd} alt="Jesus Festival worship" {...({ fetchpriority: "high" } as Record<string, string>)} decoding="async" className="h-full w-full object-cover" />
+          <img src={IMG.heroCrowd} alt="Jesus Festival worship" fetchPriority="high" decoding="async" className="h-full w-full object-cover" />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/25 to-ink" />
         <div className="absolute inset-0 bg-radial-glow" />
@@ -221,6 +228,11 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
               </span>
             )}
           </div>
+          {onSearch && (
+            <div className="mb-3">
+              <SearchPill onClick={onSearch} />
+            </div>
+          )}
           <div className="mb-3">
             <NotifyNudge />
           </div>
@@ -470,6 +482,32 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
         </Reveal>
       </section>
 
+      {/* ===== THE ONE THAT MATTERS MOST ===== */}
+      <section className="mt-6 px-4">
+        <Reveal className="mx-auto max-w-md">
+          <button
+            onClick={() => go("more", "yes")}
+            className="group relative w-full overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-gold/[0.14] via-purple-800/30 to-ink p-5 text-left active:scale-[0.99]"
+          >
+            <div className="pointer-events-none absolute -right-10 -top-14 h-44 w-44 rounded-full bg-gold/25 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-12 -left-10 h-40 w-40 rounded-full bg-purple-500/30 blur-3xl" />
+            <div className="relative flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] text-gold-400">
+              🕊️ The reason for all of it
+            </div>
+            <h3 className="relative mt-2 font-display text-3xl font-extrabold leading-tight text-white">
+              Said yes to Jesus?
+            </h3>
+            <p className="relative mt-1.5 max-w-xs text-sm leading-relaxed text-white/75">
+              Or thinking about it? Here&apos;s what actually happened, the prayer, and seven first steps —
+              with no sign-up, no email, and nobody chasing you.
+            </p>
+            <span className="relative mt-4 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-5 py-2.5 text-[13px] font-extrabold text-navy-950 shadow-glow group-active:scale-95">
+              Start here <ArrowRight width={14} height={14} />
+            </span>
+          </button>
+        </Reveal>
+      </section>
+
       {/* ===== PRAYER WALL CTA ===== */}
       <section className="mt-6 px-4">
         <Reveal className="mx-auto max-w-md">
@@ -591,7 +629,7 @@ export default function HomeScreen({ go }: { go: (t: TabId, sub?: string) => voi
           <Eyebrow>This is just the beginning</Eyebrow>
           <h2 className="mt-2 font-display text-3xl font-bold text-white">Next up 🚀</h2>
           <p className="mx-auto mt-2 max-w-xs text-sm text-white/60">
-            Prayer, notifications, the full schedule and live directions are already here. These are the next festival-day upgrades.
+            The full schedule, the park map, prayer, search and notifications are already here. These are the next festival-day upgrades.
           </p>
         </Reveal>
         <div className="mx-auto grid max-w-md grid-cols-2 gap-3">
