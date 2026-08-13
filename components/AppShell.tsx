@@ -10,7 +10,9 @@ import { resubscribeIfPermitted } from "@/lib/push";
 import Splash from "./Splash";
 import Onboarding from "./Onboarding";
 import HomeScreen from "./screens/HomeScreen";
+import DiscoveryFooter from "./DiscoveryFooter";
 import { destinationFor, pathFor, syncDocumentMeta, type AppDestination } from "@/lib/routes";
+import type { ShopData } from "@/lib/shop";
 
 // Code-split secondary screens so the first load (Home) stays fast.
 const ScreenLoader = () => (
@@ -29,7 +31,13 @@ const MoreScreen = dynamic(() => import("./screens/MoreScreen"), { loading: Scre
 const MORE_VIEWS = ["yes", "prayer", "volunteers", "connect", "movement", "discipleship", "give", "map", "install", "settings", "photos", "shop"];
 const TAB_IDS: TabId[] = ["home", "schedule", "game", "news", "more"];
 
-export default function AppShell({ initialDestination = { tab: "home" } }: { initialDestination?: AppDestination }) {
+export default function AppShell({
+  initialDestination = { tab: "home" },
+  initialShopData,
+}: {
+  initialDestination?: AppDestination;
+  initialShopData?: ShopData;
+}) {
   const [tab, setTab] = useState<TabId>(initialDestination.tab);
   // Splash + onboarding are client-only (mounted gate) to avoid SSR/AnimatePresence hydration mismatch.
   const [mounted, setMounted] = useState(false);
@@ -61,16 +69,29 @@ export default function AppShell({ initialDestination = { tab: "home" } }: { ini
     // Repair any push subscription that never stored server-side (silent — the
     // browser permission is already granted, so nobody is re-prompted).
     void resubscribeIfPermitted();
-    const fade = setTimeout(() => setSplashLeaving(true), 1900);
-    const gone = setTimeout(() => setSplash(false), 2400);
+    // Give first-time visitors the branded welcome, but never make returning
+    // visitors sit through it again in the same browsing session.
+    let seenSplash = false;
+    try {
+      seenSplash = sessionStorage.getItem("jf-splash-seen") === "yes";
+      sessionStorage.setItem("jf-splash-seen", "yes");
+    } catch {
+      /* ignore */
+    }
+    if (seenSplash) {
+      setSplashLeaving(true);
+      setSplash(false);
+    }
+    const fade = seenSplash ? undefined : setTimeout(() => setSplashLeaving(true), 1050);
+    const gone = seenSplash ? undefined : setTimeout(() => setSplash(false), 1400);
     try {
       if (!localStorage.getItem("jf-joined")) setOnboard(true);
     } catch {
       /* ignore */
     }
     return () => {
-      clearTimeout(fade);
-      clearTimeout(gone);
+      if (fade) clearTimeout(fade);
+      if (gone) clearTimeout(gone);
     };
   }, []);
 
@@ -187,9 +208,11 @@ export default function AppShell({ initialDestination = { tab: "home" } }: { ini
                 openView={moreView}
                 onViewChange={openMoreView}
                 onSearch={() => setSearch(true)}
+                initialShopData={initialShopData}
               />
             )}
           </motion.div>
+          <DiscoveryFooter />
         </main>
 
         {search && <SearchOverlay onClose={() => setSearch(false)} go={go} />}

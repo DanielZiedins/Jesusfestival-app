@@ -244,7 +244,7 @@ function LightCity({ def, onWin }: { def: MiniGameDef; onWin: (p: number, stars:
     if (n >= GOAL) setWon(true);
   }
 
-  function tapWindow(i: number, e: React.MouseEvent) {
+  function tapWindow(i: number) {
     if (won || lit[i]) return;
     setLit((prev) => {
       const next = [...prev];
@@ -266,7 +266,7 @@ function LightCity({ def, onWin }: { def: MiniGameDef; onWin: (p: number, stars:
           {Array.from({ length: COLS * ROWS }).map((_, i) => (
             <button
               key={i}
-              onClick={(e) => tapWindow(i, e)}
+              onClick={() => tapWindow(i)}
               className="rounded-md transition-colors duration-300"
               style={{
                 background: lit[i]

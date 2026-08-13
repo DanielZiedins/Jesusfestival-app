@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Portal from "../Portal";
 import CaptainGoodness from "./CaptainGoodness";
 import { QUIZZES, type Quiz } from "@/lib/game";

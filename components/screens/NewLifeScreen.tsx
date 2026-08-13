@@ -191,7 +191,7 @@ function Invitation({
           <div className="relative overflow-hidden rounded-3xl border border-gold/25 bg-gradient-to-b from-purple-900/30 via-navy-900/60 to-ink p-6">
             <div className="pointer-events-none absolute -right-12 -top-16 h-48 w-48 rounded-full bg-gold/15 blur-3xl" />
             <div className="relative text-center">
-              <Eyebrow>If you're ready</Eyebrow>
+              <Eyebrow>If you&apos;re ready</Eyebrow>
               <h2 className="mt-2 font-display text-2xl font-extrabold text-white">Pray this with me</h2>
               <p className="mx-auto mt-2 max-w-xs text-[12.5px] leading-relaxed text-white/55">
                 Out loud if you can. There are no magic words — God is listening for your heart, not your

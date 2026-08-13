@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 
 // Branded one-click unsubscribe (reached from the email footer / List-Unsubscribe).
@@ -48,7 +49,7 @@ export default function UnsubscribePage() {
       </div>
 
       <div className="relative z-10 w-full max-w-md rounded-3xl border border-white/10 bg-gradient-to-b from-navy-900/80 to-ink/80 p-8 text-center backdrop-blur">
-        <img src="/brand/logo-mark-white.png" alt="Jesus Festival" className="mx-auto mb-5 h-14 w-14" />
+        <Image src="/brand/logo-mark-white.png" alt="Jesus Festival" width={56} height={56} className="mx-auto mb-5" />
 
         {state === "loading" && (
           <>

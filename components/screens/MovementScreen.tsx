@@ -1,6 +1,7 @@
 "use client";
 
-import { MOVEMENT, CITIES, IMPACT, LINKS, IMG, KINGDOM_SITES } from "@/lib/content";
+import Link from "next/link";
+import { MOVEMENT, CITIES, IMPACT, IMG, KINGDOM_SITES } from "@/lib/content";
 import Reveal, { Eyebrow } from "@/components/Reveal";
 import ScreenHeader from "@/components/ScreenHeader";
 import ParallaxImage from "@/components/ParallaxImage";
@@ -130,12 +131,12 @@ export default function MovementScreen() {
           <p className="mx-auto mt-2 max-w-xs text-sm text-white/60">
             Jesus Festival is one expression of something much bigger. Step through any of these doors.
           </p>
-          <a
+          <Link
             href="/network"
             className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-4 py-2 text-[12px] font-bold text-gold-400 active:scale-95"
           >
             See the whole network <ArrowRight width={13} height={13} />
-          </a>
+          </Link>
         </Reveal>
         <div className="mx-auto max-w-md space-y-2.5">
           {KINGDOM_SITES.map((s, i) => (

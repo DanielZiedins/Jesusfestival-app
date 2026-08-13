@@ -2,14 +2,16 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AppShell from "@/components/AppShell";
 import { APP_ROUTE_META, APP_ROUTES } from "@/lib/routes";
+import { breadcrumbJsonLd, FESTIVAL_EVENT_JSONLD, serializeJsonLd, webPageJsonLd } from "@/lib/seo";
 
 export function generateStaticParams() {
   return Object.keys(APP_ROUTE_META)
-    .filter((path) => path !== "/")
+    .filter((path) => path !== "/" && path !== "/shop")
     .map((path) => ({ slug: path.slice(1) }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const params = await props.params;
   const path = `/${params.slug}`;
   const meta = APP_ROUTE_META[path];
   if (!meta) return {};
@@ -19,11 +21,36 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
     alternates: { canonical: path },
     openGraph: { title: meta.title, description: meta.description, url: path },
     twitter: { title: meta.title, description: meta.description },
+    robots: path === "/settings" ? { index: false, follow: true } : undefined,
   };
 }
 
-export default function AppRoute({ params }: { params: { slug: string } }) {
+export default async function AppRoute(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const destination = APP_ROUTES[`/${params.slug}`];
   if (!destination) notFound();
-  return <AppShell initialDestination={destination} />;
+  const path = `/${params.slug}`;
+  const meta = APP_ROUTE_META[path];
+  const structuredData = [
+    webPageJsonLd({
+      path,
+      name: meta.title,
+      description: meta.description,
+      ...(path === "/schedule" || path === "/map"
+        ? { about: { "@id": "https://www.jesusfestival.app/#festival-2026" } }
+        : {}),
+    }),
+    breadcrumbJsonLd([
+      { name: "Jesus Festival", path: "/" },
+      { name: meta.title, path },
+    ]),
+    ...(path === "/schedule" ? [FESTIVAL_EVENT_JSONLD] : []),
+  ];
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(structuredData) }} />
+      <AppShell initialDestination={destination} />
+    </>
+  );
 }
