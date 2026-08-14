@@ -307,12 +307,13 @@ export default function HomeScreen({
                 key={m.src}
                 className="relative aspect-[4/5] w-56 shrink-0 snap-center overflow-hidden rounded-2xl border border-white/10 shadow-card"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={m.src}
                   alt={m.caption}
+                  fill
                   loading="lazy"
-                  className="h-full w-full object-cover"
+                  sizes="224px"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-3">

@@ -384,7 +384,8 @@ function Journey({
             return (
               <Reveal key={s.id} delay={Math.min(i * 0.05, 0.3)}>
                 <div
-                  className={`overflow-hidden rounded-2xl border transition-colors ${
+                  id={`step-${s.id}`}
+                  className={`scroll-mt-24 overflow-hidden rounded-2xl border transition-colors ${
                     complete
                       ? "border-gold/30 bg-gradient-to-br from-gold/[0.09] to-transparent"
                       : "border-white/10 bg-white/[0.04]"

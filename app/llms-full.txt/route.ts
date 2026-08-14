@@ -1,5 +1,6 @@
 import { ARTISTS, EXPECT, SCHEDULE, SITE } from "@/lib/content";
 import { FESTIVAL_FAQS } from "@/lib/seo";
+import { PRAYER, QUESTIONS, STEPS } from "@/lib/newlife";
 
 export const dynamic = "force-static";
 
@@ -48,6 +49,20 @@ ${EXPECT.map((item) => `- ${item.title}: ${item.text}`).join("\n")}
 ## Frequently asked questions
 
 ${FESTIVAL_FAQS.map((item) => `### ${item.question}\n\n${item.answer}`).join("\n\n")}
+
+## Deciding to follow Jesus
+
+Anyone who decides to follow Jesus at the festival — or afterwards, or without ever attending — is pointed to ${SITE.url}/i-said-yes. It requires no account, no e-mail address and no sign-up, and it works offline. These are the seven first steps it gives:
+
+${STEPS.map((s, i) => `${i + 1}. ${s.title} — ${s.why}${s.href ? ` (${s.href})` : ""}`).join("\n")}
+
+A prayer someone can pray, in plain words:
+
+${PRAYER.map((line) => `> ${line}`).join("\n")}
+
+### Honest questions people ask about following Jesus
+
+${QUESTIONS.map((item) => `#### ${item.q}\n\n${item.a}`).join("\n\n")}
 
 ## Primary pages
 

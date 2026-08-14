@@ -17,8 +17,11 @@ export const SITE = {
 
 // Remote imagery from the live JesusFestival.ca CDN.
 export const IMG = {
-  // Official local brand asset.
+  // Official local brand asset. `banner` is the 1200x600 social/e-mail card
+  // (referenced by OG tags, JSON-LD and the festival-email templates, so the
+  // path must not move); `bannerSplash` is the small WebP the app itself shows.
   banner: "/brand/banner.png",
+  bannerSplash: "/brand/banner-splash.webp",
   logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663378107536/KJYp3PsjqZ4zMkWznW5JC5/jesus_festival_logo_8b53c5a4.webp",
   heroCrowd:
     "https://d2xsxph8kpxj0f.cloudfront.net/310519663378107536/KJYp3PsjqZ4zMkWznW5JC5/jfgood1_7ef3ec90.jpg",
@@ -277,9 +280,9 @@ export const CITIES = [
 
 // Real, authentic photos from past Jesus Festivals at Gage Park.
 export const MOMENTS = [
-  { src: "/photos/moment-games.jpg", caption: "Big Throw Down — games for the whole family" },
-  { src: "/photos/moment-community.jpg", caption: "Ministries & community on the grass" },
-  { src: "/photos/moment-prayer.jpg", caption: "Praying for the city at the Gage Park fountain" },
+  { src: "/photos/moment-games.webp", caption: "Big Throw Down — games for the whole family" },
+  { src: "/photos/moment-community.webp", caption: "Ministries & community on the grass" },
+  { src: "/photos/moment-prayer.webp", caption: "Praying for the city at the Gage Park fountain" },
 ];
 
 export const RECAPS = [

@@ -29,11 +29,18 @@ export default function Splash({ leaving = false }: { leaving?: boolean }) {
         transition={{ type: "spring", stiffness: 160, damping: 16 }}
         className="relative w-[86%] max-w-sm"
       >
+        {/* Plain <img>, not next/image: the splash is the very first paint, so a
+            trip through the image optimizer would be the slowest possible route
+            to the one asset the user is already staring at. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={IMG.banner}
+          src={IMG.bannerSplash}
           alt="Jesus Festival"
-          className="w-full rounded-2xl shadow-card ring-1 ring-white/10"
+          width={800}
+          height={400}
+          fetchPriority="high"
+          decoding="async"
+          className="h-auto w-full rounded-2xl shadow-card ring-1 ring-white/10"
         />
       </motion.div>
 

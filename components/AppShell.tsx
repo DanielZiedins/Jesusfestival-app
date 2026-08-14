@@ -176,11 +176,11 @@ export default function AppShell({
       <div className="relative min-h-screen bg-ink">
         <a href="#app-content" className="skip-link">Skip to app content</a>
 
-        {/* Ambient background */}
-        <div className="pointer-events-none fixed inset-0 z-0" aria-hidden="true">
-          <div className="absolute -top-40 left-1/4 h-96 w-96 -translate-x-1/2 rounded-full bg-purple-600/30 blur-[120px]" />
-          <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-gold/12 blur-[120px]" />
-        </div>
+        {/* Ambient background. Gradients rather than blurred circles: these are
+            fixed, so they are composited on every frame of every scroll, and a
+            120px blur filter is by far the most expensive way to draw a soft
+            glow on a mid-range phone. */}
+        <div className="bg-app-ambient pointer-events-none fixed inset-0 z-0" aria-hidden="true" />
 
         {mounted && splash && <Splash leaving={splashLeaving} />}
         <AnimatePresence>

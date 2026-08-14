@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AppShell from "@/components/AppShell";
 import { APP_ROUTE_META, APP_ROUTES } from "@/lib/routes";
-import { breadcrumbJsonLd, FESTIVAL_EVENT_JSONLD, serializeJsonLd, webPageJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, FESTIVAL_EVENT_JSONLD, newBelieverJsonLd, serializeJsonLd, webPageJsonLd } from "@/lib/seo";
 
 export function generateStaticParams() {
   return Object.keys(APP_ROUTE_META)
@@ -45,6 +45,9 @@ export default async function AppRoute(props: { params: Promise<{ slug: string }
       { name: meta.title, path },
     ]),
     ...(path === "/schedule" ? [FESTIVAL_EVENT_JSONLD] : []),
+    // The seven first steps and the new-believer questions, in a form an answer
+    // engine can quote directly.
+    ...(path === "/i-said-yes" ? newBelieverJsonLd() : []),
   ];
 
   return (

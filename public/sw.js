@@ -1,5 +1,5 @@
 // Jesus Festival — lightweight offline-first service worker.
-const CACHE = "jf-app-v7";
+const CACHE = "jf-app-v8";
 const IMG_CACHE = "jf-images-v1";
 const IMG_MAX_ENTRIES = 80;
 const IMG_HOSTS = new Set([
@@ -29,7 +29,9 @@ const APP_SHELL = [
   "/faq",
   "/jesus-festival-2026.ics",
   "/manifest.webmanifest",
-  "/brand/banner.png",
+  // The splash WebP, not brand/banner.png — the PNG is the 1200x600 social and
+  // e-mail card, four times the weight, and the app itself never renders it.
+  "/brand/banner-splash.webp",
   "/brand/logo-mark-white.png",
   "/icons/icon-192.png",
   "/icons/icon-512.png",

@@ -83,6 +83,14 @@ textarea {
     background-clip: text;
     color: transparent;
   }
+  /* The purple/gold glow behind the whole app. Matches what two
+     `blur-[120px]` circles used to draw, without the filter — this layer is
+     fixed, so it is recomposited on every scroll frame. */
+  .bg-app-ambient {
+    background-image:
+      radial-gradient(28rem 26rem at 25% -4rem, rgba(147, 51, 234, 0.34), transparent 70%),
+      radial-gradient(24rem 22rem at 104% 102%, rgba(245, 166, 35, 0.16), transparent 70%);
+  }
   .bg-radial-glow {
     background-image: radial-gradient(
       ellipse 80% 60% at 50% 0%,
@@ -123,6 +131,36 @@ textarea {
   .render-later {
     content-visibility: auto;
     contain-intrinsic-size: 1px 720px;
+  }
+}
+
+/* ── Scroll reveal (see components/Reveal.tsx) ──
+   Compositor-only properties so 100+ of these cost nothing to animate, and a
+   plain transition so they still finish when rAF is throttled. */
+.jf-reveal {
+  opacity: 0;
+  transform: translate3d(0, var(--jf-reveal-y, 22px), 0);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--jf-reveal-delay, 0s);
+}
+.jf-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+/* Never leave content permanently invisible because scripting is unavailable. */
+@media (scripting: none) {
+  .jf-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jf-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 

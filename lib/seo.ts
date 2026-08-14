@@ -1,4 +1,5 @@
 import { ARTISTS, LINKS, SITE } from "@/lib/content";
+import { QUESTIONS, STEPS } from "@/lib/newlife";
 
 export const LAST_MAJOR_UPDATE = "2026-08-09";
 export const FESTIVAL_GUIDE_PATH = "/jesus-festival-hamilton";
@@ -286,6 +287,52 @@ export function webPageJsonLd({
     ...(about ? { about } : {}),
     dateModified: LAST_MAJOR_UPDATE,
   };
+}
+
+/**
+ * The new-believer content on /i-said-yes, made machine-readable.
+ *
+ * "What if I'm not sure I believe it?", "do I have to change first?" and "how do
+ * I start following Jesus?" are questions people genuinely type into search and
+ * ask assistants. The page already answers them properly in prose; this is the
+ * same answers in a form an answer engine can quote, which is the whole point of
+ * writing them well in the first place.
+ */
+export function newBelieverJsonLd() {
+  const path = "/i-said-yes";
+  const url = `${SITE.url}${path}`;
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      isPartOf: { "@id": `${url}#webpage` },
+      mainEntity: QUESTIONS.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "@id": `${url}#first-steps`,
+      name: "First steps after saying yes to Jesus",
+      description:
+        "Seven concrete first steps for someone who has just decided to follow Jesus — telling one person, reading the Gospel of John, praying, baptism, finding a church, understanding what changed, and passing it on.",
+      inLanguage: "en-CA",
+      isAccessibleForFree: true,
+      totalTime: "P7D",
+      step: STEPS.map((s, i) => ({
+        "@type": "HowToStep",
+        position: i + 1,
+        name: s.title,
+        text: s.why,
+        url: `${url}#step-${s.id}`,
+        ...(s.href ? { relatedLink: s.href } : {}),
+      })),
+    },
+  ];
 }
 
 export function serializeJsonLd(value: unknown) {
