@@ -2,21 +2,41 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import ScreenHeader from "@/components/ScreenHeader";
 import Reveal from "@/components/Reveal";
 import SearchPill from "@/components/SearchPill";
-import MovementScreen from "./MovementScreen";
-import DiscipleshipScreen from "./DiscipleshipScreen";
-import DonateScreen from "./DonateScreen";
-import MapScreen from "./MapScreen";
-import ConnectScreen from "./ConnectScreen";
-import SettingsScreen from "./SettingsScreen";
-import InstallScreen from "./InstallScreen";
-import PrayerWallScreen from "./PrayerWallScreen";
-import NewLifeScreen from "./NewLifeScreen";
-import PhotoWallScreen from "./PhotoWallScreen";
-import ShopScreen from "./ShopScreen";
-import VolunteersScreen from "./VolunteersScreen";
+
+/**
+ * Every sub-screen is loaded on demand.
+ *
+ * Imported statically, the twelve of them compiled into a single 122 KB chunk
+ * that had to be downloaded and parsed the moment anyone tapped "More" — even
+ * to reach Settings. Split, the hub itself is nearly free and you only pay for
+ * the page you actually opened.
+ *
+ * `ssr` is left on: /i-said-yes, /prayer and /map are real indexable routes, and
+ * their prose has to be in the server-rendered HTML for crawlers and answer
+ * engines. Dynamic import still splits the *client* chunk either way.
+ */
+const SubScreenLoader = () => (
+  <div className="flex min-h-[50vh] items-center justify-center" role="status" aria-label="Loading">
+    <div className="h-7 w-7 animate-spin rounded-full border-2 border-white/15 border-t-gold-400" />
+  </div>
+);
+
+const MovementScreen = dynamic(() => import("./MovementScreen"), { loading: SubScreenLoader });
+const DiscipleshipScreen = dynamic(() => import("./DiscipleshipScreen"), { loading: SubScreenLoader });
+const DonateScreen = dynamic(() => import("./DonateScreen"), { loading: SubScreenLoader });
+const MapScreen = dynamic(() => import("./MapScreen"), { loading: SubScreenLoader });
+const ConnectScreen = dynamic(() => import("./ConnectScreen"), { loading: SubScreenLoader });
+const SettingsScreen = dynamic(() => import("./SettingsScreen"), { loading: SubScreenLoader });
+const InstallScreen = dynamic(() => import("./InstallScreen"), { loading: SubScreenLoader });
+const PrayerWallScreen = dynamic(() => import("./PrayerWallScreen"), { loading: SubScreenLoader });
+const NewLifeScreen = dynamic(() => import("./NewLifeScreen"), { loading: SubScreenLoader });
+const PhotoWallScreen = dynamic(() => import("./PhotoWallScreen"), { loading: SubScreenLoader });
+const ShopScreen = dynamic(() => import("./ShopScreen"), { loading: SubScreenLoader });
+const VolunteersScreen = dynamic(() => import("./VolunteersScreen"), { loading: SubScreenLoader });
 import { FlameIcon, MapIcon, BellIcon, ArrowRight, ChevronLeft, Users, Heart, Download, Sparkle, Camera } from "@/components/icons";
 import type { MoreView } from "@/lib/routes";
 import type { ShopData } from "@/lib/shop";
@@ -150,7 +170,7 @@ export default function MoreScreen({
                       <span className="block font-display text-lg font-bold text-white">{c.title}</span>
                       <span className="block text-xs text-white/55">{c.sub}</span>
                     </span>
-                    <ArrowRight width={18} height={18} className="text-white/40 transition group-hover:translate-x-0.5 group-hover:text-gold-400" />
+                    <ArrowRight width={18} height={18} className="text-white/55 transition group-hover:translate-x-0.5 group-hover:text-gold-400" />
                   </button>
                 </Reveal>
               ))}

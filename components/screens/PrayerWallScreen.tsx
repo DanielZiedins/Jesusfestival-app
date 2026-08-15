@@ -303,11 +303,11 @@ export default function PrayerWallScreen() {
             maxLength={180}
             rows={3}
             placeholder={kind === "prayer" ? "Lay your prayer at the altar…" : "Share what God has done! 🙌"}
-            className="w-full resize-none rounded-2xl border border-white/12 bg-white/5 p-3 text-[15px] text-white placeholder:text-white/35 focus:border-gold/50 focus:outline-none"
+            className="w-full resize-none rounded-2xl border border-white/12 bg-white/5 p-3 text-[15px] text-white placeholder:text-white/50 focus:border-gold/50 focus:outline-none"
           />
           {err && <p className="mt-1.5 text-center text-xs font-medium text-rose-300">{err}</p>}
           <div className="mt-2 flex items-center justify-between gap-2">
-            <span className="min-w-0 truncate text-[11px] text-white/40">
+            <span className="min-w-0 truncate text-[11px] text-white/55">
               Posting as {me.name || "Someone"}
               {me.church ? ` · ${me.church}` : ""}
             </span>
@@ -326,7 +326,7 @@ export default function PrayerWallScreen() {
             <button key={f.id} onClick={() => setFilter(f.id)} className="relative shrink-0 rounded-full px-4 py-2 text-[12px] font-bold transition active:scale-95">
               {on && <motion.span layoutId="prayer-filter-pill" className="absolute inset-0 rounded-full bg-gradient-to-r from-gold-400 to-gold-600" transition={{ type: "spring", stiffness: 400, damping: 32 }} />}
               <span className={`relative ${on ? "text-navy-950" : "text-white/65"}`}>
-                {f.label} <span className={on ? "text-navy-950/70" : "text-white/35"}>{counts[f.id]}</span>
+                {f.label} <span className={on ? "text-navy-950/70" : "text-white/50"}>{counts[f.id]}</span>
               </span>
             </button>
           );
@@ -355,7 +355,7 @@ export default function PrayerWallScreen() {
             <button onClick={loadPrayers} className="mt-3 rounded-xl bg-white/10 px-5 py-2.5 text-sm font-bold text-white active:scale-95">Try again</button>
           </div>
         )}
-        {visible.length === 0 && loaded && !loadError && <p className="py-10 text-center text-sm text-white/45">Nothing here yet — be the first to lift one up. 💛</p>}
+        {visible.length === 0 && loaded && !loadError && <p className="py-10 text-center text-sm text-white/55">Nothing here yet — be the first to lift one up. 💛</p>}
       </div>
 
       {/* ===== Amen footer ===== */}
@@ -372,7 +372,7 @@ export default function PrayerWallScreen() {
         </div>
       </Reveal>
 
-      <p className="mt-6 text-center text-[11px] leading-relaxed text-white/40">Every prayer is heard. All for His glory. 🙏</p>
+      <p className="mt-6 text-center text-[11px] leading-relaxed text-white/55">Every prayer is heard. All for His glory. 🙏</p>
 
       {/* ===== Overlays ===== */}
       <AnimatePresence>{stillness && <StillnessOverlay onClose={() => setStillness(false)} />}</AnimatePresence>
@@ -427,9 +427,9 @@ function CandleCard({
         </span>
         <span className="min-w-0 flex-1 truncate text-[12px] font-semibold text-white/80">
           {p.name || "Someone"}
-          {p.church ? <span className="font-normal text-white/45"> · {p.church}</span> : null}
+          {p.church ? <span className="font-normal text-white/55"> · {p.church}</span> : null}
         </span>
-        <span className="shrink-0 text-[10px] text-white/35">{timeAgo(p.created_at)}</span>
+        <span className="shrink-0 text-[10px] text-white/50">{timeAgo(p.created_at)}</span>
       </div>
       <p className="text-[14px] leading-relaxed text-white/90">{p.body}</p>
 
@@ -479,7 +479,7 @@ function StillnessOverlay({ onClose }: { onClose: () => void }) {
             &ldquo;{UNITY_VERSES[i].text}&rdquo;
           </motion.p>
         </AnimatePresence>
-        <p className="mt-2 text-[11px] font-bold uppercase tracking-widest text-white/45">{UNITY_VERSES[i].ref}</p>
+        <p className="mt-2 text-[11px] font-bold uppercase tracking-widest text-white/55">{UNITY_VERSES[i].ref}</p>
         <button onClick={onClose} className="mt-10 rounded-full border border-white/20 bg-white/5 px-6 py-2.5 text-sm font-semibold text-white/80 active:scale-95">
           Amen 🙏
         </button>

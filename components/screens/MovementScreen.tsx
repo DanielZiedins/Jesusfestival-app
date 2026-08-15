@@ -86,7 +86,7 @@ export default function MovementScreen() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <h3 className="font-display text-base font-bold text-white">{c.city}</h3>
-                        <span className="text-[11px] text-white/45">{c.region}</span>
+                        <span className="text-[11px] text-white/55">{c.region}</span>
                       </div>
                       <p className="text-[13px] text-white/60">{c.note}</p>
                     </div>
@@ -158,7 +158,7 @@ export default function MovementScreen() {
                   <span className="mt-0.5 block text-[11px] font-bold uppercase tracking-wider text-purple-300">{s.tag}</span>
                   <span className="mt-1 block text-[12.5px] leading-snug text-white/60">{s.blurb}</span>
                 </span>
-                <ArrowRight width={16} height={16} className="mt-1 shrink-0 text-white/40 transition group-hover:translate-x-0.5 group-hover:text-gold-400" />
+                <ArrowRight width={16} height={16} className="mt-1 shrink-0 text-white/55 transition group-hover:translate-x-0.5 group-hover:text-gold-400" />
               </a>
             </Reveal>
           ))}
@@ -190,7 +190,7 @@ export default function MovementScreen() {
             <FlameIcon width={19} height={19} /> {MOVEMENT.cta.label}
             <ArrowRight width={17} height={17} />
           </a>
-          <p className="mt-2.5 text-center text-[12px] text-white/45">
+          <p className="mt-2.5 text-center text-[12px] text-white/55">
             Feel the stir to start one in your city? The movement site shows you how.
           </p>
         </Reveal>

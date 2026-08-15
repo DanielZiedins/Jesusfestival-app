@@ -38,7 +38,7 @@ function PartnerList({ title, items }: { title: string; items: { name: string; h
                 <span className="mt-1 inline-block rounded-full bg-gold/15 px-2 py-0.5 text-[10px] font-bold text-gold-400">{(p as { badge?: string }).badge}</span>
               )}
             </span>
-            <ArrowRight width={17} height={17} className="text-white/40 transition group-hover:translate-x-0.5 group-hover:text-gold-400" />
+            <ArrowRight width={17} height={17} className="text-white/55 transition group-hover:translate-x-0.5 group-hover:text-gold-400" />
           </a>
         ))}
       </div>
@@ -98,7 +98,7 @@ export default function DiscipleshipScreen() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="pb-2 pt-2 text-center text-xs italic text-white/40"
+        className="pb-2 pt-2 text-center text-xs italic text-white/55"
       >
         &ldquo;Let us consider how we may spur one another on toward love and good deeds.&rdquo;
       </motion.p>

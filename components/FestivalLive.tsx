@@ -92,7 +92,7 @@ export default function FestivalLive({ go }: { go: (t: TabId, sub?: string) => v
 
       {dayPct > 0 && (
         <div className="relative mt-4">
-          <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-white/40">
+          <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-white/55">
             <span>{items[0].time}</span>
             <span className="text-white/55">{dayPct}% through the day</span>
             <span>{items[items.length - 1].time}</span>

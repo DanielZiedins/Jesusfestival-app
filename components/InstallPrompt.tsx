@@ -104,7 +104,7 @@ export default function InstallPrompt() {
             <button
               onClick={dismiss}
               aria-label="Dismiss"
-              className="grid h-8 w-8 place-items-center rounded-lg text-white/40 hover:text-white/80"
+              className="grid h-8 w-8 place-items-center rounded-lg text-white/55 hover:text-white/80"
             >
               ✕
             </button>

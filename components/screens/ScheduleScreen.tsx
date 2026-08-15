@@ -234,7 +234,7 @@ export default function ScheduleScreen() {
                                 if (r) setToast(r === "shared" ? "Shared 🎉" : "Copied — paste it to a friend 💛");
                               }}
                               aria-label={`Share ${it.title}`}
-                              className="-mt-0.5 shrink-0 rounded-full p-1.5 text-white/25 transition hover:text-white/50 active:scale-90"
+                              className="-mt-0.5 shrink-0 rounded-full p-1.5 text-white/55 transition hover:text-white/50 active:scale-90"
                             >
                               <Share width={15} height={15} />
                             </button>
@@ -243,7 +243,7 @@ export default function ScheduleScreen() {
                               aria-pressed={starred}
                               aria-label={starred ? `Remove ${it.title} from My Lineup` : `Add ${it.title} to My Lineup`}
                               className={`-mt-0.5 shrink-0 rounded-full p-1.5 text-[15px] leading-none transition active:scale-90 ${
-                                starred ? "text-gold-400" : "text-white/25 hover:text-white/50"
+                                starred ? "text-gold-400" : "text-white/55 hover:text-white/50"
                               }`}
                             >
                               {starred ? "★" : "☆"}
@@ -273,7 +273,7 @@ export default function ScheduleScreen() {
                 </div>
               )}
 
-              <p className="mt-2 rounded-xl bg-white/[0.03] p-3 text-center text-[12px] italic leading-relaxed text-white/45">
+              <p className="mt-2 rounded-xl bg-white/[0.03] p-3 text-center text-[12px] italic leading-relaxed text-white/55">
                 {SCHEDULE.approximate}
               </p>
             </>

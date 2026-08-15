@@ -119,7 +119,7 @@ export default function ChurchCrew() {
                 leaveCrew();
                 setCrew(null);
               }}
-              className="mt-2 w-full text-center text-[11px] text-white/40 underline-offset-2 hover:underline"
+              className="mt-2 w-full text-center text-[11px] text-white/55 underline-offset-2 hover:underline"
             >
               Leave crew
             </button>
@@ -186,7 +186,7 @@ function OtherCrews({ others }: { others: Crew[] }) {
   if (!others.length) return null;
   return (
     <div>
-      <p className="mb-2 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">
+      <p className="mb-2 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white/55">
         <Users width={13} height={13} /> Crews in the mission
       </p>
       <div className="grid grid-cols-2 gap-2">

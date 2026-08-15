@@ -75,7 +75,7 @@ export default function MapScreen() {
               <div className="min-w-0 flex-1">
                 <h3 className="font-display text-lg font-bold text-white">Gage Park</h3>
                 <p className="text-[13px] text-white/60">{SITE.address}</p>
-                <p className="mt-1.5 text-[11px] leading-snug text-white/40">
+                <p className="mt-1.5 text-[11px] leading-snug text-white/55">
                   Free entry, both days. No ticket, no gate, no cost.
                 </p>
               </div>
@@ -173,7 +173,7 @@ export default function MapScreen() {
           ))}
         </div>
         <Reveal className="mx-auto mt-3 max-w-md">
-          <p className="rounded-xl bg-white/[0.03] p-3 text-center text-[12px] italic text-white/45">
+          <p className="rounded-xl bg-white/[0.03] p-3 text-center text-[12px] italic text-white/55">
             Free &amp; family-friendly. All are welcome — come as you are.
           </p>
         </Reveal>

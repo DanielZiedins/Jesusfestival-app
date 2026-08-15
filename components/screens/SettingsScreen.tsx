@@ -88,7 +88,7 @@ export default function SettingsScreen() {
           <h2 className="mb-3 font-display text-base font-bold text-white">Your details</h2>
           <label className="mb-1 block text-[11px] font-semibold uppercase tracking-wider text-white/55">First name</label>
           <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" className="jf-input mb-3" />
-          <label className="mb-1 block text-[11px] font-semibold uppercase tracking-wider text-white/55">Church <span className="text-white/30">(optional)</span></label>
+          <label className="mb-1 block text-[11px] font-semibold uppercase tracking-wider text-white/55">Church <span className="text-white/55">(optional)</span></label>
           <input value={church} onChange={(e) => setChurch(e.target.value)} placeholder="Your church" className="jf-input mb-3" />
           <div className="grid grid-cols-2 gap-3">
             <div>
@@ -102,7 +102,7 @@ export default function SettingsScreen() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-[11px] font-semibold uppercase tracking-wider text-white/55">City <span className="text-white/30">(optional)</span></label>
+              <label className="mb-1 block text-[11px] font-semibold uppercase tracking-wider text-white/55">City <span className="text-white/55">(optional)</span></label>
               <input value={city} onChange={(e) => setCity(e.target.value)} placeholder="e.g. Hamilton" className="jf-input" />
             </div>
           </div>
@@ -147,7 +147,7 @@ export default function SettingsScreen() {
           </button>
         </div>
 
-        <p className="px-2 text-center text-[11px] leading-relaxed text-white/40">
+        <p className="px-2 text-center text-[11px] leading-relaxed text-white/55">
           Your details are used only to personalize your experience and share Jesus Festival updates. This is a safe space for the whole family. 💛
         </p>
       </Reveal>

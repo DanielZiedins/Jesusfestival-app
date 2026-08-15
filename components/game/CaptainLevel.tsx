@@ -43,7 +43,7 @@ export default function CaptainLevel({
           <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-white/10">
             <motion.div className="h-full rounded-full bg-gradient-to-r from-gold-400 to-gold-500" animate={{ width: `${pct}%` }} transition={{ type: "spring", stiffness: 160, damping: 24 }} />
           </div>
-          <p className="mt-1 text-[10px] text-white/45">{toNext} more community acts until Captain Goodness levels up!</p>
+          <p className="mt-1 text-[10px] text-white/55">{toNext} more community acts until Captain Goodness levels up!</p>
         </div>
       </div>
     </div>

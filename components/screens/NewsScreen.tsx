@@ -168,7 +168,7 @@ export default function NewsScreen() {
                   {p.category}
                 </span>
                 {p.pinned && <span className="text-[10px] font-bold uppercase tracking-wide text-gold-400">📌 Pinned</span>}
-                <span className="ml-auto text-[11px] text-white/40">{timeAgo(p.created_at)}</span>
+                <span className="ml-auto text-[11px] text-white/55">{timeAgo(p.created_at)}</span>
               </div>
               <h3 className="font-display text-lg font-bold leading-snug text-white">{p.title}</h3>
               <LinkedBody text={p.body} />

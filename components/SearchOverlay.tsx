@@ -100,7 +100,7 @@ export default function SearchOverlay({
                 autoComplete="off"
                 placeholder="Sets, artists, parking, prayer…"
                 aria-label="Search the festival"
-                className="min-w-0 flex-1 bg-transparent text-[15px] font-medium text-white placeholder:text-white/35 focus:outline-none"
+                className="min-w-0 flex-1 bg-transparent text-[15px] font-medium text-white placeholder:text-white/50 focus:outline-none"
               />
               {q && (
                 <button
@@ -129,7 +129,7 @@ export default function SearchOverlay({
           <div className="mx-auto max-w-lg">
             {!q.trim() ? (
               <>
-                <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white/40">
+                <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white/55">
                   Try one of these
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -143,7 +143,7 @@ export default function SearchOverlay({
                     </button>
                   ))}
                 </div>
-                <p className="mt-6 text-center text-[12px] leading-relaxed text-white/35">
+                <p className="mt-6 text-center text-[12px] leading-relaxed text-white/50">
                   Search every set time, artist, place in the park and page in the app.
                   <br />
                   It all works offline.
@@ -193,7 +193,7 @@ export default function SearchOverlay({
                         {hit.sub}
                       </span>
                     </span>
-                    <ArrowRight width={15} height={15} className="shrink-0 text-white/25" />
+                    <ArrowRight width={15} height={15} className="shrink-0 text-white/55" />
                   </button>
                 ))}
               </div>

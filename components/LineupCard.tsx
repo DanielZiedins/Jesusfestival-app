@@ -77,7 +77,7 @@ export default function LineupCard({ go }: { go: (t: TabId, sub?: string) => voi
           >
             <div className="w-[62px] shrink-0">
               <div className="font-display text-[13px] font-bold leading-tight text-gold-400">{slot.time}</div>
-              <div className="text-[10px] uppercase tracking-wider text-white/40">{day.label}</div>
+              <div className="text-[10px] uppercase tracking-wider text-white/55">{day.label}</div>
             </div>
             <p className="min-w-0 flex-1 truncate font-display text-[14px] font-bold text-white">
               {slot.kind === "artist" && <span className="mr-1 text-gold-400">♪</span>}
@@ -88,7 +88,7 @@ export default function LineupCard({ go }: { go: (t: TabId, sub?: string) => voi
       </div>
 
       {picks.length > list.length && (
-        <p className="relative mt-2.5 text-[12px] text-white/45">
+        <p className="relative mt-2.5 text-[12px] text-white/55">
           +{picks.length - list.length} more in your lineup
         </p>
       )}

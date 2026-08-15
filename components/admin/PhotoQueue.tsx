@@ -39,7 +39,7 @@ export default function PhotoQueue({ passcode }: { passcode: string }) {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={photoUrl(p.path)} alt={p.caption ?? "Pending photo"} className="max-h-64 w-full object-contain bg-black/40" />
               <div className="p-3">
-                <p className="text-sm text-white/80">{p.caption || <span className="italic text-white/40">no caption</span>}</p>
+                <p className="text-sm text-white/80">{p.caption || <span className="italic text-white/55">no caption</span>}</p>
                 {p.name && <p className="mt-0.5 text-xs text-white/50">from {p.name}</p>}
                 <div className="mt-3 grid grid-cols-2 gap-2">
                   <button

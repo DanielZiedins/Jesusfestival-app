@@ -146,7 +146,7 @@ export default function ShopScreen({ initialData }: { initialData?: ShopData }) 
                   Explore every size &amp; colour <ArrowRight width={15} height={15} />
                 </a>
               </Reveal>
-              <p className="mt-2 text-center text-[10.5px] text-white/40">Live availability · secure checkout handled by Shopify</p>
+              <p className="mt-2 text-center text-[10.5px] text-white/55">Live availability · secure checkout handled by Shopify</p>
             </section>
           )}
 
@@ -193,7 +193,7 @@ export default function ShopScreen({ initialData }: { initialData?: ShopData }) 
                 >
                   Browse the full Kingdom Shop <ArrowRight width={15} height={15} />
                 </a>
-                <p className="relative mt-2.5 text-center text-[11px] text-white/40">
+                <p className="relative mt-2.5 text-center text-[11px] text-white/55">
                   Prices in CAD · secure Shopify checkout · opens in a new tab
                 </p>
               </div>
@@ -209,7 +209,7 @@ function ShopFact({ value, label }: { value: string; label: string }) {
   return (
     <div className="rounded-xl border border-white/[0.08] bg-white/[0.035] px-2 py-2.5 text-center">
       <span className="block font-display text-[11px] font-extrabold uppercase tracking-[0.08em] text-gold-400">{value}</span>
-      <span className="mt-0.5 block text-[9.5px] text-white/45">{label}</span>
+      <span className="mt-0.5 block text-[9.5px] text-white/55">{label}</span>
     </div>
   );
 }
@@ -263,10 +263,10 @@ function ProductCard({ product, featured = false, priority = false }: { product:
           <span className={`font-display font-extrabold text-gold-400 ${featured ? "text-[18px]" : "text-[14px]"}`}>
             {product.priceVaries ? "From " : ""}{product.price}
           </span>
-          {product.compareAt && <span className="text-[11.5px] text-white/40 line-through">{product.compareAt}</span>}
-          <span className="text-[9.5px] font-semibold text-white/35">CAD</span>
+          {product.compareAt && <span className="text-[11.5px] text-white/55 line-through">{product.compareAt}</span>}
+          <span className="text-[9.5px] font-semibold text-white/50">CAD</span>
         </div>
-        {detail && <p className="mt-1 text-[10.5px] text-white/45">{detail}</p>}
+        {detail && <p className="mt-1 text-[10.5px] text-white/55">{detail}</p>}
         <span className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-gold-400/90">
           {product.available ? "Choose your options" : "View product"} <ArrowRight width={11} height={11} />
         </span>

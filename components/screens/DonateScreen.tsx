@@ -61,7 +61,7 @@ export default function DonateScreen() {
           />
           <Heart width={20} height={20} /> Give Now <ArrowRight width={18} height={18} />
         </a>
-        <p className="mt-3 text-center text-[11px] leading-relaxed text-white/45">
+        <p className="mt-3 text-center text-[11px] leading-relaxed text-white/55">
           You&apos;ll be taken to our secure giving page, powered by our charitable partner e3 Canada. Thank you for partnering with what God is doing in the city. 🙏
         </p>
       </Reveal>

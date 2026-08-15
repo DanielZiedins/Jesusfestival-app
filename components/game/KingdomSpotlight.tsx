@@ -79,7 +79,7 @@ export default function KingdomSpotlight({
               <div>
                 <p className="font-display text-base font-bold text-white">
                   {featured.name || "Someone"}
-                  {featured.church && <span className="text-white/40"> · {featured.church}</span>}
+                  {featured.church && <span className="text-white/55"> · {featured.church}</span>}
                 </p>
                 <p className="text-[13px] leading-snug text-white/70">{featured.action}</p>
               </div>
@@ -135,7 +135,7 @@ export default function KingdomSpotlight({
           </div>
         )}
       </div>
-      <p className="text-center text-[10px] text-white/35">No rankings, no competition — just celebrating what God is doing through His people. 🙌</p>
+      <p className="text-center text-[10px] text-white/50">No rankings, no competition — just celebrating what God is doing through His people. 🙌</p>
     </div>
   );
 }

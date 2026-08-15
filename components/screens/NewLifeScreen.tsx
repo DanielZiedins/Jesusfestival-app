@@ -239,7 +239,7 @@ function Invitation({
               I already follow Jesus
             </button>
           </div>
-          <p className="pt-1 text-center text-[11.5px] leading-relaxed text-white/40">
+          <p className="pt-1 text-center text-[11.5px] leading-relaxed text-white/55">
             Not ready? That is completely okay. Read on — and know that you are welcome here either way.
           </p>
         </Reveal>
@@ -351,7 +351,7 @@ function Journey({
 
         {/* Progress */}
         <div className="relative mx-auto mt-6 max-w-xs">
-          <div className="flex items-end justify-between text-[11px] font-bold uppercase tracking-wider text-white/45">
+          <div className="flex items-end justify-between text-[11px] font-bold uppercase tracking-wider text-white/55">
             <span>First steps</span>
             <span className="text-gold-400">
               {done} of {STEPS.length}
@@ -409,7 +409,7 @@ function Journey({
                     >
                       <span className="text-xl" aria-hidden="true">{s.emoji}</span>
                       <span className="min-w-0 flex-1">
-                        <span className="block text-[10px] font-bold uppercase tracking-wider text-white/35">
+                        <span className="block text-[10px] font-bold uppercase tracking-wider text-white/50">
                           Step {i + 1}
                         </span>
                         <span
@@ -420,7 +420,7 @@ function Journey({
                           {s.title}
                         </span>
                       </span>
-                      <span className={`shrink-0 text-white/35 transition-transform ${on ? "rotate-90" : ""}`}>
+                      <span className={`shrink-0 text-white/50 transition-transform ${on ? "rotate-90" : ""}`}>
                         <ArrowRight width={15} height={15} />
                       </span>
                     </button>
@@ -495,7 +495,7 @@ function Journey({
                   <span className="block text-[11px] font-medium text-gold-400">{c.badge}</span>
                 )}
               </span>
-              <ArrowRight width={15} height={15} className="shrink-0 text-white/25" />
+              <ArrowRight width={15} height={15} className="shrink-0 text-white/55" />
             </a>
           ))}
           {go && (
@@ -537,7 +537,7 @@ function Journey({
 
       <button
         onClick={onReset}
-        className="mx-auto mt-8 block text-center text-[11px] font-medium text-white/25 underline-offset-2 hover:underline"
+        className="mx-auto mt-8 block text-center text-[11px] font-medium text-white/55 underline-offset-2 hover:underline"
       >
         Tapped this by accident? Clear it
       </button>

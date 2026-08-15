@@ -91,7 +91,7 @@ export default function LiveImpact({ go }: { go: (t: TabId, sub?: string) => voi
             </motion.button>
           ))}
         </div>
-        <p className="mt-2 text-center text-[11px] italic text-white/35">
+        <p className="mt-2 text-center text-[11px] italic text-white/50">
           Live from Revive the City &amp; the Prayer Wall — tap any number to jump in
         </p>
       </Reveal>

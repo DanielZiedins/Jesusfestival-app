@@ -65,7 +65,7 @@ export default function BlogIndex() {
               {p.title}
             </h2>
             <p className="mt-2 text-[15px] leading-relaxed text-white/60">{p.description}</p>
-            <div className="mt-4 flex items-center gap-3 text-[12px] text-white/40">
+            <div className="mt-4 flex items-center gap-3 text-[12px] text-white/55">
               <time dateTime={p.date}>
                 {new Date(`${p.date}T12:00:00Z`).toLocaleDateString("en-CA", { month: "long", day: "numeric", year: "numeric" })}
               </time>

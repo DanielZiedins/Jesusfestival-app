@@ -203,7 +203,7 @@ export default function Onboarding({ onDone }: { onDone: () => void }) {
                     <input value={city} onChange={(e) => setCity(e.target.value)} placeholder="e.g. Hamilton" className="jf-input" />
                   </Field>
                 </div>
-                <p className="-mt-1 flex items-center gap-1 text-[10px] text-white/40">
+                <p className="-mt-1 flex items-center gap-1 text-[10px] text-white/55">
                   🌍 We&apos;ll add you to the map of where the movement is spreading.
                 </p>
 
@@ -218,10 +218,10 @@ export default function Onboarding({ onDone }: { onDone: () => void }) {
                 </button>
               </form>
 
-              <button onClick={skip} className="mt-4 w-full text-center text-xs font-medium text-white/45 underline-offset-2 hover:underline">
+              <button onClick={skip} className="mt-4 w-full text-center text-xs font-medium text-white/55 underline-offset-2 hover:underline">
                 Explore the app without signing up
               </button>
-              <p className="mt-4 text-center text-[10px] leading-relaxed text-white/35">
+              <p className="mt-4 text-center text-[10px] leading-relaxed text-white/50">
                 We&apos;ll only use your info to share Jesus Festival updates. No spam, ever.
               </p>
             </motion.div>
@@ -248,7 +248,7 @@ function Field({
       <span className="mb-1.5 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-white/55">
         {label}
         {required && <span className="text-gold-400">*</span>}
-        {optional && <span className="text-white/30">(optional)</span>}
+        {optional && <span className="text-white/55">(optional)</span>}
       </span>
       {children}
     </label>

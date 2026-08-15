@@ -35,7 +35,7 @@ export default function FaqPage() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd([FESTIVAL_FAQ_JSONLD, pageJsonLd, breadcrumbs]) }}
       />
 
-      <nav aria-label="Breadcrumb" className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">
+      <nav aria-label="Breadcrumb" className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/55">
         <Link href="/" className="hover:text-gold-400">Jesus Festival</Link>
         <span className="px-2">/</span>
         <span aria-current="page">FAQ</span>

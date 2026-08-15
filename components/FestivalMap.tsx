@@ -241,7 +241,7 @@ export default function FestivalMap() {
           </div>
         </div>
 
-        <p className="border-t border-white/8 px-3 py-2 text-center text-[10px] font-medium leading-snug text-white/35">
+        <p className="border-t border-white/8 px-3 py-2 text-center text-[10px] font-medium leading-snug text-white/50">
           Orientation guide — not to scale. Festival zones are approximate and confirmed on-site.
         </p>
 
@@ -267,7 +267,7 @@ export default function FestivalMap() {
             saveSpot(null);
             setToast("Spot cleared");
           }}
-          className="mt-2 w-full text-center text-[11px] font-semibold text-white/40 underline-offset-2 hover:underline"
+          className="mt-2 w-full text-center text-[11px] font-semibold text-white/55 underline-offset-2 hover:underline"
         >
           Clear my spot
         </button>
@@ -328,7 +328,7 @@ export default function FestivalMap() {
 
       {/* ===== Everything on the map, as a list ===== */}
       <div className="mt-4 space-y-1.5">
-        <h3 className="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">
+        <h3 className="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-white/55">
           Everything in the park
         </h3>
         {pins.map((p) => {
@@ -350,7 +350,7 @@ export default function FestivalMap() {
                   {p.festival ? " · approximate" : ""}
                 </span>
               </span>
-              <ArrowRight width={15} height={15} className="shrink-0 text-white/25" />
+              <ArrowRight width={15} height={15} className="shrink-0 text-white/55" />
             </button>
           );
         })}

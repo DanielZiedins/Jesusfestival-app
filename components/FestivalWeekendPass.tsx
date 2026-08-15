@@ -112,9 +112,9 @@ export default function FestivalWeekendPass({ compact = false }: { compact?: boo
 
       {!compact && (
         <div className="mt-4 grid grid-cols-3 gap-2 rounded-2xl border border-white/8 bg-black/15 p-3 text-center">
-          <div><span className="block text-[10px] uppercase tracking-wider text-white/40">Friday</span><strong className="mt-0.5 block text-[12px] text-white">6–9 PM</strong></div>
-          <div className="border-x border-white/10"><span className="block text-[10px] uppercase tracking-wider text-white/40">Saturday</span><strong className="mt-0.5 block text-[12px] text-white">10 AM–6 PM</strong></div>
-          <div><span className="block text-[10px] uppercase tracking-wider text-white/40">Admission</span><strong className="mt-0.5 block text-[12px] text-white">100% Free</strong></div>
+          <div><span className="block text-[10px] uppercase tracking-wider text-white/55">Friday</span><strong className="mt-0.5 block text-[12px] text-white">6–9 PM</strong></div>
+          <div className="border-x border-white/10"><span className="block text-[10px] uppercase tracking-wider text-white/55">Saturday</span><strong className="mt-0.5 block text-[12px] text-white">10 AM–6 PM</strong></div>
+          <div><span className="block text-[10px] uppercase tracking-wider text-white/55">Admission</span><strong className="mt-0.5 block text-[12px] text-white">100% Free</strong></div>
         </div>
       )}
 
@@ -144,7 +144,7 @@ export default function FestivalWeekendPass({ compact = false }: { compact?: boo
         </button>
       </div>
 
-      <p className="mt-3 text-center text-[10px] leading-relaxed text-white/35">No ticket or account needed. Saved only on this device.</p>
+      <p className="mt-3 text-center text-[10px] leading-relaxed text-white/50">No ticket or account needed. Saved only on this device.</p>
       <p aria-live="polite" className="min-h-4 pt-1 text-center text-[11px] font-semibold text-gold-300">{notice}</p>
     </section>
   );

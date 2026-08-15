@@ -89,17 +89,17 @@ export default function FestivalWeather() {
           {days.map((d) => (
             <div key={d.name} className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-transparent p-4 text-center">
               <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-400">{d.name}</div>
-              <div className="mt-0.5 text-[10px] text-white/45">{d.theme}</div>
+              <div className="mt-0.5 text-[10px] text-white/55">{d.theme}</div>
               <div className="mt-2 text-4xl" aria-hidden>{d.emoji}</div>
               <div className="mt-1 text-[13px] font-semibold text-white">{d.label}</div>
               <div className="mt-1.5 font-display text-lg font-extrabold text-white">
-                {d.hi}° <span className="text-sm font-bold text-white/45">/ {d.lo}°</span>
+                {d.hi}° <span className="text-sm font-bold text-white/55">/ {d.lo}°</span>
               </div>
               <div className="mt-1 text-[11px] text-white/50">💧 {d.rain}% chance of rain</div>
             </div>
           ))}
         </div>
-        <p className="mt-2 text-center text-[11px] italic text-white/35">
+        <p className="mt-2 text-center text-[11px] italic text-white/50">
           Gage Park, Hamilton · updates daily · rain or shine, we worship
         </p>
       </Reveal>

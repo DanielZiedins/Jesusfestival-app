@@ -23,7 +23,7 @@ function FruitMeters({ meters }: { meters: Meters }) {
             <div className="min-w-0 flex-1">
               <div className="flex items-center justify-between">
                 <span className={`text-sm font-bold ${f.color}`}>{f.name}</span>
-                <span className="text-[11px] font-semibold text-white/45">Lv {level} · {count.toLocaleString()}</span>
+                <span className="text-[11px] font-semibold text-white/55">Lv {level} · {count.toLocaleString()}</span>
               </div>
               <div className="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-white/10">
                 <motion.div

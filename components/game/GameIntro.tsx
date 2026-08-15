@@ -109,7 +109,7 @@ function IntroVisual({ visual }: { visual: Step["visual"] }) {
     return (
       <div className="w-full max-w-xs">
         <CityScene pct={8} />
-        <p className="mt-2 text-center text-[11px] text-white/45">Today, Hamilton looks like this…</p>
+        <p className="mt-2 text-center text-[11px] text-white/55">Today, Hamilton looks like this…</p>
       </div>
     );
   }

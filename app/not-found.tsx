@@ -51,7 +51,7 @@ export default function NotFound() {
         Back to the festival →
       </Link>
 
-      <p className="mt-8 font-display text-[15px] italic leading-relaxed text-white/45">
+      <p className="mt-8 font-display text-[15px] italic leading-relaxed text-white/55">
         &ldquo;He restores my soul. He leads me in paths of righteousness for his name&apos;s sake.&rdquo;
       </p>
       <p className="mt-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-gold-400">Psalm 23:3</p>

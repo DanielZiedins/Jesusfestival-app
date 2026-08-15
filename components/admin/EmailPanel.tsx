@@ -188,17 +188,17 @@ export default function EmailPanel({ passcode }: { passcode: string }) {
             <Stat label="Already sent" value={aud.alreadySent ?? 0} />
             <Stat label="On the list" value={aud.subscribed ?? 0} />
           </div>
-          <p className="mt-3 text-[11px] leading-relaxed text-white/45">
+          <p className="mt-3 text-[11px] leading-relaxed text-white/55">
             {aud.app ?? 0} app · {aud.site ?? 0} website · log key <code className="text-white/60">{aud.flowKey}</code>
             {typeof aud.daysToFestival === "number" && ` · ${aud.daysToFestival} days to Gage Park`}
           </p>
           {aud.stats && (
-            <p className="mt-1 text-[11px] text-white/45">
+            <p className="mt-1 text-[11px] text-white/55">
               Live in emails: {aud.stats.pct}% revived · {aud.stats.missions} acts · {aud.stats.prayed} prayers
             </p>
           )}
           {!!aud.sample?.length && (
-            <p className="mt-1 truncate text-[11px] text-white/35">e.g. {aud.sample.join(", ")}</p>
+            <p className="mt-1 truncate text-[11px] text-white/50">e.g. {aud.sample.join(", ")}</p>
           )}
         </div>
       )}
@@ -223,7 +223,7 @@ export default function EmailPanel({ passcode }: { passcode: string }) {
 
       {msg && <p className="mt-3 text-center text-xs font-semibold text-white/70">{msg}</p>}
 
-      <p className="mt-4 rounded-xl bg-white/[0.03] p-3 text-[11px] leading-relaxed text-white/40">
+      <p className="mt-4 rounded-xl bg-white/[0.03] p-3 text-[11px] leading-relaxed text-white/55">
         Broadcasts to the whole list stay on their scheduled cron jobs on purpose — this panel is for previewing and testing, so no
         real send ever happens by accident from a phone.
       </p>
@@ -235,7 +235,7 @@ function Stat({ label, value, accent }: { label: string; value: number; accent?:
   return (
     <div>
       <div className={`font-display text-xl font-extrabold ${accent ? "text-gold-400" : "text-white"}`}>{value}</div>
-      <div className="mt-0.5 text-[10px] uppercase tracking-wider text-white/45">{label}</div>
+      <div className="mt-0.5 text-[10px] uppercase tracking-wider text-white/55">{label}</div>
     </div>
   );
 }

@@ -163,7 +163,7 @@ export default function InstallScreen() {
             <li>• Opens full-screen &amp; loads instantly, even offline</li>
             <li>• One tap from your home screen — no app store needed</li>
           </ul>
-          <p className="mt-3 text-[11px] leading-relaxed text-white/45">
+          <p className="mt-3 text-[11px] leading-relaxed text-white/55">
             On iPhone, notifications work once the app is added to your Home Screen.
           </p>
         </div>

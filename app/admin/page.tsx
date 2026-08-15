@@ -60,7 +60,7 @@ function Unlock({ passcode, setPasscode, onUnlock }: { passcode: string; setPass
       >
         Unlock
       </button>
-      <p className="mt-3 text-[11px] leading-relaxed text-white/40">
+      <p className="mt-3 text-[11px] leading-relaxed text-white/55">
         The passcode is verified on the server for every action. If it&apos;s wrong, saving will fail.
       </p>
     </div>
@@ -150,7 +150,7 @@ function Dashboard({ passcode }: { passcode: string }) {
         ) : (
           <p className="text-sm text-white/50">Loading…</p>
         )}
-        <p className="mt-3 text-[11px] text-white/40">Target: {CITY_TARGET.toLocaleString()} Light Points = 100%.</p>
+        <p className="mt-3 text-[11px] text-white/55">Target: {CITY_TARGET.toLocaleString()} Light Points = 100%.</p>
         <button onClick={reset} disabled={busy} className="mt-3 w-full rounded-xl border border-rose-400/40 bg-rose-500/10 py-2.5 text-sm font-bold text-rose-200 active:scale-[0.98]">
           Reset city (new event)
         </button>

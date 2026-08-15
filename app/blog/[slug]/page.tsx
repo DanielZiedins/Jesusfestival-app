@@ -78,7 +78,7 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
 
       <ReadingProgress />
 
-      <nav aria-label="Breadcrumb" className="text-[12px] font-bold uppercase tracking-[0.18em] text-white/40">
+      <nav aria-label="Breadcrumb" className="text-[12px] font-bold uppercase tracking-[0.18em] text-white/55">
         <Link href="/" className="hover:text-gold-400">Festival</Link>
         <span className="px-2">/</span>
         <Link href="/blog" className="hover:text-gold-400">Blog</Link>
@@ -94,7 +94,7 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
             {post.title}
           </h1>
           <p className="mt-4 text-[17px] leading-relaxed text-white/60">{post.description}</p>
-          <div className="mt-5 flex items-center gap-3 border-b border-white/10 pb-6 text-[12px] text-white/40">
+          <div className="mt-5 flex items-center gap-3 border-b border-white/10 pb-6 text-[12px] text-white/55">
             <time dateTime={post.date}>
               {new Date(`${post.date}T12:00:00Z`).toLocaleDateString("en-CA", { month: "long", day: "numeric", year: "numeric" })}
             </time>

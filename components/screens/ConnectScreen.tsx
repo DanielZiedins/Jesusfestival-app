@@ -129,7 +129,7 @@ export default function ConnectScreen() {
               </h3>
               <p className="text-[13px] text-white/60">Invite your family, friends & church.</p>
             </div>
-            <ArrowRight width={18} height={18} className="text-white/40" />
+            <ArrowRight width={18} height={18} className="text-white/55" />
           </button>
         </Reveal>
       </section>
@@ -166,7 +166,7 @@ export default function ConnectScreen() {
           </a>
         </Reveal>
         <Reveal className="mx-auto mt-6 max-w-md text-center">
-          <p className="text-[12px] italic leading-relaxed text-white/40">
+          <p className="text-[12px] italic leading-relaxed text-white/55">
             It&apos;s all about Jesus. All glory belongs to Him.
           </p>
         </Reveal>

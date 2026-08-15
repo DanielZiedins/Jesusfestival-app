@@ -393,7 +393,7 @@ export default function HomeScreen({
                   <h3 className="mt-0.5 font-display text-lg font-bold leading-tight text-white">{a.name}</h3>
                   <p className="mt-0.5 line-clamp-2 text-[13px] leading-snug text-white/60">{a.blurb}</p>
                 </div>
-                {a.href && <ArrowRight width={18} height={18} className="shrink-0 text-white/40" />}
+                {a.href && <ArrowRight width={18} height={18} className="shrink-0 text-white/55" />}
               </>
             );
             const cls = "group flex items-center gap-4 overflow-hidden rounded-2xl border border-white/8 bg-white/[0.04] p-3";
@@ -674,7 +674,7 @@ export default function HomeScreen({
               <h3 className="font-display text-base font-bold text-white">Watch the Recaps</h3>
               <p className="text-[13px] text-white/60">See what God has been doing in Hamilton.</p>
             </div>
-            <ArrowRight width={18} height={18} className="text-white/40" />
+            <ArrowRight width={18} height={18} className="text-white/55" />
           </a>
         </Reveal>
       </section>

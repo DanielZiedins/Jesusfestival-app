@@ -420,7 +420,7 @@ export default function GameScreen() {
 
         {/* What we unlock together */}
         <div className="relative mt-3">
-          <p className="mb-2 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-white/45">The journey ahead — unlocked together</p>
+          <p className="mb-2 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-white/55">The journey ahead — unlocked together</p>
           <MilestoneJourney pct={pct} />
         </div>
 
@@ -609,7 +609,7 @@ export default function GameScreen() {
 
       <Motivate text="🙏 We're not building an app — we're building unity. Fix your eyes on Jesus, and let's revive this city together. All for His glory!" />
 
-      <p className="mt-8 text-center text-[11px] leading-relaxed text-white/40">
+      <p className="mt-8 text-center text-[11px] leading-relaxed text-white/55">
         The city transformation is symbolic — a picture of hope. Real goodness comes from following Jesus. 💛
       </p>
 
@@ -868,7 +868,7 @@ function VerseChallengeModal({ v, done, onComplete, onClose }: { v: VC; done: bo
       <div className="text-center">
         <span className="rounded-lg bg-purple-500/20 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-purple-200">{v.level}</span>
         <h3 className="mt-3 font-display text-2xl font-bold text-white">{v.ref}</h3>
-        <p className="text-[11px] text-white/45">{BIBLE_TRANSLATION}</p>
+        <p className="text-[11px] text-white/55">{BIBLE_TRANSLATION}</p>
       </div>
 
       {!solved ? (
@@ -894,7 +894,7 @@ function VerseChallengeModal({ v, done, onComplete, onClose }: { v: VC; done: bo
             <>
               <p className="mb-2 text-center text-xs text-white/55">Tap the words in the right order:</p>
               <div className={`mb-4 min-h-[52px] rounded-2xl border p-3 text-center text-[15px] font-semibold text-white ${wrong ? "border-rose-400/50" : "border-white/12"} bg-white/5`}>
-                {built.join(" ") || <span className="text-white/30">…</span>}
+                {built.join(" ") || <span className="text-white/55">…</span>}
               </div>
               <div className="flex flex-wrap justify-center gap-2">
                 {order.map((w, i) => (

@@ -42,8 +42,8 @@ function MilestoneJourney({ pct }: { pct: number }) {
               />
             )}
             <div className={`text-2xl ${unlocked ? "" : isNext ? "" : "opacity-40 grayscale"}`}>{unlocked ? m.emoji : isNext ? m.emoji : "🔒"}</div>
-            <p className={`mt-1 font-display text-sm font-extrabold ${unlocked ? "text-gold-400" : isNext ? "text-purple-200" : "text-white/40"}`}>{m.pct}%</p>
-            <p className={`mt-0.5 text-[10px] leading-tight ${unlocked ? "text-white/80" : isNext ? "text-white/75" : "text-white/35"}`}>{m.tease}</p>
+            <p className={`mt-1 font-display text-sm font-extrabold ${unlocked ? "text-gold-400" : isNext ? "text-purple-200" : "text-white/55"}`}>{m.pct}%</p>
+            <p className={`mt-0.5 text-[10px] leading-tight ${unlocked ? "text-white/80" : isNext ? "text-white/75" : "text-white/50"}`}>{m.tease}</p>
             {unlocked && <span className="mt-1.5 inline-block rounded-full bg-gold/20 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-gold-400">Unlocked!</span>}
             {isNext && <span className="mt-1.5 inline-block rounded-full bg-purple-500/30 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-purple-200">Up next</span>}
           </div>

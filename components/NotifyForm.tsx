@@ -131,7 +131,7 @@ export default function NotifyForm() {
             >
               {status === "loading" ? "Signing you up…" : "Notify Me"}
             </button>
-            <p className="text-center text-[11px] text-white/40">
+            <p className="text-center text-[11px] text-white/55">
               No spam, ever. Unsubscribe anytime.
             </p>
           </motion.form>
