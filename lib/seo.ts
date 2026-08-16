@@ -55,6 +55,61 @@ export const FESTIVAL_FAQS = [
     answer:
       "The Festival Shop inside JesusFestival.App features the official Jesus Festival collection from ThyKingdom.Shop, with prices displayed in Canadian dollars.",
   },
+  {
+    question: "What happens if it rains?",
+    answer:
+      "Gage Park is an open-air venue, so dress for the forecast — a light rain jacket packs down smaller than an umbrella and blocks nobody's view. The app shows the Gage Park forecast on the home screen from about two weeks out. If severe weather ever required a change to the plan, the News tab and app notifications are where it would be announced first, so turning on notifications is the simplest way to know.",
+  },
+  {
+    question: "Will someone try to convert me?",
+    answer:
+      "Nobody will single you out, put you on the spot or corner you. There is no altar call you have to stand up for, no moment where visitors are asked to identify themselves, and no collection. Speakers will talk openly about Jesus from the stage — that is genuinely what the weekend is — and you are free to listen, eat, chat with friends or leave at any point. If you ever want to talk or be prayed for, the Prayer Tent is there and you go to it, not the other way around.",
+  },
+  {
+    question: "Is Gage Park wheelchair accessible?",
+    answer:
+      "Gage Park has paved pathways throughout, and the Main Street East entrance at Gage Avenue is the flattest paved route to the bandshell and main stage area. Seating on the lawn is open grass, so bringing a chair is worth it if standing is difficult. Accessible parking is limited and fills early, so arriving well before the first set is the safest plan.",
+  },
+  {
+    question: "Can I bring my own food, drinks or a picnic?",
+    answer:
+      "Gage Park is a public city park, so bringing your own food, snacks and a refillable water bottle is completely fine. There are food trucks on site if you would rather buy something, and drinking fountains in the park for refills. Bringing a little cash is wise — card machines and park signal do not always cooperate once a few thousand phones arrive.",
+  },
+  {
+    question: "Can I bring my dog?",
+    answer:
+      "Gage Park is a public park and the City of Hamilton's normal park and leash rules apply to the festival weekend as on any other day. If you do bring a dog, the areas away from the stage are far more comfortable for them — amplified music, crowds and early September heat are a lot for an animal. Bring water and shade, and check the City of Hamilton park rules for anything specific.",
+  },
+  {
+    question: "What time should I arrive?",
+    answer:
+      "For Friday's Pure Worship Night, gates open at 6:00 PM and worship starts at 6:30 PM, so arriving at 6:00 PM gives you time to park and find a spot. For Saturday, the lawn fills from the front, so arriving 20 to 30 minutes before a set you especially want to see is the difference between the front and the back. Parking fills earlier than people expect on both days.",
+  },
+  {
+    question: "Is there seating, or do I need to bring a chair?",
+    answer:
+      "Bring a lawn chair or a blanket. Seating is open grass in front of the bandshell and there are no rows of chairs set out, so what you bring is what you sit on. This is the single most common thing first-time visitors wish they had done.",
+  },
+  {
+    question: "Are there washrooms at the festival?",
+    answer:
+      "Yes. Gage Park has permanent public washrooms near the bandshell, and the festival map inside the app shows where they are. The map works offline once the app is installed, which matters on a day when park signal is unreliable.",
+  },
+  {
+    question: "Can I be baptised at Jesus Festival?",
+    answer:
+      "Yes. Baptisms are celebrated publicly on Saturday, and you do not need to have planned it in advance or belong to a particular church. If you decide on the day, go to the baptism area marked on the festival map and the team will walk you through what happens. The app's I Said Yes page explains the whole thing beforehand if you would rather read it privately first.",
+  },
+  {
+    question: "How can I volunteer at Jesus Festival?",
+    answer:
+      "The Volunteers section inside JesusFestival.App is where you apply, enter a team code and find your team. Volunteers help with setup, welcome, the Kids Zone, prayer, food, and teardown, and most roles are a few hours rather than the whole weekend.",
+  },
+  {
+    question: "Will there be phone signal at Gage Park?",
+    answer:
+      "Expect it to be poor. A few thousand phones in one park will overwhelm the local cell capacity, which is why the Jesus Festival app is built to work offline. Install it before you come and tap 'Save the festival essentials' on the install screen, and the schedule, the park map, your saved spot and the next-steps guide all keep working with no bars at all.",
+  },
 ] as const;
 
 const PLACE_JSONLD = {

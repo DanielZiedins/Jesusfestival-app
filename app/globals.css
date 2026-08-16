@@ -128,9 +128,21 @@ textarea {
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
+  /* Skip rendering work for sections that are still far off-screen.
+
+     The size here is the placeholder the browser reserves while a section is
+     skipped, and getting it wrong is what makes a long page feel jumpy: these
+     sections are really 83px to 1151px tall, so a flat 720px guess had the page
+     over-reporting its own length by about 5000px and shifting under the reader
+     as each one materialised.
+
+     `auto` fixes the steady state — the browser remembers each section's real
+     rendered size and reuses that instead of the guess — and 360px is much
+     closer to the actual median for the very first pass. Browsers without
+     `auto` support simply fall back to the fixed value, i.e. the old behaviour. */
   .render-later {
     content-visibility: auto;
-    contain-intrinsic-size: 1px 720px;
+    contain-intrinsic-size: auto 360px;
   }
 }
 
