@@ -267,7 +267,7 @@ export default function FestivalVisitPlanner() {
         </div>
 
         <p className="text-center text-[11px] leading-relaxed text-white/60">
-          Event layouts, transit and traffic can change. Recheck official updates and on-site signs before travelling. Accessibility questions? Email <a className="font-bold text-gold-400 underline underline-offset-2" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+          Event layouts, transit and traffic can change. Recheck official updates and on-site signs before travelling. Need mobility, sensory or support planning? <Link className="font-bold text-emerald-300 underline underline-offset-2" href="/accessibility">Open the accessibility guide</Link> or email <a className="font-bold text-gold-400 underline underline-offset-2" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
         </p>
       </div>
     </section>

@@ -106,7 +106,7 @@ export default function HomeScreen({
       {/* ===== HERO ===== */}
       <section ref={heroRef} className="relative h-[92vh] min-h-[600px] w-full overflow-hidden">
         <motion.div style={{ y: bgY, scale: bgScale }} className="absolute inset-0">
-          <Image src={IMG.heroCrowd} alt="A crowd worshipping together at Jesus Festival" fill priority sizes="(max-width: 512px) 100vw, 512px" className="object-cover" />
+          <Image src={IMG.heroCrowd} alt="A crowd worshipping together at Jesus Festival" fill preload sizes="(max-width: 512px) 100vw, 512px" className="object-cover" />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/25 to-ink" />
         <div className="absolute inset-0 bg-radial-glow" />
@@ -265,6 +265,17 @@ export default function HomeScreen({
               <span className="mt-0.5 block text-[11.5px] leading-snug text-white/65">A private arrival plan for your group, day and travel style.</span>
             </span>
             <ArrowRight width={17} height={17} className="shrink-0 text-gold-400" />
+          </Link>
+          <Link
+            href="/accessibility"
+            className="mt-2.5 flex min-h-14 items-center gap-3 rounded-2xl border border-emerald-300/25 bg-emerald-400/[0.07] p-3.5 transition hover:border-emerald-300/45 active:scale-[0.99]"
+          >
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-emerald-400/15 text-xl" aria-hidden>♿</span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-display text-[13.5px] font-extrabold text-white">Accessibility & Comfort Guide</span>
+              <span className="mt-0.5 block text-[11px] leading-snug text-white/60">Mobility, sensory planning, transit and questions to confirm.</span>
+            </span>
+            <ArrowRight width={16} height={16} className="shrink-0 text-emerald-300" />
           </Link>
           {/* Renders null until they've starred a set, so it never nags. */}
           <div className="mt-3">

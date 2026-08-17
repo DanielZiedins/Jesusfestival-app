@@ -109,16 +109,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${display.variable} ${sans.variable}`}>
       <head>
-        <link rel="preconnect" href="https://d2xsxph8kpxj0f.cloudfront.net" crossOrigin="" />
-        {/* The Home hero is the LCP element on the main entry — start fetching it
-            before the client bundle even parses. */}
-        <link
-          rel="preload"
-          as="image"
-          href="https://d2xsxph8kpxj0f.cloudfront.net/310519663378107536/KJYp3PsjqZ4zMkWznW5JC5/jfgood1_7ef3ec90.jpg"
-          fetchPriority="high"
-        />
-        <link rel="preconnect" href="https://www.jesusfestival.ca" />
         <link rel="dns-prefetch" href="https://vmpkiwfvnlzraabtjkig.supabase.co" />
       </head>
       <body className="min-h-screen bg-ink antialiased">

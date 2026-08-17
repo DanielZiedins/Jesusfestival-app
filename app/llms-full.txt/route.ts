@@ -50,6 +50,15 @@ ${EXPECT.map((item) => `- ${item.title}: ${item.text}`).join("\n")}
 
 ${FESTIVAL_FAQS.map((item) => `### ${item.question}\n\n${item.answer}`).join("\n\n")}
 
+## Accessibility and sensory-comfort facts
+
+- The accessibility guide is ${SITE.url}/accessibility and was reviewed on 2026-08-17.
+- The City of Hamilton lists Gage Park at 1000 Main Street East with an extensive walkway system, 150 park parking spaces, potable water near two washroom buildings and washrooms at three park locations.
+- The main festival gathering area is open lawn, so surface conditions, distance and weather can affect a visit.
+- The City says all HSR buses have accessible low floors and ramps, mobility-device spaces, priority seating, and audio and visual stop announcements.
+- The final festival-day accessible parking layout, accessible viewing area, event-provided toilets, ASL or captioning, quiet space, refrigeration, charging and individualized supports are not confirmed in the public information reviewed for the guide. Visitors who require one of these should email ${SITE.email} before travelling.
+- The private Comfort Plan at ${SITE.url}/accessibility#comfort-plan stores choices on the visitor's device and does not require an account.
+
 ## Deciding to follow Jesus
 
 Anyone who decides to follow Jesus at the festival — or afterwards, or without ever attending — is pointed to ${SITE.url}/i-said-yes. It requires no account, no e-mail address and no sign-up, and it works offline. These are the seven first steps it gives:
@@ -68,6 +77,7 @@ ${QUESTIONS.map((item) => `#### ${item.q}\n\n${item.a}`).join("\n\n")}
 
 - Festival guide: ${SITE.url}/jesus-festival-hamilton
 - Personalized visit planner: ${SITE.url}/jesus-festival-hamilton#build-my-plan
+- Accessibility and sensory-comfort guide: ${SITE.url}/accessibility
 - Schedule: ${SITE.url}/schedule
 - FAQ: ${SITE.url}/faq
 - Map and directions: ${SITE.url}/map

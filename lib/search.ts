@@ -47,6 +47,7 @@ const SCREENS: Hit[] = [
   { id: "s-install", title: "Add to Home Screen", sub: "Install the app & turn on notifications", emoji: "📲", kind: "Screen", tab: "more", moreView: "install", extra: "install pwa notifications alerts push offline" },
   { id: "s-offline", title: "Offline Festival Essentials", sub: "Saved schedule, location & packing checklist", emoji: "📵", kind: "Screen", href: "/offline", extra: "no signal festival ready packing plan download" },
   { id: "s-plan", title: "Build My Festival Plan", sub: "A personalized arrival plan for your days, group and travel", emoji: "🧭", kind: "Screen", href: "/jesus-festival-hamilton#build-my-plan", extra: "visit planner driving transit family first time accessible low stress" },
+  { id: "s-access", title: "Accessibility & Comfort Guide", sub: "Mobility, sensory comfort, HSR, service animals and support planning", emoji: "♿", kind: "Screen", href: "/accessibility", extra: "wheelchair accessible quiet ASL hearing vision medication caregiver stroller washroom parking" },
   { id: "s-settings", title: "Settings", sub: "Your name, church & preferences", emoji: "⚙️", kind: "Screen", tab: "more", moreView: "settings", extra: "profile preferences name" },
 ];
 
@@ -190,4 +191,4 @@ export function runSearch(query: string, limit = 24): Hit[] {
   return scored.slice(0, limit).map((s) => s.hit);
 }
 
-export const QUICK_QUERIES = ["Ant Lee", "Parking", "Plan", "First aid", "Baptism", "Kids", "Shop", "Offline"];
+export const QUICK_QUERIES = ["Ant Lee", "Parking", "Access", "Plan", "First aid", "Baptism", "Kids", "Offline"];

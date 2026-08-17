@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import ScreenHeader from "@/components/ScreenHeader";
 import Reveal from "@/components/Reveal";
 import SearchPill from "@/components/SearchPill";
@@ -154,6 +155,20 @@ export default function MoreScreen({
                 </span>
                 <ArrowRight width={18} height={18} className="relative shrink-0 text-emerald-300 transition group-hover:translate-x-0.5" />
               </button>
+            </Reveal>
+
+            <Reveal delay={0.06}>
+              <Link
+                href="/accessibility"
+                className="group mb-3 flex min-h-20 items-center gap-4 rounded-2xl border border-emerald-300/25 bg-gradient-to-br from-emerald-700/20 via-navy-800/35 to-ink/50 p-4 transition active:scale-[0.99]"
+              >
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-emerald-400/15 text-3xl" aria-hidden>♿</span>
+                <span className="min-w-0 flex-1">
+                  <span className="block font-display text-lg font-extrabold text-white">Accessibility & Comfort</span>
+                  <span className="block text-xs leading-snug text-white/65">Build a private plan for mobility, sensory and support needs</span>
+                </span>
+                <ArrowRight width={18} height={18} className="shrink-0 text-emerald-300 transition group-hover:translate-x-0.5" />
+              </Link>
             </Reveal>
 
             <div className="space-y-3 pb-4">

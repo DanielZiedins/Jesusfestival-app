@@ -175,4 +175,5 @@ export const INDEXABLE_ROUTES = [
   "/map",
   "/connect",
   "/install",
+  "/accessibility",
 ] as const;

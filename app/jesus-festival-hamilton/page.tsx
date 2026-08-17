@@ -65,7 +65,7 @@ export default function FestivalGuidePage() {
           src={IMG.heroCrowd}
           alt="A crowd worshipping together at Jesus Festival in Gage Park, Hamilton"
           fill
-          priority
+          preload
           sizes="100vw"
           className="-z-20 object-cover"
         />
@@ -175,6 +175,7 @@ export default function FestivalGuidePage() {
             <div className="mt-6 flex flex-wrap gap-3">
               <Link href="/map" className="rounded-xl bg-white px-5 py-3 text-sm font-extrabold text-navy-950">Map & arrival guide</Link>
               <a href={LINKS.directions} target="_blank" rel="noopener noreferrer" className="rounded-xl border border-white/20 px-5 py-3 text-sm font-bold text-white">Open Google Maps</a>
+              <Link href="/accessibility" className="rounded-xl border border-emerald-300/25 bg-emerald-400/[0.07] px-5 py-3 text-sm font-bold text-emerald-200">Accessibility & comfort</Link>
             </div>
           </div>
           <FestivalReadinessChecklist compact />
