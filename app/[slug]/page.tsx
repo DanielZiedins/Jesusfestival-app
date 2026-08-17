@@ -4,6 +4,11 @@ import AppShell from "@/components/AppShell";
 import { APP_ROUTE_META, APP_ROUTES } from "@/lib/routes";
 import { breadcrumbJsonLd, FESTIVAL_EVENT_JSONLD, newBelieverJsonLd, serializeJsonLd, webPageJsonLd } from "@/lib/seo";
 
+// Every valid slug is enumerated at build time. Without this, Next 16 serves
+// a prerendered fallback shell (HTTP 200) for unknown params before notFound()
+// can run — a soft-404 that lets search engines index junk URLs.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return Object.keys(APP_ROUTE_META)
     .filter((path) => path !== "/" && path !== "/shop")

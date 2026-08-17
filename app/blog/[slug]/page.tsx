@@ -6,6 +6,11 @@ import { KINGDOM_SITES, SITE } from "@/lib/content";
 import Rich from "@/components/blog/Rich";
 import { ReadingProgress, ShareArticle } from "@/components/blog/ArticleChrome";
 
+// Every valid slug is enumerated at build time. Without this, Next 16 serves
+// a prerendered fallback shell (HTTP 200) for unknown params before notFound()
+// can run — a soft-404 that lets search engines index junk URLs.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return BLOG_POSTS.map((p) => ({ slug: p.slug }));
 }
