@@ -31,8 +31,8 @@
     {
       "name": "Hamilton 2026 Guide",
       "short_name": "2026 Guide",
-      "description": "Dates, lineup, arrival details and festival answers",
-      "url": "/jesus-festival-hamilton",
+      "description": "Dates, lineup, arrival details and a personalized visit plan",
+      "url": "/jesus-festival-hamilton#build-my-plan",
       "icons": [
         {
           "src": "/icons/icon-192.png",

@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   HERO,
   SITE,
@@ -251,6 +252,20 @@ export default function HomeScreen({
             <QuickAction emoji="🗺️" title="Plan Your Visit" sub="Live map & directions" onClick={() => go("more", "map")} accent="emerald" />
             <QuickAction emoji="🙌" title="Volunteers" sub="Serve at the festival" onClick={() => go("more", "volunteers")} accent="ember" />
           </div>
+          <Link
+            href="/jesus-festival-hamilton#build-my-plan"
+            className="mt-3 flex min-h-16 items-center gap-3 rounded-2xl border border-gold/35 bg-gradient-to-r from-gold/12 via-purple-500/[0.08] to-transparent p-3.5 transition hover:border-gold/55 active:scale-[0.99]"
+          >
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-xl shadow-glow" aria-hidden>🧭</span>
+            <span className="min-w-0 flex-1">
+              <span className="flex items-center gap-2">
+                <span className="font-display text-[14px] font-extrabold text-white">Build My Festival Plan</span>
+                <span className="rounded-full bg-emerald-400/15 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-wider text-emerald-200">New</span>
+              </span>
+              <span className="mt-0.5 block text-[11.5px] leading-snug text-white/65">A private arrival plan for your group, day and travel style.</span>
+            </span>
+            <ArrowRight width={17} height={17} className="shrink-0 text-gold-400" />
+          </Link>
           {/* Renders null until they've starred a set, so it never nags. */}
           <div className="mt-3">
             <LineupCard go={go} />

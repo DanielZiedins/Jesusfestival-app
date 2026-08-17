@@ -56,6 +56,11 @@ export const FESTIVAL_FAQS = [
       "Yes. Once the app has been opened online, its dedicated offline essentials page, core schedule, Gage Park address and packing checklist are cached for congested or unavailable park networks. Live community features reconnect automatically when service returns.",
   },
   {
+    question: "Can the app build a personalized Jesus Festival visit plan?",
+    answer:
+      "Yes. The Build My Festival Plan tool creates a private arrival plan based on which days you are attending, whether you are coming for the first time, with family, for worship or for a lower-stress visit, and whether you are driving, taking HSR or arriving another way. The choices stay on your device and can be shared without creating an account.",
+  },
+  {
     question: "Can I take HSR transit to Gage Park?",
     answer:
       "Yes. HSR stops serve the area around Gage Park. Because schedules and event-day detours can change, use the City of Hamilton's official HSR trip-planning tools for 1000 Main Street East on the day you travel.",
@@ -292,6 +297,7 @@ export const SITE_GRAPH_JSONLD = {
       featureList: [
         "Complete two-day festival schedule",
         "Personal lineup planner",
+        "Personalized arrival and visit planner",
         "Live festival updates",
         "Gage Park map and directions",
         "Prayer Wall",

@@ -47,6 +47,10 @@ export default function OfflinePage() {
 
         <div className="mt-8"><FestivalReadinessChecklist compact /></div>
 
+        <Link href="/jesus-festival-hamilton#build-my-plan" className="mt-4 flex min-h-11 items-center justify-center rounded-xl border border-gold/30 bg-gold/10 px-4 py-3 text-center text-sm font-extrabold text-gold-300">
+          Open my saved festival plan →
+        </Link>
+
         <section className="mt-8 rounded-3xl border border-white/10 bg-white/[0.035] p-5" aria-labelledby="offline-reminders">
           <h2 id="offline-reminders" className="font-display text-xl font-extrabold">Quick reminders</h2>
           <ul className="mt-3 space-y-2 text-sm leading-relaxed text-white/60">

@@ -47,7 +47,7 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
   const more = sortedPosts().filter((p) => p.slug !== post.slug).slice(0, 2);
 
   const sourceCitations = post.sources?.map((source) => ({ "@type": "CreativeWork", name: source.name, url: source.url })) ?? [];
-  const articleAbout = post.slug === "gage-park-festival-guide"
+  const articleAbout = ["gage-park-festival-guide", "free-things-to-do-hamilton-september-2026"].includes(post.slug)
     ? [{ "@id": `${SITE.url}/#festival-2026` }, { "@id": `${SITE.url}/#gage-park` }]
     : [{ "@id": `${SITE.url}/#festival-2026` }];
   const jsonLd: object[] = [

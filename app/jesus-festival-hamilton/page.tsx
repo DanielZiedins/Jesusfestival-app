@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import FestivalWeekendPass from "@/components/FestivalWeekendPass";
 import FestivalReadinessChecklist from "@/components/FestivalReadinessChecklist";
+import FestivalVisitPlanner from "@/components/FestivalVisitPlanner";
 import { ARTISTS, EXPECT, IMG, LINKS, SCHEDULE, SITE } from "@/lib/content";
 import {
   breadcrumbJsonLd,
@@ -107,6 +108,10 @@ export default function FestivalGuidePage() {
 
         <div className="mx-auto mt-8 max-w-xl">
           <FestivalWeekendPass compact />
+        </div>
+
+        <div className="mt-10">
+          <FestivalVisitPlanner />
         </div>
 
         <section className="mt-16" aria-labelledby="weekend-heading">
