@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/content";
 
 export default function robots(): MetadataRoute.Robots {
+  // Do not block /offline here: crawlers need to see its page-level noindex.
   const privatePaths = ["/admin", "/api/", "/settings", "/unsubscribe"];
   return {
     rules: [

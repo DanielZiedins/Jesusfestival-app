@@ -45,6 +45,7 @@ const SCREENS: Hit[] = [
   { id: "s-movement", title: "The Movement", sub: "More than a festival", emoji: "🔥", kind: "Screen", tab: "more", moreView: "movement", extra: "vision mission why" },
   { id: "s-connect", title: "Connect", sub: "Where the movement is spreading", emoji: "🌍", kind: "Screen", tab: "more", moreView: "connect", extra: "globe world community join" },
   { id: "s-install", title: "Add to Home Screen", sub: "Install the app & turn on notifications", emoji: "📲", kind: "Screen", tab: "more", moreView: "install", extra: "install pwa notifications alerts push offline" },
+  { id: "s-offline", title: "Offline Festival Essentials", sub: "Saved schedule, location & packing checklist", emoji: "📵", kind: "Screen", href: "/offline", extra: "no signal festival ready packing plan download" },
   { id: "s-settings", title: "Settings", sub: "Your name, church & preferences", emoji: "⚙️", kind: "Screen", tab: "more", moreView: "settings", extra: "profile preferences name" },
 ];
 
@@ -188,4 +189,4 @@ export function runSearch(query: string, limit = 24): Hit[] {
   return scored.slice(0, limit).map((s) => s.hit);
 }
 
-export const QUICK_QUERIES = ["Ant Lee", "Parking", "First aid", "Baptism", "Friday", "Kids", "Shop"];
+export const QUICK_QUERIES = ["Ant Lee", "Parking", "First aid", "Baptism", "Friday", "Kids", "Shop", "Offline"];

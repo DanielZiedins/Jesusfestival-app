@@ -1,7 +1,7 @@
 import { ARTISTS, LINKS, SITE } from "@/lib/content";
 import { QUESTIONS, STEPS } from "@/lib/newlife";
 
-export const LAST_MAJOR_UPDATE = "2026-08-09";
+export const LAST_MAJOR_UPDATE = "2026-08-17";
 export const FESTIVAL_GUIDE_PATH = "/jesus-festival-hamilton";
 
 export const FESTIVAL_FAQS = [
@@ -48,7 +48,17 @@ export const FESTIVAL_FAQS = [
   {
     question: "What does the Jesus Festival app include?",
     answer:
-      "The free app includes the complete two-day schedule, a personal lineup planner, Gage Park directions, festival news, live updates, the Prayer Wall, Revive the City activities, notifications and offline essentials.",
+      "The free app includes the complete two-day schedule, a personal lineup planner, a private Festival Ready packing checklist, Gage Park directions, festival news, live updates, the Prayer Wall, Revive the City activities, notifications and offline essentials.",
+  },
+  {
+    question: "Does the Jesus Festival app work offline?",
+    answer:
+      "Yes. Once the app has been opened online, its dedicated offline essentials page, core schedule, Gage Park address and packing checklist are cached for congested or unavailable park networks. Live community features reconnect automatically when service returns.",
+  },
+  {
+    question: "Can I take HSR transit to Gage Park?",
+    answer:
+      "Yes. HSR stops serve the area around Gage Park. Because schedules and event-day detours can change, use the City of Hamilton's official HSR trip-planning tools for 1000 Main Street East on the day you travel.",
   },
   {
     question: "Where can I buy official Jesus Festival apparel?",

@@ -3,15 +3,28 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { track } from "@vercel/analytics";
 import ScreenHeader from "@/components/ScreenHeader";
 import Reveal, { Eyebrow } from "@/components/Reveal";
 import { fetchShop, SHOP_JF_COLLECTION_URL, SHOP_URL, type ShopData, type ShopProduct } from "@/lib/shop";
 import { ArrowRight, Check, Heart, Share, Sparkle } from "@/components/icons";
 
+function recordShop(name: string, properties: Record<string, string | number> = {}) {
+  try {
+    track(name, { source: "jesusfestival.app", ...properties });
+  } catch {
+    // The Shopify handoff must work even when analytics is unavailable.
+  }
+}
+
 export default function ShopScreen({ initialData }: { initialData?: ShopData }) {
   const [data, setData] = useState<ShopData | null | undefined>(initialData);
   const [reloadKey, setReloadKey] = useState(0);
   const [shareState, setShareState] = useState<"idle" | "done" | "error">("idle");
+
+  useEffect(() => {
+    recordShop("festival_shop_viewed");
+  }, []);
 
   useEffect(() => {
     if (initialData && reloadKey === 0) return;
@@ -34,6 +47,7 @@ export default function ShopScreen({ initialData }: { initialData?: ShopData }) 
       if (navigator.share) await navigator.share(shareData);
       else await navigator.clipboard.writeText(SHOP_JF_COLLECTION_URL);
       setShareState("done");
+      recordShop("festival_shop_shared");
     } catch (error) {
       if (error instanceof DOMException && error.name === "AbortError") return;
       setShareState("error");
@@ -92,6 +106,7 @@ export default function ShopScreen({ initialData }: { initialData?: ShopData }) 
               href={SHOP_JF_COLLECTION_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => recordShop("festival_collection_opened", { location: "recovery" })}
               className="rounded-xl border border-gold/40 bg-gold/10 px-4 py-3 text-sm font-bold text-gold-400 transition active:scale-95"
             >
               Open shop ↗
@@ -141,6 +156,7 @@ export default function ShopScreen({ initialData }: { initialData?: ShopData }) 
                   href={SHOP_JF_COLLECTION_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => recordShop("festival_collection_opened", { location: "collection" })}
                   className="mt-3 flex items-center justify-center gap-1.5 rounded-xl border border-gold/40 bg-gold/10 py-3 text-sm font-bold text-gold-400 transition hover:bg-gold/15 active:scale-[0.98]"
                 >
                   Explore every size &amp; colour <ArrowRight width={15} height={15} />
@@ -189,6 +205,7 @@ export default function ShopScreen({ initialData }: { initialData?: ShopData }) 
                   href={`${SHOP_URL}?utm_source=jesusfestival.app&utm_medium=app&utm_campaign=festival_shop`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => recordShop("kingdom_shop_opened", { location: "shop_footer" })}
                   className="relative mt-4 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 py-3 font-display text-sm font-bold text-navy-950 shadow-glow transition hover:brightness-105 active:scale-[0.98]"
                 >
                   Browse the full Kingdom Shop <ArrowRight width={15} height={15} />
@@ -228,6 +245,7 @@ function ProductCard({ product, featured = false, priority = false }: { product:
       href={product.url}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => recordShop("shop_product_opened", { product: product.title, featured: featured ? 1 : 0 })}
       aria-label={`${product.title}, ${product.price}${product.priceVaries ? " and up" : ""}. Opens on ThyKingdom.Shop.`}
       className={`group block h-full overflow-hidden rounded-2xl border transition duration-300 hover:-translate-y-0.5 hover:border-gold/50 active:scale-[0.99] ${
         featured

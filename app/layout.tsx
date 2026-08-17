@@ -41,7 +41,10 @@ export const metadata: Metadata = {
   },
   formatDetection: { telephone: false },
   alternates: {
-    types: { "application/rss+xml": `${SITE.url}/feed.xml` },
+    types: {
+      "application/rss+xml": `${SITE.url}/feed.xml`,
+      "text/calendar": `${SITE.url}/jesus-festival-2026.ics`,
+    },
   },
   category: "events",
   authors: [{ name: "Jesus Festival" }],

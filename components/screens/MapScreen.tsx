@@ -4,18 +4,8 @@ import { SITE, LINKS } from "@/lib/content";
 import Reveal from "@/components/Reveal";
 import ScreenHeader from "@/components/ScreenHeader";
 import FestivalMap from "@/components/FestivalMap";
+import FestivalReadinessChecklist from "@/components/FestivalReadinessChecklist";
 import { MapPin, MapIcon, ArrowRight, Sparkle } from "@/components/icons";
-
-const BRING = [
-  { emoji: "🪑", label: "Lawn chair or blanket", note: "The lawn fills from the front — claim your spot early" },
-  { emoji: "🧴", label: "Sunscreen & a hat", note: "Saturday runs 10–6 in the open sun" },
-  { emoji: "💧", label: "Water bottle", note: "There are drinking fountains in the park — refill all day" },
-  { emoji: "💵", label: "A bit of cash", note: "Card machines and park signal don't always agree" },
-  { emoji: "🔋", label: "A power bank", note: "A full festival day will finish your battery" },
-  { emoji: "🧥", label: "A layer for Friday night", note: "It cools off fast once the sun sets" },
-  { emoji: "👟", label: "Comfy shoes", note: "You'll wander food trucks & Vendor Village" },
-  { emoji: "🤝", label: "A friend", note: "The one thing that matters most" },
-];
 
 const GETTING_HERE = [
   { emoji: "🅿️", label: "Free parking on-site", note: "Arrive 20 minutes earlier than you think you need to — it fills fast" },
@@ -128,27 +118,9 @@ export default function MapScreen() {
         </div>
       </section>
 
-      {/* ===== What to bring ===== */}
+      {/* Interactive offline-ready packing plan */}
       <section className="mt-8 px-4">
-        <Reveal className="mx-auto mb-3 max-w-md">
-          <div className="flex items-center gap-2 text-gold-400">
-            <Sparkle width={17} height={17} />
-            <h2 className="font-display text-lg font-bold text-white">What to bring</h2>
-          </div>
-        </Reveal>
-        <div className="mx-auto max-w-md space-y-2.5">
-          {BRING.map((b, i) => (
-            <Reveal key={b.label} delay={Math.min(i * 0.045, 0.3)}>
-              <div className="flex items-center gap-3 rounded-xl border border-white/8 bg-white/[0.03] p-3.5">
-                <span className="text-xl" aria-hidden="true">{b.emoji}</span>
-                <div>
-                  <p className="text-sm font-semibold text-white">{b.label}</p>
-                  <p className="text-[12px] text-white/50">{b.note}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal className="mx-auto max-w-md"><FestivalReadinessChecklist /></Reveal>
       </section>
 
       {/* ===== Getting here ===== */}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 /**
  * Gage Park with thousands of people means congested cell service. The schedule
@@ -24,12 +25,11 @@ export default function OfflineBanner() {
   if (!offline) return null;
 
   return (
-    <div
-      role="status"
-      className="fixed inset-x-0 top-0 z-[90] flex items-center justify-center gap-2 bg-gold px-4 py-2 text-center text-[12px] font-bold text-navy-950 safe-top"
-    >
-      <span className="h-1.5 w-1.5 rounded-full bg-navy-950/60" />
-      You&apos;re offline — the schedule &amp; lineup still work
+    <div role="status" className="fixed inset-x-0 top-0 z-[90] bg-gold text-navy-950 safe-top">
+      <Link href="/offline" className="flex min-h-11 items-center justify-center gap-2 px-4 py-2 text-center text-[12px] font-bold">
+        <span className="h-1.5 w-1.5 rounded-full bg-navy-950/60" />
+        You&apos;re offline — open saved festival essentials →
+      </Link>
     </div>
   );
 }

@@ -25,6 +25,8 @@ export type BlogPost = {
   date: string;
   readMins: number;
   body: Block[];
+  faqs?: { question: string; answer: string }[];
+  sources?: { name: string; url: string }[];
   /** Domains from KINGDOM_SITES to surface as cards at the end of the post. */
   related: string[];
 };
@@ -176,6 +178,80 @@ export const BLOG_POSTS: BlogPost[] = [
       { t: "p", text: "If you want to do it with a few thousand others: September 4–5, Gage Park. That's the plan. [Come and pray with us](https://www.jesusfestival.app/schedule)." },
     ],
     related: ["LoveonHamilton.com", "OikosMap.com", "SeekFirst.World", "ThyKingdom.net"],
+  },
+  {
+    slug: "gage-park-festival-guide",
+    title: "The Complete Gage Park Festival Guide for Jesus Festival 2026",
+    description:
+      "Plan your Jesus Festival Hamilton weekend at Gage Park: where to enter, when to arrive, parking and HSR options, what to pack, family tips and the full September 4–5 schedule.",
+    eyebrow: "Plan your weekend",
+    emoji: "🗺️",
+    date: "2026-08-17",
+    readMins: 8,
+    body: [
+      { t: "p", text: "Jesus Festival Hamilton returns to Gage Park on **Friday, September 4 and Saturday, September 5, 2026**. Admission is completely free, no ticket is required, and everyone is welcome. Friday is an open-air Pure Worship Night from 6:00–9:00 PM; Saturday is an all-ages festival day from 10:00 AM–6:00 PM." },
+      { t: "p", text: "This guide puts the practical details in one place so you can spend less time wondering where to go and more time enjoying the weekend. Save the [official 2026 festival guide](https://www.jesusfestival.app/jesus-festival-hamilton), open the [live schedule](https://www.jesusfestival.app/schedule), and use the new [offline essentials screen](https://www.jesusfestival.app/offline) before you leave home." },
+      { t: "h2", text: "Where exactly is Jesus Festival Hamilton?" },
+      { t: "p", text: "Jesus Festival is held at **Gage Park, 1000 Main Street East, Hamilton, Ontario**. The park sits between Main Street East, Gage Avenue South, Lawrence Road and Rothsay Avenue. The City of Hamilton describes it as a 71-acre festival park with broad open lawns, walking paths and the George R. Robinson Bandshell." },
+      { t: "p", text: "The bandshell is the natural landmark to look for once you are inside the park. Final festival-zone placement—including food trucks, Kids Zone, prayer and baptism areas—can change as the event plan is completed, so check the [in-app map and arrival guide](https://www.jesusfestival.app/map) near festival weekend." },
+      { t: "h2", text: "When should I arrive?" },
+      { t: "list", items: [
+        "**Friday:** gates open at 6:00 PM and worship begins at 6:30 PM. Arriving around opening gives you time to park, choose a lawn spot and settle in before worship.",
+        "**Saturday:** the festival begins at 10:00 AM and runs until 6:00 PM. Come early if convenient parking and a favourite lawn location matter to you.",
+        "**Families:** build in extra time for unloading chairs, water and children’s supplies. The park is large, so a calm arrival is worth the earlier start.",
+      ] },
+      { t: "p", text: "There is no box office or ticket line. You can simply arrive and join the festival. Star the sets you do not want to miss in the [personal schedule planner](https://www.jesusfestival.app/schedule), then download both days to your device calendar." },
+      { t: "h2", text: "Parking, transit and getting to Gage Park" },
+      { t: "p", text: "Free festival parking is available, but spaces can fill quickly. City park information lists the main parking entrance off **Lawrence Road, just east of Gage Avenue South**, and identifies the parking area as wheelchair accessible. Follow festival signs and volunteer directions when you arrive because event-day traffic flow can differ from an ordinary park visit." },
+      { t: "p", text: "Nearby street parking, carpooling, rideshare, cycling, walking and HSR are useful alternatives. Transit schedules and detours can change, so use the [City of Hamilton’s official HSR trip-planning tools](https://www.hamilton.ca/home-neighbourhood/hsr/schedule-route-tools/trip-planning-tools) on the day you travel rather than relying on an old route screenshot." },
+      { t: "list", items: [
+        "**Driving from downtown or Highway 403:** approach Main Street East toward Gage Avenue, then follow current traffic and event signage.",
+        "**Driving from Niagara or the east:** the Red Hill Valley Parkway and Lawrence Road can provide a practical approach, depending on current conditions.",
+        "**Using HSR:** plan for Gage Park or 1000 Main Street East and check live detour information before leaving.",
+        "**Rideshare:** choose a safe legal drop-off point outside the busiest entrance and expect a short walk.",
+      ] },
+      { t: "h2", text: "What should I bring to an outdoor festival at Gage Park?" },
+      { t: "p", text: "Think comfort, weather and a full day outdoors. The app now includes a private **Festival Ready** checklist that stays on your device and works offline. The essentials are simple:" },
+      { t: "list", items: [
+        "A lawn chair or picnic blanket",
+        "A refillable water bottle",
+        "Sunscreen and a hat for Saturday",
+        "A light layer for Friday evening",
+        "Comfortable walking shoes",
+        "Any medications or family supplies you normally carry",
+        "A friend, neighbour or family member to experience it with",
+      ] },
+      { t: "p", text: "The City lists potable water near park washroom buildings and three washroom areas across Gage Park, but event layouts and access points may change. Bring your water bottle filled, use posted facilities and ask a festival volunteer if you need help finding something." },
+      { t: "h2", text: "Is Jesus Festival good for families?" },
+      { t: "p", text: "Yes. Saturday is designed as a free, all-ages family festival with a Kids Zone, bouncy castles, lawn games, food trucks, worship, live music and open green space. Gage Park itself includes playgrounds, gardens and walking paths, although normal park amenities may operate differently during a major event." },
+      { t: "p", text: "Take a photo of your group before spreading out, choose an easy-to-recognize meeting point, and make sure children know which festival volunteers to approach if they need help. A small card with a caregiver’s phone number is a useful extra for younger children." },
+      { t: "h2", text: "What happens on Friday and Saturday?" },
+      { t: "p", text: "Friday’s **Pure Worship Night** opens at 6:00 PM, with worship led by Bethel Gospel Tabernacle from 6:30–9:00 PM. Saturday’s **Family Festival Day** runs 10:00 AM–6:00 PM with Ant Lee Jr., Open Heaven, ACTS Kingdom Sound Worship, Friday Night Prayer, testimonies, prayer, the Gospel, food trucks, family activities and baptisms." },
+      { t: "p", text: "Set times can be easier to follow inside the app, especially once you create a personal lineup. The schedule and offline guide are cached for congested park networks, while live news, community features and Shopify inventory reconnect whenever service is available." },
+      { t: "h2", text: "Your simplest festival plan" },
+      { t: "list", items: [
+        "Save September 4–5 using the app’s two-event calendar download.",
+        "Open the Festival Ready checklist and pack the night before.",
+        "Choose driving, HSR, rideshare, cycling or walking before you leave.",
+        "Arrive early enough to park and settle in without rushing.",
+        "Star your must-see sets and invite one person to come with you.",
+      ] },
+      { t: "p", text: "That is all you need. There is no ticket to buy and no special background required. Come as you are, find a place on the grass, and join a whole city lifting up the name of Jesus." },
+    ],
+    faqs: [
+      { question: "When is Jesus Festival Hamilton 2026?", answer: "Jesus Festival Hamilton is September 4–5, 2026. Friday runs from 6:00–9:00 PM, with worship beginning at 6:30 PM. Saturday runs from 10:00 AM–6:00 PM." },
+      { question: "Where is Jesus Festival held?", answer: "Jesus Festival is held at Gage Park, 1000 Main Street East, Hamilton, Ontario. The main City parking entrance is off Lawrence Road, just east of Gage Avenue South." },
+      { question: "Is admission free and do I need a ticket?", answer: "Admission is completely free and no ticket is required. Food truck purchases and official merchandise are optional." },
+      { question: "Where can I park for Jesus Festival?", answer: "Free festival parking is available but fills quickly. Follow current event signs and volunteer directions. Nearby street parking, HSR, rideshare, cycling and walking are useful alternatives." },
+      { question: "What should I bring to Gage Park?", answer: "Bring a lawn chair or blanket, refillable water bottle, sunscreen, hat, comfortable shoes and a layer for Friday evening. The app includes a private offline packing checklist." },
+      { question: "Is Jesus Festival family-friendly?", answer: "Yes. Saturday is an all-ages family festival with a Kids Zone, bouncy castles, games, food trucks, live music and open green space." },
+    ],
+    sources: [
+      { name: "City of Hamilton — Gage Park Features and Event Services", url: "https://www.hamilton.ca/things-do/venues-facilities-bookings/event-planning-information/event-locations" },
+      { name: "City of Hamilton — Gage Park and Tropical Greenhouse", url: "https://www.hamilton.ca/things-do/parks-green-space/gage-park-tropical-greenhouse" },
+      { name: "City of Hamilton — HSR Trip Planning Tools", url: "https://www.hamilton.ca/home-neighbourhood/hsr/schedule-route-tools/trip-planning-tools" },
+    ],
+    related: ["JesusFestival.ca", "JesusFestivalMovement.com", "LoveonHamilton.com"],
   },
   {
     slug: "wear-the-message",

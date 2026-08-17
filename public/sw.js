@@ -1,5 +1,5 @@
 // Jesus Festival — lightweight offline-first service worker.
-const CACHE = "jf-app-v8";
+const CACHE = "jf-app-v9";
 const IMG_CACHE = "jf-images-v1";
 const IMG_MAX_ENTRIES = 80;
 const IMG_HOSTS = new Set([
@@ -25,6 +25,7 @@ const APP_SHELL = [
   "/prayer",
   "/i-said-yes",
   "/more",
+  "/offline",
   "/jesus-festival-hamilton",
   "/faq",
   "/jesus-festival-2026.ics",
@@ -115,7 +116,7 @@ self.addEventListener("fetch", (event) => {
           }
           return res;
         })
-        .catch(() => caches.match(request).then((r) => r || caches.match("/")))
+        .catch(() => caches.match(request).then((r) => r || caches.match("/offline").then((offline) => offline || caches.match("/"))))
     );
     return;
   }

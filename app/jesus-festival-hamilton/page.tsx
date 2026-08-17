@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import FestivalWeekendPass from "@/components/FestivalWeekendPass";
+import FestivalReadinessChecklist from "@/components/FestivalReadinessChecklist";
 import { ARTISTS, EXPECT, IMG, LINKS, SCHEDULE, SITE } from "@/lib/content";
 import {
   breadcrumbJsonLd,
@@ -171,16 +172,7 @@ export default function FestivalGuidePage() {
               <a href={LINKS.directions} target="_blank" rel="noopener noreferrer" className="rounded-xl border border-white/20 px-5 py-3 text-sm font-bold text-white">Open Google Maps</a>
             </div>
           </div>
-          <aside className="rounded-3xl border border-white/10 bg-white/[0.04] p-7">
-            <h2 className="font-display text-2xl font-bold">Bring with you</h2>
-            <ul className="mt-5 space-y-3 text-[14px] leading-relaxed text-white/65">
-              <li>✓ Lawn chair or picnic blanket</li>
-              <li>✓ Sunscreen, hat and water bottle</li>
-              <li>✓ A layer for Friday evening</li>
-              <li>✓ Comfortable shoes</li>
-              <li>✓ Your family, church and neighbours</li>
-            </ul>
-          </aside>
+          <FestivalReadinessChecklist compact />
         </section>
 
         <section className="mt-16" aria-labelledby="answers-heading">

@@ -16,6 +16,19 @@
   ],
   "shortcuts": [
     {
+      "name": "Offline Festival Essentials",
+      "short_name": "Offline",
+      "description": "Saved schedule, location and packing essentials for festival day",
+      "url": "/offline",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
       "name": "Hamilton 2026 Guide",
       "short_name": "2026 Guide",
       "description": "Dates, lineup, arrival details and festival answers",

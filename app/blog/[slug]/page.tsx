@@ -26,7 +26,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
       type: "article",
       publishedTime: post.date,
     },
-    twitter: { title: post.title, description: post.description },
+    twitter: { card: "summary_large_image", title: post.title, description: post.description },
   };
 }
 
@@ -41,7 +41,11 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
 
   const more = sortedPosts().filter((p) => p.slug !== post.slug).slice(0, 2);
 
-  const jsonLd = [
+  const sourceCitations = post.sources?.map((source) => ({ "@type": "CreativeWork", name: source.name, url: source.url })) ?? [];
+  const articleAbout = post.slug === "gage-park-festival-guide"
+    ? [{ "@id": `${SITE.url}/#festival-2026` }, { "@id": `${SITE.url}/#gage-park` }]
+    : [{ "@id": `${SITE.url}/#festival-2026` }];
+  const jsonLd: object[] = [
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
@@ -58,8 +62,18 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
       },
       mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE.url}/blog/${post.slug}` },
       image: [`${SITE.url}/brand/banner.png`],
+      articleSection: post.eyebrow,
+      inLanguage: "en-CA",
+      about: articleAbout,
+      speakable: {
+        "@type": "SpeakableSpecification",
+        cssSelector: ["article h1", "article header > p", ".article-faqs"],
+      },
       // The outbound network links this article genuinely cites.
-      citation: related.map((s) => ({ "@type": "CreativeWork", name: s.name, url: s.url })),
+      citation: [
+        ...related.map((s) => ({ "@type": "CreativeWork", name: s.name, url: s.url })),
+        ...sourceCitations,
+      ],
     },
     {
       "@context": "https://schema.org",
@@ -71,6 +85,18 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
       ],
     },
   ];
+
+  if (post.faqs?.length) {
+    jsonLd.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: post.faqs.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: { "@type": "Answer", text: item.answer },
+      })),
+    });
+  }
 
   return (
     <main className="mx-auto min-h-screen max-w-2xl px-5 pb-20 pt-10">
@@ -107,6 +133,21 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
           <Rich blocks={post.body} />
         </div>
 
+        {post.faqs?.length ? (
+          <section className="article-faqs mt-12" aria-labelledby="article-faqs-heading">
+            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-gold-400">Quick answers</p>
+            <h2 id="article-faqs-heading" className="mt-2 font-display text-3xl font-extrabold text-white">Frequently asked questions</h2>
+            <div className="mt-5 space-y-3">
+              {post.faqs.map((item) => (
+                <details key={item.question} className="group rounded-2xl border border-white/10 bg-white/[0.04] p-5 open:border-gold/35">
+                  <summary className="cursor-pointer list-none pr-5 font-display text-[16px] font-bold text-white">{item.question}</summary>
+                  <p className="mt-3 text-[14px] leading-relaxed text-white/65">{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
         <ShareArticle title={post.title} url={`${SITE.url}/blog/${post.slug}`} />
       </article>
 
@@ -137,6 +178,22 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
           </div>
         </section>
       )}
+
+      {post.sources?.length ? (
+        <section className="mt-10 border-t border-white/10 pt-7" aria-labelledby="sources-heading">
+          <h2 id="sources-heading" className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/65">Authoritative local sources</h2>
+          <ul className="mt-3 space-y-2">
+            {post.sources.map((source) => (
+              <li key={source.url}>
+                <a href={source.url} target="_blank" rel="noopener" className="text-[13px] font-semibold leading-relaxed text-gold-400 underline decoration-gold-400/35 underline-offset-2 hover:decoration-gold-400">
+                  {source.name} ↗
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 text-[11px] leading-relaxed text-white/60">Park and transit conditions can change. Check official sources and event-day signage before travelling.</p>
+        </section>
+      ) : null}
 
       <section className="mt-14 rounded-3xl border border-gold/25 bg-gradient-to-br from-gold/10 to-transparent p-7 text-center">
         <h2 className="font-display text-2xl font-bold text-white">You&apos;re invited</h2>
