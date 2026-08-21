@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { claim, STATIONS, TOTAL_POINTS, type ClaimResult } from "@/lib/hunt";
 import { shareBadge } from "@/components/hunt/BadgeCard";
 import { haptic } from "@/lib/game";
@@ -37,24 +36,20 @@ export default function ClaimStation({ token }: { token: string }) {
     );
   }
 
-  const { station, isNew, found, total, justCompleted } = result;
+  const { station, isNew, found, total, justCompleted, nextUp } = result;
 
   return (
     <main className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-6 py-14 text-center">
-      <motion.div
-        initial={{ scale: 0.6, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 220, damping: 16 }}
-      >
+      <div className="jf-pop">
         <div className="relative mx-auto grid h-28 w-28 place-items-center">
           <div className="absolute inset-0 rounded-full bg-gold/25 blur-2xl" />
           <span className="relative text-6xl" aria-hidden>{station.emoji}</span>
         </div>
-      </motion.div>
+      </div>
 
-      <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
+      <div className="jf-rise">
         <p className="mt-6 text-[11px] font-black uppercase tracking-[0.24em] text-gold-400">
-          {justCompleted ? "All nine found" : isNew ? "Light found" : "Already lit"}
+          {justCompleted ? "All twelve found" : isNew ? "Light found" : "Already lit"}
         </p>
         <h1 className="mt-2 font-display text-[34px] font-extrabold leading-tight text-white">
           {station.name}
@@ -80,36 +75,36 @@ export default function ClaimStation({ token }: { token: string }) {
         </blockquote>
 
         <p className="mt-5 text-[14.5px] leading-relaxed text-white/70">{station.word}</p>
-      </motion.div>
+
+        {/* Six of the twelve lights sit in Vendor Row. Say the quiet part out
+            loud — the whole point is that people actually stop and talk. */}
+        {station.vendor && (
+          <p className="mt-4 rounded-2xl border border-teal-300/25 bg-teal-300/[0.06] p-3.5 text-[13px] leading-relaxed text-white/70">
+            <span className="font-bold text-white">Say hello while you&apos;re here.</span> This booth
+            is somebody&apos;s livelihood and somebody&apos;s offering. Ask them what they make. It
+            costs you nothing and it might be the best part of their day.
+          </p>
+        )}
+      </div>
 
       {/* A cold scanner has never seen the app — tell them what they just joined. */}
       {found === 1 && isNew && (
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="mt-7 rounded-2xl border border-white/12 bg-white/[0.05] p-4 text-left"
-        >
+        <div className="jf-rise mt-7 rounded-2xl border border-white/12 bg-white/[0.05] p-4 text-left">
           <p className="text-[11px] font-black uppercase tracking-[0.2em] text-gold-400">
             You just started the Light Hunt
           </p>
           <p className="mt-2 text-[13.5px] leading-relaxed text-white/70">
-            There are <strong className="text-white">nine</strong> of these hidden around Gage Park.
-            Find them all to unlock badges you can share and pour{" "}
-            {TOTAL_POINTS.toLocaleString("en-CA")} Light Points into Revive the City.
+            There are <strong className="text-white">twelve</strong> of these hidden around Gage
+            Park — six of them tucked through Vendor Row. Find them all to unlock nine shareable
+            badges and pour {TOTAL_POINTS.toLocaleString("en-CA")} Light Points into Revive the City.
             It&apos;s free, there&apos;s nothing to sign up for, and it works even with no signal.
           </p>
-        </motion.div>
+        </div>
       )}
 
       {/* Badge unlocked — shareable right here, no need to go anywhere */}
       {result.newBadges.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.35, type: "spring", stiffness: 200, damping: 18 }}
-          className="mt-7 rounded-3xl border border-gold/45 bg-gradient-to-br from-gold/18 to-transparent p-5"
-        >
+        <div className="jf-pop mt-7 rounded-3xl border border-gold/45 bg-gradient-to-br from-gold/18 to-transparent p-5">
           <p className="text-[11px] font-black uppercase tracking-[0.22em] text-gold-400">
             {result.newBadges.length > 1 ? "Badges unlocked" : "Badge unlocked"}
           </p>
@@ -138,7 +133,7 @@ export default function ClaimStation({ token }: { token: string }) {
               {note}
             </p>
           )}
-        </motion.div>
+        </div>
       )}
 
       {/* Progress dots */}
@@ -154,13 +149,30 @@ export default function ClaimStation({ token }: { token: string }) {
         {found} of {total} lights found
       </p>
 
+      {/* Where to walk next. Vendor lights come first in nextUp on purpose. */}
+      {nextUp.length > 0 && (
+        <div className="jf-rise mt-6 rounded-2xl border border-white/12 bg-white/[0.04] p-4 text-left">
+          <p className="text-[11px] font-black uppercase tracking-[0.2em] text-gold-400">
+            Go hunt this one next
+          </p>
+          <ul className="mt-3 space-y-3">
+            {nextUp.map((s) => (
+              <li key={s.id} className="flex gap-3">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-dashed border-white/20 bg-white/[0.04] text-[15px]" aria-hidden>
+                  ❓
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-[13px] font-bold text-white">{s.where}</span>
+                  <span className="block text-[12.5px] leading-snug text-white/55">{s.clue}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {justCompleted && (
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="mt-6 rounded-3xl border border-gold/50 bg-gradient-to-br from-gold/20 to-transparent p-5"
-        >
+        <div className="jf-pop mt-6 rounded-3xl border border-gold/50 bg-gradient-to-br from-gold/20 to-transparent p-5">
           <div className="text-4xl" aria-hidden>🏆</div>
           <p className="mt-1.5 font-display text-xl font-extrabold text-white">
             You&apos;re a Light Bearer!
@@ -168,7 +180,7 @@ export default function ClaimStation({ token }: { token: string }) {
           <p className="mt-1.5 text-[13.5px] leading-relaxed text-white/70">
             Every lamp is lit. Open your badge shelf to share what you earned.
           </p>
-        </motion.div>
+        </div>
       )}
 
       <Link

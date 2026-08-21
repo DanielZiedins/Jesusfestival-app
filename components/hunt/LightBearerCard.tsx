@@ -77,7 +77,7 @@ async function draw(name: string | null): Promise<Blob | null> {
   // Title
   ctx.fillStyle = "#ffffff";
   ctx.font = "800 92px 'Space Grotesk', system-ui, sans-serif";
-  ctx.fillText("All nine lights", W / 2, 500);
+  ctx.fillText("All twelve lights", W / 2, 500);
   ctx.fillText("found ✨", W / 2, 600);
 
   // Name pill
@@ -96,13 +96,17 @@ async function draw(name: string | null): Promise<Blob | null> {
     ctx.fillText(label, W / 2, 702);
   }
 
-  // The nine emoji in a 3×3 grid
+  // Every station emoji, laid out in a grid that stays inside the canvas
+  // whatever the station count happens to be.
   const startY = name ? 810 : 760;
-  ctx.font = "76px system-ui, 'Apple Color Emoji', sans-serif";
+  const cols = STATIONS.length % 4 === 0 ? 4 : 3;
+  const step = Math.min(200, (W - 160) / cols);
+  ctx.font = `${cols === 4 ? 68 : 76}px system-ui, 'Apple Color Emoji', sans-serif`;
   STATIONS.forEach((s, i) => {
-    const col = i % 3;
-    const row = Math.floor(i / 3);
-    ctx.fillText(s.emoji, W / 2 - 200 + col * 200, startY + row * 130);
+    const col = i % cols;
+    const row = Math.floor(i / cols);
+    const rowStart = W / 2 - ((cols - 1) * step) / 2;
+    ctx.fillText(s.emoji, rowStart + col * step, startY + row * 130);
   });
 
   // Scripture
@@ -140,7 +144,7 @@ export async function shareLightBearerCard(): Promise<"shared" | "downloaded" | 
 
   const file = new File([blob], "jesus-festival-light-bearer.png", { type: "image/png" });
   const text =
-    "I found all nine lights at Jesus Festival 🏆✨ Let your light shine before others. — Matthew 5:16  https://www.jesusfestival.app/hunt";
+    `I found all ${STATIONS.length} lights at Jesus Festival 🏆✨ Let your light shine before others. — Matthew 5:16  https://www.jesusfestival.app/hunt`;
 
   try {
     if (navigator.canShare?.({ files: [file] })) {

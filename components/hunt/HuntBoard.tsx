@@ -2,15 +2,17 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
   BADGES,
   earnedBadges,
+  HUNT_POINTS_BONUS,
   getProgress,
   markSynced,
   pendingPoints,
+  PARK_STATIONS,
   STATIONS,
   TOTAL_POINTS,
+  VENDOR_STATIONS,
   type Badge,
   type Station,
 } from "@/lib/hunt";
@@ -20,7 +22,8 @@ import { shareBadge } from "@/components/hunt/BadgeCard";
 import { ArrowRight, Check, Share, Sparkle } from "@/components/icons";
 
 /**
- * The nine lamps. Lit ones show their verse; unlit ones show only where to look,
+ * The twelve lamps, split into Around the Park and Vendor Row. Lit ones show
+ * their verse; unlit ones show only a location and a clue,
  * so the hunt still has something to find.
  */
 export default function HuntBoard({ highlight }: { highlight?: string }) {
@@ -83,7 +86,8 @@ export default function HuntBoard({ highlight }: { highlight?: string }) {
   const count = found.length;
   const complete = count === STATIONS.length;
   const pct = Math.round((count / STATIONS.length) * 100);
-  const earned = STATIONS.filter((s) => lit.has(s.id)).reduce((n, s) => n + s.points, 0) + (complete ? 500 : 0);
+  const earned =
+    STATIONS.filter((s) => lit.has(s.id)).reduce((n, s) => n + s.points, 0) + (complete ? HUNT_POINTS_BONUS : 0);
 
   return (
     <div>
@@ -106,7 +110,7 @@ export default function HuntBoard({ highlight }: { highlight?: string }) {
         </div>
 
         {/* Width is applied directly, with a CSS transition for the sweep. A
-            framer width animation stalls at its start value when rAF is
+            JS-driven width animation stalls at its start value when rAF is
             throttled (backgrounded tab, low-power mode) — which would show an
             empty bar to someone who has actually found every light. */}
         <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-white/10">
@@ -120,21 +124,17 @@ export default function HuntBoard({ highlight }: { highlight?: string }) {
           {complete
             ? "Every lamp is lit. You carried light across this whole park today. 🎉"
             : count === 0
-              ? `Nine QR codes are hidden around Gage Park. Find them all to become a Light Bearer and pour ${TOTAL_POINTS.toLocaleString("en-CA")} Light Points into Revive the City.`
+              ? `Twelve QR codes are hidden around Gage Park — six of them through Vendor Row. Find them all to become a Light Bearer and pour ${TOTAL_POINTS.toLocaleString("en-CA")} Light Points into Revive the City.`
               : `${STATIONS.length - count} to go. Keep your eyes open — they're near the places people gather.`}
         </p>
       </div>
 
       {/* Completion reward */}
       {complete && (
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-4 overflow-hidden rounded-3xl border border-gold/50 bg-gradient-to-br from-gold/20 via-ember/10 to-transparent p-6 text-center"
-        >
+        <div className="jf-rise mt-4 overflow-hidden rounded-3xl border border-gold/50 bg-gradient-to-br from-gold/20 via-ember/10 to-transparent p-6 text-center">
           <div className="text-5xl" aria-hidden>🏆</div>
           <p className="mt-2 text-[11px] font-black uppercase tracking-[0.24em] text-gold-400">Light Bearer</p>
-          <h2 className="mt-1.5 font-display text-2xl font-extrabold text-white">You found all nine ✨</h2>
+          <h2 className="mt-1.5 font-display text-2xl font-extrabold text-white">You found all twelve ✨</h2>
           <p className="mx-auto mt-2 max-w-xs text-[14px] leading-relaxed text-white/70">
             &ldquo;Let your light shine before others, that they may see your good deeds and glorify your
             Father in heaven.&rdquo; — Matthew 5:16
@@ -151,10 +151,10 @@ export default function HuntBoard({ highlight }: { highlight?: string }) {
             <Share width={16} height={16} /> Share your badge
           </button>
           <p className="mt-3 text-[12px] leading-relaxed text-white/50">
-            All six badges are yours to keep and post anywhere. Show this screen to a volunteer —
+            All nine badges are yours to keep and post anywhere. Show this screen to a volunteer —
             they&apos;ll want to celebrate with you.
           </p>
-        </motion.div>
+        </div>
       )}
 
       {/* Badge shelf — every badge is a real image you can post */}
@@ -203,43 +203,68 @@ export default function HuntBoard({ highlight }: { highlight?: string }) {
         </div>
       </section>
 
-      {/* The nine lamps */}
-      <div className="mt-5 grid grid-cols-3 gap-2.5">
-        {STATIONS.map((s, i) => {
-          const on = lit.has(s.id);
-          const isNew = highlight === s.id;
-          return (
-            <motion.button
-              key={s.id}
-              onClick={() => {
-                haptic(8);
-                setOpen(s);
-              }}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: Math.min(i * 0.04, 0.3) }}
-              aria-label={on ? `${s.name} — found` : `Lamp ${i + 1} — not found yet, look near the ${s.where}`}
-              className={`relative flex aspect-square flex-col items-center justify-center gap-1 rounded-2xl border p-2 text-center transition ${
-                on
-                  ? "border-gold/50 bg-gradient-to-br from-gold/20 to-transparent shadow-glow"
-                  : "border-dashed border-white/15 bg-white/[0.03]"
-              } ${isNew ? "ring-2 ring-gold" : ""}`}
-            >
-              <span className={`text-2xl ${on ? "" : "opacity-25 grayscale"}`} aria-hidden>
-                {on ? s.emoji : "❓"}
+      {/* The twelve lamps, in their two groups. Splitting them makes it obvious
+          that half the hunt lives in Vendor Row — which is the point. */}
+      {[
+        { key: "park", label: "Around the Park", group: PARK_STATIONS, note: "Stage, lawn, kids, food, water, info." },
+        {
+          key: "vendor",
+          label: "Vendor Row",
+          group: VENDOR_STATIONS,
+          note: "Six lights among the makers and ministries. Say hello while you're there.",
+        },
+      ].map((section) => {
+        const done = section.group.filter((s) => lit.has(s.id)).length;
+        return (
+          <section key={section.key} className="mt-6" aria-labelledby={`lamps-${section.key}`}>
+            <div className="mb-2.5 flex items-baseline justify-between gap-2">
+              <h2
+                id={`lamps-${section.key}`}
+                className="text-[11px] font-black uppercase tracking-[0.2em] text-gold-400"
+              >
+                {section.label}
+              </h2>
+              <span className="text-[11px] font-bold text-white/45">
+                {done} of {section.group.length}
               </span>
-              <span className={`text-[10px] font-bold leading-tight ${on ? "text-white" : "text-white/40"}`}>
-                {on ? s.name : s.where}
-              </span>
-              {on && (
-                <span className="absolute right-1.5 top-1.5 grid h-4 w-4 place-items-center rounded-full bg-gold text-navy-950">
-                  <Check width={10} height={10} />
-                </span>
-              )}
-            </motion.button>
-          );
-        })}
-      </div>
+            </div>
+            <p className="mb-2.5 text-[12px] leading-relaxed text-white/45">{section.note}</p>
+            <div className="grid grid-cols-3 gap-2.5">
+              {section.group.map((s) => {
+                const on = lit.has(s.id);
+                const isNew = highlight === s.id;
+                return (
+                  <button
+                    key={s.id}
+                    onClick={() => {
+                      haptic(8);
+                      setOpen(s);
+                    }}
+                    aria-label={on ? `${s.name} — found` : `Not found yet — look near ${s.where}`}
+                    className={`relative flex aspect-square flex-col items-center justify-center gap-1 rounded-2xl border p-2 text-center transition ${
+                      on
+                        ? "border-gold/50 bg-gradient-to-br from-gold/20 to-transparent shadow-glow"
+                        : "border-dashed border-white/15 bg-white/[0.03]"
+                    } ${isNew ? "ring-2 ring-gold" : ""}`}
+                  >
+                    <span className={`text-2xl ${on ? "" : "opacity-25 grayscale"}`} aria-hidden>
+                      {on ? s.emoji : "❓"}
+                    </span>
+                    <span className={`text-[10px] font-bold leading-tight ${on ? "text-white" : "text-white/40"}`}>
+                      {on ? s.name : s.where.replace("Vendor Row · ", "")}
+                    </span>
+                    {on && (
+                      <span className="absolute right-1.5 top-1.5 grid h-4 w-4 place-items-center rounded-full bg-gold text-navy-950">
+                        <Check width={10} height={10} />
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </section>
+        );
+      })}
 
       {note && (
         <p role="status" className="mt-3 text-center text-[13px] font-bold text-gold-400">
@@ -289,10 +314,19 @@ export default function HuntBoard({ highlight }: { highlight?: string }) {
                 <p className="mt-4 text-[13.5px] leading-relaxed text-white/65">{open.word}</p>
               </>
             ) : (
-              <p className="mt-4 text-[14px] leading-relaxed text-white/60">
-                Look for a Jesus Festival QR code near the <strong className="text-white">{open.where}</strong>.
-                Scan it with your camera and this lamp lights up.
-              </p>
+              <>
+                <div className="mt-4 rounded-2xl border border-gold/25 bg-gold/[0.06] p-4">
+                  <p className="text-[10.5px] font-black uppercase tracking-[0.2em] text-gold-400">Your clue</p>
+                  <p className="mt-1.5 font-display text-[15.5px] italic leading-relaxed text-white/85">
+                    {open.clue}
+                  </p>
+                </div>
+                <p className="mt-4 text-[14px] leading-relaxed text-white/60">
+                  Look for a Jesus Festival QR code near the{" "}
+                  <strong className="text-white">{open.where}</strong>. Scan it with your camera and
+                  this lamp lights up.
+                </p>
+              </>
             )}
 
             <button
@@ -326,12 +360,12 @@ export function HuntTeaser() {
           <span className="font-display text-base font-bold text-white">The Light Hunt</span>
           {count !== null && count > 0 && (
             <span className="rounded-full bg-gold/20 px-2 py-0.5 text-[10px] font-black text-gold-400">
-              {count}/9
+              {count}/{STATIONS.length}
             </span>
           )}
         </span>
         <span className="mt-0.5 block text-[13px] leading-snug text-white/60">
-          Find nine hidden QR codes around Gage Park and light up the city.
+          Find twelve hidden QR codes around Gage Park and light up the city.
         </span>
       </span>
       <Sparkle width={18} height={18} className="shrink-0 text-gold-400" />

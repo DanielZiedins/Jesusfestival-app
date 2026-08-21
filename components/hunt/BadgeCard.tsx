@@ -128,14 +128,15 @@ async function draw(badge: Badge, name: string | null, found: number): Promise<B
 
   // Lamp row — a visual progress strip
   const lampY = Math.max(y + 96, 1020);
-  const size = 74;
-  const gap = 14;
+  // Sized from the station count so the strip always fits the card.
+  const gap = 12;
+  const size = Math.min(74, (W - 120 - (STATIONS.length - 1) * gap) / STATIONS.length);
   const totalW = STATIONS.length * size + (STATIONS.length - 1) * gap;
   let lx = (W - totalW) / 2;
   for (let i = 0; i < STATIONS.length; i++) {
     const on = i < found;
     ctx.fillStyle = on ? hexToRgba(badge.accent, 0.9) : "rgba(255,255,255,0.12)";
-    roundRect(ctx, lx, lampY, size, size, 22);
+    roundRect(ctx, lx, lampY, size, size, size * 0.3);
     ctx.fill();
     lx += size + gap;
   }

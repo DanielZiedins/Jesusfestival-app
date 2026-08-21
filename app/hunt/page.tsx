@@ -7,11 +7,11 @@ import { SITE } from "@/lib/content";
 export const metadata: Metadata = {
   title: "The Festival Light Hunt",
   description:
-    "Nine QR codes are hidden around Gage Park at Jesus Festival. Find them all to collect Scripture, pour Light Points into Revive the City, and become a Light Bearer.",
+    "Twelve QR codes are hidden around Gage Park at Jesus Festival — six of them through Vendor Row. Find them all to collect Scripture, unlock nine shareable badges, pour Light Points into Revive the City, and become a Light Bearer.",
   alternates: { canonical: "/hunt" },
   openGraph: {
     title: "The Festival Light Hunt | Jesus Festival",
-    description: "Find nine hidden lights around Gage Park and light up the city.",
+    description: "Find twelve hidden lights around Gage Park and light up the city.",
     url: "/hunt",
   },
 };
@@ -21,8 +21,8 @@ const JSONLD = {
   "@type": "HowTo",
   name: "How to play the Jesus Festival Light Hunt",
   description:
-    "A free scavenger hunt at Jesus Festival Hamilton. Nine QR codes are hidden around Gage Park; scanning each one lights a lamp in the festival app and adds Light Points to Revive the City.",
-  totalTime: "PT45M",
+    "A free scavenger hunt at Jesus Festival Hamilton. Twelve QR codes are hidden around Gage Park — six of them among the vendor booths; scanning each one lights a lamp in the festival app and adds Light Points to Revive the City.",
+  totalTime: "PT60M",
   estimatedCost: { "@type": "MonetaryAmount", currency: "CAD", value: "0" },
   step: [
     {
@@ -33,8 +33,8 @@ const JSONLD = {
     },
     {
       "@type": "HowToStep",
-      name: "Find the nine QR codes",
-      text: "Nine Jesus Festival QR codes are posted around Gage Park near the places people gather — the main stage, kids zone, food trucks, prayer tent and more.",
+      name: "Find the twelve QR codes",
+      text: "Twelve Jesus Festival QR codes are posted around Gage Park near the places people gather — the main stage, the big lawn, the kids zone, the food trucks, the baptism area, the info point, and six more tucked through Vendor Row.",
     },
     {
       "@type": "HowToStep",
@@ -44,7 +44,7 @@ const JSONLD = {
     {
       "@type": "HowToStep",
       name: "Become a Light Bearer",
-      text: "Find all nine to unlock every badge, including Light Bearer, and share the badge images anywhere you like.",
+      text: "Find all twelve to unlock all nine badges, including Market Blessing and Light Bearer, and share the badge images anywhere you like.",
     },
   ],
 };
@@ -63,14 +63,15 @@ export default function HuntPage() {
       <header className="mt-7 text-center">
         <div className="text-5xl" aria-hidden>🔦</div>
         <p className="mt-3 text-[11px] font-black uppercase tracking-[0.24em] text-gold-400">
-          Gage Park · Sept 4–5
+          Gage Park · Free to play
         </p>
         <h1 className="mt-2 font-display text-[38px] font-extrabold leading-[1.05] text-white">
           The Light Hunt
         </h1>
         <p className="mx-auto mt-3 max-w-sm text-[15px] leading-relaxed text-white/65">
-          Nine lights are hidden around the park. Find them all, collect the Scripture each one
-          carries, and pour {TOTAL_POINTS.toLocaleString("en-CA")} Light Points into Revive the City.
+          Twelve lights are hidden around the park — six of them through Vendor Row. Find them all,
+          collect the Scripture each one carries, unlock nine shareable badges, and pour{" "}
+          {TOTAL_POINTS.toLocaleString("en-CA")} Light Points into Revive the City.
         </p>
       </header>
 
@@ -85,7 +86,8 @@ export default function HuntPage() {
             "Walk the park and look for Jesus Festival QR codes near the places people gather.",
             "Point your camera at one and tap the link — a lamp lights up right here.",
             `Each light gives you a verse and ${STATIONS[0].points} Light Points for the city.`,
-            "Find all nine to unlock every badge — including Light Bearer — and share them anywhere.",
+            "Six of the twelve are hidden through Vendor Row, so take your time in the market.",
+            "Find all twelve to unlock all nine badges — including Light Bearer — and share them anywhere.",
           ].map((step, i) => (
             <li key={i} className="flex gap-3 text-[14px] leading-relaxed text-white/70">
               <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-black text-navy-950">
