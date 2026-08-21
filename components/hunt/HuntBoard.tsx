@@ -4,15 +4,19 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
+  BADGES,
+  earnedBadges,
   getProgress,
   markSynced,
   pendingPoints,
   STATIONS,
   TOTAL_POINTS,
+  type Badge,
   type Station,
 } from "@/lib/hunt";
 import { contributePoints, haptic } from "@/lib/game";
 import { shareLightBearerCard } from "@/components/hunt/LightBearerCard";
+import { shareBadge } from "@/components/hunt/BadgeCard";
 import { ArrowRight, Check, Share, Sparkle } from "@/components/icons";
 
 /**
@@ -25,7 +29,13 @@ export default function HuntBoard({ highlight }: { highlight?: string }) {
   const [note, setNote] = useState<string | null>(null);
   const [syncing, setSyncing] = useState(false);
 
-  const refresh = useCallback(() => setFound(getProgress().found), []);
+  const [badges, setBadges] = useState<Badge[]>([]);
+
+  const refresh = useCallback(() => {
+    const p = getProgress();
+    setFound(p.found);
+    setBadges(earnedBadges(p));
+  }, []);
 
   useEffect(() => {
     refresh();
@@ -140,11 +150,58 @@ export default function HuntBoard({ highlight }: { highlight?: string }) {
           >
             <Share width={16} height={16} /> Share your badge
           </button>
-          <p className="mt-3 text-[12px] text-white/50">
-            Show this screen at the Info Point to claim your prize.
+          <p className="mt-3 text-[12px] leading-relaxed text-white/50">
+            All six badges are yours to keep and post anywhere. Show this screen to a volunteer —
+            they&apos;ll want to celebrate with you.
           </p>
         </motion.div>
       )}
+
+      {/* Badge shelf — every badge is a real image you can post */}
+      <section className="mt-5" aria-labelledby="hunt-badges-heading">
+        <div className="mb-2.5 flex items-baseline justify-between gap-2">
+          <h2 id="hunt-badges-heading" className="text-[11px] font-black uppercase tracking-[0.2em] text-gold-400">
+            Your badges
+          </h2>
+          <span className="text-[11px] font-bold text-white/45">
+            {badges.length} of {BADGES.length}
+          </span>
+        </div>
+        <div className="grid grid-cols-3 gap-2.5">
+          {BADGES.map((b) => {
+            const got = badges.some((x) => x.id === b.id);
+            return (
+              <button
+                key={b.id}
+                onClick={async () => {
+                  if (!got) {
+                    setNote(`🔒 ${b.hint}`);
+                    return;
+                  }
+                  haptic(16);
+                  const r = await shareBadge(b, count);
+                  if (r === "shared") setNote(`${b.emoji} Shared!`);
+                  if (r === "downloaded") setNote(`${b.emoji} Saved to your photos 💛`);
+                }}
+                aria-label={got ? `Share your ${b.name} badge` : `${b.name} — locked. ${b.hint}`}
+                className={`flex flex-col items-center gap-1 rounded-2xl border p-3 text-center transition active:scale-95 ${
+                  got
+                    ? "border-gold/40 bg-gradient-to-br from-gold/15 to-transparent"
+                    : "border-white/10 bg-white/[0.03]"
+                }`}
+              >
+                <span className={`text-[26px] ${got ? "" : "opacity-30 grayscale"}`} aria-hidden>
+                  {got ? b.emoji : "🔒"}
+                </span>
+                <span className={`text-[10.5px] font-bold leading-tight ${got ? "text-white" : "text-white/40"}`}>
+                  {b.name}
+                </span>
+                {got && <span className="text-[9px] font-black uppercase tracking-wider text-gold-400">Tap to share</span>}
+              </button>
+            );
+          })}
+        </div>
+      </section>
 
       {/* The nine lamps */}
       <div className="mt-5 grid grid-cols-3 gap-2.5">

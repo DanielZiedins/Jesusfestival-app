@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { claim, STATIONS, type ClaimResult } from "@/lib/hunt";
+import { claim, STATIONS, TOTAL_POINTS, type ClaimResult } from "@/lib/hunt";
+import { shareBadge } from "@/components/hunt/BadgeCard";
 import { haptic } from "@/lib/game";
 import { ArrowRight } from "@/components/icons";
 
@@ -14,6 +15,13 @@ import { ArrowRight } from "@/components/icons";
  */
 export default function ClaimStation({ token }: { token: string }) {
   const [result, setResult] = useState<ClaimResult | null>(null);
+  const [note, setNote] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!note) return;
+    const t = setTimeout(() => setNote(null), 2600);
+    return () => clearTimeout(t);
+  }, [note]);
 
   useEffect(() => {
     const r = claim(token);
@@ -74,6 +82,65 @@ export default function ClaimStation({ token }: { token: string }) {
         <p className="mt-5 text-[14.5px] leading-relaxed text-white/70">{station.word}</p>
       </motion.div>
 
+      {/* A cold scanner has never seen the app — tell them what they just joined. */}
+      {found === 1 && isNew && (
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mt-7 rounded-2xl border border-white/12 bg-white/[0.05] p-4 text-left"
+        >
+          <p className="text-[11px] font-black uppercase tracking-[0.2em] text-gold-400">
+            You just started the Light Hunt
+          </p>
+          <p className="mt-2 text-[13.5px] leading-relaxed text-white/70">
+            There are <strong className="text-white">nine</strong> of these hidden around Gage Park.
+            Find them all to unlock badges you can share and pour{" "}
+            {TOTAL_POINTS.toLocaleString("en-CA")} Light Points into Revive the City.
+            It&apos;s free, there&apos;s nothing to sign up for, and it works even with no signal.
+          </p>
+        </motion.div>
+      )}
+
+      {/* Badge unlocked — shareable right here, no need to go anywhere */}
+      {result.newBadges.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.35, type: "spring", stiffness: 200, damping: 18 }}
+          className="mt-7 rounded-3xl border border-gold/45 bg-gradient-to-br from-gold/18 to-transparent p-5"
+        >
+          <p className="text-[11px] font-black uppercase tracking-[0.22em] text-gold-400">
+            {result.newBadges.length > 1 ? "Badges unlocked" : "Badge unlocked"}
+          </p>
+          {result.newBadges.map((b) => (
+            <div key={b.id} className="mt-3">
+              <div className="flex items-center justify-center gap-2.5">
+                <span className="text-3xl" aria-hidden>{b.emoji}</span>
+                <span className="font-display text-xl font-extrabold text-white">{b.name}</span>
+              </div>
+              <p className="mt-1.5 text-[13px] leading-relaxed text-white/70">{b.blurb}</p>
+              <button
+                onClick={async () => {
+                  haptic(16);
+                  const r = await shareBadge(b, found);
+                  if (r === "shared") setNote(`${b.emoji} Shared!`);
+                  if (r === "downloaded") setNote(`${b.emoji} Saved to your photos 💛`);
+                }}
+                className="mt-3 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-400 to-gold-600 px-5 py-2.5 text-[13px] font-extrabold text-navy-950 active:scale-95"
+              >
+                Share this badge
+              </button>
+            </div>
+          ))}
+          {note && (
+            <p role="status" className="mt-3 text-[12.5px] font-bold text-gold-400">
+              {note}
+            </p>
+          )}
+        </motion.div>
+      )}
+
       {/* Progress dots */}
       <div className="mt-8 flex justify-center gap-1.5" aria-label={`${found} of ${total} lights found`}>
         {STATIONS.map((s, i) => (
@@ -99,7 +166,7 @@ export default function ClaimStation({ token }: { token: string }) {
             You&apos;re a Light Bearer!
           </p>
           <p className="mt-1.5 text-[13.5px] leading-relaxed text-white/70">
-            Every lamp is lit. Open your badge to share it and claim your prize.
+            Every lamp is lit. Open your badge shelf to share what you earned.
           </p>
         </motion.div>
       )}

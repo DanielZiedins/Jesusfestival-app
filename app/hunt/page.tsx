@@ -44,7 +44,7 @@ const JSONLD = {
     {
       "@type": "HowToStep",
       name: "Become a Light Bearer",
-      text: "Find all nine to unlock the Light Bearer badge, share it, and show the screen at the Info Point to claim your prize.",
+      text: "Find all nine to unlock every badge, including Light Bearer, and share the badge images anywhere you like.",
     },
   ],
 };
@@ -85,7 +85,7 @@ export default function HuntPage() {
             "Walk the park and look for Jesus Festival QR codes near the places people gather.",
             "Point your camera at one and tap the link — a lamp lights up right here.",
             `Each light gives you a verse and ${STATIONS[0].points} Light Points for the city.`,
-            "Find all nine to unlock the Light Bearer badge and claim your prize at the Info Point.",
+            "Find all nine to unlock every badge — including Light Bearer — and share them anywhere.",
           ].map((step, i) => (
             <li key={i} className="flex gap-3 text-[14px] leading-relaxed text-white/70">
               <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-black text-navy-950">

@@ -131,11 +131,101 @@ const SYNCED_KEY = "jf-hunt-synced";
 
 export type HuntProgress = {
   found: string[];
+  /** ISO timestamp of the first light, so speed badges can be earned. */
+  startedAt?: string;
   /** ISO timestamp of completion, set once all nine are in. */
   completedAt?: string;
 };
 
 const EMPTY: HuntProgress = { found: [] };
+
+// ───────────────────────────── badges ─────────────────────────────
+
+export type Badge = {
+  id: string;
+  name: string;
+  emoji: string;
+  /** Shown once earned. */
+  blurb: string;
+  /** Shown while still locked — a goal, never a spoiler. */
+  hint: string;
+  /** Lights needed; speed badges also carry a time test. */
+  needs: number;
+  /** Optional extra condition evaluated against progress. */
+  extra?: (p: HuntProgress) => boolean;
+  /** Card accent, used by the shareable image. */
+  accent: string;
+};
+
+const withinMinutes = (p: HuntProgress, mins: number) => {
+  if (!p.startedAt || !p.completedAt) return false;
+  const ms = new Date(p.completedAt).getTime() - new Date(p.startedAt).getTime();
+  return ms >= 0 && ms <= mins * 60_000;
+};
+
+export const BADGES: Badge[] = [
+  {
+    id: "first-light",
+    name: "First Light",
+    emoji: "🕯️",
+    blurb: "You found your first light. It starts with one.",
+    hint: "Find your first light",
+    needs: 1,
+    accent: "#F7C948",
+  },
+  {
+    id: "three-flames",
+    name: "Three Flames",
+    emoji: "🔥",
+    blurb: "Three lights burning. You're properly on the hunt now.",
+    hint: "Find 3 lights",
+    needs: 3,
+    accent: "#F5A623",
+  },
+  {
+    id: "halfway",
+    name: "Halfway There",
+    emoji: "⭐",
+    blurb: "Five of nine. More found than left to find.",
+    hint: "Find 5 lights",
+    needs: 5,
+    accent: "#C4A6FF",
+  },
+  {
+    id: "seven-stars",
+    name: "Seven Stars",
+    emoji: "🌟",
+    blurb: "Seven lights. Two more and the whole park is lit.",
+    hint: "Find 7 lights",
+    needs: 7,
+    accent: "#9F7AEA",
+  },
+  {
+    id: "light-bearer",
+    name: "Light Bearer",
+    emoji: "🏆",
+    blurb: "Every lamp lit. You carried light across this whole park.",
+    hint: "Find all 9 lights",
+    needs: 9,
+    accent: "#F5A623",
+  },
+  {
+    id: "swift-light",
+    name: "Swift Light",
+    emoji: "⚡",
+    blurb: "All nine inside an hour. You did not stroll.",
+    hint: "Find all 9 within an hour",
+    needs: 9,
+    extra: (p) => withinMinutes(p, 60),
+    accent: "#4FD1C5",
+  },
+];
+
+export function earnedBadges(p: HuntProgress = getProgress()): Badge[] {
+  return BADGES.filter((b) => p.found.length >= b.needs && (!b.extra || b.extra(p)));
+}
+
+export const badgeById = (id: string) => BADGES.find((b) => b.id === id);
 
 export function getProgress(): HuntProgress {
   try {
@@ -145,6 +235,7 @@ export function getProgress(): HuntProgress {
     const valid = new Set(STATIONS.map((s) => s.id));
     return {
       found: Array.isArray(parsed.found) ? parsed.found.filter((id) => valid.has(id)) : [],
+      startedAt: typeof parsed.startedAt === "string" ? parsed.startedAt : undefined,
       completedAt: typeof parsed.completedAt === "string" ? parsed.completedAt : undefined,
     };
   } catch {
@@ -167,6 +258,8 @@ export type ClaimResult = {
   found: number;
   total: number;
   justCompleted: boolean;
+  /** Badges unlocked by this exact scan, so the moment can be celebrated. */
+  newBadges: Badge[];
 };
 
 /** Light a lamp. Idempotent: re-scanning the same code never double-counts. */
@@ -175,20 +268,26 @@ export function claim(token: string): ClaimResult | null {
   if (!station) return null;
 
   const progress = getProgress();
+  const before = earnedBadges(progress).map((b) => b.id);
+
   const isNew = !progress.found.includes(station.id);
   if (isNew) progress.found.push(station.id);
+  if (!progress.startedAt) progress.startedAt = new Date().toISOString();
 
   const justCompleted =
     progress.found.length === STATIONS.length && !progress.completedAt;
   if (justCompleted) progress.completedAt = new Date().toISOString();
 
   write(progress);
+
+  const newBadges = earnedBadges(progress).filter((b) => !before.includes(b.id));
   return {
     station,
     isNew,
     found: progress.found.length,
     total: STATIONS.length,
     justCompleted,
+    newBadges,
   };
 }
 
