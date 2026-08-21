@@ -22,6 +22,7 @@ import { shareInviteCard } from "@/components/InviteCard";
 import { usePresence } from "@/lib/useLive";
 import { notifyMilestone, notifyBossVictory, subscribeToPush, pushEnabled } from "@/lib/push";
 import { Check, Play, Trophy, Sparkle, BellIcon } from "@/components/icons";
+import { HuntTeaser } from "@/components/hunt/HuntBoard";
 import {
   BIBLE_TRANSLATION,
   BOSS_GOAL,
@@ -438,6 +439,11 @@ export default function GameScreen() {
           <HeartbeatChip emoji="🙌" value={(city?.missions ?? 0).toLocaleString()} label="Kingdom acts so far" />
         </div>
       </div>
+
+      {/* The Light Hunt — the on-site scavenger hunt feeds the same city meter */}
+      <Reveal className="mt-8">
+        <HuntTeaser />
+      </Reveal>
 
       {/* Captain Goodness — community level */}
       <Reveal className="mt-8">

@@ -171,6 +171,7 @@ export const INDEXABLE_ROUTES = [
   "/discipleship",
   "/give",
   "/photos",
+  "/hunt",
   "/shop",
   "/map",
   "/connect",
