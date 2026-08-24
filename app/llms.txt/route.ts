@@ -12,6 +12,7 @@ export function GET() {
 ## Essential information
 
 - [Official 2026 Festival Guide](${SITE.url}/jesus-festival-hamilton): Dates, hours, admission, lineup, parking, transit, what to bring and family information.
+- [Festival Weekend Command Center](${SITE.url}/festival-weekend): Live Hamilton-time status, Gage Park forecast, personal readiness, day-of help, map links and offline essentials.
 - [Build My Festival Plan](${SITE.url}/jesus-festival-hamilton#build-my-plan): A private personalized arrival plan based on days, group needs and travel method.
 - [Accessibility and Comfort Guide](${SITE.url}/accessibility): Confirmed Gage Park and HSR facts, transparent event-day unknowns, direct accessibility answers and a private Comfort Plan.
 - [Complete Schedule](${SITE.url}/schedule): Friday Pure Worship Night and Saturday Family Festival Day set times.
@@ -20,6 +21,7 @@ export function GET() {
 - [I Said Yes to Jesus](${SITE.url}/i-said-yes): What it means to follow Jesus, a prayer, seven first steps, honest answers to common doubts, and churches in Hamilton to connect with.
 - [Official Festival Shop](${SITE.url}/shop): Jesus Festival collection from ThyKingdom.Shop in Canadian dollars.
 - [Install the App](${SITE.url}/install): Personal lineup, notifications, offline essentials and live updates.
+- [The Light Hunt](${SITE.url}/hunt): A free on-site 12-light scavenger hunt with six Vendor Row stops and shareable badges stored on the visitor's device.
 
 ## Latest stories
 

@@ -3,7 +3,7 @@
 import { useEffect, useId, useState } from "react";
 import { track } from "@vercel/analytics";
 
-const STORAGE_KEY = "jf-readiness-v1";
+export const READINESS_STORAGE_KEY = "jf-readiness-v1";
 
 export const READINESS_ITEMS = [
   { id: "chair", emoji: "🪑", label: "Lawn chair or blanket", note: "The lawn fills quickly—claim a comfortable spot." },
@@ -31,7 +31,7 @@ export default function FestivalReadinessChecklist({ compact = false }: { compac
 
   useEffect(() => {
     try {
-      const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "[]") as string[];
+      const stored = JSON.parse(localStorage.getItem(READINESS_STORAGE_KEY) ?? "[]") as string[];
       const valid = stored.filter((id): id is ItemId => READINESS_ITEMS.some((item) => item.id === id));
       setChecked(new Set(valid));
     } catch {
@@ -43,7 +43,7 @@ export default function FestivalReadinessChecklist({ compact = false }: { compac
   const save = (next: Set<ItemId>) => {
     setChecked(next);
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify([...next]));
+      localStorage.setItem(READINESS_STORAGE_KEY, JSON.stringify([...next]));
       window.dispatchEvent(new Event("jf-readiness-change"));
     } catch {
       // In-memory state remains useful for the current visit.

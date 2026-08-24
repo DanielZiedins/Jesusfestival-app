@@ -46,8 +46,10 @@ const SCREENS: Hit[] = [
   { id: "s-connect", title: "Connect", sub: "Where the movement is spreading", emoji: "🌍", kind: "Screen", tab: "more", moreView: "connect", extra: "globe world community join" },
   { id: "s-install", title: "Add to Home Screen", sub: "Install the app & turn on notifications", emoji: "📲", kind: "Screen", tab: "more", moreView: "install", extra: "install pwa notifications alerts push offline" },
   { id: "s-offline", title: "Offline Festival Essentials", sub: "Saved schedule, location & packing checklist", emoji: "📵", kind: "Screen", href: "/offline", extra: "no signal festival ready packing plan download" },
+  { id: "s-weekend", title: "Festival Weekend Command Center", sub: "Live schedule, forecast, readiness, help, map and offline essentials", emoji: "⚡", kind: "Screen", href: "/festival-weekend", extra: "today day of weather countdown arrival emergency lost child first aid packing prepare" },
   { id: "s-plan", title: "Build My Festival Plan", sub: "A personalized arrival plan for your days, group and travel", emoji: "🧭", kind: "Screen", href: "/jesus-festival-hamilton#build-my-plan", extra: "visit planner driving transit family first time accessible low stress" },
   { id: "s-access", title: "Accessibility & Comfort Guide", sub: "Mobility, sensory comfort, HSR, service animals and support planning", emoji: "♿", kind: "Screen", href: "/accessibility", extra: "wheelchair accessible quiet ASL hearing vision medication caregiver stroller washroom parking" },
+  { id: "s-hunt", title: "The Light Hunt", sub: "Find 12 lights around Gage Park and unlock shareable badges", emoji: "🔦", kind: "Screen", href: "/hunt", extra: "scavenger qr vendor row game badge family activity" },
   { id: "s-settings", title: "Settings", sub: "Your name, church & preferences", emoji: "⚙️", kind: "Screen", tab: "more", moreView: "settings", extra: "profile preferences name" },
 ];
 
@@ -191,4 +193,4 @@ export function runSearch(query: string, limit = 24): Hit[] {
   return scored.slice(0, limit).map((s) => s.hit);
 }
 
-export const QUICK_QUERIES = ["Ant Lee", "Parking", "Access", "Plan", "First aid", "Baptism", "Kids", "Offline"];
+export const QUICK_QUERIES = ["Today", "Parking", "Weather", "First aid", "Light Hunt", "Access", "Schedule", "Offline"];

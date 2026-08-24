@@ -8,10 +8,10 @@ import FestivalReadinessChecklist from "@/components/FestivalReadinessChecklist"
 import { MapPin, MapIcon, ArrowRight, Sparkle } from "@/components/icons";
 
 const GETTING_HERE = [
-  { emoji: "🅿️", label: "Free parking on-site", note: "Arrive 20 minutes earlier than you think you need to — it fills fast" },
+  { emoji: "🅿️", label: "Limited park & street parking", note: "Allow extra time and follow the final event-day signs and volunteer directions" },
   { emoji: "🚌", label: "HSR transit & street parking", note: "Several routes stop on Main St E right at the park" },
   { emoji: "🚲", label: "Carpool, Uber, bike or walk", note: "Easily the least stressful way in on Saturday" },
-  { emoji: "♿", label: "Accessible entry", note: "The Main St E / Gage Ave entrance has the flattest paved route to the stage" },
+  { emoji: "♿", label: "Plan an accessible arrival", note: "Use the paved park routes and confirm any essential event-day parking, drop-off or viewing detail before travelling" },
 ];
 
 const HELP = [
@@ -93,7 +93,7 @@ export default function MapScreen() {
       </section>
 
       {/* ===== If you need help ===== */}
-      <section className="mt-8 px-4">
+      <section id="help" className="mt-8 scroll-mt-6 px-4">
         <Reveal className="mx-auto mb-3 max-w-md">
           <div className="flex items-center gap-2 text-gold-400">
             <Sparkle width={17} height={17} />
@@ -119,7 +119,7 @@ export default function MapScreen() {
       </section>
 
       {/* Interactive offline-ready packing plan */}
-      <section className="mt-8 px-4">
+      <section id="packing" className="mt-8 scroll-mt-6 px-4">
         <Reveal className="mx-auto max-w-md"><FestivalReadinessChecklist /></Reveal>
       </section>
 

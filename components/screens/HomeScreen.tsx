@@ -219,6 +219,21 @@ export default function HomeScreen({
       <section className="mt-6 px-4">
         <Reveal className="mx-auto max-w-md">
           <FestivalWeekendPass />
+          <Link
+            href="/festival-weekend"
+            className="group relative mt-3 flex min-h-20 items-center gap-3 overflow-hidden rounded-2xl border border-purple-300/30 bg-gradient-to-r from-purple-700/25 via-gold/[0.08] to-transparent p-4 transition hover:border-gold/45 active:scale-[0.99]"
+          >
+            <span className="pointer-events-none absolute -right-8 -top-12 h-32 w-32 rounded-full bg-purple-400/20 blur-3xl" />
+            <span className="relative grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-purple-500 to-gold-500 text-2xl shadow-glow" aria-hidden>⚡</span>
+            <span className="relative min-w-0 flex-1">
+              <span className="flex items-center gap-2">
+                <span className="font-display text-[14px] font-extrabold text-white">Festival Week Command Center</span>
+                <span className="rounded-full bg-gold/15 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-wider text-gold-300">Live</span>
+              </span>
+              <span className="mt-0.5 block text-[11.5px] leading-snug text-white/65">Forecast, readiness score, day-of help, map, Light Hunt and offline essentials.</span>
+            </span>
+            <ArrowRight width={17} height={17} className="relative shrink-0 text-gold-400 transition group-hover:translate-x-0.5" />
+          </Link>
         </Reveal>
       </section>
 

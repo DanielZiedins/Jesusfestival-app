@@ -1,12 +1,14 @@
 import Link from "next/link";
 
 const LINKS = [
+  { href: "/festival-weekend", label: "Weekend Command Center" },
   { href: "/jesus-festival-hamilton", label: "2026 Festival Guide" },
   { href: "/jesus-festival-hamilton#build-my-plan", label: "Build My Plan" },
   { href: "/accessibility", label: "Accessibility" },
   { href: "/faq", label: "Festival FAQ" },
   { href: "/blog", label: "Stories & Updates" },
   { href: "/shop", label: "Official Shop" },
+  { href: "/hunt", label: "Light Hunt" },
   { href: "/offline", label: "Offline Essentials" },
 ];
 

@@ -18,7 +18,7 @@ export default function OfflinePage() {
           <h1 className="mt-3 font-display text-3xl font-extrabold">You still have what matters.</h1>
           <p className="mt-3 text-sm leading-relaxed text-white/65">The park network may be busy, but your core festival plan is saved here. Live features will reconnect automatically when service returns.</p>
           <div className="mt-5 grid grid-cols-2 gap-2">
-            <Link href="/" className="rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 px-4 py-3 text-center font-display text-sm font-extrabold text-navy-950">Open the app</Link>
+            <Link href="/festival-weekend" className="rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 px-4 py-3 text-center font-display text-sm font-extrabold text-navy-950">Weekend hub</Link>
             <Link href="/schedule" className="rounded-xl border border-white/15 bg-white/[0.05] px-4 py-3 text-center text-sm font-bold">Full schedule</Link>
           </div>
         </header>
@@ -61,7 +61,7 @@ export default function OfflinePage() {
           <ul className="mt-3 space-y-2 text-sm leading-relaxed text-white/60">
             <li>• Friday gates open at 6 PM; worship begins at 6:30 PM.</li>
             <li>• Saturday runs from 10 AM to 6 PM.</li>
-            <li>• Free parking fills quickly—arrive early or consider HSR, carpooling, cycling or rideshare.</li>
+            <li>• Parking is limited—arrive early or consider HSR, carpooling, cycling, walking or rideshare.</li>
             <li>• Bring a chair or blanket, water and sun protection.</li>
           </ul>
         </section>

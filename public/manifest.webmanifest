@@ -16,6 +16,19 @@
   ],
   "shortcuts": [
     {
+      "name": "Festival Weekend Command Center",
+      "short_name": "Weekend Hub",
+      "description": "Live schedule, forecast, readiness, map, help and offline essentials",
+      "url": "/festival-weekend",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
       "name": "Offline Festival Essentials",
       "short_name": "Offline",
       "description": "Saved schedule, location and packing essentials for festival day",
@@ -98,6 +111,19 @@
       "short_name": "Photos",
       "description": "Share and browse festival moments",
       "url": "/photos",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "The Light Hunt",
+      "short_name": "Light Hunt",
+      "description": "Find all 12 lights around Gage Park and unlock badges",
+      "url": "/hunt",
       "icons": [
         {
           "src": "/icons/icon-192.png",

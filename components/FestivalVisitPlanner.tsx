@@ -87,7 +87,7 @@ const DAY_GUIDANCE: Record<VisitPlan["days"], { label: string; arrival: string; 
 const TRAVEL_GUIDANCE: Record<VisitPlan["travel"], { label: string; text: string; href: string; cta: string }> = {
   drive: {
     label: "Driving",
-    text: "Build at least 20 extra minutes into the plan. Free parking is limited and event-day signs or volunteer directions should take priority over an old screenshot.",
+    text: "Build at least 20 extra minutes into the plan. Parking is limited, and event-day signs or volunteer directions should take priority over an old screenshot.",
     href: LINKS.directions,
     cta: "Open driving directions",
   },

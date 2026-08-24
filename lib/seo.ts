@@ -1,7 +1,7 @@
 import { ARTISTS, LINKS, SITE } from "@/lib/content";
 import { QUESTIONS, STEPS } from "@/lib/newlife";
 
-export const LAST_MAJOR_UPDATE = "2026-08-17";
+export const LAST_MAJOR_UPDATE = "2026-08-24";
 export const FESTIVAL_GUIDE_PATH = "/jesus-festival-hamilton";
 
 export const FESTIVAL_FAQS = [
@@ -38,7 +38,7 @@ export const FESTIVAL_FAQS = [
   {
     question: "How do I get to Gage Park and where can I park?",
     answer:
-      "Gage Park is at 1000 Main Street East in Hamilton. Free on-site festival parking is available but fills quickly. Nearby street parking, HSR transit, rideshare, cycling and walking are also practical options.",
+      "Gage Park is at 1000 Main Street East in Hamilton. The City lists 150 park spaces, but parking around Gage Park is limited. Arrive early and consider nearby street parking, HSR transit, rideshare, cycling, walking or carpooling. Follow final event-day signs and volunteer directions.",
   },
   {
     question: "Is the festival family-friendly?",
@@ -66,6 +66,16 @@ export const FESTIVAL_FAQS = [
       "The Accessibility and Comfort Guide at JesusFestival.App/accessibility separates confirmed Gage Park and HSR facts from event-day services that still need confirmation. It includes mobility, sensory, hearing, vision, medication, stroller, service-animal and support-person planning, plus a private Comfort Plan that stays on your device.",
   },
   {
+    question: "Is there a Jesus Festival day-of guide?",
+    answer:
+      "Yes. The Festival Weekend Command Center at JesusFestival.App/festival-weekend combines Hamilton-time live schedule status, the Gage Park forecast, private readiness progress, directions, day-of help, accessibility, the Light Hunt and offline essentials in one fast page.",
+  },
+  {
+    question: "What is the Jesus Festival Light Hunt?",
+    answer:
+      "The Light Hunt is a free, on-site scavenger hunt inside JesusFestival.App. Visitors find 12 lights around Gage Park, including six in Vendor Row, and unlock shareable badges. Progress stays on the visitor's device and no account is required.",
+  },
+  {
     question: "Can I take HSR transit to Gage Park?",
     answer:
       "Yes. HSR stops serve the area around Gage Park. Because schedules and event-day detours can change, use the City of Hamilton's official HSR trip-planning tools for 1000 Main Street East on the day you travel.",
@@ -88,7 +98,7 @@ export const FESTIVAL_FAQS = [
   {
     question: "Is Gage Park wheelchair accessible?",
     answer:
-      "Gage Park has paved pathways throughout, and the Main Street East entrance at Gage Avenue is the flattest paved route to the bandshell and main stage area. Seating on the lawn is open grass, so bringing a chair is worth it if standing is difficult. Accessible parking is limited and fills early, so arriving well before the first set is the safest plan.",
+      "Gage Park has an extensive walkway system, while the main festival gathering area is open lawn. Surfaces, distance and weather can affect a visit. Confirm the final accessible parking, drop-off and viewing plan with the festival team before travelling when one of those details is essential.",
   },
   {
     question: "Can I bring my own food, drinks or a picnic?",
@@ -304,6 +314,8 @@ export const SITE_GRAPH_JSONLD = {
         "Personal lineup planner",
         "Personalized arrival and visit planner",
         "Private accessibility and sensory Comfort Plan",
+        "Festival-week and day-of Command Center",
+        "On-site 12-stop Light Hunt",
         "Live festival updates",
         "Gage Park map and directions",
         "Prayer Wall",

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { track } from "@vercel/analytics";
 
-const STORAGE_KEY = "jf-weekend-pass-v1";
+export const WEEKEND_PASS_STORAGE_KEY = "jf-weekend-pass-v1";
 const EVENT_NAME = "jesus-festival-hamilton-2026";
 
 function record(name: string) {
@@ -22,7 +22,7 @@ export default function FestivalWeekendPass({ compact = false }: { compact?: boo
 
   useEffect(() => {
     try {
-      setAttending(localStorage.getItem(STORAGE_KEY) === "saved");
+      setAttending(localStorage.getItem(WEEKEND_PASS_STORAGE_KEY) === "saved");
     } catch {
       // The pass still works for this visit when storage is unavailable.
     }
@@ -30,7 +30,7 @@ export default function FestivalWeekendPass({ compact = false }: { compact?: boo
 
     const sync = () => {
       try {
-        setAttending(localStorage.getItem(STORAGE_KEY) === "saved");
+        setAttending(localStorage.getItem(WEEKEND_PASS_STORAGE_KEY) === "saved");
       } catch {
         // Ignore private-mode storage failures.
       }
@@ -53,8 +53,8 @@ export default function FestivalWeekendPass({ compact = false }: { compact?: boo
     const next = !attending;
     setAttending(next);
     try {
-      if (next) localStorage.setItem(STORAGE_KEY, "saved");
-      else localStorage.removeItem(STORAGE_KEY);
+      if (next) localStorage.setItem(WEEKEND_PASS_STORAGE_KEY, "saved");
+      else localStorage.removeItem(WEEKEND_PASS_STORAGE_KEY);
       window.dispatchEvent(new Event("jf-weekend-pass-change"));
     } catch {
       // Keep the in-memory state useful even if persistence is blocked.

@@ -161,7 +161,7 @@ export const PARK_PINS: Pin[] = [
   {
     id: "washrooms",
     name: "Washrooms",
-    note: "Permanent park washrooms near the bandshell, with extra portable units added for the weekend.",
+    note: "The City lists washrooms near the bandshell, spray pad and baseball diamonds. Follow the final event-day signs; Friday evening access can differ from summer daytime hours.",
     emoji: "🚻",
     x: 39,
     y: 30,
@@ -190,7 +190,7 @@ export const PARK_PINS: Pin[] = [
   {
     id: "entrance-main",
     name: "Main Entrance",
-    note: "Gage Avenue at Main Street East — the formal entrance, straight up the fountain walk to the stage. Accessible route.",
+    note: "Gage Avenue at Main Street East — the formal entrance, with a paved fountain walk into the park. Confirm any essential event-day accessible drop-off or viewing detail before travelling.",
     emoji: "🚶",
     x: 25,
     y: 88,
@@ -208,7 +208,7 @@ export const PARK_PINS: Pin[] = [
   {
     id: "parking",
     name: "Parking",
-    note: "Free on-site and street parking around the park — it fills early, so give yourself 20 extra minutes or transit in on the HSR.",
+    note: "The City lists 150 park spaces, and parking around Gage Park is limited. Allow extra time or use HSR, rideshare, cycling, walking or carpooling.",
     emoji: "🅿️",
     x: 10,
     y: 68,

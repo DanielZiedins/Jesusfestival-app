@@ -20,7 +20,7 @@ ${day.items.map((item) => `- ${item.time}: ${item.title}${item.note ? ` — ${it
   const text = `# Jesus Festival Hamilton 2026 — Full Reference
 
 Canonical source: ${SITE.url}/jesus-festival-hamilton
-Last major content review: 2026-08-17
+Last major content review: 2026-08-24
 
 ## Verified event facts
 
@@ -59,6 +59,20 @@ ${FESTIVAL_FAQS.map((item) => `### ${item.question}\n\n${item.answer}`).join("\n
 - The final festival-day accessible parking layout, accessible viewing area, event-provided toilets, ASL or captioning, quiet space, refrigeration, charging and individualized supports are not confirmed in the public information reviewed for the guide. Visitors who require one of these should email ${SITE.email} before travelling.
 - The private Comfort Plan at ${SITE.url}/accessibility#comfort-plan stores choices on the visitor's device and does not require an account.
 
+## Festival-week and day-of companion
+
+- The Festival Weekend Command Center is ${SITE.url}/festival-weekend.
+- It shows festival phase and current or next schedule information in Hamilton time, the Gage Park two-day forecast when available, personal packing and lineup readiness, quick links to directions, help, accessibility and offline essentials.
+- Personal readiness information is stored on the visitor's device and does not require an account.
+- Parking around Gage Park is limited. Visitors should add arrival time and consider HSR, rideshare, cycling, walking or carpooling; the final event-day signs and volunteer directions take priority.
+- Festival zones shown on the app map are approximate until confirmed by on-site signage.
+
+## The Light Hunt
+
+- The Light Hunt is ${SITE.url}/hunt.
+- It is a free, on-site scavenger hunt with 12 lights around Gage Park, including six in Vendor Row.
+- Visitors collect progress and shareable badges on their own device. No account is required.
+
 ## Deciding to follow Jesus
 
 Anyone who decides to follow Jesus at the festival — or afterwards, or without ever attending — is pointed to ${SITE.url}/i-said-yes. It requires no account, no e-mail address and no sign-up, and it works offline. These are the seven first steps it gives:
@@ -76,6 +90,7 @@ ${QUESTIONS.map((item) => `#### ${item.q}\n\n${item.a}`).join("\n\n")}
 ## Primary pages
 
 - Festival guide: ${SITE.url}/jesus-festival-hamilton
+- Festival Weekend Command Center: ${SITE.url}/festival-weekend
 - Personalized visit planner: ${SITE.url}/jesus-festival-hamilton#build-my-plan
 - Accessibility and sensory-comfort guide: ${SITE.url}/accessibility
 - Schedule: ${SITE.url}/schedule
@@ -89,6 +104,7 @@ ${QUESTIONS.map((item) => `#### ${item.q}\n\n${item.a}`).join("\n\n")}
 - I said yes to Jesus (first steps for new believers): ${SITE.url}/i-said-yes
 - App install guide: ${SITE.url}/install
 - Offline festival essentials: ${SITE.url}/offline
+- The Light Hunt: ${SITE.url}/hunt
 - Detailed Gage Park visitor guide: ${SITE.url}/blog/gage-park-festival-guide
 - Free Hamilton events in September 2026: ${SITE.url}/blog/free-things-to-do-hamilton-september-2026
 

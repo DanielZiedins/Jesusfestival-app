@@ -277,7 +277,7 @@ export const BLOG_POSTS: BlogPost[] = [
       ] },
       { t: "p", text: "There is no box office or ticket line. You can simply arrive and join the festival. Star the sets you do not want to miss in the [personal schedule planner](https://www.jesusfestival.app/schedule), then download both days to your device calendar." },
       { t: "h2", text: "Parking, transit and getting to Gage Park" },
-      { t: "p", text: "Free festival parking is available, but spaces can fill quickly. City park information lists the main parking entrance off **Lawrence Road, just east of Gage Avenue South**, and identifies the parking area as wheelchair accessible. Follow festival signs and volunteer directions when you arrive because event-day traffic flow can differ from an ordinary park visit." },
+      { t: "p", text: "Parking around Gage Park is limited and spaces can fill quickly. City park information lists 150 park spaces, while the official festival site recommends arriving early or considering transit, rideshare, biking, walking or carpooling. Follow festival signs and volunteer directions when you arrive because event-day traffic flow can differ from an ordinary park visit." },
       { t: "p", text: "Nearby street parking, carpooling, rideshare, cycling, walking and HSR are useful alternatives. Transit schedules and detours can change, so use the [City of Hamilton’s official HSR trip-planning tools](https://www.hamilton.ca/home-neighbourhood/hsr/schedule-route-tools/trip-planning-tools) on the day you travel rather than relying on an old route screenshot." },
       { t: "list", items: [
         "**Driving from downtown or Highway 403:** approach Main Street East toward Gage Avenue, then follow current traffic and event signage.",
