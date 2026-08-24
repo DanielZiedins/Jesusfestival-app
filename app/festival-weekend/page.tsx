@@ -183,6 +183,7 @@ export default function FestivalWeekendPage() {
                 </li>
               ))}
             </ol>
+            <Link href="/bring-a-group" className="mt-4 flex min-h-12 items-center justify-center rounded-2xl border border-purple-300/30 bg-purple-400/[0.08] px-5 py-3 text-center font-display text-sm font-extrabold text-purple-100">Bringing a church, youth group, family or friends? Build one shareable crew plan →</Link>
           </section>
 
           <section id="help" className="render-later mt-16 rounded-[2rem] border border-rose-300/20 bg-gradient-to-br from-rose-500/[0.09] via-purple-900/20 to-transparent p-6 sm:p-8" aria-labelledby="help-heading">

@@ -67,6 +67,15 @@ ${FESTIVAL_FAQS.map((item) => `### ${item.question}\n\n${item.answer}`).join("\n
 - Parking around Gage Park is limited. Visitors should add arrival time and consider HSR, rideshare, cycling, walking or carpooling; the final event-day signs and volunteer directions take priority.
 - Festival zones shown on the app map are approximate until confirmed by on-site signage.
 
+## Church, youth group, family and friends planning
+
+- The group trip planner is ${SITE.url}/bring-a-group.
+- It creates one shareable festival brief with the group type, approximate size, day, arrival guidance, travel choice, permanent meeting landmark, optional nickname, optional non-sensitive note and suggested responsibilities.
+- The six-step readiness checklist is stored only on the current device and is not included in a shared plan link. No account is required.
+- Shared links must not contain phone numbers, home addresses, medical or accessibility details, names of minors, parent or guardian information, or private safeguarding instructions.
+- Youth leaders should follow their own organization's safeguarding policy, approved-adult requirements, permission process and secure emergency-contact system.
+- Groups can use the Gage Family Fountain or G.R. Robinson Bandshell as a permanent landmark, then choose one exact side and a regroup time. Final event-day signs and volunteer direction take priority.
+
 ## The Light Hunt
 
 - The Light Hunt is ${SITE.url}/hunt.
@@ -92,6 +101,7 @@ ${QUESTIONS.map((item) => `#### ${item.q}\n\n${item.a}`).join("\n\n")}
 - Festival guide: ${SITE.url}/jesus-festival-hamilton
 - Festival Weekend Command Center: ${SITE.url}/festival-weekend
 - Personalized visit planner: ${SITE.url}/jesus-festival-hamilton#build-my-plan
+- Church, youth group, family and friends planner: ${SITE.url}/bring-a-group
 - Accessibility and sensory-comfort guide: ${SITE.url}/accessibility
 - Schedule: ${SITE.url}/schedule
 - FAQ: ${SITE.url}/faq

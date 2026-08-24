@@ -14,6 +14,7 @@ export function GET() {
 - [Official 2026 Festival Guide](${SITE.url}/jesus-festival-hamilton): Dates, hours, admission, lineup, parking, transit, what to bring and family information.
 - [Festival Weekend Command Center](${SITE.url}/festival-weekend): Live Hamilton-time status, Gage Park forecast, personal readiness, day-of help, map links and offline essentials.
 - [Build My Festival Plan](${SITE.url}/jesus-festival-hamilton#build-my-plan): A private personalized arrival plan based on days, group needs and travel method.
+- [Bring a Group](${SITE.url}/bring-a-group): A private, shareable crew planner for churches, youth groups, families and friends with travel, meeting point, role and readiness guidance.
 - [Accessibility and Comfort Guide](${SITE.url}/accessibility): Confirmed Gage Park and HSR facts, transparent event-day unknowns, direct accessibility answers and a private Comfort Plan.
 - [Complete Schedule](${SITE.url}/schedule): Friday Pure Worship Night and Saturday Family Festival Day set times.
 - [Festival FAQ](${SITE.url}/faq): Direct answers to common visitor questions.

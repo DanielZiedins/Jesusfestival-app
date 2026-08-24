@@ -61,6 +61,11 @@ export const FESTIVAL_FAQS = [
       "Yes. The Build My Festival Plan tool creates a private arrival plan based on which days you are attending, whether you are coming for the first time, with family, for worship or for a lower-stress visit, and whether you are driving, taking HSR or arriving another way. The choices stay on your device and can be shared without creating an account.",
   },
   {
+    question: "Can I build a Jesus Festival plan for my church, youth group, family or friends?",
+    answer:
+      "Yes. The Bring a Group planner at JesusFestival.App/bring-a-group creates one shareable crew brief with the festival day, approximate group size, arrival guidance, travel plan, permanent meeting landmark and suggested roles. A six-step readiness checklist stays private on the current device, and no account is required.",
+  },
+  {
     question: "Where can I find Jesus Festival accessibility information?",
     answer:
       "The Accessibility and Comfort Guide at JesusFestival.App/accessibility separates confirmed Gage Park and HSR facts from event-day services that still need confirmation. It includes mobility, sensory, hearing, vision, medication, stroller, service-animal and support-person planning, plus a private Comfort Plan that stays on your device.",
@@ -313,6 +318,7 @@ export const SITE_GRAPH_JSONLD = {
         "Complete two-day festival schedule",
         "Personal lineup planner",
         "Personalized arrival and visit planner",
+        "Private shareable church, youth group, family and friends planner",
         "Private accessibility and sensory Comfort Plan",
         "Festival-week and day-of Command Center",
         "On-site 12-stop Light Hunt",

@@ -176,6 +176,45 @@ textarea {
   }
 }
 
+/* Print only the finished group brief, not the interactive planner or the
+   surrounding article. This produces a useful one-page handout without a
+   separate, easily outdated PDF template. */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  body {
+    background: #fff !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .crew-brief-print,
+  .crew-brief-print * {
+    visibility: visible !important;
+  }
+
+  .crew-brief-print {
+    position: absolute !important;
+    inset: 0 auto auto 0 !important;
+    width: 100% !important;
+    border: 2px solid #b88a18 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    color: #111827 !important;
+  }
+
+  .crew-brief-print * {
+    color: #111827 !important;
+    border-color: #d1d5db !important;
+    background-color: transparent !important;
+    text-shadow: none !important;
+  }
+}
+
 /* ── Instant entrance (see components/hunt) ──
    The resting state is fully visible and the keyframe only plays the arrival,
    with no delay and no backwards fill. If the animation never runs — throttled

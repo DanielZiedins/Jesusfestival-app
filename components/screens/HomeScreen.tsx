@@ -282,6 +282,20 @@ export default function HomeScreen({
             <ArrowRight width={17} height={17} className="shrink-0 text-gold-400" />
           </Link>
           <Link
+            href="/bring-a-group"
+            className="mt-2.5 flex min-h-14 items-center gap-3 rounded-2xl border border-purple-300/25 bg-purple-400/[0.07] p-3.5 transition hover:border-purple-300/45 active:scale-[0.99]"
+          >
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-purple-400/15 text-xl" aria-hidden>🫂</span>
+            <span className="min-w-0 flex-1">
+              <span className="flex items-center gap-2">
+                <span className="font-display text-[13.5px] font-extrabold text-white">Bring Your Church, Crew or Family</span>
+                <span className="rounded-full bg-gold/15 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-wider text-gold-300">New</span>
+              </span>
+              <span className="mt-0.5 block text-[11px] leading-snug text-white/60">Build one private plan and share it with everyone.</span>
+            </span>
+            <ArrowRight width={16} height={16} className="shrink-0 text-purple-200" />
+          </Link>
+          <Link
             href="/accessibility"
             className="mt-2.5 flex min-h-14 items-center gap-3 rounded-2xl border border-emerald-300/25 bg-emerald-400/[0.07] p-3.5 transition hover:border-emerald-300/45 active:scale-[0.99]"
           >

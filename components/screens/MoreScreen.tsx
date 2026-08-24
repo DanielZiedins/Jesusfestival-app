@@ -174,6 +174,23 @@ export default function MoreScreen({
 
             <Reveal delay={0.07}>
               <Link
+                href="/bring-a-group"
+                className="group mb-3 flex min-h-20 items-center gap-4 rounded-2xl border border-purple-300/25 bg-gradient-to-br from-purple-600/20 via-navy-800/35 to-ink/50 p-4 transition active:scale-[0.99]"
+              >
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-purple-400/15 text-3xl" aria-hidden>🫂</span>
+                <span className="min-w-0 flex-1">
+                  <span className="flex items-center gap-2">
+                    <span className="font-display text-lg font-extrabold text-white">Bring a Group</span>
+                    <span className="rounded-full bg-gold/15 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-wider text-gold-300">New</span>
+                  </span>
+                  <span className="block text-xs leading-snug text-white/65">Plan travel, a meeting point, roles and one shareable crew brief</span>
+                </span>
+                <ArrowRight width={18} height={18} className="shrink-0 text-purple-200 transition group-hover:translate-x-0.5" />
+              </Link>
+            </Reveal>
+
+            <Reveal delay={0.08}>
+              <Link
                 href="/accessibility"
                 className="group mb-3 flex min-h-20 items-center gap-4 rounded-2xl border border-emerald-300/25 bg-gradient-to-br from-emerald-700/20 via-navy-800/35 to-ink/50 p-4 transition active:scale-[0.99]"
               >

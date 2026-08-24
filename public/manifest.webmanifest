@@ -55,6 +55,19 @@
       ]
     },
     {
+      "name": "Bring a Group",
+      "short_name": "Group Plan",
+      "description": "Build and share a festival plan for your church, youth group, family or friends",
+      "url": "/bring-a-group",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
       "name": "Accessibility & Comfort Guide",
       "short_name": "Accessibility",
       "description": "Build a private mobility, sensory and support plan for festival day",

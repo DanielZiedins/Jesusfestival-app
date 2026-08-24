@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority:
       path === "/"
         ? 1
-        : path === "/festival-weekend"
+        : path === "/festival-weekend" || path === "/bring-a-group"
           ? 0.95
           : path === "/schedule" || path === "/map" || path === "/i-said-yes" || path === "/accessibility"
             ? 0.9

@@ -54,6 +54,9 @@ export default function OfflinePage() {
           <Link href="/accessibility#comfort-plan" className="flex min-h-11 items-center justify-center rounded-xl border border-emerald-300/25 bg-emerald-400/[0.07] px-4 py-3 text-center text-sm font-extrabold text-emerald-200">
             Open my Comfort Plan →
           </Link>
+          <Link href="/bring-a-group#group-planner" className="flex min-h-11 items-center justify-center rounded-xl border border-purple-300/25 bg-purple-400/[0.07] px-4 py-3 text-center text-sm font-extrabold text-purple-100 sm:col-span-2">
+            Open our group plan →
+          </Link>
         </div>
 
         <section className="mt-8 rounded-3xl border border-white/10 bg-white/[0.035] p-5" aria-labelledby="offline-reminders">
