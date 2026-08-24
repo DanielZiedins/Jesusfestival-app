@@ -76,6 +76,15 @@ ${FESTIVAL_FAQS.map((item) => `### ${item.question}\n\n${item.answer}`).join("\n
 - Youth leaders should follow their own organization's safeguarding policy, approved-adult requirements, permission process and secure emergency-contact system.
 - Groups can use the Gage Family Fountain or G.R. Robinson Bandshell as a permanent landmark, then choose one exact side and a regroup time. Final event-day signs and volunteer direction take priority.
 
+## Personalized lineup matching
+
+- The Find Your Festival Moments tool is ${SITE.url}/find-your-moments.
+- It recommends a transparent shortlist from the confirmed 2026 run of show using three visitor choices: audience, desired experience and available festival window.
+- Audience choices are first-time visitor, family, youth crew and church crew. Experience choices are worship, live music, stories and faith, and best variety. Time choices are both days, Friday night, Saturday, and Saturday afternoon.
+- Recommended moments can be added to My Lineup in one tap, shared through a safe URL, and later exported to a personal calendar with 15-minute reminders.
+- Choices and starred moments stay on the visitor's device. A shared match URL contains only the three selected categories and no personal information.
+- The matcher avoids filling a shortlist with duplicate sets from one performer when another strong match is available. It shows a plain-language reason for every selection.
+
 ## The Light Hunt
 
 - The Light Hunt is ${SITE.url}/hunt.
@@ -101,6 +110,7 @@ ${QUESTIONS.map((item) => `#### ${item.q}\n\n${item.a}`).join("\n\n")}
 - Festival guide: ${SITE.url}/jesus-festival-hamilton
 - Festival Weekend Command Center: ${SITE.url}/festival-weekend
 - Personalized visit planner: ${SITE.url}/jesus-festival-hamilton#build-my-plan
+- Personalized confirmed-lineup matcher: ${SITE.url}/find-your-moments
 - Church, youth group, family and friends planner: ${SITE.url}/bring-a-group
 - Accessibility and sensory-comfort guide: ${SITE.url}/accessibility
 - Schedule: ${SITE.url}/schedule

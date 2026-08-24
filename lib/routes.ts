@@ -173,6 +173,7 @@ export const INDEXABLE_ROUTES = [
   "/photos",
   "/hunt",
   "/bring-a-group",
+  "/find-your-moments",
   "/shop",
   "/map",
   "/connect",

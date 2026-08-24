@@ -48,6 +48,9 @@ export default function OfflinePage() {
         <div className="mt-8"><FestivalReadinessChecklist compact /></div>
 
         <div className="mt-4 grid gap-2 sm:grid-cols-2">
+          <Link href="/find-your-moments#moment-finder" className="flex min-h-11 items-center justify-center rounded-xl border border-gold/30 bg-gold/10 px-4 py-3 text-center text-sm font-extrabold text-gold-300 sm:col-span-2">
+            Find and save my best-fit moments →
+          </Link>
           <Link href="/jesus-festival-hamilton#build-my-plan" className="flex min-h-11 items-center justify-center rounded-xl border border-gold/30 bg-gold/10 px-4 py-3 text-center text-sm font-extrabold text-gold-300">
             Open my festival plan →
           </Link>

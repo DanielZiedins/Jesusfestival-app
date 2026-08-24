@@ -296,6 +296,17 @@ export default function HomeScreen({
             <ArrowRight width={16} height={16} className="shrink-0 text-purple-200" />
           </Link>
           <Link
+            href="/find-your-moments"
+            className="mt-2.5 flex min-h-14 items-center gap-3 rounded-2xl border border-gold/30 bg-gold/[0.07] p-3.5 transition hover:border-gold/50 active:scale-[0.99]"
+          >
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gold/15 text-xl" aria-hidden>✨</span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-display text-[13.5px] font-extrabold text-white">Find Your Festival Moments</span>
+              <span className="mt-0.5 block text-[11px] leading-snug text-white/60">A 30-second match for your people, vibe and available time.</span>
+            </span>
+            <ArrowRight width={16} height={16} className="shrink-0 text-gold-400" />
+          </Link>
+          <Link
             href="/accessibility"
             className="mt-2.5 flex min-h-14 items-center gap-3 rounded-2xl border border-emerald-300/25 bg-emerald-400/[0.07] p-3.5 transition hover:border-emerald-300/45 active:scale-[0.99]"
           >

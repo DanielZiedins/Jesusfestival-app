@@ -59,6 +59,10 @@ const FAQS = [
     question: "What is the Jesus Festival Light Hunt?",
     answer: "The Light Hunt is a free, on-site scavenger hunt inside the Jesus Festival app. Visitors find 12 lights around Gage Park, including six in Vendor Row, and collect shareable badges on their own device.",
   },
+  {
+    question: "How do I choose which Jesus Festival sets to see?",
+    answer: "Use Find Your Festival Moments to choose your group type, preferred experience and available time. It creates a short recommendation from the confirmed schedule and can add every pick to your private My Lineup in one tap.",
+  },
 ] as const;
 
 const SOURCES = [

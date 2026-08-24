@@ -94,6 +94,19 @@
       ]
     },
     {
+      "name": "Find Your Festival Moments",
+      "short_name": "My Moments",
+      "description": "Get a personalized shortlist from the confirmed Jesus Festival 2026 lineup",
+      "url": "/find-your-moments",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
       "name": "Festival Map",
       "short_name": "Map",
       "description": "Open the Gage Park map and directions",

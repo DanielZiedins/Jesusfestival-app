@@ -49,6 +49,7 @@ const SCREENS: Hit[] = [
   { id: "s-weekend", title: "Festival Weekend Command Center", sub: "Live schedule, forecast, readiness, help, map and offline essentials", emoji: "⚡", kind: "Screen", href: "/festival-weekend", extra: "today day of weather countdown arrival emergency lost child first aid packing prepare" },
   { id: "s-plan", title: "Build My Festival Plan", sub: "A personalized arrival plan for your days, group and travel", emoji: "🧭", kind: "Screen", href: "/jesus-festival-hamilton#build-my-plan", extra: "visit planner driving transit family first time accessible low stress" },
   { id: "s-group", title: "Bring a Group", sub: "Build and share a crew plan for your church, youth group, family or friends", emoji: "🫂", kind: "Screen", href: "/bring-a-group", extra: "church trip youth leader carpool meeting point responsibilities whatsapp group planner invite crew team" },
+  { id: "s-moments", title: "Find Your Festival Moments", sub: "Get a personalized shortlist from the confirmed 2026 lineup", emoji: "✨", kind: "Screen", href: "/find-your-moments", extra: "lineup matcher recommendation quiz what should i see best sets worship music hip hop ant lee open heaven acts friday night prayer bethel" },
   { id: "s-access", title: "Accessibility & Comfort Guide", sub: "Mobility, sensory comfort, HSR, service animals and support planning", emoji: "♿", kind: "Screen", href: "/accessibility", extra: "wheelchair accessible quiet ASL hearing vision medication caregiver stroller washroom parking" },
   { id: "s-hunt", title: "The Light Hunt", sub: "Find 12 lights around Gage Park and unlock shareable badges", emoji: "🔦", kind: "Screen", href: "/hunt", extra: "scavenger qr vendor row game badge family activity" },
   { id: "s-settings", title: "Settings", sub: "Your name, church & preferences", emoji: "⚙️", kind: "Screen", tab: "more", moreView: "settings", extra: "profile preferences name" },
@@ -194,4 +195,4 @@ export function runSearch(query: string, limit = 24): Hit[] {
   return scored.slice(0, limit).map((s) => s.hit);
 }
 
-export const QUICK_QUERIES = ["Today", "Parking", "Weather", "Group plan", "Light Hunt", "Access", "Schedule", "Offline"];
+export const QUICK_QUERIES = ["Today", "Parking", "My moments", "Group plan", "Light Hunt", "Access", "Schedule", "Offline"];

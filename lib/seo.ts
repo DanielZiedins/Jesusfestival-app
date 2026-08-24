@@ -61,6 +61,11 @@ export const FESTIVAL_FAQS = [
       "Yes. The Build My Festival Plan tool creates a private arrival plan based on which days you are attending, whether you are coming for the first time, with family, for worship or for a lower-stress visit, and whether you are driving, taking HSR or arriving another way. The choices stay on your device and can be shared without creating an account.",
   },
   {
+    question: "How can I decide which Jesus Festival 2026 sets to see?",
+    answer:
+      "Use the free Find Your Festival Moments matcher at JesusFestival.App/find-your-moments. Choose who you are attending with, whether you want worship, live music, stories or variety, and when you can attend. It recommends a short list from the confirmed schedule and saves every pick into My Lineup in one tap.",
+  },
+  {
     question: "Can I build a Jesus Festival plan for my church, youth group, family or friends?",
     answer:
       "Yes. The Bring a Group planner at JesusFestival.App/bring-a-group creates one shareable crew brief with the festival day, approximate group size, arrival guidance, travel plan, permanent meeting landmark and suggested roles. A six-step readiness checklist stays private on the current device, and no account is required.",
@@ -317,6 +322,7 @@ export const SITE_GRAPH_JSONLD = {
       featureList: [
         "Complete two-day festival schedule",
         "Personal lineup planner",
+        "Personalized confirmed-lineup moment matcher",
         "Personalized arrival and visit planner",
         "Private shareable church, youth group, family and friends planner",
         "Private accessibility and sensory Comfort Plan",

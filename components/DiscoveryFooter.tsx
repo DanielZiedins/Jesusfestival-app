@@ -5,6 +5,7 @@ const LINKS = [
   { href: "/jesus-festival-hamilton", label: "2026 Festival Guide" },
   { href: "/jesus-festival-hamilton#build-my-plan", label: "Build My Plan" },
   { href: "/bring-a-group", label: "Bring a Group" },
+  { href: "/find-your-moments", label: "Find Your Moments" },
   { href: "/accessibility", label: "Accessibility" },
   { href: "/faq", label: "Festival FAQ" },
   { href: "/blog", label: "Stories & Updates" },

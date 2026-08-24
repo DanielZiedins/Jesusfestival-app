@@ -251,8 +251,8 @@ export default function FestivalVisitPlanner() {
           </div>
 
           <div className="mt-5 grid gap-2 sm:grid-cols-2">
-            <Link href="/schedule" className="flex min-h-11 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 px-4 py-3 font-display text-sm font-extrabold text-navy-950 shadow-glow">
-              <CalendarIcon width={16} height={16} /> Build my lineup
+            <Link href="/find-your-moments" className="flex min-h-11 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 px-4 py-3 font-display text-sm font-extrabold text-navy-950 shadow-glow">
+              <CalendarIcon width={16} height={16} /> Find my best moments
             </Link>
             <a href={travel.href} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.05] px-4 py-3 text-center text-sm font-bold text-white">
               <MapPin width={16} height={16} /> {travel.cta}

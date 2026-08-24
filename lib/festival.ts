@@ -185,10 +185,21 @@ export function exportLineupIcs(days: { id: string; label: string; items: Slot[]
 export function toggleLineup(id: string): string[] {
   const cur = getLineup();
   const next = cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id];
+  return saveLineup(next);
+}
+
+function saveLineup(next: string[]): string[] {
   try {
     localStorage.setItem(KEY, JSON.stringify(next));
+    window.dispatchEvent(new CustomEvent("jf-lineup-change", { detail: next }));
   } catch {
     /* private mode — favourites just won't persist */
   }
   return next;
+}
+
+/** Add several recommendations without removing anything already starred. */
+export function addToLineup(ids: string[]): string[] {
+  const next = [...new Set([...getLineup(), ...ids])];
+  return saveLineup(next);
 }

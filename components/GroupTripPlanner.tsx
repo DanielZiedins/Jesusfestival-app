@@ -470,7 +470,7 @@ export default function GroupTripPlanner() {
           </div>
 
           <div className="mt-3 grid gap-2 sm:grid-cols-3">
-            <Link href="/schedule" className="flex min-h-11 items-center justify-center gap-2 rounded-xl border border-gold/25 bg-gold/[0.07] px-4 py-3 text-center text-sm font-bold text-gold-300"><CalendarIcon width={15} height={15} /> Build group lineup</Link>
+            <Link href="/find-your-moments" className="flex min-h-11 items-center justify-center gap-2 rounded-xl border border-gold/25 bg-gold/[0.07] px-4 py-3 text-center text-sm font-bold text-gold-300"><CalendarIcon width={15} height={15} /> Match group moments</Link>
             <Link href="/map" className="flex min-h-11 items-center justify-center gap-2 rounded-xl border border-purple-300/25 bg-purple-400/[0.07] px-4 py-3 text-center text-sm font-bold text-purple-100"><MapPin width={15} height={15} /> Open park map</Link>
             <Link href="/offline" className="flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/12 bg-white/[0.04] px-4 py-3 text-center text-sm font-bold text-white">Save offline <ArrowRight width={15} height={15} /></Link>
           </div>
