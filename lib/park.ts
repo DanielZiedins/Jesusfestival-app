@@ -208,7 +208,7 @@ export const PARK_PINS: Pin[] = [
   {
     id: "parking",
     name: "Parking",
-    note: "The City lists 150 park spaces, and parking around Gage Park is limited. Allow extra time or use HSR, rideshare, cycling, walking or carpooling.",
+    note: "The City lists 150 park spaces, and parking around Gage Park is limited. Main & Ottawa construction can add delays, so leave extra time or use HSR, rideshare, cycling, walking or carpooling.",
     emoji: "🅿️",
     x: 10,
     y: 68,

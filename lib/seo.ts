@@ -1,7 +1,7 @@
 import { ARTISTS, LINKS, SITE } from "@/lib/content";
 import { QUESTIONS, STEPS } from "@/lib/newlife";
 
-export const LAST_MAJOR_UPDATE = "2026-08-24";
+export const LAST_MAJOR_UPDATE = "2026-08-26";
 export const FESTIVAL_GUIDE_PATH = "/jesus-festival-hamilton";
 
 export const FESTIVAL_FAQS = [
@@ -38,7 +38,7 @@ export const FESTIVAL_FAQS = [
   {
     question: "How do I get to Gage Park and where can I park?",
     answer:
-      "Gage Park is at 1000 Main Street East in Hamilton. The City lists 150 park spaces, but parking around Gage Park is limited. Arrive early and consider nearby street parking, HSR transit, rideshare, cycling, walking or carpooling. Follow final event-day signs and volunteer directions.",
+      "Gage Park is at 1000 Main Street East in Hamilton. The City lists 150 park spaces, but parking is limited. The Main and Ottawa intersection is closed during the festival period, and HSR Routes 1/1A, 10 and 41 are detoured. Use the current arrival guide at JesusFestival.App/getting-to-gage-park, leave extra time and follow final signs and volunteer directions.",
   },
   {
     question: "Is the festival family-friendly?",
@@ -59,6 +59,11 @@ export const FESTIVAL_FAQS = [
     question: "Can the app build a personalized Jesus Festival visit plan?",
     answer:
       "Yes. The Build My Festival Plan tool creates a private arrival plan based on which days you are attending, whether you are coming for the first time, with family, for worship or for a lower-stress visit, and whether you are driving, taking HSR or arriving another way. The choices stay on your device and can be shared without creating an account.",
+  },
+  {
+    question: "Can the app calculate when I should leave for Gage Park?",
+    answer:
+      "Yes. The Getting to Gage Park planner combines your travel method, normal trip duration, target festival moment and group pace to calculate a leave-by time with extra arrival margin. It can share the plan and download a calendar departure reminder. Choices remain on your device.",
   },
   {
     question: "How can I decide which Jesus Festival 2026 sets to see?",
@@ -88,7 +93,7 @@ export const FESTIVAL_FAQS = [
   {
     question: "Can I take HSR transit to Gage Park?",
     answer:
-      "Yes. HSR stops serve the area around Gage Park. Because schedules and event-day detours can change, use the City of Hamilton's official HSR trip-planning tools for 1000 Main Street East on the day you travel.",
+      "Yes. HSR serves the Gage Park area. During the active Main and Ottawa closure, Routes 1/1A King, 10 B-Line Express and 41 Mohawk are detoured and some stops have moved. Use the current arrival guide and the City of Hamilton's official schedule and detour tools before leaving.",
   },
   {
     question: "Where can I buy official Jesus Festival apparel?",
@@ -323,6 +328,7 @@ export const SITE_GRAPH_JSONLD = {
         "Complete two-day festival schedule",
         "Personal lineup planner",
         "Personalized confirmed-lineup moment matcher",
+        "Personalized Gage Park arrival and departure-time planner",
         "Personalized arrival and visit planner",
         "Private shareable church, youth group, family and friends planner",
         "Private accessibility and sensory Comfort Plan",

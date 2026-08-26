@@ -37,7 +37,11 @@ const FAQS = [
   },
   {
     question: "Where is Jesus Festival 2026?",
-    answer: "Jesus Festival is at Gage Park, 1000 Main Street East, Hamilton, Ontario. Parking is limited, so allow extra arrival time and consider HSR, rideshare, cycling, walking or carpooling.",
+    answer: "Jesus Festival is at Gage Park, 1000 Main Street East, Hamilton, Ontario. Parking is limited, and the active Main and Ottawa closure affects driving and several HSR routes. Use the current Getting to Gage Park guide, allow extra time and consider HSR, rideshare, cycling, walking or carpooling.",
+  },
+  {
+    question: "Are there construction or HSR detours near Jesus Festival?",
+    answer: "Yes. The Main Street East and Ottawa Street North intersection is closed during the festival period. HSR Routes 1/1A King, 10 B-Line Express and 41 Mohawk are detoured. Check the City of Hamilton's current information and calculate a leave-by time in the app before travelling.",
   },
   {
     question: "What should I bring to Jesus Festival?",
@@ -68,6 +72,7 @@ const FAQS = [
 const SOURCES = [
   { name: "Jesus Festival — Official Hamilton 2026 Information", url: "https://www.jesusfestival.ca/" },
   { name: "City of Hamilton — Gage Park Features and Services", url: "https://www.hamilton.ca/things-do/venues-facilities-bookings/event-planning-information/event-locations" },
+  { name: "City of Hamilton — Current HSR Schedules and Detours", url: "https://www.hamilton.ca/home-neighbourhood/hsr/schedule-route-tools/schedules-detours" },
 ] as const;
 
 export default function FestivalWeekendPage() {
@@ -187,6 +192,7 @@ export default function FestivalWeekendPage() {
                 </li>
               ))}
             </ol>
+            <Link href="/getting-to-gage-park" className="mt-4 flex min-h-12 items-center justify-center rounded-2xl border border-amber-300/30 bg-amber-300/[0.08] px-5 py-3 text-center font-display text-sm font-extrabold text-amber-100">Check current road and HSR detours, then calculate when to leave →</Link>
             <Link href="/bring-a-group" className="mt-4 flex min-h-12 items-center justify-center rounded-2xl border border-purple-300/30 bg-purple-400/[0.08] px-5 py-3 text-center font-display text-sm font-extrabold text-purple-100">Bringing a church, youth group, family or friends? Build one shareable crew plan →</Link>
           </section>
 

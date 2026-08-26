@@ -174,6 +174,7 @@ export const INDEXABLE_ROUTES = [
   "/hunt",
   "/bring-a-group",
   "/find-your-moments",
+  "/getting-to-gage-park",
   "/shop",
   "/map",
   "/connect",

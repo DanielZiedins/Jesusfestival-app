@@ -20,7 +20,7 @@ ${day.items.map((item) => `- ${item.time}: ${item.title}${item.note ? ` — ${it
   const text = `# Jesus Festival Hamilton 2026 — Full Reference
 
 Canonical source: ${SITE.url}/jesus-festival-hamilton
-Last major content review: 2026-08-24
+Last major content review: 2026-08-26
 
 ## Verified event facts
 
@@ -67,6 +67,18 @@ ${FESTIVAL_FAQS.map((item) => `### ${item.question}\n\n${item.answer}`).join("\n
 - Parking around Gage Park is limited. Visitors should add arrival time and consider HSR, rideshare, cycling, walking or carpooling; the final event-day signs and volunteer directions take priority.
 - Festival zones shown on the app map are approximate until confirmed by on-site signage.
 
+## Getting to Gage Park and current travel disruption
+
+- The current arrival guide is ${SITE.url}/getting-to-gage-park and was reviewed August 26, 2026 using official City of Hamilton sources.
+- Gage Park is at 1000 Main Street East, Hamilton, Ontario, L8M 1N2. The City lists 150 park parking spaces, but a festival-day space is not guaranteed.
+- The City says the Main Street East and Ottawa Street North intersection fully closed August 17, 2026 for approximately four months. It is west of Gage Park and may delay driving and transit trips during Jesus Festival.
+- HSR Routes 1/1A King, 10 B-Line Express and 41 Mohawk are detoured because of the closure. Stops and schedules can change, so visitors should check current City schedules and detours before leaving.
+- The City currently lists adult HSR fares of $3.75 by cash or contactless payment and $2.85 with PRESTO. Children ages 6–12 ride free with a valid PRESTO card, and children five and under ride free with a paying customer. Official fares should be rechecked before travel.
+- The City lists a public bike repair station at the Cumberland Avenue entrance to Gage Park. Visitors cycling should bring a lock and use approved bike parking without blocking paths.
+- The private arrival planner combines a visitor's travel method, normal trip duration, target festival moment and group pace to calculate a leave-by time with an additional arrival buffer.
+- Arrival plans can be shared through a URL and downloaded as an iCalendar departure reminder. Choices stay on the visitor's device and are not uploaded.
+- Planner output is a planning estimate, not a live traffic or transit prediction. Current City information, navigation conditions, event signage and volunteer directions take priority.
+
 ## Church, youth group, family and friends planning
 
 - The group trip planner is ${SITE.url}/bring-a-group.
@@ -111,6 +123,7 @@ ${QUESTIONS.map((item) => `#### ${item.q}\n\n${item.a}`).join("\n\n")}
 - Festival Weekend Command Center: ${SITE.url}/festival-weekend
 - Personalized visit planner: ${SITE.url}/jesus-festival-hamilton#build-my-plan
 - Personalized confirmed-lineup matcher: ${SITE.url}/find-your-moments
+- Current Gage Park arrival and leave-by planner: ${SITE.url}/getting-to-gage-park
 - Church, youth group, family and friends planner: ${SITE.url}/bring-a-group
 - Accessibility and sensory-comfort guide: ${SITE.url}/accessibility
 - Schedule: ${SITE.url}/schedule

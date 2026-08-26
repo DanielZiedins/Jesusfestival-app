@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { SITE, LINKS } from "@/lib/content";
 import Reveal from "@/components/Reveal";
 import ScreenHeader from "@/components/ScreenHeader";
@@ -9,7 +10,7 @@ import { MapPin, MapIcon, ArrowRight, Sparkle } from "@/components/icons";
 
 const GETTING_HERE = [
   { emoji: "🅿️", label: "Limited park & street parking", note: "Allow extra time and follow the final event-day signs and volunteer directions" },
-  { emoji: "🚌", label: "HSR transit & street parking", note: "Several routes stop on Main St E right at the park" },
+  { emoji: "🚌", label: "HSR transit", note: "Main & Ottawa construction is detouring several routes—check the current stop before leaving" },
   { emoji: "🚲", label: "Carpool, Uber, bike or walk", note: "Easily the least stressful way in on Saturday" },
   { emoji: "♿", label: "Plan an accessible arrival", note: "Use the paved park routes and confirm any essential event-day parking, drop-off or viewing detail before travelling" },
 ];
@@ -145,6 +146,9 @@ export default function MapScreen() {
           ))}
         </div>
         <Reveal className="mx-auto mt-3 max-w-md">
+          <Link href="/getting-to-gage-park" className="mb-3 flex min-h-12 items-center justify-center gap-2 rounded-xl border border-amber-300/25 bg-amber-300/[0.08] px-4 py-3 text-center text-sm font-extrabold text-amber-100">
+            🚧 Check current detours &amp; calculate when to leave <ArrowRight width={15} height={15} />
+          </Link>
           <p className="rounded-xl bg-white/[0.03] p-3 text-center text-[12px] italic text-white/55">
             Free &amp; family-friendly. All are welcome — come as you are.
           </p>

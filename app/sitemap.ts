@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ? 1
         : path === "/festival-weekend" || path === "/bring-a-group"
           ? 0.95
-          : path === "/schedule" || path === "/find-your-moments" || path === "/map" || path === "/i-said-yes" || path === "/accessibility"
+          : path === "/schedule" || path === "/find-your-moments" || path === "/getting-to-gage-park" || path === "/map" || path === "/i-said-yes" || path === "/accessibility"
             ? 0.9
             : 0.75,
   }));

@@ -260,6 +260,7 @@ export default function FestivalCommandCenter() {
           <div className="mt-3 grid grid-cols-2 gap-2.5">
             <QuickLink href="/schedule" emoji="🗓️" title="Schedule" note="Live now & next" />
             <QuickLink href="/find-your-moments" emoji="✨" title="My moments" note="Get a best-fit shortlist" />
+            <QuickLink href="/getting-to-gage-park" emoji="🚧" title="Arrival planner" note="Detours & leave-by time" />
             <QuickLink href="/map" emoji="🗺️" title="Festival map" note={personal.spot ? `Spot near ${personal.spot}` : "Drop a meeting spot"} />
             <QuickLink href="/bring-a-group" emoji="🫂" title="Group plan" note="Share one crew brief" />
             <QuickLink href="/map#help" emoji="⛑️" title="Help points" note="First aid & lost child" />

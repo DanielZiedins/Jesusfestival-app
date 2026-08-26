@@ -48,6 +48,9 @@ export default function OfflinePage() {
         <div className="mt-8"><FestivalReadinessChecklist compact /></div>
 
         <div className="mt-4 grid gap-2 sm:grid-cols-2">
+          <Link href="/getting-to-gage-park#arrival-planner" className="flex min-h-11 items-center justify-center rounded-xl border border-amber-300/25 bg-amber-300/[0.07] px-4 py-3 text-center text-sm font-extrabold text-amber-200 sm:col-span-2">
+            Open my leave-by plan and current detour guide →
+          </Link>
           <Link href="/find-your-moments#moment-finder" className="flex min-h-11 items-center justify-center rounded-xl border border-gold/30 bg-gold/10 px-4 py-3 text-center text-sm font-extrabold text-gold-300 sm:col-span-2">
             Find and save my best-fit moments →
           </Link>
@@ -67,6 +70,7 @@ export default function OfflinePage() {
           <ul className="mt-3 space-y-2 text-sm leading-relaxed text-white/60">
             <li>• Friday gates open at 6 PM; worship begins at 6:30 PM.</li>
             <li>• Saturday runs from 10 AM to 6 PM.</li>
+            <li>• Main &amp; Ottawa is closed and several HSR routes are detoured—check live conditions and leave extra time.</li>
             <li>• Parking is limited—arrive early or consider HSR, carpooling, cycling, walking or rideshare.</li>
             <li>• Bring a chair or blanket, water and sun protection.</li>
           </ul>

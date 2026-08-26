@@ -268,6 +268,17 @@ export default function HomeScreen({
             <QuickAction emoji="🙌" title="Volunteers" sub="Serve at the festival" onClick={() => go("more", "volunteers")} accent="ember" />
           </div>
           <Link
+            href="/getting-to-gage-park"
+            className="mt-3 flex min-h-16 items-center gap-3 rounded-2xl border border-amber-300/30 bg-gradient-to-r from-amber-300/[0.1] via-purple-500/[0.07] to-transparent p-3.5 transition hover:border-amber-300/50 active:scale-[0.99]"
+          >
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-amber-300/15 text-xl" aria-hidden>🚧</span>
+            <span className="min-w-0 flex-1">
+              <span className="flex items-center gap-2"><span className="font-display text-[14px] font-extrabold text-white">Getting to Gage Park</span><span className="rounded-full bg-amber-300/15 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-wider text-amber-200">Road alert</span></span>
+              <span className="mt-0.5 block text-[11.5px] leading-snug text-white/65">Main &amp; Ottawa closure, HSR detours and your personal leave-by time.</span>
+            </span>
+            <ArrowRight width={17} height={17} className="shrink-0 text-amber-200" />
+          </Link>
+          <Link
             href="/jesus-festival-hamilton#build-my-plan"
             className="mt-3 flex min-h-16 items-center gap-3 rounded-2xl border border-gold/35 bg-gradient-to-r from-gold/12 via-purple-500/[0.08] to-transparent p-3.5 transition hover:border-gold/55 active:scale-[0.99]"
           >
