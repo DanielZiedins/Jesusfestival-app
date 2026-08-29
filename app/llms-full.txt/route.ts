@@ -150,6 +150,7 @@ ${QUESTIONS.map((item) => `#### ${item.q}\n\n${item.a}`).join("\n\n")}
 - App install guide: ${SITE.url}/install
 - Offline festival essentials: ${SITE.url}/offline
 - The Light Hunt: ${SITE.url}/hunt
+- The Light Hunt explained (rules, badges, tips): ${SITE.url}/blog/the-light-hunt-gage-park-scavenger-hunt
 - Detailed Gage Park visitor guide: ${SITE.url}/blog/gage-park-festival-guide
 - Free Hamilton events in September 2026: ${SITE.url}/blog/free-things-to-do-hamilton-september-2026
 
