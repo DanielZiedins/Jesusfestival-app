@@ -41,6 +41,8 @@ export const IMG = {
     "https://d2xsxph8kpxj0f.cloudfront.net/310519663378107536/KJYp3PsjqZ4zMkWznW5JC5/jfunfn_548eacff.jpg",
   bouncyCastle: "https://www.jesusfestival.ca/home/family-festival/kids-bouncy-castle.jpg",
   lawnGames: "https://www.jesusfestival.ca/home/family-festival/family-lawn-games.jpg",
+  terryPosthumus:
+    "https://www.jesusfestival.ca/artists/terry-posthumus/terry-posthumus-live.jpg",
   antLee: "https://www.jesusfestival.ca/artists/ant-lee/ant-lee-live.jpg",
   openHeaven: "https://www.jesusfestival.ca/artists/open-heaven/open-heaven-worship.jpg",
 };
@@ -88,6 +90,7 @@ export const SCHEDULE = {
       comingSoon: false,
       items: [
         { time: "10:00 AM", title: "Opening Session", note: "Welcome · Prayer · Opening Remarks", kind: "moment" },
+        { time: "10:00 AM", title: "Terry Posthumus", note: "Artist · Opening the day", kind: "artist", featured: true, href: "https://www.jesusfestival.ca/artists/terry-posthumus" },
         { time: "11:35 AM", title: "I Am Second / e3 Canada", note: "Speaker", kind: "speaker" },
         { time: "11:50 AM", title: "Open Heaven — Set 1", note: "Worship", kind: "artist" },
         { time: "12:20 PM", title: "Joanna Adams", note: "Speaker", kind: "speaker" },
@@ -140,6 +143,14 @@ export const ARTISTS: {
     blurb:
       "Leading the whole city in worship on Friday night, 6:30–9:00 PM at Gage Park.",
     href: "https://bethelhamilton.com/",
+  },
+  {
+    name: "Terry Posthumus",
+    role: "Saturday · Opens at 10AM",
+    img: IMG.terryPosthumus,
+    blurb:
+      "An Ontario singer-songwriter and worship leader starting Family Festival Day with songs and a story of hope that has survived real loss.",
+    href: "https://www.jesusfestival.ca/artists/terry-posthumus",
   },
   {
     name: "Ant Lee Jr.",
