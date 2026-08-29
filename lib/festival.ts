@@ -139,9 +139,23 @@ export function exportLineupIcs(days: { id: string; label: string; items: Slot[]
       if (!ids.has(slotId(day.id, s))) return;
       const start = slotTime(day.id, s.time);
       if (!start) return;
-      const nextStart = i + 1 < day.items.length ? slotTime(day.id, day.items[i + 1].time) : null;
+      // Skip past anything sharing this start time — two slots can legitimately
+      // begin together (the Saturday welcome and the 10AM set), and taking the
+      // very next item would end the event the instant it began.
+      let nextStart: Date | null = null;
+      for (let j = i + 1; j < day.items.length; j++) {
+        const t = slotTime(day.id, day.items[j].time);
+        if (t && t.getTime() > start.getTime()) {
+          nextStart = t;
+          break;
+        }
+      }
       const end = nextStart ?? new Date(start.getTime() + 30 * 60000);
-      const uid = `jf2026-${day.id}-${s.time.replace(/[^0-9]/g, "")}@jesusfestival.app`;
+      // The title belongs in the UID. Keyed on time alone, two slots at the
+      // same minute produce the same UID and a calendar treats the second as an
+      // edit of the first — one of them just disappears.
+      const slug = s.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40);
+      const uid = `jf2026-${day.id}-${s.time.replace(/[^0-9]/g, "")}-${slug}@jesusfestival.app`;
       const title = s.title.replace(/[,;\\]/g, " ");
       events.push(
         [
