@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion, MotionConfig } from "framer-motion";
+import { MotionConfig } from "framer-motion";
 import dynamic from "next/dynamic";
 import BottomNav, { type TabId } from "./BottomNav";
 import InstallPrompt from "./InstallPrompt";
@@ -39,7 +39,7 @@ export default function AppShell({
   initialShopData?: ShopData;
 }) {
   const [tab, setTab] = useState<TabId>(initialDestination.tab);
-  // Splash + onboarding are client-only (mounted gate) to avoid SSR/AnimatePresence hydration mismatch.
+  // Splash + onboarding are client-only (mounted gate) so the server render never disagrees.
   const [mounted, setMounted] = useState(false);
   const [splash, setSplash] = useState(true);
   const [onboard, setOnboard] = useState(false);
@@ -183,21 +183,21 @@ export default function AppShell({
         <div className="bg-app-ambient pointer-events-none fixed inset-0 z-0" aria-hidden="true" />
 
         {mounted && splash && <Splash leaving={splashLeaving} />}
-        <AnimatePresence>
-          {mounted && !splash && onboard && <Onboarding key="onboard" onDone={() => setOnboard(false)} />}
-        </AnimatePresence>
+        {mounted && !splash && onboard && <Onboarding onDone={() => setOnboard(false)} />}
 
         <main
           id="app-content"
           aria-hidden={blockedByOverlay ? true : undefined}
           className={`relative z-10 mx-auto min-h-screen max-w-lg pb-28 ${blockedByOverlay ? "pointer-events-none" : ""}`}
         >
-          <motion.div
-            key={`${tab}-${moreView ?? "hub"}`}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-          >
+          {/* A keyed CSS entrance, not a framer fade. The screen switcher is
+              the one wrapper every view sits inside, and a JS opacity:0→1
+              animation stalls at 0 whenever rAF is throttled — backgrounded
+              PWA, iPhone Low Power Mode — leaving the whole app invisible
+              except the nav. The key remounts the div per tab, replaying the
+              animation; its resting state is fully visible, so a stalled
+              frame loop costs the sweep, never the screen. */}
+          <div key={`${tab}-${moreView ?? "hub"}`} className="jf-rise">
             {tab === "home" && <HomeScreen go={go} onSearch={() => setSearch(true)} />}
             {tab === "schedule" && <ScheduleScreen />}
             {tab === "game" && <GameScreen />}
@@ -211,7 +211,7 @@ export default function AppShell({
                 initialShopData={initialShopData}
               />
             )}
-          </motion.div>
+          </div>
           <DiscoveryFooter />
         </main>
 

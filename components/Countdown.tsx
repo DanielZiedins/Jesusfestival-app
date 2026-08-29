@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 
 function diff(target: number) {
   const now = Date.now();
@@ -15,39 +14,31 @@ function diff(target: number) {
   };
 }
 
-// A single glowing digit card. The value cross-fades on change so seconds feel alive.
-function Unit({ label, value, hot, delay }: { label: string; value: string; hot?: boolean; delay: number }) {
+// A single glowing digit card. Entrances and the digit cross-fade are CSS
+// (keyed remount replays jf-rise), so a throttled frame loop can never leave a
+// card invisible or a digit frozen mid-fade — timers still tick regardless.
+function Unit({ label, value, hot }: { label: string; value: string; hot?: boolean }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay, type: "spring", stiffness: 200, damping: 18 }}
-      className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.09] to-white/[0.03] px-1 py-3.5 text-center shadow-card backdrop-blur"
-    >
+    <div className="jf-rise relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.09] to-white/[0.03] px-1 py-3.5 text-center shadow-card backdrop-blur">
       {/* soft inner glow that breathes on the seconds card */}
-      <motion.span
+      <span
         aria-hidden
-        className="pointer-events-none absolute -top-8 left-1/2 h-16 w-24 -translate-x-1/2 rounded-full bg-gold/20 blur-2xl"
-        animate={hot ? { opacity: [0.4, 0.9, 0.4] } : { opacity: 0.35 }}
-        transition={hot ? { duration: 2, repeat: Infinity, ease: "easeInOut" } : undefined}
+        className={`pointer-events-none absolute -top-8 left-1/2 h-16 w-24 -translate-x-1/2 rounded-full bg-gold/20 blur-2xl ${
+          hot ? "animate-pulse" : "opacity-35"
+        }`}
       />
-      {/* Keyed remount (no AnimatePresence): a stalled exit animation must never
-          leave orphaned digits behind when rAF is throttled in a background tab. */}
       <div className="relative h-8 sm:h-9">
-        <motion.div
+        <div
           key={value}
-          initial={{ y: 8, opacity: 0.35 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.28, ease: "easeOut" }}
-          className="text-gradient-gold absolute inset-x-0 font-display text-[26px] font-black leading-8 tabular-nums sm:text-3xl sm:leading-9"
+          className="jf-rise text-gradient-gold absolute inset-x-0 font-display text-[26px] font-black leading-8 tabular-nums sm:text-3xl sm:leading-9"
         >
           {value}
-        </motion.div>
+        </div>
       </div>
       <div className="relative mt-1 text-[9px] font-bold uppercase tracking-[0.22em] text-white/50">
         {label}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -66,20 +57,11 @@ export default function Countdown({ targetISO }: { targetISO: string }) {
   // Festival weekend! Swap the timer for a celebration banner.
   if (mounted && t.over) {
     return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.92 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="relative overflow-hidden rounded-2xl border border-gold/40 bg-gradient-to-r from-gold/20 via-ember/15 to-purple-600/20 px-4 py-5 text-center"
-      >
-        <motion.span
-          aria-hidden
-          className="pointer-events-none absolute inset-y-0 w-16 bg-white/20 blur-md"
-          animate={{ left: ["-15%", "115%"] }}
-          transition={{ duration: 2.2, repeat: Infinity, repeatDelay: 1, ease: "easeInOut" }}
-        />
+      <div className="jf-pop relative overflow-hidden rounded-2xl border border-gold/40 bg-gradient-to-r from-gold/20 via-ember/15 to-purple-600/20 px-4 py-5 text-center">
+        <span aria-hidden className="jf-sheen pointer-events-none absolute inset-y-0 w-16 bg-white/20 blur-md" />
         <p className="font-display text-2xl font-extrabold text-white">It&apos;s festival weekend! 🎉</p>
         <p className="mt-1 text-sm font-semibold text-gold-400">See you at Gage Park — bring a friend!</p>
-      </motion.div>
+      </div>
     );
   }
 
@@ -92,8 +74,8 @@ export default function Countdown({ targetISO }: { targetISO: string }) {
 
   return (
     <div className="grid grid-cols-4 gap-2.5">
-      {units.map((u, i) => (
-        <Unit key={u.k} label={u.k} value={mounted ? String(u.v).padStart(2, "0") : "--"} hot={u.hot} delay={0.15 + i * 0.08} />
+      {units.map((u) => (
+        <Unit key={u.k} label={u.k} value={mounted ? String(u.v).padStart(2, "0") : "--"} hot={u.hot} />
       ))}
     </div>
   );

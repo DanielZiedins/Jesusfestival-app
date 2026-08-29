@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { SCHEDULE } from "@/lib/content";
 import { clientNow, festivalPhase, nowNext, slotTime, type Slot } from "@/lib/festival";
 import type { TabId } from "@/components/BottomNav";
@@ -42,12 +41,9 @@ export default function FestivalLive({ go }: { go: (t: TabId, sub?: string) => v
       : 0;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-      className="relative mb-4 overflow-hidden rounded-3xl border border-ember/40 bg-gradient-to-br from-ember/25 via-purple-900/30 to-ink p-5"
-    >
+    // CSS entrance: on the day itself this card IS the app — it can never be
+    // left invisible by a stalled animation frame loop.
+    <div className="jf-rise relative mb-4 overflow-hidden rounded-3xl border border-ember/40 bg-gradient-to-br from-ember/25 via-purple-900/30 to-ink p-5">
       <div className="pointer-events-none absolute -right-10 -top-12 h-44 w-44 rounded-full bg-ember/25 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-12 -left-10 h-40 w-40 rounded-full bg-gold/15 blur-3xl" />
 
@@ -130,6 +126,6 @@ export default function FestivalLive({ go }: { go: (t: TabId, sub?: string) => v
         </span>
         <ArrowRight width={15} height={15} className="shrink-0 text-gold-400" />
       </button>
-    </motion.div>
+    </div>
   );
 }

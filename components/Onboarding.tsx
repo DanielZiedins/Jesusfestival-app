@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { joinFestival } from "@/lib/supabase";
 import { COUNTRIES, findCountry, geocodeCity } from "@/lib/geo";
 import { hasProfanity, tidy } from "@/lib/clean";
@@ -86,40 +85,30 @@ export default function Onboarding({ onDone }: { onDone: () => void }) {
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    // A CSS entrance whose resting state is visible. This overlay blocks all
+    // input behind it, so if its animation ever failed to run (throttled rAF in
+    // Low Power Mode) a framer opacity:0 start left a first-time user staring
+    // at an invisible wall — an app that looks completely dead.
+    <div
+      className="jf-fade fixed inset-0 z-[80] overflow-y-auto bg-gradient-to-b from-navy-900 via-ink to-ink"
       role="dialog"
       aria-modal="true"
       aria-labelledby="join-title"
-      className="fixed inset-0 z-[80] overflow-y-auto bg-gradient-to-b from-navy-900 via-ink to-ink"
     >
       <div className="pointer-events-none fixed -left-16 top-10 h-72 w-72 rounded-full bg-purple-600/30 blur-[120px]" />
       <div className="pointer-events-none fixed -right-16 bottom-10 h-72 w-72 rounded-full bg-gold/15 blur-[120px]" />
 
       <div className="relative mx-auto flex min-h-full max-w-md flex-col justify-center px-6 py-10 safe-top safe-bottom">
-        <AnimatePresence mode="wait">
-          {done ? (
-            <motion.div
-              key="done"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="flex flex-col items-center py-20 text-center"
-            >
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ type: "spring", stiffness: 200, damping: 12 }}
-                className="grid h-20 w-20 place-items-center rounded-full bg-gradient-to-br from-gold-400 to-gold-600 text-navy-950 shadow-glow"
-              >
+        {done ? (
+            <div key="done" className="jf-pop flex flex-col items-center py-20 text-center">
+              <div className="jf-pop grid h-20 w-20 place-items-center rounded-full bg-gradient-to-br from-gold-400 to-gold-600 text-navy-950 shadow-glow">
                 <Check width={40} height={40} />
-              </motion.div>
+              </div>
               <h2 className="mt-6 font-display text-3xl font-bold text-white">You&apos;re in! 🙌</h2>
               <p className="mt-2 text-white/70">Welcome to the movement. Let&apos;s go…</p>
-            </motion.div>
+            </div>
           ) : (
-            <motion.div key="form" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
+            <div key="form" className="jf-rise">
               {/* Logo */}
               <div className="mb-6 flex flex-col items-center text-center">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -224,11 +213,10 @@ export default function Onboarding({ onDone }: { onDone: () => void }) {
               <p className="mt-4 text-center text-[10px] leading-relaxed text-white/50">
                 We&apos;ll only use your info to share Jesus Festival updates. No spam, ever.
               </p>
-            </motion.div>
+            </div>
           )}
-        </AnimatePresence>
       </div>
-    </motion.div>
+    </div>
   );
 }
 

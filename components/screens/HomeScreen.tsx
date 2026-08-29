@@ -115,12 +115,11 @@ export default function HomeScreen({
           style={{ y: contentY, opacity: contentOpacity }}
           className="relative z-10 flex h-full flex-col items-center justify-end px-6 pb-16 text-center safe-top"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1, type: "spring", stiffness: 200, damping: 16 }}
-            className="relative mb-4"
-          >
+          {/* CSS entrances below: a framer opacity:0 start never finishes when
+              rAF is throttled (Low Power Mode, backgrounded PWA), which blanked
+              the entire hero. The parallax above is safe — its resting state at
+              scroll 0 is fully visible. */}
+          <div className="jf-pop relative mb-4">
             <div className="absolute inset-0 -z-10 rounded-full bg-purple-500/30 blur-2xl" />
             <Image
               src="/brand/logo-mark-white.png"
@@ -129,57 +128,32 @@ export default function HomeScreen({
               height={80}
               className="h-20 w-auto drop-shadow-[0_0_20px_rgba(147,51,234,0.5)]"
             />
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25 }}
-            className="mb-3 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.15em] text-white/80 backdrop-blur"
-          >
+          <div className="jf-rise mb-3 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.15em] text-white/80 backdrop-blur">
             {HERO.eyebrow}
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.32 }}
-            className="font-display text-5xl font-extrabold leading-[0.92] tracking-tight text-white sm:text-6xl"
-          >
+          <h1 className="jf-rise font-display text-5xl font-extrabold leading-[0.92] tracking-tight text-white sm:text-6xl">
             <span className="text-gradient-gold animate-shimmer">JESUS</span>
             <br />
             FESTIVAL
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.42 }}
-            className="mt-3 max-w-xs text-[15px] leading-relaxed text-white/80"
-          >
+          <p className="jf-rise mt-3 max-w-xs text-[15px] leading-relaxed text-white/80">
             {HERO.subtitle} {HERO.body}
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.55 }}
-            className="mt-3 flex items-center gap-1.5 text-sm text-gold-400"
-          >
+          <div className="jf-fade mt-3 flex items-center gap-1.5 text-sm text-gold-400">
             <MapPin width={15} height={15} />
             <span className="font-medium">{SITE.location}</span>
-          </motion.div>
+          </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.65 }}
-            className="mt-4 text-[11px] font-bold uppercase tracking-[0.18em]"
-          >
+          <p className="jf-rise mt-4 text-[11px] font-bold uppercase tracking-[0.18em]">
             <span className="text-purple-300">Love God.</span>{" "}
             <span className="text-white/90">Love People.</span>{" "}
             <span className="text-gold-400">Change the World.</span>
-          </motion.p>
+          </p>
         </motion.div>
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink to-transparent" />

@@ -221,6 +221,28 @@ textarea {
    rAF, low-power mode, a tab restored from the camera app — the content is
    already on screen rather than stuck at opacity 0. Someone standing in a park
    who just scanned a code must never see a blank page. */
+@keyframes jf-sheen {
+  from {
+    left: -15%;
+  }
+  to {
+    left: 115%;
+  }
+}
+.jf-sheen {
+  animation: jf-sheen 2.2s ease-in-out infinite;
+}
+@keyframes jf-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.jf-fade {
+  animation: jf-fade 0.4s ease-out forwards;
+}
 @keyframes jf-pop {
   from {
     opacity: 0;
@@ -248,6 +270,7 @@ textarea {
   animation: jf-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 @media (prefers-reduced-motion: reduce) {
+  .jf-fade,
   .jf-pop,
   .jf-rise {
     animation: none;
