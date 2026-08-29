@@ -45,7 +45,7 @@ const FAQS = [
   },
   {
     question: "What should I bring to Jesus Festival?",
-    answer: "Bring a lawn chair or blanket, a filled refillable water bottle, sunscreen, a hat, comfortable shoes and a layer for Friday evening. Check the forecast shortly before leaving.",
+    answer: "Bring a lawn chair or blanket, a filled refillable water bottle, sunscreen, a hat, comfortable shoes and a layer for Friday evening. The personalized What to Bring planner adapts the list for your festival days, family, comfort or accessibility needs and volunteer plans.",
   },
   {
     question: "What should I do if I lose someone or need first aid?",
@@ -193,6 +193,7 @@ export default function FestivalWeekendPage() {
               ))}
             </ol>
             <Link href="/getting-to-gage-park" className="mt-4 flex min-h-12 items-center justify-center rounded-2xl border border-amber-300/30 bg-amber-300/[0.08] px-5 py-3 text-center font-display text-sm font-extrabold text-amber-100">Check current road and HSR detours, then calculate when to leave →</Link>
+            <Link href="/what-to-bring" className="mt-4 flex min-h-12 items-center justify-center rounded-2xl border border-emerald-300/30 bg-emerald-400/[0.08] px-5 py-3 text-center font-display text-sm font-extrabold text-emerald-100">Build a personalized, downloadable What to Bring checklist →</Link>
             <Link href="/bring-a-group" className="mt-4 flex min-h-12 items-center justify-center rounded-2xl border border-purple-300/30 bg-purple-400/[0.08] px-5 py-3 text-center font-display text-sm font-extrabold text-purple-100">Bringing a church, youth group, family or friends? Build one shareable crew plan →</Link>
           </section>
 

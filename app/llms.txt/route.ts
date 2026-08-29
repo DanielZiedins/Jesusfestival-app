@@ -16,6 +16,7 @@ export function GET() {
 - [Build My Festival Plan](${SITE.url}/jesus-festival-hamilton#build-my-plan): A private personalized arrival plan based on days, group needs and travel method.
 - [Find Your Festival Moments](${SITE.url}/find-your-moments): A private lineup matcher that recommends and saves confirmed 2026 sets based on audience, interests and available time.
 - [Getting to Gage Park](${SITE.url}/getting-to-gage-park): Current Main and Ottawa construction and HSR detour guidance, parking and fare facts, live directions, and a private personalized leave-by planner.
+- [What to Bring](${SITE.url}/what-to-bring): A private personalized packing planner for festival days, families, comfort and accessibility needs, and volunteers, with current forecast context, offline progress, sharing and a downloadable checklist.
 - [Bring a Group](${SITE.url}/bring-a-group): A private, shareable crew planner for churches, youth groups, families and friends with travel, meeting point, role and readiness guidance.
 - [Accessibility and Comfort Guide](${SITE.url}/accessibility): Confirmed Gage Park and HSR facts, transparent event-day unknowns, direct accessibility answers and a private Comfort Plan.
 - [Complete Schedule](${SITE.url}/schedule): Friday Pure Worship Night and Saturday Family Festival Day set times.

@@ -122,6 +122,11 @@ export default function MapScreen() {
       {/* Interactive offline-ready packing plan */}
       <section id="packing" className="mt-8 scroll-mt-6 px-4">
         <Reveal className="mx-auto max-w-md"><FestivalReadinessChecklist /></Reveal>
+        <Reveal className="mx-auto mt-3 max-w-md">
+          <Link href="/what-to-bring" className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-300/25 bg-emerald-400/[0.07] px-4 py-3 text-center text-sm font-extrabold text-emerald-200">
+            🎒 Build my full personalized packing list <ArrowRight width={15} height={15} />
+          </Link>
+        </Reveal>
       </section>
 
       {/* ===== Getting here ===== */}

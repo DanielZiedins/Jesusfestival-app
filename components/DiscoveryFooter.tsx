@@ -7,6 +7,7 @@ const LINKS = [
   { href: "/bring-a-group", label: "Bring a Group" },
   { href: "/find-your-moments", label: "Find Your Moments" },
   { href: "/getting-to-gage-park", label: "Getting to Gage Park" },
+  { href: "/what-to-bring", label: "What to Bring" },
   { href: "/accessibility", label: "Accessibility" },
   { href: "/faq", label: "Festival FAQ" },
   { href: "/blog", label: "Stories & Updates" },

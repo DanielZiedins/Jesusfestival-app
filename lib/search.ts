@@ -51,6 +51,7 @@ const SCREENS: Hit[] = [
   { id: "s-group", title: "Bring a Group", sub: "Build and share a crew plan for your church, youth group, family or friends", emoji: "🫂", kind: "Screen", href: "/bring-a-group", extra: "church trip youth leader carpool meeting point responsibilities whatsapp group planner invite crew team" },
   { id: "s-moments", title: "Find Your Festival Moments", sub: "Get a personalized shortlist from the confirmed 2026 lineup", emoji: "✨", kind: "Screen", href: "/find-your-moments", extra: "lineup matcher recommendation quiz what should i see best sets worship music hip hop ant lee open heaven acts friday night prayer bethel" },
   { id: "s-arrival", title: "Getting to Gage Park", sub: "Current road and HSR detours, parking facts and a personal leave-by time", emoji: "🚧", kind: "Screen", href: "/getting-to-gage-park", extra: "directions driving traffic construction main ottawa closure parking hsr transit bus fare presto rideshare taxi uber cycling bike walking arrival departure when should i leave" },
+  { id: "s-packing", title: "What to Bring", sub: "Build a personal, downloadable festival packing checklist", emoji: "🎒", kind: "Screen", href: "/what-to-bring", extra: "packing pack list checklist chair blanket water sunscreen hat children family medication sensory volunteer weather gage park" },
   { id: "s-access", title: "Accessibility & Comfort Guide", sub: "Mobility, sensory comfort, HSR, service animals and support planning", emoji: "♿", kind: "Screen", href: "/accessibility", extra: "wheelchair accessible quiet ASL hearing vision medication caregiver stroller washroom parking" },
   { id: "s-hunt", title: "The Light Hunt", sub: "Find 12 lights around Gage Park and unlock shareable badges", emoji: "🔦", kind: "Screen", href: "/hunt", extra: "scavenger qr vendor row game badge family activity" },
   { id: "s-settings", title: "Settings", sub: "Your name, church & preferences", emoji: "⚙️", kind: "Screen", tab: "more", moreView: "settings", extra: "profile preferences name" },
@@ -196,4 +197,4 @@ export function runSearch(query: string, limit = 24): Hit[] {
   return scored.slice(0, limit).map((s) => s.hit);
 }
 
-export const QUICK_QUERIES = ["Today", "Arrival", "Parking", "My moments", "Group plan", "Light Hunt", "Access", "Offline"];
+export const QUICK_QUERIES = ["Today", "Arrival", "Packing", "My moments", "Group plan", "Light Hunt", "Access", "Offline"];

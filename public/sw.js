@@ -30,6 +30,7 @@ const APP_SHELL = [
   "/bring-a-group",
   "/find-your-moments",
   "/getting-to-gage-park",
+  "/what-to-bring",
   "/jesus-festival-hamilton",
   "/accessibility",
   "/hunt",

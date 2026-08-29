@@ -1,7 +1,7 @@
 import { ARTISTS, LINKS, SITE } from "@/lib/content";
 import { QUESTIONS, STEPS } from "@/lib/newlife";
 
-export const LAST_MAJOR_UPDATE = "2026-08-26";
+export const LAST_MAJOR_UPDATE = "2026-08-29";
 export const FESTIVAL_GUIDE_PATH = "/jesus-festival-hamilton";
 
 export const FESTIVAL_FAQS = [
@@ -33,7 +33,7 @@ export const FESTIVAL_FAQS = [
   {
     question: "What should I bring?",
     answer:
-      "Bring a lawn chair or blanket, sunscreen and a hat, a refillable water bottle, comfortable shoes and a layer for Friday evening. Arriving early makes it easier to find a good spot.",
+      "Bring a lawn chair or blanket, sunscreen and a hat, a filled refillable water bottle, comfortable shoes, a charged phone and a layer for Friday evening. The personalized What to Bring planner at JesusFestival.App/what-to-bring adapts the list for your days, family, comfort or accessibility needs and volunteer plans, then saves it privately for offline use.",
   },
   {
     question: "How do I get to Gage Park and where can I park?",
@@ -329,6 +329,7 @@ export const SITE_GRAPH_JSONLD = {
         "Personal lineup planner",
         "Personalized confirmed-lineup moment matcher",
         "Personalized Gage Park arrival and departure-time planner",
+        "Personalized, downloadable and offline festival packing planner",
         "Personalized arrival and visit planner",
         "Private shareable church, youth group, family and friends planner",
         "Private accessibility and sensory Comfort Plan",

@@ -42,6 +42,19 @@
       ]
     },
     {
+      "name": "What to Bring",
+      "short_name": "Packing List",
+      "description": "Build a personalized, downloadable and offline-ready festival packing plan",
+      "url": "/what-to-bring",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
       "name": "Offline Festival Essentials",
       "short_name": "Offline",
       "description": "Saved schedule, location and packing essentials for festival day",

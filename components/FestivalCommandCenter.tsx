@@ -111,7 +111,7 @@ export default function FestivalCommandCenter() {
   const nextMove = !personal.attending
     ? { label: "Save my festival weekend", href: "#save-weekend", note: "Keep the dates and your prep progress together." }
     : personal.packed < 4
-      ? { label: "Finish my packing list", href: "/map#packing", note: `${personal.packed} of ${READINESS_ITEMS.length} essentials ready.` }
+      ? { label: "Finish my personalized packing list", href: "/what-to-bring#packing-planner", note: `${personal.packed} of ${READINESS_ITEMS.length} core essentials ready.` }
       : personal.lineup === 0
         ? { label: "Build my personal lineup", href: "/schedule", note: "Star the moments you do not want to miss." }
         : { label: "Invite someone to come", href: "#share-weekend", note: "Your plan is strong. Bring someone with you." };
@@ -261,6 +261,7 @@ export default function FestivalCommandCenter() {
             <QuickLink href="/schedule" emoji="🗓️" title="Schedule" note="Live now & next" />
             <QuickLink href="/find-your-moments" emoji="✨" title="My moments" note="Get a best-fit shortlist" />
             <QuickLink href="/getting-to-gage-park" emoji="🚧" title="Arrival planner" note="Detours & leave-by time" />
+            <QuickLink href="/what-to-bring" emoji="🎒" title="What to bring" note="Personal packing plan" />
             <QuickLink href="/map" emoji="🗺️" title="Festival map" note={personal.spot ? `Spot near ${personal.spot}` : "Drop a meeting spot"} />
             <QuickLink href="/bring-a-group" emoji="🫂" title="Group plan" note="Share one crew brief" />
             <QuickLink href="/map#help" emoji="⛑️" title="Help points" note="First aid & lost child" />

@@ -48,6 +48,9 @@ export default function OfflinePage() {
         <div className="mt-8"><FestivalReadinessChecklist compact /></div>
 
         <div className="mt-4 grid gap-2 sm:grid-cols-2">
+          <Link href="/what-to-bring#packing-planner" className="flex min-h-11 items-center justify-center rounded-xl border border-emerald-300/25 bg-emerald-400/[0.07] px-4 py-3 text-center text-sm font-extrabold text-emerald-200 sm:col-span-2">
+            Open my personalized What to Bring checklist →
+          </Link>
           <Link href="/getting-to-gage-park#arrival-planner" className="flex min-h-11 items-center justify-center rounded-xl border border-amber-300/25 bg-amber-300/[0.07] px-4 py-3 text-center text-sm font-extrabold text-amber-200 sm:col-span-2">
             Open my leave-by plan and current detour guide →
           </Link>

@@ -79,6 +79,17 @@ ${FESTIVAL_FAQS.map((item) => `### ${item.question}\n\n${item.answer}`).join("\n
 - Arrival plans can be shared through a URL and downloaded as an iCalendar departure reminder. Choices stay on the visitor's device and are not uploaded.
 - Planner output is a planning estimate, not a live traffic or transit prediction. Current City information, navigation conditions, event signage and volunteer directions take priority.
 
+## What to bring and personalized packing
+
+- The current What to Bring guide is ${SITE.url}/what-to-bring and was reviewed August 29, 2026.
+- Core suggestions are a lawn chair or blanket, a filled refillable water bottle, comfortable shoes, a charged phone or power bank, offline festival essentials, Saturday sun protection and a Friday evening layer.
+- The private planner adapts the checklist for Friday, Saturday or both days and can add family, comfort and accessibility, and volunteer reminders without asking for a name, email or medical details.
+- Checked progress stays on the visitor's device. Shared links contain only the selected day and general add-on categories; they do not contain checked progress or personal information.
+- The checklist can be downloaded as a plain-text file and is precached with the app's offline festival essentials.
+- The page may show the current two-day Open-Meteo forecast when available, but visitors should recheck current conditions and official announcements before leaving.
+- Hamilton Public Health recommends checking the UV index, drinking water and using broad-spectrum, water-resistant SPF 30 or higher outdoors.
+- A complete prohibited-items list was not published in the public festival information reviewed for the guide. The app does not invent one; current festival announcements, City park rules, on-site signs and staff direction take priority.
+
 ## Church, youth group, family and friends planning
 
 - The group trip planner is ${SITE.url}/bring-a-group.
@@ -124,6 +135,7 @@ ${QUESTIONS.map((item) => `#### ${item.q}\n\n${item.a}`).join("\n\n")}
 - Personalized visit planner: ${SITE.url}/jesus-festival-hamilton#build-my-plan
 - Personalized confirmed-lineup matcher: ${SITE.url}/find-your-moments
 - Current Gage Park arrival and leave-by planner: ${SITE.url}/getting-to-gage-park
+- Personalized What to Bring and packing planner: ${SITE.url}/what-to-bring
 - Church, youth group, family and friends planner: ${SITE.url}/bring-a-group
 - Accessibility and sensory-comfort guide: ${SITE.url}/accessibility
 - Schedule: ${SITE.url}/schedule

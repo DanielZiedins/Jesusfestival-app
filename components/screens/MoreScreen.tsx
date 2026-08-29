@@ -188,6 +188,17 @@ export default function MoreScreen({
 
             <Reveal delay={0.075}>
               <Link
+                href="/what-to-bring"
+                className="group mb-3 flex min-h-20 items-center gap-4 rounded-2xl border border-emerald-300/25 bg-gradient-to-br from-emerald-500/15 via-navy-800/35 to-ink/50 p-4 transition active:scale-[0.99]"
+              >
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-emerald-400/15 text-3xl" aria-hidden>🎒</span>
+                <span className="min-w-0 flex-1"><span className="flex items-center gap-2"><span className="font-display text-lg font-extrabold text-white">What to Bring</span><span className="rounded-full bg-emerald-400/15 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-wider text-emerald-200">New</span></span><span className="block text-xs leading-snug text-white/65">Personalize, save, download and share your festival packing plan</span></span>
+                <ArrowRight width={18} height={18} className="shrink-0 text-emerald-200 transition group-hover:translate-x-0.5" />
+              </Link>
+            </Reveal>
+
+            <Reveal delay={0.08}>
+              <Link
                 href="/bring-a-group"
                 className="group mb-3 flex min-h-20 items-center gap-4 rounded-2xl border border-purple-300/25 bg-gradient-to-br from-purple-600/20 via-navy-800/35 to-ink/50 p-4 transition active:scale-[0.99]"
               >
