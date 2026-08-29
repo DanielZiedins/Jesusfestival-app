@@ -2,13 +2,14 @@
   "name": "jesusfestival-app",
   "version": "1.0.0",
   "private": true,
-  "description": "Jesus Festival — the official mobile app experience. Hamilton 2026 · Gage Park · Sept 4–5.",
+  "description": "Jesus Festival \u2014 the official mobile app experience. Hamilton 2026 \u00b7 Gage Park \u00b7 Sept 4\u20135.",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/check-sw-hunt.mjs && next build",
     "start": "next start",
     "lint": "eslint .",
-    "submit:indexnow": "node scripts/submit-indexnow.mjs"
+    "submit:indexnow": "node scripts/submit-indexnow.mjs",
+    "check:sw-hunt": "node scripts/check-sw-hunt.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

@@ -1,5 +1,5 @@
 // Jesus Festival — lightweight offline-first service worker.
-const CACHE = "jf-app-v15";
+const CACHE = "jf-app-v16";
 const IMG_CACHE = "jf-images-v1";
 const IMG_MAX_ENTRIES = 80;
 const IMG_HOSTS = new Set([
@@ -33,6 +33,25 @@ const APP_SHELL = [
   "/jesus-festival-hamilton",
   "/accessibility",
   "/hunt",
+  // Every printed Light Hunt station. These are the twelve QR codes taped up
+  // around Gage Park, so they are the one set of pages guaranteed to be opened
+  // by someone standing in a field on a dead network, having never visited the
+  // URL before. Without them here a scan falls through to /offline and the
+  // person never gets their light.
+  // Keep in step with STATIONS in lib/hunt.ts — scripts/check-sw-hunt.mjs fails
+  // the build if these drift.
+  "/hunt/xxwd39j",
+  "/hunt/pcuhxg4",
+  "/hunt/87uxpgz",
+  "/hunt/2mnp339",
+  "/hunt/hcf5ed8",
+  "/hunt/3cr884v",
+  "/hunt/3jh44gp",
+  "/hunt/zvytwv5",
+  "/hunt/zmkgbt7",
+  "/hunt/w3uz5ya",
+  "/hunt/pvzkfvz",
+  "/hunt/d6x4jup",
   "/faq",
   "/jesus-festival-2026.ics",
   "/manifest.webmanifest",
@@ -44,12 +63,58 @@ const APP_SHELL = [
   "/icons/icon-512.png",
 ];
 
+// Pages whose JavaScript must be there before the phone ever loses signal.
+// Everything a Light Hunt scan touches, plus the screens people open first.
+const PRIORITY_PAGES = APP_SHELL.filter(
+  (u) => u === "/" || u.startsWith("/hunt") || u === "/schedule" || u === "/map" || u === "/offline"
+);
+
+const isPage = (u) => !/\.(png|webp|jpg|jpeg|svg|ics|webmanifest)$/.test(u);
+
+/**
+ * Cache a page *and the JS/CSS it needs to run*.
+ *
+ * Caching the HTML alone is not enough. A Next page arrives as a prerendered
+ * shell that only becomes the real thing once its chunks execute — so a
+ * document cached without its scripts opens offline as a dead spinner. That is
+ * exactly what someone scanning a printed QR code in the park would have seen.
+ *
+ * Chunk filenames are content-hashed and change every build, so the list is
+ * read out of the served HTML rather than hard-coded.
+ */
+async function cachePageWithAssets(cache, pageUrl) {
+  try {
+    const res = await fetch(pageUrl, { credentials: "same-origin" });
+    if (!res.ok) return;
+    const html = await res.clone().text();
+    await cache.put(pageUrl, res);
+
+    const assets = new Set();
+    for (const m of html.matchAll(/(?:src|href)="(\/_next\/static\/[^"]+)"/g)) assets.add(m[1]);
+
+    await Promise.all(
+      [...assets].map((a) =>
+        cache.match(a).then((hit) => (hit ? undefined : cache.add(a).catch(() => {})))
+      )
+    );
+  } catch {
+    /* a missing page must never abort the rest of the precache */
+  }
+}
+
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE).then((cache) =>
-      // Individually, so one missing asset can't abort the whole precache.
-      Promise.all(APP_SHELL.map((u) => cache.add(u).catch(() => {})))
-    ).catch(() => {})
+    caches
+      .open(CACHE)
+      .then(async (cache) => {
+        // Individually, so one missing asset can't abort the whole precache.
+        await Promise.all(APP_SHELL.map((u) => cache.add(u).catch(() => {})));
+        // Then walk the asset graph for the pages that have to actually work.
+        // Sequential on purpose: the chunks are shared, so after the first page
+        // almost everything is already a cache hit.
+        for (const u of PRIORITY_PAGES) await cachePageWithAssets(cache, u);
+      })
+      .catch(() => {})
   );
   self.skipWaiting();
 });
@@ -122,7 +187,15 @@ self.addEventListener("fetch", (event) => {
           }
           return res;
         })
-        .catch(() => caches.match(request).then((r) => r || caches.match("/offline").then((offline) => offline || caches.match("/"))))
+        .catch(() =>
+          caches.match(request).then((r) => {
+            if (r) return r;
+            // A Light Hunt scan should never dead-end on the generic offline
+            // page — the hub still shows their lamps and works from cache.
+            const fallback = url.pathname.startsWith("/hunt/") ? "/hunt" : "/offline";
+            return caches.match(fallback).then((f) => f || caches.match("/offline")).then((f) => f || caches.match("/"));
+          })
+        )
     );
     return;
   }
@@ -160,7 +233,12 @@ self.addEventListener("message", (event) => {
   event.waitUntil(
     caches
       .open(CACHE)
-      .then((cache) => Promise.all(APP_SHELL.map((u) => cache.add(u).catch(() => {}))))
+      .then(async (cache) => {
+        await Promise.all(APP_SHELL.map((u) => cache.add(u).catch(() => {})));
+        // Unlike install, this runs while someone waits on a good network, so
+        // take the time to make every saved page genuinely usable offline.
+        for (const u of APP_SHELL.filter(isPage)) await cachePageWithAssets(cache, u);
+      })
       .then(() => reply(true))
       .catch(() => reply(false))
   );
