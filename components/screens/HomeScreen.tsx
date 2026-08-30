@@ -1,6 +1,5 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -65,8 +64,13 @@ export default function HomeScreen({
   go: (t: TabId, sub?: string) => void;
   onSearch?: () => void;
 }) {
-  // On Sept 4–5 the live card replaces the countdown — showing both is contradictory.
-  const live = isLivePhase(useFestivalPhase());
+  // On Sept 4–5 the live card replaces the countdown — showing both is
+  // contradictory — and once the weekend is over the countdown block gives way
+  // to the harvest card. A finished countdown otherwise reads "It's festival
+  // weekend!" forever.
+  const phase = useFestivalPhase();
+  const live = isLivePhase(phase);
+  const over = phase === "after";
   // Verse of the day — set after mount so SSR/client never disagree on the date.
   const [verseOfDay, setVerseOfDay] = useState(SCRIPTURES[0]);
   // Personal touch: greet returning members by name, with their streak.
@@ -91,29 +95,49 @@ export default function HomeScreen({
     setStreakN(getStreak());
   }, []);
 
+  // Hero parallax as a passive scroll listener writing transforms directly.
+  // This was framer's useScroll, which was the last thing on this screen that
+  // needed a live animation-frame loop before hydration could settle — and a
+  // scroll listener degrades to "no parallax", never to "no home screen".
   const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1.1, 1.28]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const heroBgRef = useRef<HTMLDivElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const heroEl = heroRef.current;
+    if (!heroEl) return;
+    const apply = () => {
+      const h = heroEl.offsetHeight || 1;
+      const t = Math.min(1, Math.max(0, window.scrollY / h));
+      const bg = heroBgRef.current;
+      const content = heroContentRef.current;
+      if (bg) bg.style.transform = `translateY(${t * 40}%) scale(${1.1 + t * 0.18})`;
+      if (content) {
+        content.style.transform = `translateY(${t * 120}px)`;
+        content.style.opacity = String(Math.max(0, 1 - t / 0.7));
+      }
+    };
+    apply();
+    window.addEventListener("scroll", apply, { passive: true });
+    window.addEventListener("resize", apply);
+    return () => {
+      window.removeEventListener("scroll", apply);
+      window.removeEventListener("resize", apply);
+    };
+  }, []);
 
   return (
     <div className="pb-4">
       {/* ===== HERO ===== */}
       <section ref={heroRef} className="relative h-[92vh] min-h-[600px] w-full overflow-hidden">
-        <motion.div style={{ y: bgY, scale: bgScale }} className="absolute inset-0">
+        <div ref={heroBgRef} className="absolute inset-0 will-change-transform" style={{ transform: "scale(1.1)" }}>
           <Image src={IMG.heroCrowd} alt="A crowd worshipping together at Jesus Festival" fill preload sizes="(max-width: 512px) 100vw, 512px" className="object-cover" />
-        </motion.div>
+        </div>
         <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/25 to-ink" />
         <div className="absolute inset-0 bg-radial-glow" />
 
-        <motion.div
-          style={{ y: contentY, opacity: contentOpacity }}
-          className="relative z-10 flex h-full flex-col items-center justify-end px-6 pb-16 text-center safe-top"
+        <div
+          ref={heroContentRef}
+          className="relative z-10 flex h-full flex-col items-center justify-end px-6 pb-16 text-center safe-top will-change-transform"
         >
           {/* CSS entrances below: a framer opacity:0 start never finishes when
               rAF is throttled (Low Power Mode, backgrounded PWA), which blanked
@@ -154,7 +178,7 @@ export default function HomeScreen({
             <span className="text-white/90">Love People.</span>{" "}
             <span className="text-gold-400">Change the World.</span>
           </p>
-        </motion.div>
+        </div>
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink to-transparent" />
       </section>
@@ -165,7 +189,7 @@ export default function HomeScreen({
         <div className="mx-auto max-w-md">
           <FestivalLive go={go} />
         </div>
-        <Reveal className={`mx-auto max-w-md ${live ? "hidden" : ""}`}>
+        <Reveal className={`mx-auto max-w-md ${live || over ? "hidden" : ""}`}>
           <div className="mb-3 text-center">
             <Eyebrow>The countdown is on</Eyebrow>
           </div>
@@ -187,6 +211,48 @@ export default function HomeScreen({
             </a>
           </div>
         </Reveal>
+        {/* After the weekend the festival's job changes: harvest, not hype.
+            This is what someone opening the app on September 6 should meet. */}
+        {over && (
+          <div className="jf-rise mx-auto max-w-md">
+            <div className="relative overflow-hidden rounded-3xl border border-gold/30 bg-gradient-to-br from-gold/12 via-purple-900/25 to-ink p-6 text-center">
+              <span className="pointer-events-none absolute -right-10 -top-12 h-40 w-40 rounded-full bg-gold/15 blur-3xl" />
+              <div className="text-4xl" aria-hidden>💛</div>
+              <p className="mt-2 text-[11px] font-black uppercase tracking-[0.24em] text-gold-400">
+                Thank you, Hamilton
+              </p>
+              <h2 className="mt-1.5 font-display text-2xl font-extrabold leading-tight text-white">
+                What a weekend. Now it begins.
+              </h2>
+              <p className="mx-auto mt-2 max-w-xs text-[13.5px] leading-relaxed text-white/70">
+                The festival is over — the movement isn&apos;t. If something happened in you at
+                Gage Park, don&apos;t let it stay at Gage Park.
+              </p>
+              <div className="mt-5 grid gap-2.5">
+                <button
+                  onClick={() => go("more", "yes")}
+                  className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 py-3 font-display text-sm font-bold text-navy-950 shadow-glow active:scale-95"
+                >
+                  🕊️ I said yes — what now?
+                </button>
+                <div className="grid grid-cols-2 gap-2.5">
+                  <button
+                    onClick={() => go("more", "photos")}
+                    className="flex items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/5 py-3 text-sm font-bold text-white active:scale-95"
+                  >
+                    📸 Relive it
+                  </button>
+                  <button
+                    onClick={() => go("more", "connect")}
+                    className="flex items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/5 py-3 text-sm font-bold text-white active:scale-95"
+                  >
+                    ⛪ Get connected
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* ===== MY FESTIVAL WEEKEND ===== */}

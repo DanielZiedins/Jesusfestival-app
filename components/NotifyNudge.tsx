@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { pushSupported, pushEnabled, subscribeToPush } from "@/lib/push";
 import { haptic } from "@/lib/game";
 import { BellIcon, Check } from "@/components/icons";
@@ -55,25 +54,15 @@ export default function NotifyNudge() {
   }
 
   return (
-    <AnimatePresence>
+    <>
       {show && (
-        <motion.div
-          initial={{ opacity: 0, y: 14, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -10, scale: 0.98 }}
-          transition={{ type: "spring", stiffness: 220, damping: 24 }}
-          className="relative overflow-hidden rounded-3xl border border-purple-400/30 bg-gradient-to-br from-purple-700/35 via-ink/70 to-gold/10 p-5"
-        >
+        <div className="jf-pop relative overflow-hidden rounded-3xl border border-purple-400/30 bg-gradient-to-br from-purple-700/35 via-ink/70 to-gold/10 p-5">
           <span className="pointer-events-none absolute -right-10 -top-12 h-32 w-32 rounded-full bg-purple-500/25 blur-3xl" />
           <div className="relative flex items-start gap-3.5">
             <span className="relative grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-gold/25 to-purple-600/30 text-gold-400">
               {done ? <Check width={22} height={22} /> : <BellIcon width={22} height={22} />}
               {!done && (
-                <motion.span
-                  className="absolute inset-0 rounded-2xl ring-2 ring-gold/40"
-                  animate={{ opacity: [0.15, 0.7, 0.15], scale: [1, 1.12, 1] }}
-                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-                />
+                <span className="absolute inset-0 animate-ping-slow rounded-2xl ring-2 ring-gold/40" />
               )}
             </span>
             <div className="min-w-0 flex-1">
@@ -108,8 +97,8 @@ export default function NotifyNudge() {
               )}
             </div>
           </div>
-        </motion.div>
+        </div>
       )}
-    </AnimatePresence>
+    </>
   );
 }

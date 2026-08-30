@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 
 // An encouraging scripture accent used throughout the app.
 export default function Scripture({
@@ -13,12 +12,11 @@ export default function Scripture({
   className?: string;
 }) {
   return (
-    <motion.figure
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6 }}
-      className={`relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-purple-900/30 to-ink/40 px-5 py-5 text-center backdrop-blur ${className}`}
+    // CSS entrance, not whileInView: viewport detection needs a live frame
+    // loop, and a verse card that never becomes visible is the worst trade for
+    // a slightly fancier reveal.
+    <figure
+      className={`jf-rise relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-purple-900/30 to-ink/40 px-5 py-5 text-center backdrop-blur ${className}`}
     >
       <div className="pointer-events-none absolute -right-6 -top-8 select-none font-display text-[110px] leading-none text-purple-500/15">
         &ldquo;
@@ -29,6 +27,6 @@ export default function Scripture({
       <figcaption className="relative mt-3 text-xs font-bold uppercase tracking-[0.2em] text-gold-400">
         {reference}
       </figcaption>
-    </motion.figure>
+    </figure>
   );
 }
