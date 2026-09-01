@@ -39,7 +39,7 @@ const SOURCES = [
 const FAQS = [
   {
     question: "Where is Jesus Festival Hamilton 2026?",
-    answer: "Jesus Festival takes place at Gage Park, 1000 Main Street East, Hamilton, Ontario, L8M 1N2. Friday is September 4 from 6:00–9:00 PM, and Saturday is September 5 from 10:00 AM–6:00 PM.",
+    answer: "Jesus Festival takes place at Gage Park, 1000 Main Street East, Hamilton, Ontario, L8M 1N2. Friday is September 4 from 6:00–9:00 PM. Saturday is September 5 from 10:00 AM–7:00 PM, with the stage program from 11:00 AM–7:00 PM.",
   },
   {
     question: "Is there parking at Gage Park for Jesus Festival?",

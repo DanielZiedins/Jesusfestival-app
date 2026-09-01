@@ -51,7 +51,7 @@ const GROUP_GUIDANCE: Record<VisitPlan["group"], { title: string; text: string; 
   },
   family: {
     title: "Build the day around your family’s rhythm",
-    text: "Pick a clear family meeting point when you arrive, take a current photo of the kids, and choose a shorter festival window around meals and naps. A happy six-hour visit beats a difficult eight-hour one.",
+    text: "Pick a clear family meeting point when you arrive, take a current photo of the kids, and choose a shorter festival window around meals and naps. A happy shorter visit beats a difficult all-day one.",
     pack: ["Large blanket", "Familiar snacks", "Sun protection", "Change of clothes"],
   },
   worship: {
@@ -70,7 +70,7 @@ const DAY_GUIDANCE: Record<VisitPlan["days"], { label: string; arrival: string; 
   both: {
     label: "Friday + Saturday",
     arrival: "Friday: aim for 6:00 PM. Saturday: aim for 9:30–9:40 AM if you want the opening and the easiest arrival.",
-    schedule: "Friday is 6:00–9:00 PM; Saturday is 10:00 AM–6:00 PM.",
+    schedule: "Friday is 6:00–9:00 PM; Saturday is 10:00 AM–7:00 PM, with the stage from 11:00 AM–7:00 PM.",
   },
   friday: {
     label: "Friday night",
@@ -80,7 +80,7 @@ const DAY_GUIDANCE: Record<VisitPlan["days"], { label: string; arrival: string; 
   saturday: {
     label: "Saturday",
     arrival: "Aim for 9:30–9:40 AM for the opening, or arrive 20–30 minutes before the first set you do not want to miss.",
-    schedule: "Family Festival Day runs 10:00 AM–6:00 PM.",
+    schedule: "Family Festival Day runs 10:00 AM–7:00 PM; the stage runs 11:00 AM–7:00 PM.",
   },
 };
 

@@ -258,6 +258,18 @@ export default function HomeScreen({
       {/* ===== MY FESTIVAL WEEKEND ===== */}
       <section className="mt-6 px-4">
         <Reveal className="mx-auto max-w-md">
+          <Link
+            href="/blog/jesus-festival-saturday-extended-updated-schedule-2026"
+            className="group relative mb-3 flex min-h-20 items-center gap-3 overflow-hidden rounded-2xl border border-emerald-300/35 bg-gradient-to-r from-emerald-500/20 via-gold/[0.1] to-transparent p-4 transition hover:border-gold/50 active:scale-[0.99]"
+          >
+            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-emerald-300/15 text-2xl" aria-hidden>⏰</span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-[9px] font-extrabold uppercase tracking-[0.18em] text-emerald-200">Saturday schedule update</span>
+              <span className="block font-display text-[15px] font-extrabold text-white">Now 10 AM–7 PM · Stage from 11 AM</span>
+              <span className="mt-0.5 block text-[11.5px] leading-snug text-white/65">One more hour together. See every updated artist and speaker time.</span>
+            </span>
+            <ArrowRight width={17} height={17} className="shrink-0 text-gold-400 transition group-hover:translate-x-0.5" />
+          </Link>
           <FestivalWeekendPass />
           <Link
             href="/festival-weekend"

@@ -73,6 +73,21 @@ export default function ScheduleScreen() {
       </Reveal>
 
       <Reveal className="mx-auto mb-5 max-w-md">
+        <Link
+          href="/blog/jesus-festival-saturday-extended-updated-schedule-2026"
+          className="group relative flex min-h-20 items-center gap-3 overflow-hidden rounded-2xl border border-emerald-300/35 bg-gradient-to-r from-emerald-500/20 via-gold/[0.1] to-transparent p-4 transition hover:border-gold/50 active:scale-[0.99]"
+        >
+          <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-emerald-300/15 text-2xl" aria-hidden>⏰</span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-[9px] font-extrabold uppercase tracking-[0.18em] text-emerald-200">Important Saturday update</span>
+            <span className="block font-display text-[15px] font-extrabold text-white">Festival 10 AM–7 PM · Stage 11 AM–7 PM</span>
+            <span className="mt-0.5 block text-[11.5px] leading-snug text-white/65">Saturday is one hour longer. Every artist and speaker time below is updated.</span>
+          </span>
+          <ArrowRight width={17} height={17} className="shrink-0 text-gold-400 transition group-hover:translate-x-0.5" />
+        </Link>
+      </Reveal>
+
+      <Reveal className="mx-auto mb-5 max-w-md">
         <Link href="/find-your-moments" className="group relative flex min-h-20 items-center gap-3 overflow-hidden rounded-2xl border border-purple-300/30 bg-gradient-to-r from-purple-700/30 via-gold/[0.09] to-transparent p-4 transition hover:border-gold/45 active:scale-[0.99]">
           <span className="pointer-events-none absolute -right-8 -top-12 h-32 w-32 rounded-full bg-gold/15 blur-3xl" />
           <span className="relative grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-purple-500 to-gold-500 text-2xl shadow-glow" aria-hidden>✨</span>

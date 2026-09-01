@@ -1,14 +1,14 @@
 import { ARTISTS, LINKS, SITE } from "@/lib/content";
 import { QUESTIONS, STEPS } from "@/lib/newlife";
 
-export const LAST_MAJOR_UPDATE = "2026-08-29";
+export const LAST_MAJOR_UPDATE = "2026-09-01";
 export const FESTIVAL_GUIDE_PATH = "/jesus-festival-hamilton";
 
 export const FESTIVAL_FAQS = [
   {
     question: "When is Jesus Festival Hamilton 2026?",
     answer:
-      "Jesus Festival Hamilton takes place September 4–5, 2026 at Gage Park. Friday's Pure Worship Night opens at 6:00 PM, with worship from 6:30–9:00 PM. Saturday's Family Festival Day runs from 10:00 AM–6:00 PM.",
+      "Jesus Festival Hamilton takes place September 4–5, 2026 at Gage Park. Friday's Pure Worship Night opens at 6:00 PM, with worship from 6:30–9:00 PM. Saturday's extended Family Festival Day runs from 10:00 AM–7:00 PM, with the stage program from 11:00 AM–7:00 PM.",
   },
   {
     question: "Is Jesus Festival free?",
@@ -23,12 +23,12 @@ export const FESTIVAL_FAQS = [
   {
     question: "Who is performing at Jesus Festival 2026?",
     answer:
-      "Bethel Gospel Tabernacle leads Friday's Pure Worship Night. Saturday includes Open Heaven, ACTS Kingdom Sound Worship, Ant Lee Jr., Friday Night Prayer, speakers, testimonies, prayer and the Gospel.",
+      "Bethel Gospel Tabernacle leads Friday's Pure Worship Night. Saturday's stage program includes Terry Posthumus, Open Heaven, ACTS Kingdom Sound Worship, Ant Lee Jr., Friday Night Prayer, speakers, testimonies, prayer and the Gospel, with JJ & Rachel as MCs.",
   },
   {
     question: "What happens on Saturday's Family Festival Day?",
     answer:
-      "Saturday is a free full-day gathering with live worship, Christian hip-hop, testimonies, prayer, food trucks, a Kids Zone, bouncy castles, lawn games and baptisms. It runs from 10:00 AM–6:00 PM.",
+      "Saturday is a free full-day gathering with live worship, Christian hip-hop, testimonies, prayer, food trucks, a Kids Zone, bouncy castles, lawn games and baptisms. The festival runs from 10:00 AM–7:00 PM, and the stage program runs from 11:00 AM–7:00 PM with JJ & Rachel as MCs.",
   },
   {
     question: "What should I bring?",
@@ -195,7 +195,7 @@ export const FESTIVAL_EVENT_JSONLD = {
   url: `${SITE.url}${FESTIVAL_GUIDE_PATH}`,
   mainEntityOfPage: `${SITE.url}${FESTIVAL_GUIDE_PATH}`,
   startDate: "2026-09-04T18:00:00-04:00",
-  endDate: "2026-09-05T18:00:00-04:00",
+  endDate: "2026-09-05T19:00:00-04:00",
   eventStatus: "https://schema.org/EventScheduled",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   isAccessibleForFree: true,
@@ -253,12 +253,12 @@ export const FESTIVAL_EVENT_JSONLD = {
       name: "Family Festival Day — Jesus Festival Hamilton 2026",
       url: `${SITE.url}/schedule#saturday`,
       startDate: "2026-09-05T10:00:00-04:00",
-      endDate: "2026-09-05T18:00:00-04:00",
+      endDate: "2026-09-05T19:00:00-04:00",
       eventStatus: "https://schema.org/EventScheduled",
       eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
       isAccessibleForFree: true,
       description:
-        "A free all-ages day of worship, Christian hip-hop, testimonies, food trucks, games, a Kids Zone and baptisms at Gage Park.",
+        "A free all-ages festival from 10:00 AM–7:00 PM, with a stage program from 11:00 AM–7:00 PM featuring worship, Christian hip-hop, testimonies and prayer alongside food trucks, games, a Kids Zone and baptisms at Gage Park.",
       image: `${SITE.url}/photos/moment-games.jpg`,
       location: PLACE_JSONLD,
       organizer: { "@id": `${SITE.url}/#organization` },

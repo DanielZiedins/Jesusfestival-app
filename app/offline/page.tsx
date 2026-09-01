@@ -72,7 +72,7 @@ export default function OfflinePage() {
           <h2 id="offline-reminders" className="font-display text-xl font-extrabold">Quick reminders</h2>
           <ul className="mt-3 space-y-2 text-sm leading-relaxed text-white/60">
             <li>• Friday gates open at 6 PM; worship begins at 6:30 PM.</li>
-            <li>• Saturday runs from 10 AM to 6 PM.</li>
+            <li>• Saturday runs from 10 AM to 7 PM; the stage program runs from 11 AM to 7 PM.</li>
             <li>• Main &amp; Ottawa is closed and several HSR routes are detoured—check live conditions and leave extra time.</li>
             <li>• Parking is limited—arrive early or consider HSR, carpooling, cycling, walking or rideshare.</li>
             <li>• Bring a chair or blanket, water and sun protection.</li>

@@ -10,7 +10,7 @@ const STORAGE_KEY = "jf-arrival-plan-v1";
 const SHARE_VERSION = "1";
 
 type Mode = "drive" | "transit" | "rideshare" | "bike" | "walk";
-type Arrival = "fri-open" | "fri-worship" | "sat-open" | "sat-afternoon";
+type Arrival = "fri-open" | "fri-worship" | "sat-open" | "sat-stage";
 type Pace = "simple" | "family" | "low-stress";
 type Plan = { mode: Mode; arrival: Arrival; duration: number; pace: Pace };
 type Option<T extends string> = { id: T; emoji: string; label: string; note: string };
@@ -29,7 +29,7 @@ const ARRIVALS: Array<Option<Arrival> & { date: "20260904" | "20260905"; hour: n
   { id: "fri-open", emoji: "🌙", label: "Friday gates", note: "Arrive for 6:00 PM", date: "20260904", hour: 18, minute: 0 },
   { id: "fri-worship", emoji: "🙌", label: "Friday worship", note: "Begins at 6:30 PM", date: "20260904", hour: 18, minute: 30 },
   { id: "sat-open", emoji: "☀️", label: "Saturday opening", note: "Festival begins 10:00 AM", date: "20260905", hour: 10, minute: 0 },
-  { id: "sat-afternoon", emoji: "🎤", label: "Saturday afternoon", note: "Build around 1:00 PM", date: "20260905", hour: 13, minute: 0 },
+  { id: "sat-stage", emoji: "🎤", label: "Saturday stage", note: "Welcome begins 11:00 AM", date: "20260905", hour: 11, minute: 0 },
 ];
 
 const PACES: Option<Pace>[] = [
@@ -53,6 +53,13 @@ function isPlan(value: unknown): value is Plan {
   return hasOption(plan.mode, MODES) && hasOption(plan.arrival, ARRIVALS) && hasOption(plan.pace, PACES) && DURATIONS.includes(plan.duration as (typeof DURATIONS)[number]);
 }
 
+function normalizePlan(value: unknown): Plan | null {
+  if (!value || typeof value !== "object") return null;
+  const candidate = { ...(value as Record<string, unknown>) };
+  if (candidate.arrival === "sat-afternoon") candidate.arrival = "sat-stage";
+  return isPlan(candidate) ? candidate : null;
+}
+
 function sharedPlan(search: string): Plan | null {
   const params = new URLSearchParams(search);
   const candidate = {
@@ -61,8 +68,8 @@ function sharedPlan(search: string): Plan | null {
     pace: params.get("pace"),
     duration: Number(params.get("trip")),
   };
-  if (params.get("plan") !== SHARE_VERSION || !isPlan(candidate)) return null;
-  return candidate;
+  if (params.get("plan") !== SHARE_VERSION) return null;
+  return normalizePlan(candidate);
 }
 
 function minutesLabel(total: number) {
@@ -101,7 +108,7 @@ export default function GageParkArrivalPlanner() {
     let next = DEFAULT_PLAN;
     try {
       const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "null") as unknown;
-      if (isPlan(stored)) next = stored;
+      next = normalizePlan(stored) ?? next;
     } catch {
       // A stale or unavailable local store should never block the planner.
     }

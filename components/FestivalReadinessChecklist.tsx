@@ -8,7 +8,7 @@ export const READINESS_STORAGE_KEY = "jf-readiness-v1";
 export const READINESS_ITEMS = [
   { id: "chair", emoji: "🪑", label: "Lawn chair or blanket", note: "The lawn fills quickly—claim a comfortable spot." },
   { id: "water", emoji: "💧", label: "Refillable water bottle", note: "Stay hydrated throughout Saturday." },
-  { id: "sun", emoji: "🧴", label: "Sunscreen and a hat", note: "Saturday runs 10–6 in the open air." },
+  { id: "sun", emoji: "🧴", label: "Sunscreen and a hat", note: "Saturday now runs 10–7 in the open air." },
   { id: "layer", emoji: "🧥", label: "A layer for Friday night", note: "It can cool down after sunset." },
   { id: "shoes", emoji: "👟", label: "Comfortable shoes", note: "You’ll explore food trucks and the whole park." },
   { id: "friend", emoji: "🤝", label: "Invite someone with you", note: "Bring your family, church or a neighbour." },

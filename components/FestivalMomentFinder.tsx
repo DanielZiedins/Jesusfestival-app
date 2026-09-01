@@ -37,8 +37,8 @@ const FOCUSES: Option<Focus>[] = [
 const AVAILABILITY: Option<Availability>[] = [
   { id: "both", emoji: "🌟", label: "Both days", note: "The full weekend" },
   { id: "friday", emoji: "🌙", label: "Friday night", note: "6:00–9:00 PM" },
-  { id: "saturday", emoji: "☀️", label: "Saturday", note: "10:00 AM–6:00 PM" },
-  { id: "afternoon", emoji: "🔥", label: "Saturday afternoon", note: "1:00–6:00 PM" },
+  { id: "saturday", emoji: "☀️", label: "Saturday", note: "10:00 AM–7:00 PM" },
+  { id: "afternoon", emoji: "🔥", label: "Saturday afternoon", note: "1:00–7:00 PM" },
 ];
 
 const AUDIENCE_LABEL: Record<Audience, string> = {

@@ -66,7 +66,7 @@ const SIZES: Option<GroupSize>[] = [
 const DAYS: Option<FestivalDay>[] = [
   { id: "both", emoji: "✨", label: "Both days", note: "Friday + Saturday" },
   { id: "friday", emoji: "🌙", label: "Friday", note: "6:00–9:00 PM" },
-  { id: "saturday", emoji: "☀️", label: "Saturday", note: "10:00 AM–6:00 PM" },
+  { id: "saturday", emoji: "☀️", label: "Saturday", note: "10:00 AM–7:00 PM" },
 ];
 
 const TRAVEL: Option<TravelMode>[] = [
@@ -93,7 +93,7 @@ const CHECKS: Array<{ id: CheckId; title: string; note: string }> = [
 const DAY_DETAILS: Record<FestivalDay, { label: string; time: string; arrival: string }> = {
   both: {
     label: "Friday + Saturday",
-    time: "Friday 6:00–9:00 PM · Saturday 10:00 AM–6:00 PM",
+    time: "Friday 6:00–9:00 PM · Saturday 10:00 AM–7:00 PM",
     arrival: "Meet by 6:00 PM Friday and 9:30 AM Saturday, or set a later time that every person can identify.",
   },
   friday: {
@@ -103,7 +103,7 @@ const DAY_DETAILS: Record<FestivalDay, { label: string; time: string; arrival: s
   },
   saturday: {
     label: "Saturday, September 5",
-    time: "Family Festival Day · 10:00 AM–6:00 PM",
+    time: "Family Festival Day · 10:00 AM–7:00 PM · stage from 11:00 AM",
     arrival: "Meet around 9:30 AM for the opening, or 20–30 minutes before your first must-see moment.",
   },
 };

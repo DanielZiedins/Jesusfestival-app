@@ -6,13 +6,13 @@ import { SCHEDULE } from "@/lib/content";
  * Everything at Gage Park runs on Hamilton local time (EDT, UTC-4 in early
  * September), so slot times are anchored to a fixed offset rather than the
  * viewer's timezone. Someone opening the app from Vancouver should still see
- * "3:10 PM — Ant Lee Jr." exactly as it is printed on the run sheet.
+ * "4:10 PM — Ant Lee Jr." exactly as it is printed on the run sheet.
  */
 
 const DAY_ISO: Record<string, string> = { fri: "2026-09-04", sat: "2026-09-05" };
 const OFFSET = "-04:00";
 
-/** "3:10 PM" + "sat" → Date. Returns null for anything unparseable. */
+/** "4:10 PM" + "sat" → Date. Returns null for anything unparseable. */
 export function slotTime(dayId: string, time: string): Date | null {
   const iso = DAY_ISO[dayId];
   const m = /^(\d{1,2}):(\d{2})\s*(AM|PM)$/i.exec(time.trim());
@@ -46,7 +46,7 @@ export type Phase = "before" | "fri" | "sat" | "after";
 const FRI_START = new Date(`2026-09-04T17:00:00${OFFSET}`); // doors-open mood starts an hour early
 const FRI_END = new Date(`2026-09-04T21:30:00${OFFSET}`);
 const SAT_START = new Date(`2026-09-05T08:30:00${OFFSET}`);
-const SAT_END = new Date(`2026-09-05T18:30:00${OFFSET}`);
+const SAT_END = new Date(`2026-09-05T19:30:00${OFFSET}`);
 
 export function festivalPhase(now: Date = new Date()): Phase {
   const t = now.getTime();
@@ -60,7 +60,8 @@ export type Slot = { time: string; title: string; note: string; kind?: string; f
 
 /**
  * Which slot is on stage and which is up next. A slot runs until the next one
- * starts, so the final slot of a day is never "now" — it's the closing note.
+ * starts. The final closing slot remains current until the live festival phase
+ * ends, so visitors arriving at 7 PM still see the final prayer correctly.
  */
 export function nowNext(dayId: string, items: Slot[], now: Date = new Date()): { nowIdx: number; nextIdx: number } {
   const t = now.getTime();
@@ -90,6 +91,32 @@ export function defaultDayId(now: Date = new Date()): string {
 
 const KEY = "jf-lineup";
 
+// The September 1 run-of-show update moved every Saturday stage moment. Keep
+// already-starred plans useful instead of silently losing a visitor's lineup.
+const LINEUP_MIGRATIONS: Record<string, string> = {
+  "sat|10:00 AM|Opening Session": "sat|11:00 AM|Stage Welcome & Prayer",
+  "sat|10:00 AM|Terry Posthumus": "sat|11:15 AM|Terry Posthumus",
+  "sat|11:35 AM|I Am Second / e3 Canada": "sat|12:30 PM|I Am Second — Tanya",
+  "sat|11:50 AM|Open Heaven — Set 1": "sat|12:50 PM|Open Heaven — Set 1",
+  "sat|12:20 PM|Joanna Adams": "sat|1:20 PM|Pastor Joanna Adams",
+  "sat|12:40 PM|Shofar Blowing & Pastors on Stage": "sat|1:40 PM|Shofars & Pastors on Stage",
+  "sat|1:00 PM|Open Heaven — Set 2": "sat|2:00 PM|Open Heaven — Set 2",
+  "sat|1:20 PM|Testimony": "sat|2:20 PM|Rachel Shares",
+  "sat|1:40 PM|ACTS Kingdom Sound Worship — Set 1": "sat|2:40 PM|ACTS Kingdom Sound Worship — Set 1",
+  "sat|2:10 PM|Rachel's Testimony": "sat|3:10 PM|Rachel Shares",
+  "sat|2:30 PM|ACTS Kingdom Sound Worship — Set 2": "sat|3:30 PM|ACTS Kingdom Sound Worship — Set 2",
+  "sat|2:50 PM|Pastor Charles": "sat|3:50 PM|Pastor Charles",
+  "sat|3:10 PM|Ant Lee Jr. — Set 1": "sat|4:10 PM|Ant Lee Jr. — Set 1",
+  "sat|3:40 PM|Ant Lee Jr. — Testimony": "sat|4:40 PM|Ant Lee Jr. — Testimony",
+  "sat|4:00 PM|Ant Lee Jr. — Set 2": "sat|5:00 PM|Ant Lee Jr. — Set 2",
+  "sat|4:20 PM|Daughters of Scripture": "sat|5:20 PM|Daughters of Scripture",
+  "sat|4:40 PM|Friday Night Prayer — Set 1": "sat|5:40 PM|Friday Night Prayer — Set 1",
+  "sat|5:10 PM|Sons of Scripture": "sat|6:10 PM|Sons of Scripture",
+  "sat|5:30 PM|Friday Night Prayer — Set 2": "sat|6:30 PM|Friday Night Prayer — Set 2",
+  "sat|5:50 PM|Closing — Daniel & Katie": "sat|7:00 PM|Final Prayer — Daniel & Katie",
+  "sat|6:00 PM|Event Concludes": "sat|7:00 PM|Final Prayer — Daniel & Katie",
+};
+
 /** Stable id for a slot — time + title survives reordering and re-renders. */
 export const slotId = (dayId: string, s: Slot) => `${dayId}|${s.time}|${s.title}`;
 
@@ -97,7 +124,13 @@ export function getLineup(): string[] {
   try {
     const raw = localStorage.getItem(KEY);
     const arr = raw ? JSON.parse(raw) : [];
-    return Array.isArray(arr) ? arr.filter((x) => typeof x === "string") : [];
+    if (!Array.isArray(arr)) return [];
+    const previous = arr.filter((x): x is string => typeof x === "string");
+    const migrated = [...new Set(previous.map((id) => LINEUP_MIGRATIONS[id] ?? id))];
+    if (migrated.some((id, index) => id !== previous[index]) || migrated.length !== previous.length) {
+      localStorage.setItem(KEY, JSON.stringify(migrated));
+    }
+    return migrated;
   } catch {
     return [];
   }
@@ -140,7 +173,7 @@ export function exportLineupIcs(days: { id: string; label: string; items: Slot[]
       const start = slotTime(day.id, s.time);
       if (!start) return;
       // Skip past anything sharing this start time — two slots can legitimately
-      // begin together (the Saturday welcome and the 10AM set), and taking the
+      // begin together, and taking the
       // very next item would end the event the instant it began.
       let nextStart: Date | null = null;
       for (let j = i + 1; j < day.items.length; j++) {

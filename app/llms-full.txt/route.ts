@@ -20,7 +20,7 @@ ${day.items.map((item) => `- ${item.time}: ${item.title}${item.note ? ` — ${it
   const text = `# Jesus Festival Hamilton 2026 — Full Reference
 
 Canonical source: ${SITE.url}/jesus-festival-hamilton
-Last major content review: 2026-08-26
+Last major content review: 2026-09-01
 
 ## Verified event facts
 
@@ -30,13 +30,15 @@ Last major content review: 2026-08-26
 - Admission: Free; no admission ticket is required
 - Audience: All ages and open to everyone
 - Friday hours: Gates open 6:00 PM; worship begins 6:30 PM; concludes 9:00 PM
-- Saturday hours: 10:00 AM–6:00 PM
+- Saturday hours: 10:00 AM–7:00 PM; the stage program runs 11:00 AM–7:00 PM with JJ & Rachel as MCs
 - Core experiences: Worship, the Gospel, prayer, testimonies, baptisms, food trucks, a Kids Zone, bouncy castles, lawn games and community
 - Organizer email: ${SITE.email}
 
 ## Schedule
 
 ${schedule}
+
+The September 1 schedule update is explained at ${SITE.url}/blog/jesus-festival-saturday-extended-updated-schedule-2026. Saturday has been extended by one hour, and the stage times above replace earlier published Saturday times. The run of show may move slightly during the day; the festival team will do its best to keep it on track.
 
 ## Featured artists and ministries
 
@@ -131,6 +133,7 @@ ${QUESTIONS.map((item) => `#### ${item.q}\n\n${item.a}`).join("\n\n")}
 ## Primary pages
 
 - Festival guide: ${SITE.url}/jesus-festival-hamilton
+- September 1 Saturday hours and stage schedule update: ${SITE.url}/blog/jesus-festival-saturday-extended-updated-schedule-2026
 - Festival Weekend Command Center: ${SITE.url}/festival-weekend
 - Personalized visit planner: ${SITE.url}/jesus-festival-hamilton#build-my-plan
 - Personalized confirmed-lineup matcher: ${SITE.url}/find-your-moments

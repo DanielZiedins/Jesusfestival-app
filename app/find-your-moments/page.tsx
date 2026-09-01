@@ -31,27 +31,27 @@ const FAQS = [
   {
     question: "Who is performing at Jesus Festival Hamilton 2026?",
     answer:
-      "Bethel Gospel Tabernacle leads Friday's Pure Worship Night. Saturday's confirmed worship and music lineup includes Open Heaven, ACTS Kingdom Sound Worship, Christian hip-hop artist Ant Lee Jr. and Friday Night Prayer, alongside speakers, testimonies, prayer and united moments.",
+      "Bethel Gospel Tabernacle leads Friday's Pure Worship Night. Saturday's confirmed music lineup includes Terry Posthumus, Open Heaven, ACTS Kingdom Sound Worship, Christian hip-hop artist Ant Lee Jr. and Friday Night Prayer, alongside speakers, testimonies, prayer and united moments.",
   },
   {
     question: "What are the best Jesus Festival moments for worship?",
     answer:
-      "For focused worship, begin with Bethel Gospel Tabernacle on Friday from 6:30–9:00 PM. Saturday includes Open Heaven at 11:50 AM and 1:00 PM, ACTS Kingdom Sound Worship at 1:40 PM and 2:30 PM, and Friday Night Prayer at 4:40 PM and 5:30 PM.",
+      "For focused worship, begin with Bethel Gospel Tabernacle on Friday from 6:30–9:00 PM. Saturday includes Terry Posthumus at 11:15 AM, Open Heaven at 12:50 PM and 2:00 PM, ACTS Kingdom Sound Worship at 2:40 PM and 3:30 PM, and Friday Night Prayer at 5:40 PM and 6:30 PM.",
   },
   {
     question: "When is Ant Lee Jr. performing at Jesus Festival 2026?",
     answer:
-      "Ant Lee Jr. performs two Christian hip-hop sets on Saturday, September 5: Set 1 at 3:10 PM and Set 2 at 4:00 PM. His testimony is scheduled between them at 3:40 PM. Festival stage times are approximate and may shift slightly.",
+      "Ant Lee Jr. performs two Christian hip-hop sets on Saturday, September 5: Set 1 at 4:10 PM and Set 2 at 5:00 PM. His testimony is scheduled between them at 4:40 PM. Festival stage times are approximate and may shift slightly.",
   },
   {
     question: "Which part of Jesus Festival is best for families?",
     answer:
-      "Saturday is the Family Festival Day from 10:00 AM–6:00 PM, with live music, speakers, food trucks, vendors, a Kids Zone, bouncy castles and games. Families can come and go freely, so a shorter window built around meals, naps and one or two must-see moments is completely valid.",
+      "Saturday is the extended Family Festival Day from 10:00 AM–7:00 PM, with the stage from 11:00 AM–7:00 PM plus live music, speakers, food trucks, vendors, a Kids Zone, bouncy castles and games. Families can come and go freely, so a shorter window built around meals, naps and one or two must-see moments is completely valid.",
   },
   {
     question: "What should a first-time visitor see?",
     answer:
-      "A balanced first visit could include Friday worship with Bethel, Saturday's 10:00 AM opening, an Open Heaven set, Ant Lee Jr. and the 5:50 PM closing prayer. The lineup matcher creates a shorter recommendation based on the time you actually have.",
+      "A balanced first visit could include Friday worship with Bethel, Saturday's 10:00 AM festival opening, the 11:00 AM stage welcome, an Open Heaven set, Ant Lee Jr. and the 7:00 PM final prayer. The lineup matcher creates a shorter recommendation based on the time you actually have.",
   },
   {
     question: "Can I save my recommended festival moments?",
@@ -88,28 +88,34 @@ const ARTIST_GUIDE = [
     text: "Friday strips the weekend back to worship, prayer and the presence of God under the open sky. Arrive around 6:00 PM to choose a lawn spot before the set begins.",
   },
   {
+    name: "Terry Posthumus",
+    when: "Saturday · 11:15 AM",
+    tag: "Singer-songwriter and worship leader",
+    text: "Terry opens Saturday's music with songs and a story of hope after the 11:00 AM welcome and prayer.",
+  },
+  {
     name: "Open Heaven",
-    when: "Saturday · 11:50 AM + 1:00 PM",
+    when: "Saturday · 12:50 PM + 2:00 PM",
     tag: "Canadian worship ministry",
     text: "Two Saturday sets make Open Heaven an easy anchor for families, first-time visitors and anyone building a worship-forward afternoon.",
   },
   {
     name: "ACTS Kingdom Sound Worship",
-    when: "Saturday · 1:40 PM + 2:30 PM",
+    when: "Saturday · 2:40 PM + 3:30 PM",
     tag: "Hamilton-rooted worship",
     text: "Two prophetic-worship sets sit in the heart of Saturday's run of show, surrounded by testimonies and Gospel-centered speakers.",
   },
   {
     name: "Ant Lee Jr.",
-    when: "Saturday · 3:10 PM + 4:00 PM",
+    when: "Saturday · 4:10 PM + 5:00 PM",
     tag: "Christian hip-hop",
-    text: "Ant Lee Jr. brings music, joy and purpose in two sets, with his personal testimony scheduled at 3:40 PM between them.",
+    text: "Ant Lee Jr. brings music, joy and purpose in two sets, with his personal testimony scheduled at 4:40 PM between them.",
   },
   {
     name: "Friday Night Prayer",
-    when: "Saturday · 4:40 PM + 5:30 PM",
+    when: "Saturday · 5:40 PM + 6:30 PM",
     tag: "Worship and prayer",
-    text: "The final featured worship voice of Saturday leads toward the closing prayer and festival send-off at 5:50 PM.",
+    text: "The final featured worship voice of Saturday leads toward the prayer, encouragement and festival close at 7:00 PM.",
   },
 ] as const;
 

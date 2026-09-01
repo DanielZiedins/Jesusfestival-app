@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     question: "What time does Jesus Festival Hamilton start?",
-    answer: "Friday, September 4 opens at 6:00 PM, with Pure Worship Night from 6:30–9:00 PM. Saturday, September 5 runs from 10:00 AM–6:00 PM.",
+    answer: "Friday, September 4 opens at 6:00 PM, with Pure Worship Night from 6:30–9:00 PM. Saturday, September 5 has been extended to 10:00 AM–7:00 PM, with the stage program from 11:00 AM–7:00 PM.",
   },
   {
     question: "Do I need a ticket for Jesus Festival?",
@@ -145,12 +145,23 @@ export default function FestivalWeekendPage() {
               <a href="#my-weekend" className="rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-6 py-3.5 font-display text-sm font-extrabold text-navy-950 shadow-glow">Open my weekend hub</a>
               <Link href="/schedule" className="rounded-2xl border border-white/15 bg-white/[0.05] px-6 py-3.5 text-sm font-bold text-white">See the full schedule</Link>
             </div>
-            <p className="mt-5 text-[11px] text-white/45">Updated August 24, 2026 · Live information is shown in Hamilton time</p>
+            <p className="mt-5 text-[11px] text-white/45">Updated September 1, 2026 · Live information is shown in Hamilton time</p>
           </div>
         </header>
 
         <div className="mx-auto max-w-4xl px-5 sm:px-8">
-          <div id="my-weekend" className="relative z-10 -mt-7 scroll-mt-6">
+          <Link
+            href="/blog/jesus-festival-saturday-extended-updated-schedule-2026"
+            className="relative z-20 mt-6 flex items-center gap-4 rounded-3xl border border-emerald-300/35 bg-gradient-to-r from-emerald-500/20 via-gold/[0.1] to-purple-600/10 p-5 transition hover:border-gold/50"
+          >
+            <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-emerald-300/15 text-3xl" aria-hidden>⏰</span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-[10px] font-extrabold uppercase tracking-[0.18em] text-emerald-200">Important Saturday update</span>
+              <span className="mt-1 block font-display text-xl font-extrabold text-white">Festival 10 AM–7 PM · Stage 11 AM–7 PM</span>
+              <span className="mt-1 block text-sm leading-relaxed text-white/65">Saturday is now one hour longer, and every artist and speaker time has been updated. Read the full announcement →</span>
+            </span>
+          </Link>
+          <div id="my-weekend" className="relative z-10 mt-6 scroll-mt-6">
             <FestivalCommandCenter />
           </div>
 

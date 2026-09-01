@@ -1,5 +1,6 @@
 import React from "react";
 export default function Image(props) {
-  const { fill, preload, sizes, priority, quality, placeholder, blurDataURL, ...rest } = props;
-  return React.createElement("img", { ...rest, src: typeof props.src === "string" ? props.src : "stub.jpg" });
+  const { src, ...rest } = props;
+  for (const key of ["fill", "preload", "sizes", "priority", "quality", "placeholder", "blurDataURL"]) delete rest[key];
+  return React.createElement("img", { ...rest, src: typeof src === "string" ? src : "stub.jpg" });
 }

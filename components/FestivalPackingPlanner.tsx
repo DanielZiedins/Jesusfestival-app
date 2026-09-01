@@ -24,7 +24,7 @@ type PackingItem = {
 
 const DAY_OPTIONS: { id: Day; emoji: string; label: string; note: string }[] = [
   { id: "fri", emoji: "🌙", label: "Friday night", note: "6–9 PM · Pure Worship Night" },
-  { id: "sat", emoji: "☀️", label: "Saturday", note: "10 AM–6 PM · Family Festival Day" },
+  { id: "sat", emoji: "☀️", label: "Saturday", note: "10 AM–7 PM · stage from 11 AM" },
   { id: "both", emoji: "✨", label: "Both days", note: "The complete festival weekend" },
 ];
 

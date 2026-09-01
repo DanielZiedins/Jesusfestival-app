@@ -25,7 +25,7 @@ await build({
 
 const CASES = [
   ["2026-08-30T12:00:00-04:00", "before",  t => t.includes("The countdown is on") && !t.includes("Thank you, Hamilton") && !t.includes("Live now")],
-  ["2026-09-05T13:05:00-04:00", "sat-live", t => t.includes("Live now") && t.includes("Open Heaven — Set 2") && !t.includes("Thank you, Hamilton")],
+  ["2026-09-05T18:35:00-04:00", "sat-live", t => t.includes("Live now") && t.includes("Friday Night Prayer — Set 2") && t.includes("Final Prayer — Daniel & Katie") && !t.includes("Thank you, Hamilton")],
   ["2026-09-07T10:00:00-04:00", "after",   t => t.includes("Thank you, Hamilton") && t.includes("What a weekend. Now it begins.") && t.includes("I said yes — what now?") && t.includes("Relive it") && t.includes("Get connected") && !t.includes("Live now") && !t.includes("It's festival weekend")],
 ];
 
