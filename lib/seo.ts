@@ -1,7 +1,7 @@
 import { ARTISTS, LINKS, SITE } from "@/lib/content";
 import { QUESTIONS, STEPS } from "@/lib/newlife";
 
-export const LAST_MAJOR_UPDATE = "2026-09-01";
+export const LAST_MAJOR_UPDATE = "2026-09-02";
 export const FESTIVAL_GUIDE_PATH = "/jesus-festival-hamilton";
 
 export const FESTIVAL_FAQS = [
@@ -83,7 +83,7 @@ export const FESTIVAL_FAQS = [
   {
     question: "Is there a Jesus Festival day-of guide?",
     answer:
-      "Yes. The Festival Weekend Command Center at JesusFestival.App/festival-weekend combines Hamilton-time live schedule status, the Gage Park forecast, private readiness progress, directions, day-of help, accessibility, the Light Hunt and offline essentials in one fast page.",
+      "Yes. Day-Of Mode at JesusFestival.App/day-of is the fastest low-distraction view of what is on now, what comes next, the Gage Park map, help points, directions and offline essentials. The complete Festival Weekend Command Center adds the forecast, private readiness progress, accessibility, packing and planning tools.",
   },
   {
     question: "What is the Jesus Festival Light Hunt?",
@@ -333,7 +333,8 @@ export const SITE_GRAPH_JSONLD = {
         "Personalized arrival and visit planner",
         "Private shareable church, youth group, family and friends planner",
         "Private accessibility and sensory Comfort Plan",
-        "Festival-week and day-of Command Center",
+        "Low-distraction live Day-Of Mode",
+        "Festival-week Command Center",
         "On-site 12-stop Light Hunt",
         "Live festival updates",
         "Gage Park map and directions",

@@ -1,5 +1,5 @@
 // Jesus Festival — lightweight offline-first service worker.
-const CACHE = "jf-app-v17";
+const CACHE = "jf-app-v18";
 const IMG_CACHE = "jf-images-v1";
 const IMG_MAX_ENTRIES = 80;
 const IMG_HOSTS = new Set([
@@ -27,6 +27,7 @@ const APP_SHELL = [
   "/more",
   "/offline",
   "/festival-weekend",
+  "/day-of",
   "/blog/jesus-festival-saturday-extended-updated-schedule-2026",
   "/bring-a-group",
   "/find-your-moments",
@@ -68,7 +69,7 @@ const APP_SHELL = [
 // Pages whose JavaScript must be there before the phone ever loses signal.
 // Everything a Light Hunt scan touches, plus the screens people open first.
 const PRIORITY_PAGES = APP_SHELL.filter(
-  (u) => u === "/" || u.startsWith("/hunt") || u === "/schedule" || u === "/map" || u === "/offline"
+  (u) => u === "/" || u.startsWith("/hunt") || u === "/day-of" || u === "/schedule" || u === "/map" || u === "/offline"
 );
 
 const isPage = (u) => !/\.(png|webp|jpg|jpeg|svg|ics|webmanifest)$/.test(u);

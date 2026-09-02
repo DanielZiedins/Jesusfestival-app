@@ -47,6 +47,7 @@ const SCREENS: Hit[] = [
   { id: "s-install", title: "Add to Home Screen", sub: "Install the app & turn on notifications", emoji: "📲", kind: "Screen", tab: "more", moreView: "install", extra: "install pwa notifications alerts push offline" },
   { id: "s-offline", title: "Offline Festival Essentials", sub: "Saved schedule, location & packing checklist", emoji: "📵", kind: "Screen", href: "/offline", extra: "no signal festival ready packing plan download" },
   { id: "s-weekend", title: "Festival Weekend Command Center", sub: "Live schedule, forecast, readiness, help, map and offline essentials", emoji: "⚡", kind: "Screen", href: "/festival-weekend", extra: "today day of weather countdown arrival emergency lost child first aid packing prepare" },
+  { id: "s-day-of", title: "Festival Day-Of Mode", sub: "One fast live screen for now, next, map, help and offline essentials", emoji: "⚡", kind: "Screen", href: "/day-of", extra: "today live now next stage urgent first aid lost child no signal directions quick focus mode" },
   { id: "s-plan", title: "Build My Festival Plan", sub: "A personalized arrival plan for your days, group and travel", emoji: "🧭", kind: "Screen", href: "/jesus-festival-hamilton#build-my-plan", extra: "visit planner driving transit family first time accessible low stress" },
   { id: "s-group", title: "Bring a Group", sub: "Build and share a crew plan for your church, youth group, family or friends", emoji: "🫂", kind: "Screen", href: "/bring-a-group", extra: "church trip youth leader carpool meeting point responsibilities whatsapp group planner invite crew team" },
   { id: "s-moments", title: "Find Your Festival Moments", sub: "Get a personalized shortlist from the confirmed 2026 lineup", emoji: "✨", kind: "Screen", href: "/find-your-moments", extra: "lineup matcher recommendation quiz what should i see best sets worship music hip hop ant lee open heaven acts friday night prayer bethel" },
@@ -197,4 +198,4 @@ export function runSearch(query: string, limit = 24): Hit[] {
   return scored.slice(0, limit).map((s) => s.hit);
 }
 
-export const QUICK_QUERIES = ["Today", "Arrival", "Packing", "My moments", "Group plan", "Light Hunt", "Access", "Offline"];
+export const QUICK_QUERIES = ["Day-of", "Today", "Arrival", "Packing", "My moments", "Group plan", "Light Hunt", "Offline"];

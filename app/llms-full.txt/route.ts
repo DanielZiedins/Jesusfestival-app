@@ -20,7 +20,7 @@ ${day.items.map((item) => `- ${item.time}: ${item.title}${item.note ? ` — ${it
   const text = `# Jesus Festival Hamilton 2026 — Full Reference
 
 Canonical source: ${SITE.url}/jesus-festival-hamilton
-Last major content review: 2026-09-01
+Last major content review: 2026-09-02
 
 ## Verified event facts
 
@@ -63,6 +63,8 @@ ${FESTIVAL_FAQS.map((item) => `### ${item.question}\n\n${item.answer}`).join("\n
 
 ## Festival-week and day-of companion
 
+- Day-Of Mode is ${SITE.url}/day-of. It is the fastest automatically updating Hamilton-time screen for what is on now, what comes next, the visitor's private saved meeting area, directions, the festival map, first aid and lost-child help, offline essentials, the Light Hunt and first steps after saying yes to Jesus.
+- Day-Of Mode is precached for offline use. Stage times remain approximate, final event signs and volunteer direction take priority, and visitors should call 911 first for a serious or life-threatening emergency.
 - The Festival Weekend Command Center is ${SITE.url}/festival-weekend.
 - It shows festival phase and current or next schedule information in Hamilton time, the Gage Park two-day forecast when available, personal packing and lineup readiness, quick links to directions, help, accessibility and offline essentials.
 - Personal readiness information is stored on the visitor's device and does not require an account.
@@ -135,6 +137,7 @@ ${QUESTIONS.map((item) => `#### ${item.q}\n\n${item.a}`).join("\n\n")}
 - Festival guide: ${SITE.url}/jesus-festival-hamilton
 - September 1 Saturday hours and stage schedule update: ${SITE.url}/blog/jesus-festival-saturday-extended-updated-schedule-2026
 - Festival Weekend Command Center: ${SITE.url}/festival-weekend
+- Festival Day-Of Mode: ${SITE.url}/day-of — a one-screen Hamilton-time view of what is on now, what comes next, the saved meeting area, directions, map, help points and offline essentials
 - Personalized visit planner: ${SITE.url}/jesus-festival-hamilton#build-my-plan
 - Personalized confirmed-lineup matcher: ${SITE.url}/find-your-moments
 - Current Gage Park arrival and leave-by planner: ${SITE.url}/getting-to-gage-park

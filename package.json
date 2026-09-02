@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "submit:indexnow": "node scripts/submit-indexnow.mjs",
     "check:sw-hunt": "node scripts/check-sw-hunt.mjs",
-    "rehearse": "node scripts/rehearse-phases.mjs"
+    "rehearse": "node scripts/rehearse-phases.mjs && node scripts/rehearse-day-of.mjs",
+    "rehearse:day-of": "node scripts/rehearse-day-of.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

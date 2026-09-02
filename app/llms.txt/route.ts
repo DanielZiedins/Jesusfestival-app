@@ -12,6 +12,7 @@ export function GET() {
 ## Essential information
 
 - [Official 2026 Festival Guide](${SITE.url}/jesus-festival-hamilton): Dates, hours, admission, lineup, parking, transit, what to bring and family information.
+- [Festival Day-Of Mode](${SITE.url}/day-of): A low-distraction, automatically updating Hamilton-time view of what is on now, what comes next, directions, map, help points and offline essentials.
 - [Festival Weekend Command Center](${SITE.url}/festival-weekend): Live Hamilton-time status, Gage Park forecast, personal readiness, day-of help, map links and offline essentials.
 - [Build My Festival Plan](${SITE.url}/jesus-festival-hamilton#build-my-plan): A private personalized arrival plan based on days, group needs and travel method.
 - [Find Your Festival Moments](${SITE.url}/find-your-moments): A private lineup matcher that recommends and saves confirmed 2026 sets based on audience, interests and available time.

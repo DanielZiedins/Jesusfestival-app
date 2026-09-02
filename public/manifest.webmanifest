@@ -16,6 +16,19 @@
   ],
   "shortcuts": [
     {
+      "name": "Festival Day-Of Mode",
+      "short_name": "Day-Of",
+      "description": "One fast live view for now, next, map, help and offline essentials",
+      "url": "/day-of",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
       "name": "Festival Weekend Command Center",
       "short_name": "Weekend Hub",
       "description": "Live schedule, forecast, readiness, map, help and offline essentials",
