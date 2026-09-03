@@ -18,6 +18,7 @@ export default function OfflinePage() {
           <h1 className="mt-3 font-display text-3xl font-extrabold">You still have what matters.</h1>
           <p className="mt-3 text-sm leading-relaxed text-white/65">The park network may be busy, but your core festival plan is saved here. Live features will reconnect automatically when service returns.</p>
           <div className="mt-5 grid grid-cols-2 gap-2">
+            <Link href="/before-you-go" className="rounded-xl border border-gold/30 bg-gold/[0.08] px-4 py-3 text-center font-display text-sm font-extrabold text-gold-300">Before You Go</Link>
             <Link href="/day-of" className="rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 px-4 py-3 text-center font-display text-sm font-extrabold text-navy-950">Day-Of Mode</Link>
             <Link href="/schedule" className="rounded-xl border border-white/15 bg-white/[0.05] px-4 py-3 text-center text-sm font-bold">Full schedule</Link>
           </div>

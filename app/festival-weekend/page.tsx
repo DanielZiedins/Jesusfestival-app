@@ -142,11 +142,12 @@ export default function FestivalWeekendPage() {
               What to do now, what is happening next, what to pack, where to go and how to keep the essentials working when the park signal does not.
             </p>
             <div className="mt-7 flex flex-wrap justify-center gap-3">
+              <Link href="/before-you-go" className="rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-6 py-3.5 font-display text-sm font-extrabold text-navy-950 shadow-glow">Finish my Festival Go Bag</Link>
               <Link href="/day-of" className="rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-6 py-3.5 font-display text-sm font-extrabold text-navy-950 shadow-glow">Open Day-Of Mode</Link>
               <a href="#my-weekend" className="rounded-2xl border border-gold/30 bg-gold/[0.08] px-6 py-3.5 font-display text-sm font-extrabold text-gold-300">Open my weekend hub</a>
               <Link href="/schedule" className="rounded-2xl border border-white/15 bg-white/[0.05] px-6 py-3.5 text-sm font-bold text-white">See the full schedule</Link>
             </div>
-            <p className="mt-5 text-[11px] text-white/45">Updated September 2, 2026 · Live information is shown in Hamilton time</p>
+            <p className="mt-5 text-[11px] text-white/45">Updated September 3, 2026 · Live information is shown in Hamilton time</p>
           </div>
         </header>
 

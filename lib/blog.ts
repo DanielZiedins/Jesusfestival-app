@@ -33,6 +33,58 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "jesus-festival-starts-tomorrow-final-checklist",
+    title: "Jesus Festival Starts Tomorrow: Your Final Gage Park Checklist",
+    description:
+      "Jesus Festival Hamilton starts Friday, September 4 at Gage Park. Get the final times, live weather, packing list, Main and Ottawa detour, offline app and five-minute before-you-go plan.",
+    eyebrow: "Tomorrow at Gage Park",
+    emoji: "🙌",
+    date: "2026-09-03",
+    readMins: 5,
+    body: [
+      { t: "p", text: "**Tomorrow we begin.** Jesus Festival opens at Gage Park on Friday, September 4 at 6:00 PM. Pure Worship Night begins at 6:30 PM and continues until 9:00 PM. Then Saturday’s free Family Festival Day runs from 10:00 AM–7:00 PM, with the full stage program from 11:00 AM–7:00 PM." },
+      { t: "p", text: "You do not need a ticket, an account or a perfect plan. But five quiet minutes tonight can remove most of tomorrow’s stress. We built the new [Festival Go Bag](https://www.jesusfestival.app/before-you-go) to walk through all five steps on one screen." },
+      { t: "h2", text: "1. Save the app before the park gets busy" },
+      { t: "p", text: "A crowded park can mean a crowded mobile network. Open the Festival Go Bag on reliable Wi-Fi and tap **Save now**. The app waits for a real completion response before marking the offline step ready. Your schedule, map, help points and key guides can then keep opening if the signal becomes slow or disappears." },
+      { t: "h2", text: "2. Pack for two different festival days" },
+      { t: "p", text: "Friday is an evening worship gathering. Saturday is a long open-air family day. The basics are a lawn chair or blanket, a filled refillable water bottle, comfortable shoes, a charged phone or power bank, sun protection for Saturday and a layer for Friday evening." },
+      { t: "p", text: "The [What to Bring planner](https://www.jesusfestival.app/what-to-bring) shows the live Gage Park forecast and can adapt the list for children, comfort and accessibility needs, or a volunteer day. The forecast can still move, so check it again shortly before leaving." },
+      { t: "h2", text: "3. Do not let Main and Ottawa surprise you" },
+      { t: "p", text: "The City of Hamilton says the Main Street East and Ottawa Street North intersection is fully closed during the festival period. HSR Routes **1/1A King, 10 B-Line Express and 41 Mohawk** are detoured around the construction, with some stops moved or closed." },
+      { t: "p", text: "Use the [current Gage Park arrival guide](https://www.jesusfestival.app/getting-to-gage-park), check your navigation or HSR information immediately before leaving, and give yourself more time than the normal trip. Gage Park has public parking, but a festival-day space is never guaranteed. HSR, carpooling, rideshare, cycling and walking are all worth considering." },
+      { t: "h2", text: "4. Pick the meeting landmark before anyone wanders" },
+      { t: "p", text: "A meeting point chosen after someone is already missing is too late. Open the [festival map](https://www.jesusfestival.app/map), drop a private pin near a permanent landmark and tell your group the exact side you mean. Your pin remains on your device unless you deliberately share it." },
+      { t: "p", text: "If a child or another person becomes separated from the group, go to the Info and Lost Child Point shown approximately on the map and follow current on-site signs. For first aid, use the mapped First Aid point and ask a volunteer. Call 911 first for any serious or life-threatening emergency." },
+      { t: "h2", text: "5. Star the moments you would hate to miss" },
+      { t: "p", text: "Friday worship begins at 6:30 PM. Saturday’s stage begins at 11:00 AM, and the updated run of show continues through the 7:00 PM final prayer. Open the [live schedule](https://www.jesusfestival.app/schedule), star your moments and export your personal lineup if a calendar reminder will help." },
+      { t: "list", items: [
+        "**Friday:** gates at 6:00 PM · Pure Worship Night 6:30–9:00 PM.",
+        "**Saturday:** festival activities 10:00 AM–7:00 PM · stage 11:00 AM–7:00 PM.",
+        "**Admission:** completely free · no ticket required · all ages welcome.",
+        "**Location:** Gage Park, 1000 Main Street East, Hamilton, Ontario.",
+        "**Best live screen:** [Day-Of Mode](https://www.jesusfestival.app/day-of) for what is happening now, what comes next, the map, help and offline essentials.",
+      ] },
+      { t: "h2", text: "There is still time to invite one person" },
+      { t: "p", text: "This may be the easiest invitation you make all year: *Jesus Festival starts tomorrow at Gage Park. It is free. Want to come with me?* Send the [Festival Go Bag](https://www.jesusfestival.app/before-you-go) with it so they have every practical detail in one place." },
+      { t: "quote", text: "Let us go to the house of the Lord.", ref: "Psalm 122:1" },
+      { t: "p", text: "The schedules are ready. The app is ready. The park is waiting. More importantly, people are coming who need hope, prayer, joy and an encounter with Jesus. We cannot wait to worship with you tomorrow." },
+    ],
+    faqs: [
+      { question: "What time does Jesus Festival start tomorrow?", answer: "Jesus Festival opens Friday, September 4, 2026 at 6:00 PM at Gage Park. Pure Worship Night begins at 6:30 PM and concludes at 9:00 PM." },
+      { question: "Do I need a ticket for Jesus Festival Hamilton?", answer: "No. Jesus Festival is completely free, no admission ticket is required and all ages are welcome. Food truck, vendor and official shop purchases are optional." },
+      { question: "What should I bring to Jesus Festival?", answer: "Bring a lawn chair or blanket, a filled refillable water bottle, comfortable shoes, a charged phone or power bank, sun protection for Saturday and a layer for Friday evening. Check the live Gage Park forecast shortly before leaving." },
+      { question: "How do I get to Jesus Festival during the Main and Ottawa closure?", answer: "Check current navigation and HSR information before leaving, use the Jesus Festival arrival guide and allow extra time. HSR Routes 1/1A King, 10 B-Line Express and 41 Mohawk are detoured around the Main and Ottawa closure." },
+      { question: "Will the Jesus Festival app work offline?", answer: "Yes. Open the Festival Go Bag on a reliable connection and tap Save now. Once the app confirms completion, the schedule, map, help points and key guides are saved for offline use." },
+    ],
+    sources: [
+      { name: "Jesus Festival — Official Hamilton 2026 Information", url: "https://www.jesusfestival.ca/" },
+      { name: "City of Hamilton — Gage Park Features and Services", url: "https://www.hamilton.ca/things-do/venues-facilities-bookings/event-planning-information/event-locations" },
+      { name: "City of Hamilton — Current HSR Schedules and Detours", url: "https://www.hamilton.ca/home-neighbourhood/hsr/schedule-route-tools/schedules-detours" },
+      { name: "City of Hamilton — Fall 2026 HSR and Main and Ottawa Construction Update", url: "https://www.hamilton.ca/city-council/news-notices/news-releases/bus-news-fall-2026" },
+    ],
+    related: ["JesusFestival.ca", "LoveonHamilton.com", "ThyKingdom.net"],
+  },
+  {
     slug: "jesus-festival-saturday-extended-updated-schedule-2026",
     title: "Jesus Festival Saturday Is Now 10 AM–7 PM: Updated Stage Schedule",
     description:

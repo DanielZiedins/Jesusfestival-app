@@ -157,6 +157,14 @@ export default function FestivalDayMode() {
         </Link>
       )}
 
+      {phase === "before" && (
+        <Link href="/before-you-go" className="flex min-h-16 items-center gap-3 rounded-2xl border border-gold/35 bg-gradient-to-r from-gold/[0.12] via-ember/[0.08] to-purple-500/[0.08] p-4">
+          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gold/15 text-xl" aria-hidden>🎒</span>
+          <span className="min-w-0 flex-1"><span className="block text-[9px] font-extrabold uppercase tracking-[0.17em] text-gold-400">Before you leave</span><span className="mt-0.5 block font-display text-base font-extrabold text-white">Finish your five-minute Festival Go Bag</span></span>
+          <ArrowRight width={16} height={16} className="shrink-0 text-gold-300" />
+        </Link>
+      )}
+
       <div className="grid grid-cols-2 gap-2.5" aria-label="Day-of essentials">
         <DayLink href="/schedule" emoji="🗓️" title="Schedule" note="Full run of show" />
         <DayLink href="/map" emoji="🗺️" title="Festival map" note="Zones & meeting spot" />

@@ -1,5 +1,5 @@
 // Jesus Festival — lightweight offline-first service worker.
-const CACHE = "jf-app-v18";
+const CACHE = "jf-app-v19";
 const IMG_CACHE = "jf-images-v1";
 const IMG_MAX_ENTRIES = 80;
 const IMG_HOSTS = new Set([
@@ -27,7 +27,9 @@ const APP_SHELL = [
   "/more",
   "/offline",
   "/festival-weekend",
+  "/before-you-go",
   "/day-of",
+  "/blog/jesus-festival-starts-tomorrow-final-checklist",
   "/blog/jesus-festival-saturday-extended-updated-schedule-2026",
   "/bring-a-group",
   "/find-your-moments",
@@ -69,8 +71,20 @@ const APP_SHELL = [
 // Pages whose JavaScript must be there before the phone ever loses signal.
 // Everything a Light Hunt scan touches, plus the screens people open first.
 const PRIORITY_PAGES = APP_SHELL.filter(
-  (u) => u === "/" || u.startsWith("/hunt") || u === "/day-of" || u === "/schedule" || u === "/map" || u === "/offline"
+  (u) => u === "/" || u.startsWith("/hunt") || u === "/before-you-go" || u === "/day-of" || u === "/schedule" || u === "/map" || u === "/offline"
 );
+
+const GO_BAG_PAGES = [
+  "/",
+  "/before-you-go",
+  "/day-of",
+  "/schedule",
+  "/map",
+  "/offline",
+  "/what-to-bring",
+  "/getting-to-gage-park",
+  "/i-said-yes",
+];
 
 const isPage = (u) => !/\.(png|webp|jpg|jpeg|svg|ics|webmanifest)$/.test(u);
 
@@ -225,10 +239,11 @@ self.addEventListener("fetch", (event) => {
 // The Install screen posts this before people leave for Gage Park, so the
 // schedule, map and next-steps guide are guaranteed to be there with no signal.
 self.addEventListener("message", (event) => {
-  if (!event.data || event.data.type !== "jf-cache-essentials") return;
+  if (!event.data || !["jf-cache-essentials", "jf-cache-go-bag"].includes(event.data.type)) return;
+  const goBagOnly = event.data.type === "jf-cache-go-bag";
   const reply = (ok) => {
     try {
-      if (event.source) event.source.postMessage({ type: "jf-cache-essentials-done", ok });
+      if (event.source) event.source.postMessage({ type: goBagOnly ? "jf-cache-go-bag-done" : "jf-cache-essentials-done", ok, version: CACHE });
     } catch {
       /* ignore */
     }
@@ -237,10 +252,11 @@ self.addEventListener("message", (event) => {
     caches
       .open(CACHE)
       .then(async (cache) => {
-        await Promise.all(APP_SHELL.map((u) => cache.add(u).catch(() => {})));
+        const pages = goBagOnly ? GO_BAG_PAGES : APP_SHELL;
+        await Promise.all(pages.map((u) => cache.add(u).catch(() => {})));
         // Unlike install, this runs while someone waits on a good network, so
         // take the time to make every saved page genuinely usable offline.
-        for (const u of APP_SHELL.filter(isPage)) await cachePageWithAssets(cache, u);
+        for (const u of pages.filter(isPage)) await cachePageWithAssets(cache, u);
       })
       .then(() => reply(true))
       .catch(() => reply(false))

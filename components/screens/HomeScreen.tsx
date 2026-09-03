@@ -16,7 +16,6 @@ import {
   LINKS,
   MOMENTS,
   SCRIPTURES,
-  COMING_SOON,
   DONATE,
 } from "@/lib/content";
 import Countdown from "@/components/Countdown";
@@ -150,6 +149,7 @@ export default function HomeScreen({
               alt="Jesus Festival"
               width={160}
               height={80}
+              style={{ width: "auto" }}
               className="h-20 w-auto drop-shadow-[0_0_20px_rgba(147,51,234,0.5)]"
             />
           </div>
@@ -258,6 +258,20 @@ export default function HomeScreen({
       {/* ===== MY FESTIVAL WEEKEND ===== */}
       <section className="mt-6 px-4">
         <Reveal className="mx-auto max-w-md">
+          {!live && !over && (
+            <Link
+              href="/before-you-go"
+              className="group relative mb-3 flex min-h-24 items-center gap-3 overflow-hidden rounded-2xl border border-gold/45 bg-gradient-to-r from-gold/[0.18] via-ember/15 to-purple-700/20 p-4 transition hover:border-gold/70 active:scale-[0.99]"
+            >
+              <span className="pointer-events-none absolute -right-10 -top-14 h-36 w-36 rounded-full bg-gold/20 blur-3xl" />
+              <span className="relative grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-gold-300 to-ember text-2xl text-navy-950 shadow-glow" aria-hidden>🎒</span>
+              <span className="relative min-w-0 flex-1">
+                <span className="flex items-center gap-2"><span className="font-display text-[15px] font-extrabold text-white">Your Festival Go Bag</span><span className="rounded-full bg-gold/20 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-wider text-gold-300">Final prep</span></span>
+                <span className="mt-0.5 block text-[11.5px] leading-snug text-white/70">Five-minute final check: forecast, packing, route, meeting spot, lineup and offline save.</span>
+              </span>
+              <ArrowRight width={17} height={17} className="relative shrink-0 text-gold-300 transition group-hover:translate-x-0.5" />
+            </Link>
+          )}
           <Link
             href="/day-of"
             className="group relative mb-3 flex min-h-24 items-center gap-3 overflow-hidden rounded-2xl border border-ember/40 bg-gradient-to-r from-ember/20 via-purple-700/20 to-gold/[0.08] p-4 transition hover:border-gold/50 active:scale-[0.99]"
@@ -782,26 +796,27 @@ export default function HomeScreen({
         </Reveal>
       </section>
 
-      {/* ===== NEXT UP ===== */}
+      {/* ===== TOMORROW, MADE SIMPLE ===== */}
       <section className="render-later mt-14 px-4">
         <Reveal className="mb-4 text-center">
-          <Eyebrow>This is just the beginning</Eyebrow>
-          <h2 className="mt-2 font-display text-3xl font-bold text-white">Next up 🚀</h2>
+          <Eyebrow>Tomorrow, made simple</Eyebrow>
+          <h2 className="mt-2 font-display text-3xl font-bold text-white">Three screens worth saving</h2>
           <p className="mx-auto mt-2 max-w-xs text-sm text-white/60">
-            The full schedule, the park map, prayer, search and notifications are already here. These are the next festival-day upgrades.
+            Before you leave, while you are in the park, and when the signal disappears.
           </p>
         </Reveal>
-        <div className="mx-auto grid max-w-md grid-cols-2 gap-3">
-          {COMING_SOON.map((f, i) => (
-            <Reveal key={f.title} delay={i * 0.05}>
-              <div className="relative h-full overflow-hidden rounded-2xl border border-white/8 bg-white/[0.04] p-4">
-                <span className="absolute right-2 top-2 rounded-full bg-purple-500/20 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-purple-200">
-                  Soon
-                </span>
-                <div className="text-2xl">{f.emoji}</div>
-                <h3 className="mt-2 font-display text-[15px] font-bold text-white">{f.title}</h3>
-                <p className="mt-1 text-[12px] leading-snug text-white/55">{f.text}</p>
-              </div>
+        <div className="mx-auto grid max-w-md gap-3">
+          {[
+            { href: "/before-you-go", emoji: "🎒", eyebrow: "Before you leave", title: "Festival Go Bag", text: "Live forecast, packing, route, meeting point, lineup and one-tap offline save." },
+            { href: "/day-of", emoji: "⚡", eyebrow: "At Gage Park", title: "Day-Of Mode", text: "The current stage moment, what comes next, directions, map and help in one glance." },
+            { href: "/offline", emoji: "📵", eyebrow: "When signal disappears", title: "Offline Essentials", text: "The weekend times, schedule, location, help guidance and core packing list without a live connection." },
+          ].map((item, i) => (
+            <Reveal key={item.href} delay={i * 0.05}>
+              <Link href={item.href} className="group flex min-h-24 items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition hover:border-gold/35 active:scale-[0.99]">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-purple-500/25 to-gold/20 text-2xl" aria-hidden>{item.emoji}</span>
+                <span className="min-w-0 flex-1"><span className="block text-[9px] font-extrabold uppercase tracking-[0.17em] text-gold-400">{item.eyebrow}</span><span className="mt-0.5 block font-display text-[16px] font-extrabold text-white">{item.title}</span><span className="mt-0.5 block text-[11.5px] leading-snug text-white/55">{item.text}</span></span>
+                <ArrowRight width={16} height={16} className="shrink-0 text-gold-400 transition group-hover:translate-x-0.5" />
+              </Link>
             </Reveal>
           ))}
         </div>

@@ -1,7 +1,7 @@
 import { ARTISTS, LINKS, SITE } from "@/lib/content";
 import { QUESTIONS, STEPS } from "@/lib/newlife";
 
-export const LAST_MAJOR_UPDATE = "2026-09-02";
+export const LAST_MAJOR_UPDATE = "2026-09-03";
 export const FESTIVAL_GUIDE_PATH = "/jesus-festival-hamilton";
 
 export const FESTIVAL_FAQS = [
@@ -84,6 +84,11 @@ export const FESTIVAL_FAQS = [
     question: "Is there a Jesus Festival day-of guide?",
     answer:
       "Yes. Day-Of Mode at JesusFestival.App/day-of is the fastest low-distraction view of what is on now, what comes next, the Gage Park map, help points, directions and offline essentials. The complete Festival Weekend Command Center adds the forecast, private readiness progress, accessibility, packing and planning tools.",
+  },
+  {
+    question: "What should I do the night before Jesus Festival?",
+    answer:
+      "Open the Festival Go Bag at JesusFestival.App/before-you-go. In about five minutes you can check the live Gage Park forecast, finish packing, review the Main and Ottawa closure and HSR detours, save a private meeting spot, star your must-see sets and save the essential app pages for offline use.",
   },
   {
     question: "What is the Jesus Festival Light Hunt?",
@@ -333,6 +338,7 @@ export const SITE_GRAPH_JSONLD = {
         "Personalized arrival and visit planner",
         "Private shareable church, youth group, family and friends planner",
         "Private accessibility and sensory Comfort Plan",
+        "Five-minute pre-event Festival Go Bag",
         "Low-distraction live Day-Of Mode",
         "Festival-week Command Center",
         "On-site 12-stop Light Hunt",

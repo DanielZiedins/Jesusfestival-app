@@ -16,6 +16,19 @@
   ],
   "shortcuts": [
     {
+      "name": "Before You Go · Festival Go Bag",
+      "short_name": "Go Bag",
+      "description": "Final forecast, packing, route, meeting point, lineup and offline save",
+      "url": "/before-you-go",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
       "name": "Festival Day-Of Mode",
       "short_name": "Day-Of",
       "description": "One fast live view for now, next, map, help and offline essentials",

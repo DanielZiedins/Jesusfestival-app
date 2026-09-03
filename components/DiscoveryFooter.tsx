@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 const LINKS = [
+  { href: "/before-you-go", label: "Before You Go" },
   { href: "/day-of", label: "Day-Of Mode" },
   { href: "/festival-weekend", label: "Weekend Command Center" },
   { href: "/jesus-festival-hamilton", label: "2026 Festival Guide" },

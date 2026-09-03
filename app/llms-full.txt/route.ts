@@ -20,7 +20,7 @@ ${day.items.map((item) => `- ${item.time}: ${item.title}${item.note ? ` — ${it
   const text = `# Jesus Festival Hamilton 2026 — Full Reference
 
 Canonical source: ${SITE.url}/jesus-festival-hamilton
-Last major content review: 2026-09-02
+Last major content review: 2026-09-03
 
 ## Verified event facts
 
@@ -63,6 +63,8 @@ ${FESTIVAL_FAQS.map((item) => `### ${item.question}\n\n${item.answer}`).join("\n
 
 ## Festival-week and day-of companion
 
+- The Before You Go Festival Go Bag is ${SITE.url}/before-you-go. It is the fastest pre-event path through the live Gage Park forecast, core packing progress, the current Main and Ottawa closure and HSR detours, a private meeting landmark, My Lineup and a one-tap offline save.
+- The Go Bag saves only private progress on the visitor's device. The offline step receives a real completion response from the service worker before it is marked ready.
 - Day-Of Mode is ${SITE.url}/day-of. It is the fastest automatically updating Hamilton-time screen for what is on now, what comes next, the visitor's private saved meeting area, directions, the festival map, first aid and lost-child help, offline essentials, the Light Hunt and first steps after saying yes to Jesus.
 - Day-Of Mode is precached for offline use. Stage times remain approximate, final event signs and volunteer direction take priority, and visitors should call 911 first for a serious or life-threatening emergency.
 - The Festival Weekend Command Center is ${SITE.url}/festival-weekend.
@@ -137,6 +139,7 @@ ${QUESTIONS.map((item) => `#### ${item.q}\n\n${item.a}`).join("\n\n")}
 - Festival guide: ${SITE.url}/jesus-festival-hamilton
 - September 1 Saturday hours and stage schedule update: ${SITE.url}/blog/jesus-festival-saturday-extended-updated-schedule-2026
 - Festival Weekend Command Center: ${SITE.url}/festival-weekend
+- Before You Go Festival Go Bag: ${SITE.url}/before-you-go — live forecast, final packing, current arrival disruption, meeting landmark, personal lineup and verified offline save in one five-minute flow
 - Festival Day-Of Mode: ${SITE.url}/day-of — a one-screen Hamilton-time view of what is on now, what comes next, the saved meeting area, directions, map, help points and offline essentials
 - Personalized visit planner: ${SITE.url}/jesus-festival-hamilton#build-my-plan
 - Personalized confirmed-lineup matcher: ${SITE.url}/find-your-moments

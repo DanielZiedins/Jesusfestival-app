@@ -161,6 +161,7 @@ export function destinationFor(pathname: string): AppDestination {
 
 export const INDEXABLE_ROUTES = [
   "/",
+  "/before-you-go",
   "/day-of",
   "/schedule",
   "/i-said-yes",
