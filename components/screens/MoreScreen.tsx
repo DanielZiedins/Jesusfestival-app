@@ -150,8 +150,8 @@ export default function MoreScreen({
                 <span className="pointer-events-none absolute -right-8 -top-10 h-32 w-32 rounded-full bg-emerald-400/12 blur-3xl" />
                 <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-emerald-500/25 to-gold/20 text-3xl">🙌</span>
                 <span className="relative min-w-0 flex-1">
-                  <span className="block font-display text-xl font-extrabold text-white">Volunteers</span>
-                  <span className="block text-xs text-white/65">Serving at the festival? Enter your code, apply & find your team</span>
+                  <span className="block font-display text-xl font-extrabold text-white">Volunteer Family</span>
+                  <span className="block text-xs text-white/65">Thank you—you helped make Jesus Festival 2026 happen. We love you guys!</span>
                 </span>
                 <ArrowRight width={18} height={18} className="relative shrink-0 text-emerald-300 transition group-hover:translate-x-0.5" />
               </button>
@@ -159,36 +159,38 @@ export default function MoreScreen({
 
             <Reveal delay={0.06}>
               <Link
-                href="/before-you-go"
+                href="/blog/jesus-festival-hamilton-2026-recap"
                 className="group mb-3 flex min-h-20 items-center gap-4 rounded-2xl border border-gold/40 bg-gradient-to-br from-gold/[0.16] via-ember/15 to-ink/50 p-4 transition active:scale-[0.99]"
               >
-                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-gold/35 to-ember/25 text-3xl" aria-hidden>🎒</span>
-                <span className="min-w-0 flex-1"><span className="flex items-center gap-2"><span className="font-display text-lg font-extrabold text-white">Festival Go Bag</span><span className="rounded-full bg-gold/20 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-wider text-gold-300">Final prep</span></span><span className="block text-xs leading-snug text-white/65">Forecast, packing, arrival, meeting point, lineup and offline save</span></span>
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-gold/35 to-ember/25 text-3xl" aria-hidden>🙌</span>
+                <span className="min-w-0 flex-1"><span className="flex items-center gap-2"><span className="font-display text-lg font-extrabold text-white">Jesus Festival 2026 Recap</span><span className="rounded-full bg-gold/20 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-wider text-gold-300">New</span></span><span className="block text-xs leading-snug text-white/65">The early harvest report, heartfelt thanks and what comes next</span></span>
                 <ArrowRight width={18} height={18} className="shrink-0 text-gold-300 transition group-hover:translate-x-0.5" />
               </Link>
             </Reveal>
 
             <Reveal delay={0.07}>
               <Link
-                href="/day-of"
+                href="/i-said-yes"
                 className="group mb-3 flex min-h-20 items-center gap-4 rounded-2xl border border-ember/35 bg-gradient-to-br from-ember/20 via-purple-800/25 to-ink/50 p-4 transition active:scale-[0.99]"
               >
-                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-ember/35 to-gold/25 text-3xl" aria-hidden>⚡</span>
-                <span className="min-w-0 flex-1"><span className="flex items-center gap-2"><span className="font-display text-lg font-extrabold text-white">Festival Day-Of Mode</span><span className="rounded-full bg-ember/15 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-wider text-ember">New</span></span><span className="block text-xs leading-snug text-white/65">Live now, next, map, help and offline essentials in one fast view</span></span>
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-ember/35 to-gold/25 text-3xl" aria-hidden>🕊️</span>
+                <span className="min-w-0 flex-1"><span className="flex items-center gap-2"><span className="font-display text-lg font-extrabold text-white">I Said Yes to Jesus</span><span className="rounded-full bg-ember/15 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-wider text-ember">Start here</span></span><span className="block text-xs leading-snug text-white/65">Prayer, baptism, Scripture, church and seven practical first steps</span></span>
                 <ArrowRight width={18} height={18} className="shrink-0 text-gold-400 transition group-hover:translate-x-0.5" />
               </Link>
             </Reveal>
 
             <Reveal delay={0.08}>
               <Link
-                href="/blog/jesus-festival-saturday-extended-updated-schedule-2026"
+                href="https://www.instagram.com/jesusfestival.ca"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group mb-3 flex min-h-20 items-center gap-4 rounded-2xl border border-emerald-300/30 bg-gradient-to-br from-emerald-600/20 via-gold/[0.08] to-ink/50 p-4 transition active:scale-[0.99]"
               >
-                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-emerald-300/15 text-3xl" aria-hidden>⏰</span>
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-emerald-300/15 text-3xl" aria-hidden>📸</span>
                 <span className="min-w-0 flex-1">
-                  <span className="block text-[9px] font-extrabold uppercase tracking-[0.18em] text-emerald-200">Saturday update</span>
-                  <span className="block font-display text-lg font-extrabold text-white">Now 10 AM–7 PM</span>
-                  <span className="block text-xs leading-snug text-white/65">Stage 11 AM–7 PM · all artist and speaker times updated</span>
+                  <span className="block text-[9px] font-extrabold uppercase tracking-[0.18em] text-emerald-200">Photos · videos · testimonies</span>
+                  <span className="block font-display text-lg font-extrabold text-white">See what happened</span>
+                  <span className="block text-xs leading-snug text-white/65">Follow @jesusfestival.ca and support the people featured there</span>
                 </span>
                 <ArrowRight width={18} height={18} className="shrink-0 text-gold-400 transition group-hover:translate-x-0.5" />
               </Link>
@@ -196,14 +198,14 @@ export default function MoreScreen({
 
             <Reveal delay={0.08}>
               <Link
-                href="/festival-weekend"
+                href="/discipleship"
                 className="group mb-3 flex min-h-20 items-center gap-4 rounded-2xl border border-purple-300/30 bg-gradient-to-br from-purple-700/25 via-gold/[0.07] to-ink/50 p-4 transition active:scale-[0.99]"
               >
                 <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-purple-500/40 to-gold/25 text-3xl" aria-hidden>⚡</span>
                 <span className="min-w-0 flex-1">
-                  <span className="block text-[9px] font-extrabold uppercase tracking-[0.18em] text-gold-400">Festival week</span>
-                  <span className="block font-display text-lg font-extrabold text-white">Weekend Command Center</span>
-                  <span className="block text-xs leading-snug text-white/65">Live schedule, forecast, readiness, help and offline essentials</span>
+                <span className="block text-[9px] font-extrabold uppercase tracking-[0.18em] text-gold-400">The mission continues</span>
+                  <span className="block font-display text-lg font-extrabold text-white">Keep the fire burning</span>
+                  <span className="block text-xs leading-snug text-white/65">Discipleship, local churches and practical ways to keep growing</span>
                 </span>
                 <ArrowRight width={18} height={18} className="shrink-0 text-gold-400 transition group-hover:translate-x-0.5" />
               </Link>

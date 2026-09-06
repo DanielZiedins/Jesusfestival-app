@@ -2,7 +2,7 @@
   "name": "jesusfestival-app",
   "version": "1.0.0",
   "private": true,
-  "description": "Jesus Festival \u2014 the official mobile app experience. Hamilton 2026 \u00b7 Gage Park \u00b7 Sept 4\u20135.",
+  "description": "Jesus Festival Hamilton 2026 recap, early harvest report, first steps, prayer and year-round outreach.",
   "scripts": {
     "dev": "next dev",
     "build": "node scripts/check-sw-hunt.mjs && next build",

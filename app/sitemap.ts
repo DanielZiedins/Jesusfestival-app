@@ -9,15 +9,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const app: MetadataRoute.Sitemap = INDEXABLE_ROUTES.map((path) => ({
     url: `${SITE.url}${path === "/" ? "" : path}`,
     lastModified: majorUpdate,
-    changeFrequency: path === "/news" || path === "/festival-weekend" || path === "/day-of" || path === "/before-you-go" ? "daily" : "weekly",
+    changeFrequency: path === "/news" || path === "/i-said-yes" || path === "/movement" || path === "/discipleship" ? "daily" : "weekly",
     priority:
       path === "/"
         ? 1
-        : path === "/before-you-go"
-          ? 0.98
+        : path === "/i-said-yes" || path === "/movement" || path === "/discipleship"
+          ? 0.95
           : path === "/day-of" || path === "/festival-weekend" || path === "/bring-a-group"
-            ? 0.95
-            : path === "/schedule" || path === "/find-your-moments" || path === "/getting-to-gage-park" || path === "/what-to-bring" || path === "/map" || path === "/i-said-yes" || path === "/accessibility"
+            ? 0.8
+            : path === "/schedule" || path === "/find-your-moments" || path === "/getting-to-gage-park" || path === "/what-to-bring" || path === "/map" || path === "/accessibility"
               ? 0.9
               : 0.75,
   }));
@@ -32,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${SITE.url}/blog/${post.slug}`,
       lastModified: new Date(`${post.date}T12:00:00Z`),
       changeFrequency: "monthly" as const,
-      priority: 0.7,
+      priority: post.slug === "jesus-festival-hamilton-2026-recap" ? 0.98 : 0.7,
     })),
   ];
 

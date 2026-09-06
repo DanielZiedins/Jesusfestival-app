@@ -77,15 +77,15 @@ export default function BlogIndex() {
       </div>
 
       <div className="mt-14 rounded-3xl border border-gold/25 bg-gradient-to-br from-gold/10 to-transparent p-7 text-center">
-        <h2 className="font-display text-2xl font-bold text-white">Come and see for yourself</h2>
+        <h2 className="font-display text-2xl font-bold text-white">The story continues</h2>
         <p className="mx-auto mt-2 max-w-sm text-[15px] leading-relaxed text-white/65">
-          Jesus Festival is free, outdoors and open to everyone — September 4–5, 2026 at Gage Park, Hamilton.
+          Read the 2026 harvest report, celebrate every person who made it possible and find a practical next step after Gage Park.
         </p>
         <Link
           href="/"
           className="mt-5 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-6 py-3 font-display text-[15px] font-extrabold text-navy-950 shadow-glow"
         >
-          Open the festival app →
+          See the 2026 recap and next steps →
         </Link>
       </div>
     </main>

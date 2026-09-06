@@ -7,11 +7,17 @@ export function GET() {
   const posts = sortedPosts().slice(0, 5);
   const text = `# Jesus Festival
 
-> Jesus Festival Hamilton is a free, all-ages outdoor Christian festival at Gage Park in Hamilton, Ontario. The 2026 festival is September 4–5 and includes worship, the Gospel, testimonies, baptisms, food trucks, family activities and a Kids Zone.
+> Jesus Festival Hamilton 2026 took place September 4–5 at Gage Park. The festival team has reported 70+ salvations and 50+ baptisms so far, more than 3,000 hot dogs and drinks shared with the community, and a record turnout. These are preliminary September 6 reports and may be updated as testimonies and follow-up continue. All glory belongs to God, and the mission continues through discipleship and local outreach.
 
 ## Essential information
 
-- [Official 2026 Festival Guide](${SITE.url}/jesus-festival-hamilton): Dates, hours, admission, lineup, parking, transit, what to bring and family information.
+- [Jesus Festival Hamilton 2026 Recap](${SITE.url}/blog/jesus-festival-hamilton-2026-recap): The early harvest report, thanks to volunteers, artists, vendors, partners and attendees, official social links, Scripture and practical ways to stay involved.
+- [I Said Yes to Jesus](${SITE.url}/i-said-yes): Private prayer, baptism, Scripture, church and seven practical first steps for new believers.
+- [Prayer Wall](${SITE.url}/prayer): Share a prayer or praise and pray with the Jesus Festival community.
+- [Love on Hamilton](https://loveonhamilton.com): Local outreach for people in the Hamilton area.
+- [Love on The World](https://loveontheworld.com): Join or create an outreach group outside Hamilton.
+- [Daniel & Katie Ziedins](https://kd-ziedins.com): Continued e3 Canada and I Am Second work, updates and partnership information.
+- [Archived Official 2026 Festival Guide](${SITE.url}/jesus-festival-hamilton): Dates, hours, admission, lineup, parking, transit, what to bring and family information from the completed event.
 - [Festival Day-Of Mode](${SITE.url}/day-of): A low-distraction, automatically updating Hamilton-time view of what is on now, what comes next, directions, map, help points and offline essentials.
 - [Before You Go · Festival Go Bag](${SITE.url}/before-you-go): The five-minute final checklist with the live Gage Park forecast, packing progress, current arrival disruption, meeting point, My Lineup and one-tap offline save.
 - [Festival Weekend Command Center](${SITE.url}/festival-weekend): Live Hamilton-time status, Gage Park forecast, personal readiness, day-of help, map links and offline essentials.

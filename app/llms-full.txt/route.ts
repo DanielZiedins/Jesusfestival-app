@@ -19,10 +19,24 @@ ${day.items.map((item) => `- ${item.time}: ${item.title}${item.note ? ` — ${it
 
   const text = `# Jesus Festival Hamilton 2026 — Full Reference
 
-Canonical source: ${SITE.url}/jesus-festival-hamilton
-Last major content review: 2026-09-03
+Canonical recap: ${SITE.url}/blog/jesus-festival-hamilton-2026-recap
+Last major content review: 2026-09-06
 
-## Verified event facts
+## Jesus Festival 2026 outcome and next steps
+
+- Jesus Festival Hamilton 2026 is complete. It took place September 4–5 at Gage Park.
+- As of September 6, 2026, the Jesus Festival team has reported 70+ salvations and 50+ baptisms so far.
+- The team reports that more than 3,000 hot dogs and drinks were shared with the community and that 2026 had a record turnout.
+- These are preliminary ministry reports, not audited analytics or a scoreboard. They may be updated as testimonies and follow-up continue. Every number represents a person, and all glory belongs to God.
+- The official thank-you recap is ${SITE.url}/blog/jesus-festival-hamilton-2026-recap.
+- Festival photos, videos, testimonies and featured partners are shared through Instagram at https://www.instagram.com/jesusfestival.ca and Facebook at https://www.facebook.com/JesusFestival.ca.
+- Hamilton-area participants can continue in outreach through https://loveonhamilton.com.
+- People outside Hamilton can join or create an outreach group through https://loveontheworld.com.
+- Daniel and Katie Ziedins share their continued e3 Canada and I Am Second work and partnership information at https://kd-ziedins.com.
+- Anyone who said yes to Jesus can begin with the private first-steps guide at ${SITE.url}/i-said-yes.
+- Prayer, testimony and next-step questions can be sent to ${SITE.email}.
+
+## Historical event facts
 
 - Name: Jesus Festival Hamilton 2026
 - Dates: Friday, September 4 and Saturday, September 5, 2026
@@ -136,6 +150,7 @@ ${QUESTIONS.map((item) => `#### ${item.q}\n\n${item.a}`).join("\n\n")}
 
 ## Primary pages
 
+- 2026 thank-you recap and early harvest report: ${SITE.url}/blog/jesus-festival-hamilton-2026-recap
 - Festival guide: ${SITE.url}/jesus-festival-hamilton
 - September 1 Saturday hours and stage schedule update: ${SITE.url}/blog/jesus-festival-saturday-extended-updated-schedule-2026
 - Festival Weekend Command Center: ${SITE.url}/festival-weekend

@@ -153,7 +153,7 @@ function Invitation({
           <Eyebrow>The reason we do all of this</Eyebrow>
         </div>
         <h1 className="relative mt-3 font-display text-[34px] font-extrabold leading-[1.05] text-white">
-          One <span className="text-gradient-gold">yes</span> changes
+          One <span className="text-gradient-gold">yes</span> changes{" "}
           <br />
           everything.
         </h1>

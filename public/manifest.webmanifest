@@ -1,7 +1,7 @@
 {
   "name": "Jesus Festival",
   "short_name": "Jesus Fest",
-  "description": "The official Jesus Festival app — Hamilton 2026, September 4–5 at Gage Park. Celebration. Worship. Unity.",
+  "description": "Jesus Festival Hamilton 2026 recap, early harvest report, first steps, prayer and year-round outreach.",
   "id": "/",
   "start_url": "/",
   "scope": "/",
@@ -16,10 +16,10 @@
   ],
   "shortcuts": [
     {
-      "name": "Before You Go · Festival Go Bag",
-      "short_name": "Go Bag",
-      "description": "Final forecast, packing, route, meeting point, lineup and offline save",
-      "url": "/before-you-go",
+      "name": "Jesus Festival 2026 Recap",
+      "short_name": "2026 Recap",
+      "description": "The early harvest report, heartfelt thanks and ways to keep the fire burning",
+      "url": "/blog/jesus-festival-hamilton-2026-recap",
       "icons": [
         {
           "src": "/icons/icon-192.png",
@@ -29,10 +29,10 @@
       ]
     },
     {
-      "name": "Festival Day-Of Mode",
-      "short_name": "Day-Of",
-      "description": "One fast live view for now, next, map, help and offline essentials",
-      "url": "/day-of",
+      "name": "I Said Yes to Jesus",
+      "short_name": "First Steps",
+      "description": "Prayer, baptism, Scripture, church and seven practical first steps",
+      "url": "/i-said-yes",
       "icons": [
         {
           "src": "/icons/icon-192.png",
@@ -42,10 +42,10 @@
       ]
     },
     {
-      "name": "Festival Weekend Command Center",
-      "short_name": "Weekend Hub",
-      "description": "Live schedule, forecast, readiness, map, help and offline essentials",
-      "url": "/festival-weekend",
+      "name": "Jesus Festival Prayer Wall",
+      "short_name": "Prayer Wall",
+      "description": "Share a prayer or praise and pray with the Jesus Festival community",
+      "url": "/prayer",
       "icons": [
         {
           "src": "/icons/icon-192.png",

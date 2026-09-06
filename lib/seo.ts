@@ -1,10 +1,20 @@
-import { ARTISTS, LINKS, SITE } from "@/lib/content";
+import { ARTISTS, LINKS, POST_EVENT, SITE } from "@/lib/content";
 import { QUESTIONS, STEPS } from "@/lib/newlife";
 
-export const LAST_MAJOR_UPDATE = "2026-09-03";
+export const LAST_MAJOR_UPDATE = "2026-09-06";
 export const FESTIVAL_GUIDE_PATH = "/jesus-festival-hamilton";
 
 export const FESTIVAL_FAQS = [
+  {
+    question: "What happened at Jesus Festival Hamilton 2026?",
+    answer:
+      "Jesus Festival Hamilton 2026 brought the community together at Gage Park for worship, the Gospel, prayer, baptisms, artists, family activities, vendors, food and outreach. As of September 6, the festival team has reported 70+ salvations, 50+ baptisms, more than 3,000 hot dogs and drinks shared, and a record turnout. These are early reports and may be updated as follow-up continues.",
+  },
+  {
+    question: "How can I stay connected after Jesus Festival 2026?",
+    answer:
+      "Hamilton-area participants can join local outreach through Love on Hamilton. People outside Hamilton can join or create an outreach group through Love on The World. Anyone who said yes to Jesus can use the private I Said Yes guide, and people who want to partner with Daniel and Katie Ziedins can visit KD-Ziedins.com.",
+  },
   {
     question: "When is Jesus Festival Hamilton 2026?",
     answer:
@@ -201,7 +211,7 @@ export const FESTIVAL_EVENT_JSONLD = {
   mainEntityOfPage: `${SITE.url}${FESTIVAL_GUIDE_PATH}`,
   startDate: "2026-09-04T18:00:00-04:00",
   endDate: "2026-09-05T19:00:00-04:00",
-  eventStatus: "https://schema.org/EventScheduled",
+  eventStatus: "https://schema.org/EventCompleted",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   isAccessibleForFree: true,
   inLanguage: "en-CA",
@@ -220,6 +230,12 @@ export const FESTIVAL_EVENT_JSONLD = {
     "worship festival Ontario",
     "family festival Hamilton",
   ],
+  additionalProperty: POST_EVENT.impact.slice(0, 4).map((item) => ({
+    "@type": "PropertyValue",
+    name: item.label,
+    value: item.stat,
+    description: `Preliminary report shared by the Jesus Festival team on ${POST_EVENT.reportedOn}.`,
+  })),
   location: PLACE_JSONLD,
   organizer: { "@id": `${SITE.url}/#organization` },
   offers: FREE_OFFER_JSONLD,
@@ -237,7 +253,7 @@ export const FESTIVAL_EVENT_JSONLD = {
       startDate: "2026-09-04T18:00:00-04:00",
       doorTime: "2026-09-04T18:00:00-04:00",
       endDate: "2026-09-04T21:00:00-04:00",
-      eventStatus: "https://schema.org/EventScheduled",
+      eventStatus: "https://schema.org/EventCompleted",
       eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
       isAccessibleForFree: true,
       description:
@@ -259,7 +275,7 @@ export const FESTIVAL_EVENT_JSONLD = {
       url: `${SITE.url}/schedule#saturday`,
       startDate: "2026-09-05T10:00:00-04:00",
       endDate: "2026-09-05T19:00:00-04:00",
-      eventStatus: "https://schema.org/EventScheduled",
+      eventStatus: "https://schema.org/EventCompleted",
       eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
       isAccessibleForFree: true,
       description:
@@ -330,6 +346,10 @@ export const SITE_GRAPH_JSONLD = {
       offers: { "@type": "Offer", price: "0", priceCurrency: "CAD" },
       description: SITE.description,
       featureList: [
+        "Jesus Festival Hamilton 2026 recap and early harvest report",
+        "First steps after saying yes to Jesus",
+        "Year-round Hamilton and global outreach connections",
+        "Official festival photo, video and testimony social links",
         "Complete two-day festival schedule",
         "Personal lineup planner",
         "Personalized confirmed-lineup moment matcher",

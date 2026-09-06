@@ -13,6 +13,7 @@ import HomeScreen from "./screens/HomeScreen";
 import DiscoveryFooter from "./DiscoveryFooter";
 import { destinationFor, pathFor, syncDocumentMeta, type AppDestination } from "@/lib/routes";
 import type { ShopData } from "@/lib/shop";
+import { clientNow, festivalPhase } from "@/lib/festival";
 
 // Code-split secondary screens so the first load (Home) stays fast.
 const ScreenLoader = () => (
@@ -85,7 +86,11 @@ export default function AppShell({
     const fade = seenSplash ? undefined : setTimeout(() => setSplashLeaving(true), 1050);
     const gone = seenSplash ? undefined : setTimeout(() => setSplash(false), 1400);
     try {
-      if (!localStorage.getItem("jf-joined")) setOnboard(true);
+      // The signup gate served the countdown season, but it should never hide
+      // the thank-you and harvest story after the festival. Keep it available
+      // for pre-event rehearsals while making the post-event hero the true
+      // first impression for every new visitor.
+      if (festivalPhase(clientNow()) !== "after" && !localStorage.getItem("jf-joined")) setOnboard(true);
     } catch {
       /* ignore */
     }

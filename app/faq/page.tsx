@@ -6,11 +6,11 @@ import { breadcrumbJsonLd, FESTIVAL_FAQ_JSONLD, FESTIVAL_FAQS, serializeJsonLd, 
 export const metadata: Metadata = {
   title: "Jesus Festival Hamilton FAQ",
   description:
-    "Answers about Jesus Festival Hamilton 2026: dates, times, free admission, Gage Park directions, parking, lineup, Kids Zone, what to bring and the official app.",
+    "Answers about Jesus Festival Hamilton 2026 results, reported salvations and baptisms, next steps, ways to stay connected and the completed Gage Park weekend.",
   alternates: { canonical: "/faq" },
   openGraph: {
-    title: "Jesus Festival Hamilton 2026 FAQ",
-    description: "Everything to know before the free September 4–5 festival at Gage Park.",
+    title: "Jesus Festival Hamilton 2026 FAQ and Recap",
+    description: "The early 2026 harvest report, practical next steps and archived Gage Park festival information.",
     url: "/faq",
     type: "article",
   },
@@ -42,12 +42,12 @@ export default function FaqPage() {
       </nav>
 
       <header className="mt-10 text-center">
-        <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-gold-400">Know before you go</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-gold-400">The story · the answers · what comes next</p>
         <h1 className="mt-3 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl">
           Jesus Festival <span className="text-gradient-gold">FAQ</span>
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-[16px] leading-relaxed text-white/65">
-          Clear answers for Jesus Festival Hamilton 2026 at Gage Park. The short version: it&apos;s free, it&apos;s for everyone, and you&apos;re invited.
+          Clear answers about the completed 2026 weekend, the early harvest report, how to stay connected and the practical details preserved for reference.
         </p>
       </header>
 
@@ -69,13 +69,13 @@ export default function FaqPage() {
       </section>
 
       <section className="mt-14 rounded-3xl border border-gold/25 bg-gradient-to-br from-gold/10 to-transparent p-7 text-center sm:p-9">
-        <h2 className="font-display text-2xl font-extrabold text-white">Ready for Gage Park?</h2>
+        <h2 className="font-display text-2xl font-extrabold text-white">Gage Park was the beginning.</h2>
         <p className="mx-auto mt-2 max-w-lg text-[15px] leading-relaxed text-white/65">
-          See the complete Hamilton 2026 guide, build your personal lineup and get directions before festival weekend.
+          Read the full thank-you recap, then take your next step in following Jesus and loving your city.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Link href="/jesus-festival-hamilton" className="rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-6 py-3 font-display text-sm font-extrabold text-navy-950 shadow-glow">Open the festival guide</Link>
-          <Link href="/schedule" className="rounded-2xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-bold text-white">View the schedule</Link>
+          <Link href="/blog/jesus-festival-hamilton-2026-recap" className="rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-6 py-3 font-display text-sm font-extrabold text-navy-950 shadow-glow">Read the 2026 recap</Link>
+          <Link href="/i-said-yes" className="rounded-2xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-bold text-white">I said yes to Jesus</Link>
         </div>
       </section>
     </main>

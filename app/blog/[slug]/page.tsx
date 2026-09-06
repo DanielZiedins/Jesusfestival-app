@@ -66,7 +66,7 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
         logo: { "@type": "ImageObject", url: `${SITE.url}/icons/icon-512.png` },
       },
       mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE.url}/blog/${post.slug}` },
-      image: [`${SITE.url}/brand/banner.png`],
+      image: [`${SITE.url}/blog/${post.slug}/opengraph-image`],
       articleSection: post.eyebrow,
       inLanguage: "en-CA",
       about: articleAbout,
@@ -186,7 +186,7 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
 
       {post.sources?.length ? (
         <section className="mt-10 border-t border-white/10 pt-7" aria-labelledby="sources-heading">
-          <h2 id="sources-heading" className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/65">Authoritative local sources</h2>
+          <h2 id="sources-heading" className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/65">Sources and helpful links</h2>
           <ul className="mt-3 space-y-2">
             {post.sources.map((source) => (
               <li key={source.url}>
@@ -196,20 +196,24 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
               </li>
             ))}
           </ul>
-          <p className="mt-3 text-[11px] leading-relaxed text-white/60">Park and transit conditions can change. Check official sources and event-day signage before travelling.</p>
+          <p className="mt-3 text-[11px] leading-relaxed text-white/60">
+            {post.slug === "jesus-festival-hamilton-2026-recap"
+              ? "Impact figures are preliminary reports shared by the Jesus Festival team on September 6, 2026 and may be updated as follow-up continues."
+              : "Park, transit and event information can change. Check current official sources when planning a future visit."}
+          </p>
         </section>
       ) : null}
 
       <section className="mt-14 rounded-3xl border border-gold/25 bg-gradient-to-br from-gold/10 to-transparent p-7 text-center">
-        <h2 className="font-display text-2xl font-bold text-white">You&apos;re invited</h2>
+        <h2 className="font-display text-2xl font-bold text-white">The festival ended. The mission continues.</h2>
         <p className="mx-auto mt-2 max-w-sm text-[15px] leading-relaxed text-white/65">
-          Jesus Festival is completely free — September 4–5, 2026 at Gage Park, Hamilton. Bring someone with you.
+          See the 2026 harvest report, thank the people who made it happen and find your next step in following Jesus and loving your city.
         </p>
         <Link
           href="/"
           className="mt-5 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-6 py-3 font-display text-[15px] font-extrabold text-navy-950 shadow-glow"
         >
-          Open the festival app →
+          See the 2026 recap and next steps →
         </Link>
       </section>
 

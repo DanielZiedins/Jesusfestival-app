@@ -41,8 +41,8 @@ export const APP_ROUTES: Record<string, AppDestination> = {
 
 export const APP_ROUTE_META: Record<string, { title: string; description: string }> = {
   "/": {
-    title: "Jesus Festival App | Hamilton 2026 · Sept 4–5 · Gage Park",
-    description: "The official Jesus Festival app. Hamilton 2026 — September 4–5 at Gage Park. Celebration. Worship. Unity.",
+    title: "Jesus Festival 2026: Thank You, Hamilton | All Glory to God",
+    description: "Jesus Festival Hamilton 2026 recap: 70+ salvations and 50+ baptisms reported so far, 3,000+ hot dogs and drinks shared, heartfelt thanks and ways to keep the fire burning.",
   },
   "/schedule": {
     title: "Jesus Festival 2026 Schedule",

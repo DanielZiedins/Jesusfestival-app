@@ -2,7 +2,7 @@
  * Festival-day rehearsal, runnable any day of the year: renders the REAL
  * HomeScreen under jsdom at four clock overrides and asserts what each moment
  * of the weekend must show — countdown before, the live Now/Next card during,
- * and the harvest card after (never the stale "It's festival weekend!").
+ * and the full harvest-and-next-steps home after (never the stale countdown).
  *
  *   npm run rehearse
  *
@@ -26,7 +26,7 @@ await build({
 const CASES = [
   ["2026-08-30T12:00:00-04:00", "before",  t => t.includes("The countdown is on") && !t.includes("Thank you, Hamilton") && !t.includes("Live now")],
   ["2026-09-05T18:35:00-04:00", "sat-live", t => t.includes("Live now") && t.includes("Friday Night Prayer — Set 2") && t.includes("Final Prayer — Daniel & Katie") && !t.includes("Thank you, Hamilton")],
-  ["2026-09-07T10:00:00-04:00", "after",   t => t.includes("Thank you, Hamilton") && t.includes("What a weekend. Now it begins.") && t.includes("I said yes — what now?") && t.includes("Relive it") && t.includes("Get connected") && !t.includes("Live now") && !t.includes("It's festival weekend")],
+  ["2026-09-07T10:00:00-04:00", "after",   t => t.includes("Thank you, Hamilton") && t.includes("Look what the") && t.includes("Lord has done.") && t.includes("To every volunteer") && t.includes("Keep the fire") && t.includes("burning.") && t.includes("I said yes to Jesus") && !t.includes("Live now") && !t.includes("It's festival weekend")],
 ];
 
 let failures = 0;
@@ -66,7 +66,7 @@ for (const [iso, label, check] of CASES) {
   if (!ok) failures++;
   console.log(`${ok ? "PASS" : "FAIL"}  ${label.padEnd(9)}${err ? " render error: " + String(err).slice(0, 120) : ""}`);
   if (!ok && !err) {
-    console.log("   countdown:", text.includes("The countdown is on"), "| live:", text.includes("Live now"), "| after:", text.includes("Thank you, Hamilton"), "| celebration:", text.includes("It's festival weekend"));
+    console.log("   countdown:", text.includes("The countdown is on"), "| live:", text.includes("Live now"), "| after:", text.includes("Thank you, Hamilton"), "| harvest:", text.includes("Lord has done."), "| thanks:", text.includes("To every volunteer"), "| fire:", text.includes("burning."), "| first-steps:", text.includes("I said yes to Jesus"));
   }
   try { await act(async () => root.unmount()); } catch {}
 }

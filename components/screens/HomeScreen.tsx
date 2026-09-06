@@ -27,6 +27,7 @@ import InviteCard from "@/components/InviteCard";
 import NotifyNudge from "@/components/NotifyNudge";
 import SearchPill from "@/components/SearchPill";
 import FestivalWeekendPass from "@/components/FestivalWeekendPass";
+import PostFestivalHome from "@/components/PostFestivalHome";
 import { isLivePhase, useFestivalPhase } from "@/lib/useFestivalPhase";
 import { getStreak } from "@/lib/game";
 import Reveal, { Eyebrow } from "@/components/Reveal";
@@ -69,7 +70,10 @@ export default function HomeScreen({
   // weekend!" forever.
   const phase = useFestivalPhase();
   const live = isLivePhase(phase);
-  const over = phase === "after";
+  // The homepage is server-rendered before the phase hook mounts. Since the
+  // 2026 weekend is now complete, the null server state should show the
+  // post-festival story too; this keeps crawlers and the first paint aligned.
+  const over = phase === null || phase === "after";
   // Verse of the day — set after mount so SSR/client never disagree on the date.
   const [verseOfDay, setVerseOfDay] = useState(SCRIPTURES[0]);
   // Personal touch: greet returning members by name, with their streak.
@@ -123,6 +127,8 @@ export default function HomeScreen({
       window.removeEventListener("resize", apply);
     };
   }, []);
+
+  if (over) return <PostFestivalHome go={go} />;
 
   return (
     <div className="pb-4">

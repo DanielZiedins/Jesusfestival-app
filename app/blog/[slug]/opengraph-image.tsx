@@ -1,24 +1,14 @@
 import { ImageResponse } from "next/og";
-import { BLOG_POSTS, postBySlug } from "@/lib/blog";
+import { postBySlug } from "@/lib/blog";
 
-export const alt = "Jesus Festival";
+export const alt = "A story from Jesus Festival";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-
-export function generateStaticParams() {
-  return BLOG_POSTS.map((p) => ({ slug: p.slug }));
-}
-
-/**
- * A branded share card per article. Without this every link shared to Facebook,
- * WhatsApp or iMessage shows the same generic banner — with it, each one gets
- * its own title, which is what makes people actually click.
- */
-export default function Image({ params }: { params: { slug: string } }) {
-  const post = postBySlug(params.slug);
-  const title = post?.title ?? "The Jesus Festival Blog";
-  const eyebrow = post?.eyebrow ?? "Jesus Festival";
-  const emoji = post?.emoji ?? "✝️";
+export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = postBySlug(slug);
+  const title = post?.title ?? "Jesus Festival";
+  const eyebrow = post?.eyebrow ?? "Jesus Festival story";
 
   return new ImageResponse(
     (
@@ -28,85 +18,24 @@ export default function Image({ params }: { params: { slug: string } }) {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          background: "linear-gradient(135deg, #12081F 0%, #1B0F2E 55%, #2A1206 100%)",
-          padding: 72,
+          justifyContent: "center",
+          overflow: "hidden",
+          color: "white",
+          backgroundImage:
+            "radial-gradient(circle at 88% 2%, rgba(247,201,72,.28), transparent 38%), radial-gradient(circle at 4% 98%, rgba(139,92,246,.32), transparent 42%), linear-gradient(145deg,#09040f,#1d0d30 58%,#241105)",
+          padding: "76px 88px",
         }}
       >
-        {/* ambient glows */}
-        <div
-          style={{
-            position: "absolute",
-            top: -160,
-            right: -120,
-            width: 520,
-            height: 520,
-            borderRadius: 9999,
-            background: "rgba(245,166,35,0.20)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            bottom: -200,
-            left: -140,
-            width: 520,
-            height: 520,
-            borderRadius: 9999,
-            background: "rgba(147,51,234,0.28)",
-          }}
-        />
-
-        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <div style={{ fontSize: 52 }}>{emoji}</div>
-          <div
-            style={{
-              fontSize: 22,
-              letterSpacing: 4,
-              textTransform: "uppercase",
-              color: "#F5A623",
-              fontWeight: 700,
-            }}
-          >
-            {eyebrow}
-          </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 20, fontWeight: 900, letterSpacing: 4, color: "#F7C948", textTransform: "uppercase" }}>
+          <span style={{ display: "flex", width: 42, height: 3, borderRadius: 99, background: "#F7C948" }} />
+          {eyebrow}
         </div>
-
-        <div
-          style={{
-            display: "flex",
-            fontSize: title.length > 52 ? 62 : 74,
-            lineHeight: 1.08,
-            fontWeight: 800,
-            color: "#ffffff",
-            maxWidth: 1000,
-          }}
-        >
+        <div style={{ display: "flex", maxWidth: 1020, marginTop: 28, fontSize: title.length > 62 ? 58 : 70, lineHeight: 1.04, letterSpacing: -2.5, fontWeight: 900 }}>
           {title}
         </div>
-
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ fontSize: 30, fontWeight: 800, color: "#ffffff" }}>Jesus Festival</div>
-            <div style={{ fontSize: 22, color: "rgba(255,255,255,0.55)", marginTop: 4 }}>
-              Hamilton · Sept 4–5, 2026 · Gage Park
-            </div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              fontSize: 20,
-              fontWeight: 800,
-              letterSpacing: 2,
-              textTransform: "uppercase",
-              color: "#1a0f00",
-              background: "linear-gradient(90deg,#F7C948,#F5A623)",
-              padding: "14px 28px",
-              borderRadius: 999,
-            }}
-          >
-            jesusfestival.app
-          </div>
+        <div style={{ position: "absolute", left: 88, bottom: 58, right: 88, display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 22, borderTop: "1px solid rgba(255,255,255,.18)", fontSize: 17, fontWeight: 800, letterSpacing: 1.4, color: "rgba(255,255,255,.62)" }}>
+          <span>JESUS FESTIVAL · HAMILTON</span>
+          <span>JESUSFESTIVAL.APP</span>
         </div>
       </div>
     ),

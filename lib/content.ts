@@ -5,7 +5,7 @@ export const SITE = {
   name: "Jesus Festival",
   url: "https://www.jesusfestival.app",
   description:
-    "The official Jesus Festival app. Hamilton 2026 — September 4–5 at Gage Park. Celebration. Worship. Unity. More than a festival — a movement.",
+    "Jesus Festival Hamilton 2026 recap: 70+ salvations and 50+ baptisms reported so far, 3,000+ hot dogs and drinks shared, and a record community turnout. All glory to God—the festival ended, but the mission continues.",
   eventDatesISO: "2026-09-04T18:30:00-04:00", // Friday 6:30pm Pure Worship Night
   tagline: "Celebration. Worship. Unity.",
   motto: "Love God. Love People. Change the World.",
@@ -14,6 +14,18 @@ export const SITE = {
   dates: "September 4–5, 2026",
   email: "hello@jesusfestival.ca",
 };
+
+export const POST_EVENT = {
+  status: "Jesus Festival Hamilton 2026 is complete",
+  reportedOn: "2026-09-06",
+  impact: [
+    { stat: "70+", shortLabel: "salvations", label: "Salvations reported so far" },
+    { stat: "50+", shortLabel: "baptisms", label: "Baptisms reported so far" },
+    { stat: "3,000+", shortLabel: "served", label: "Hot dogs and drinks shared with the community" },
+    { stat: "Record", shortLabel: "turnout", label: "2026 attendance reported by the festival team" },
+    { stat: "Countless", shortLabel: "thank-yous", label: "Volunteer, artist, vendor, partner and attendee yeses" },
+  ],
+} as const;
 
 // Remote imagery from the live JesusFestival.ca CDN.
 export const IMG = {
