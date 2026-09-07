@@ -16,6 +16,11 @@ export const FESTIVAL_FAQS = [
       "Hamilton-area participants can join local outreach through Love on Hamilton. People outside Hamilton can join or create an outreach group through Love on The World. Anyone who said yes to Jesus can use the private I Said Yes guide, and people who want to partner with Daniel and Katie Ziedins can visit KD-Ziedins.com.",
   },
   {
+    question: "How can I share a Jesus Festival 2026 testimony?",
+    answer:
+      "Email hello@jesusfestival.ca with the subject My Jesus Festival 2026 Testimony. You can also follow @jesusfestival.ca on Instagram and JesusFestival.ca on Facebook as photos, videos and testimonies from the weekend are shared.",
+  },
+  {
     question: "When is Jesus Festival Hamilton 2026?",
     answer:
       "Jesus Festival Hamilton takes place September 4–5, 2026 at Gage Park. Friday's Pure Worship Night opens at 6:00 PM, with worship from 6:30–9:00 PM. Saturday's extended Family Festival Day runs from 10:00 AM–7:00 PM, with the stage program from 11:00 AM–7:00 PM.",

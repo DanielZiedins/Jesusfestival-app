@@ -182,6 +182,19 @@ export default function PostFestivalHome({ go }: Props) {
             <strong className="text-white/75">About these numbers:</strong> these are preliminary reports shared by the festival team on September 6, 2026. Reports may be updated as follow-up and testimonies continue. Every number represents a person, and all glory belongs to God.
           </div>
 
+          <a
+            href="mailto:hello@jesusfestival.ca?subject=My%20Jesus%20Festival%202026%20Testimony"
+            className="group mt-4 flex items-center gap-3 rounded-2xl border border-fuchsia-300/25 bg-gradient-to-r from-fuchsia-500/[0.12] to-gold/[0.08] p-4 transition hover:border-gold/40"
+          >
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-fuchsia-400/15 text-xl" aria-hidden="true">💬</span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-fuchsia-200">Your story matters</span>
+              <span className="mt-1 block text-sm font-bold text-white">Share what God did in your life</span>
+              <span className="mt-0.5 block text-[11px] leading-snug text-white/55">Send the team your Jesus Festival testimony.</span>
+            </span>
+            <ArrowRight width={18} height={18} className="shrink-0 text-gold-300 transition-transform group-hover:translate-x-1" />
+          </a>
+
           <div className="mt-5">
             <Scripture
               text="Not unto us, O Lord, not unto us, but unto thy name give glory."

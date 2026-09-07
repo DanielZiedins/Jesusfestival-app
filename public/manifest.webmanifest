@@ -9,239 +9,75 @@
   "orientation": "portrait",
   "background_color": "#0a0510",
   "theme_color": "#0a0510",
-  "categories": [
-    "lifestyle",
-    "events",
-    "music"
-  ],
+  "categories": ["lifestyle", "events", "music"],
   "shortcuts": [
     {
       "name": "Jesus Festival 2026 Recap",
       "short_name": "2026 Recap",
       "description": "The early harvest report, heartfelt thanks and ways to keep the fire burning",
       "url": "/blog/jesus-festival-hamilton-2026-recap",
-      "icons": [
-        {
-          "src": "/icons/icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
       "name": "I Said Yes to Jesus",
       "short_name": "First Steps",
       "description": "Prayer, baptism, Scripture, church and seven practical first steps",
       "url": "/i-said-yes",
-      "icons": [
-        {
-          "src": "/icons/icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
       "name": "Jesus Festival Prayer Wall",
       "short_name": "Prayer Wall",
       "description": "Share a prayer or praise and pray with the Jesus Festival community",
       "url": "/prayer",
-      "icons": [
-        {
-          "src": "/icons/icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
-      "name": "Getting to Gage Park",
-      "short_name": "Arrival Plan",
-      "description": "Current Hamilton detours, parking and HSR facts plus a personal leave-by time",
-      "url": "/getting-to-gage-park",
-      "icons": [
-        {
-          "src": "/icons/icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
+      "name": "Keep Growing With Jesus",
+      "short_name": "Keep Growing",
+      "description": "Continue in prayer, Scripture, community and everyday obedience",
+      "url": "/discipleship",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
-      "name": "What to Bring",
-      "short_name": "Packing List",
-      "description": "Build a personalized, downloadable and offline-ready festival packing plan",
-      "url": "/what-to-bring",
-      "icons": [
-        {
-          "src": "/icons/icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
+      "name": "Jesus Festival Movement",
+      "short_name": "The Movement",
+      "description": "Stay connected to the mission and find ways to serve year-round",
+      "url": "/movement",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
-      "name": "Offline Festival Essentials",
-      "short_name": "Offline",
-      "description": "Saved schedule, location and packing essentials for festival day",
-      "url": "/offline",
-      "icons": [
-        {
-          "src": "/icons/icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
+      "name": "Festival Photos and Moments",
+      "short_name": "Moments",
+      "description": "Browse and share photos and stories from Jesus Festival",
+      "url": "/photos",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
-      "name": "Hamilton 2026 Guide",
-      "short_name": "2026 Guide",
-      "description": "Dates, lineup, arrival details and a personalized visit plan",
-      "url": "/jesus-festival-hamilton#build-my-plan",
-      "icons": [
-        {
-          "src": "/icons/icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Bring a Group",
-      "short_name": "Group Plan",
-      "description": "Build and share a festival plan for your church, youth group, family or friends",
-      "url": "/bring-a-group",
-      "icons": [
-        {
-          "src": "/icons/icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Accessibility & Comfort Guide",
-      "short_name": "Accessibility",
-      "description": "Build a private mobility, sensory and support plan for festival day",
-      "url": "/accessibility#comfort-plan",
-      "icons": [
-        {
-          "src": "/icons/icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Festival Schedule",
-      "short_name": "Schedule",
-      "description": "Open the two-day Jesus Festival schedule",
-      "url": "/schedule",
-      "icons": [
-        {
-          "src": "/icons/icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Find Your Festival Moments",
-      "short_name": "My Moments",
-      "description": "Get a personalized shortlist from the confirmed Jesus Festival 2026 lineup",
-      "url": "/find-your-moments",
-      "icons": [
-        {
-          "src": "/icons/icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Festival Map",
-      "short_name": "Map",
-      "description": "Open the Gage Park map and directions",
-      "url": "/map",
-      "icons": [
-        {
-          "src": "/icons/icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
+      "name": "Stories and Updates",
+      "short_name": "Stories",
+      "description": "Read Jesus Festival stories, updates and practical resources",
+      "url": "/blog",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
       "name": "Revive the City",
-      "short_name": "Play",
-      "description": "Open daily Kingdom missions and games",
+      "short_name": "Revive",
+      "description": "Keep living the mission through daily Kingdom challenges",
       "url": "/revive-the-city",
-      "icons": [
-        {
-          "src": "/icons/icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Photo Wall",
-      "short_name": "Photos",
-      "description": "Share and browse festival moments",
-      "url": "/photos",
-      "icons": [
-        {
-          "src": "/icons/icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "The Light Hunt",
-      "short_name": "Light Hunt",
-      "description": "Find all 12 lights around Gage Park and unlock badges",
-      "url": "/hunt",
-      "icons": [
-        {
-          "src": "/icons/icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
       "name": "Festival Shop",
       "short_name": "Shop",
-      "description": "Shop the official Jesus Festival collection",
+      "description": "Support the mission through the official Jesus Festival collection",
       "url": "/shop",
-      "icons": [
-        {
-          "src": "/icons/icon-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     }
   ],
   "icons": [
-    {
-      "src": "/icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/icons/icon-maskable-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
-    }
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }

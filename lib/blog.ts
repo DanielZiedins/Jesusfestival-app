@@ -76,6 +76,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { question: "How many baptisms were reported at Jesus Festival 2026?", answer: "As of September 6, 2026, the Jesus Festival team reported more than 50 baptisms. This is an early ministry report and may be updated as follow-up continues." },
       { question: "How can I stay involved after Jesus Festival?", answer: "Hamilton-area participants can connect with Love on Hamilton. People outside Hamilton can join or create a local outreach group through Love on The World. New believers can use the I Said Yes guide, and ministry partners can connect with Daniel and Katie Ziedins through KD-Ziedins.com." },
       { question: "Where can I see Jesus Festival 2026 photos and videos?", answer: "Follow @jesusfestival.ca on Instagram and JesusFestival.ca on Facebook as photos, videos, testimonies and featured partners from the weekend are shared." },
+      { question: "How can I share my Jesus Festival 2026 testimony?", answer: "Email hello@jesusfestival.ca with the subject My Jesus Festival 2026 Testimony. The Jesus Festival team would love to hear what God did in your life." },
     ],
     sources: [
       { name: "Jesus Festival on Instagram", url: "https://www.instagram.com/jesusfestival.ca" },

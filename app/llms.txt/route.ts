@@ -9,31 +9,27 @@ export function GET() {
 
 > Jesus Festival Hamilton 2026 took place September 4–5 at Gage Park. The festival team has reported 70+ salvations and 50+ baptisms so far, more than 3,000 hot dogs and drinks shared with the community, and a record turnout. These are preliminary September 6 reports and may be updated as testimonies and follow-up continue. All glory belongs to God, and the mission continues through discipleship and local outreach.
 
-## Essential information
+## Post-event essentials
 
 - [Jesus Festival Hamilton 2026 Recap](${SITE.url}/blog/jesus-festival-hamilton-2026-recap): The early harvest report, thanks to volunteers, artists, vendors, partners and attendees, official social links, Scripture and practical ways to stay involved.
 - [I Said Yes to Jesus](${SITE.url}/i-said-yes): Private prayer, baptism, Scripture, church and seven practical first steps for new believers.
 - [Prayer Wall](${SITE.url}/prayer): Share a prayer or praise and pray with the Jesus Festival community.
+- [Keep Growing](${SITE.url}/discipleship): Practical discipleship resources for continuing with Jesus after the festival.
+- [The Jesus Festival Movement](${SITE.url}/movement): Stay connected to the year-round mission and find ways to serve.
+- [Festival Photos and Testimonies](${SITE.url}/photos): Browse and share moments from the weekend; official updates are also published on [Instagram](https://www.instagram.com/jesusfestival.ca) and [Facebook](https://www.facebook.com/JesusFestival.ca).
 - [Love on Hamilton](https://loveonhamilton.com): Local outreach for people in the Hamilton area.
 - [Love on The World](https://loveontheworld.com): Join or create an outreach group outside Hamilton.
 - [Daniel & Katie Ziedins](https://kd-ziedins.com): Continued e3 Canada and I Am Second work, updates and partnership information.
-- [Archived Official 2026 Festival Guide](${SITE.url}/jesus-festival-hamilton): Dates, hours, admission, lineup, parking, transit, what to bring and family information from the completed event.
-- [Festival Day-Of Mode](${SITE.url}/day-of): A low-distraction, automatically updating Hamilton-time view of what is on now, what comes next, directions, map, help points and offline essentials.
-- [Before You Go · Festival Go Bag](${SITE.url}/before-you-go): The five-minute final checklist with the live Gage Park forecast, packing progress, current arrival disruption, meeting point, My Lineup and one-tap offline save.
-- [Festival Weekend Command Center](${SITE.url}/festival-weekend): Live Hamilton-time status, Gage Park forecast, personal readiness, day-of help, map links and offline essentials.
-- [Build My Festival Plan](${SITE.url}/jesus-festival-hamilton#build-my-plan): A private personalized arrival plan based on days, group needs and travel method.
-- [Find Your Festival Moments](${SITE.url}/find-your-moments): A private lineup matcher that recommends and saves confirmed 2026 sets based on audience, interests and available time.
-- [Getting to Gage Park](${SITE.url}/getting-to-gage-park): Current Main and Ottawa construction and HSR detour guidance, parking and fare facts, live directions, and a private personalized leave-by planner.
-- [What to Bring](${SITE.url}/what-to-bring): A private personalized packing planner for festival days, families, comfort and accessibility needs, and volunteers, with current forecast context, offline progress, sharing and a downloadable checklist.
-- [Bring a Group](${SITE.url}/bring-a-group): A private, shareable crew planner for churches, youth groups, families and friends with travel, meeting point, role and readiness guidance.
-- [Accessibility and Comfort Guide](${SITE.url}/accessibility): Confirmed Gage Park and HSR facts, transparent event-day unknowns, direct accessibility answers and a private Comfort Plan.
-- [Complete Schedule](${SITE.url}/schedule): Friday Pure Worship Night and Saturday Family Festival Day set times.
-- [Festival FAQ](${SITE.url}/faq): Direct answers to common visitor questions.
-- [Gage Park Map and Directions](${SITE.url}/map): Park map, zones, parking, transit, first aid and lost-child point.
-- [I Said Yes to Jesus](${SITE.url}/i-said-yes): What it means to follow Jesus, a prayer, seven first steps, honest answers to common doubts, and churches in Hamilton to connect with.
 - [Official Festival Shop](${SITE.url}/shop): Jesus Festival collection from ThyKingdom.Shop in Canadian dollars.
-- [Install the App](${SITE.url}/install): Personal lineup, notifications, offline essentials and live updates.
-- [The Light Hunt](${SITE.url}/hunt): A free on-site 12-light scavenger hunt with six Vendor Row stops and shareable badges stored on the visitor's device.
+- Share a testimony, request prayer or ask for help with a next step: [hello@jesusfestival.ca](mailto:hello@jesusfestival.ca).
+
+## Completed 2026 event archive
+
+- [Archived Official 2026 Festival Guide](${SITE.url}/jesus-festival-hamilton): Dates, hours, admission, lineup, parking, transit, what to bring and family information from the completed event.
+- [Archived 2026 Schedule](${SITE.url}/schedule): Friday Pure Worship Night and Saturday Family Festival Day stage times.
+- [Gage Park Map](${SITE.url}/map): The 2026 festival layout and park information.
+- [Accessibility and Comfort Guide](${SITE.url}/accessibility): The accessibility planning information prepared for the completed event.
+- [Festival FAQ](${SITE.url}/faq): Direct answers to common visitor questions.
 
 ## Latest stories
 
