@@ -29,6 +29,14 @@ export default function DiscoveryFooter() {
           </Link>
         ))}
       </nav>
+      {/* Quiet on purpose — /partner is unlisted everywhere else, and this small
+          line is its only doorway. People who read this far are the right ones. */}
+      <p className="mt-5 border-t border-white/[0.07] pt-4 text-[11px] text-white/40">
+        Carried by prayer, and by a few quiet partners.{" "}
+        <Link href="/partner" className="font-semibold text-white/55 underline underline-offset-2 hover:text-gold-400">
+          Partner with Daniel &amp; Katie
+        </Link>
+      </p>
     </footer>
   );
 }
