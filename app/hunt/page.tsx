@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import HuntBoard from "@/components/hunt/HuntBoard";
+import HuntSeasonNotice from "@/components/hunt/HuntSeasonNotice";
 import { STATIONS, TOTAL_POINTS } from "@/lib/hunt";
 import { SITE } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "The Festival Light Hunt",
   description:
-    "Twelve QR codes are hidden around Gage Park at Jesus Festival — six of them through Vendor Row. Find them all to collect Scripture, unlock nine shareable badges, pour Light Points into Revive the City, and become a Light Bearer.",
+    "Twelve QR codes hide around Gage Park during Jesus Festival — six of them through Vendor Row. Find them all to collect Scripture, unlock nine shareable badges, pour Light Points into Revive the City, and become a Light Bearer.",
   alternates: { canonical: "/hunt" },
   openGraph: {
     title: "The Festival Light Hunt | Jesus Festival",
@@ -59,6 +60,8 @@ export default function HuntPage() {
         <span className="px-2">/</span>
         <span className="text-white/80">Light Hunt</span>
       </nav>
+
+      <HuntSeasonNotice />
 
       <header className="mt-7 text-center">
         <div className="text-5xl" aria-hidden>🔦</div>
