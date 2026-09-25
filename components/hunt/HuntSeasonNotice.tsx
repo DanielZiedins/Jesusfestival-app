@@ -3,21 +3,34 @@
 import { useEffect, useState } from "react";
 import { festivalPhase, clientNow, type Phase } from "@/lib/festival";
 
-/**
- * The hunt hub is prerendered with live-weekend copy, but the printed codes
- * come down when the festival ends. This sets the record straight for anyone
- * arriving after the weekend, so nobody walks to Gage Park hunting for lights
- * that have gone home for the year. Renders nothing before and during the
- * festival — the static copy is correct then.
- */
-export default function HuntSeasonNotice() {
+function useAfter(): boolean {
   const [phase, setPhase] = useState<Phase | null>(null);
   useEffect(() => setPhase(festivalPhase(clientNow())), []);
+  return phase === "after";
+}
 
-  if (phase !== "after") return null;
+/**
+ * Swaps the hub's eyebrow line in place once the festival is over. Same
+ * element, same height — replacing text can't shift layout, which is why the
+ * post-festival correction starts here rather than as a banner pushed in above
+ * the header (that cost a 0.25 CLS on every visit).
+ */
+export function HuntSeasonEyebrow({ fallback }: { fallback: string }) {
+  const after = useAfter();
+  return <>{after ? "The 2026 hunt is complete" : fallback}</>;
+}
+
+/**
+ * The full explanation, placed BELOW the board — under the first viewport, so
+ * appearing after hydration shifts nothing the visitor is looking at. Renders
+ * nothing before and during the festival, when the static copy is correct.
+ */
+export default function HuntSeasonNotice() {
+  const after = useAfter();
+  if (!after) return null;
 
   return (
-    <div className="jf-rise mt-6 rounded-3xl border border-gold/35 bg-gradient-to-br from-gold/12 via-purple-900/25 to-transparent p-5 text-center">
+    <div className="mt-6 rounded-3xl border border-gold/35 bg-gradient-to-br from-gold/12 via-purple-900/25 to-transparent p-5 text-center">
       <div className="text-3xl" aria-hidden>🕯️</div>
       <p className="mt-2 text-[11px] font-black uppercase tracking-[0.22em] text-gold-400">
         The 2026 hunt is complete

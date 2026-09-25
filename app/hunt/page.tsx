@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import HuntBoard from "@/components/hunt/HuntBoard";
-import HuntSeasonNotice from "@/components/hunt/HuntSeasonNotice";
+import HuntSeasonNotice, { HuntSeasonEyebrow } from "@/components/hunt/HuntSeasonNotice";
 import { STATIONS, TOTAL_POINTS } from "@/lib/hunt";
 import { SITE } from "@/lib/content";
 
@@ -61,12 +61,10 @@ export default function HuntPage() {
         <span className="text-white/80">Light Hunt</span>
       </nav>
 
-      <HuntSeasonNotice />
-
       <header className="mt-7 text-center">
         <div className="text-5xl" aria-hidden>🔦</div>
         <p className="mt-3 text-[11px] font-black uppercase tracking-[0.24em] text-gold-400">
-          Gage Park · Free to play
+          <HuntSeasonEyebrow fallback="Gage Park · Free to play" />
         </p>
         <h1 className="mt-2 font-display text-[38px] font-extrabold leading-[1.05] text-white">
           The Light Hunt
@@ -81,6 +79,8 @@ export default function HuntPage() {
       <div className="mt-8">
         <HuntBoard />
       </div>
+
+      <HuntSeasonNotice />
 
       <section className="mt-10 rounded-3xl border border-white/10 bg-white/[0.04] p-5">
         <h2 className="font-display text-lg font-bold text-white">How it works</h2>

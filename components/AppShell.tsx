@@ -83,8 +83,10 @@ export default function AppShell({
       setSplashLeaving(true);
       setSplash(false);
     }
-    const fade = seenSplash ? undefined : setTimeout(() => setSplashLeaving(true), 1050);
-    const gone = seenSplash ? undefined : setTimeout(() => setSplash(false), 1400);
+    // Short on purpose: the splash sits on top of a page that has already
+    // painted, so every extra millisecond here is pure delay, not loading.
+    const fade = seenSplash ? undefined : setTimeout(() => setSplashLeaving(true), 700);
+    const gone = seenSplash ? undefined : setTimeout(() => setSplash(false), 1050);
     try {
       // The signup gate served the countdown season, but it should never hide
       // the thank-you and harvest story after the festival. Keep it available

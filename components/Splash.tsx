@@ -41,7 +41,7 @@ export default function Splash({ leaving = false }: { leaving?: boolean }) {
       </div>
 
       <p className="jf-rise relative mt-6 text-[11px] font-semibold uppercase tracking-[0.28em] text-white/55">
-        Hamilton · Sept 4–5, 2026
+        Hamilton, Ontario
       </p>
 
       <div className="jf-fade relative mt-3 flex items-center gap-2">
