@@ -55,11 +55,8 @@ export default function GameIntro({ onDone }: { onDone: () => void }) {
 
   return (
     <Portal>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[92] flex flex-col overflow-hidden bg-gradient-to-b from-navy-900 via-ink to-ink"
+      <div
+        className="jf-fade fixed inset-0 z-[92] flex flex-col overflow-hidden bg-gradient-to-b from-navy-900 via-ink to-ink"
       >
         <AmbientFX pct={i * 22} />
 
@@ -99,7 +96,7 @@ export default function GameIntro({ onDone }: { onDone: () => void }) {
             {last ? "Start the journey 🙌" : "Next"} <ArrowRight width={18} height={18} />
           </button>
         </div>
-      </motion.div>
+      </div>
     </Portal>
   );
 }

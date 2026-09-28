@@ -4,6 +4,7 @@ import { IMG, LINKS, POST_EVENT, SITE } from "@/lib/content";
 import type { TabId } from "@/components/BottomNav";
 import Reveal, { Eyebrow } from "@/components/Reveal";
 import Scripture from "@/components/Scripture";
+import SearchPill from "@/components/SearchPill";
 import {
   ArrowRight,
   Camera,
@@ -18,6 +19,7 @@ import {
 
 type Props = {
   go: (tab: TabId, sub?: string) => void;
+  onSearch?: () => void;
 };
 
 const THANK_YOUS = [
@@ -73,7 +75,7 @@ const NEXT_STEPS = [
   },
 ] as const;
 
-export default function PostFestivalHome({ go }: Props) {
+export default function PostFestivalHome({ go, onSearch }: Props) {
   return (
     <div className="pb-6">
       <section className="relative flex min-h-[780px] h-[100svh] max-h-[960px] w-full overflow-hidden">
@@ -150,6 +152,14 @@ export default function PostFestivalHome({ go }: Props) {
         </div>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-ink to-transparent" />
       </section>
+
+      {/* The post-festival home dropped the search pill the festival home
+          had, leaving the whole search index reachable only from More. */}
+      {onSearch && (
+        <div className="mx-auto mt-6 max-w-md px-4">
+          <SearchPill onClick={onSearch} />
+        </div>
+      )}
 
       <section id="harvest" className="scroll-mt-6 px-4 pt-10">
         <Reveal className="mx-auto max-w-md">
@@ -315,6 +325,31 @@ export default function PostFestivalHome({ go }: Props) {
             text="The fire shall ever be burning upon the altar; it shall never go out."
             reference="Leviticus 6:13 (KJV)"
           />
+        </Reveal>
+      </section>
+
+      {/* The question every returning visitor has once the weekend is over. */}
+      <section className="render-later mt-16 px-4">
+        <Reveal className="mx-auto max-w-md">
+          <Link
+            href="/jesus-festival-2027"
+            className="group relative block overflow-hidden rounded-[2rem] border border-purple-300/30 bg-gradient-to-br from-purple-700/30 via-ink to-gold/[0.10] p-6 active:scale-[0.99]"
+          >
+            <span className="pointer-events-none absolute -right-10 -top-12 h-40 w-40 rounded-full bg-purple-500/25 blur-3xl" />
+            <div className="relative flex items-center gap-4">
+              <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full border-2 border-dashed border-gold/70 font-display text-xl font-black text-gold-300">
+                27
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-[10px] font-black uppercase tracking-[0.22em] text-gold-300">The next chapter</span>
+                <span className="mt-1 block font-display text-2xl font-black leading-tight text-white">Jesus Festival 2027</span>
+                <span className="mt-1 block text-[13px] leading-snug text-white/65">
+                  Dates aren&apos;t announced yet. Be the first to know when they are.
+                </span>
+              </span>
+              <ArrowRight width={18} height={18} className="shrink-0 text-gold-300 transition group-hover:translate-x-0.5" />
+            </div>
+          </Link>
         </Reveal>
       </section>
 

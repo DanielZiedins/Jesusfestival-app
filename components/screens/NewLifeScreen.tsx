@@ -574,13 +574,11 @@ function Rejoicing({ standing, onClose }: { standing: Standing; onClose: () => v
 
   return (
     <Portal>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+      <div
         role="dialog"
         aria-modal="true"
         aria-label={copy.title}
-        className="fixed inset-0 z-[95] flex items-center justify-center overflow-hidden bg-ink/92 px-6 backdrop-blur"
+        className="jf-fade fixed inset-0 z-[95] flex items-center justify-center overflow-hidden bg-ink/92 px-6 backdrop-blur"
       >
         {/* Light from above */}
         <motion.div
@@ -649,7 +647,7 @@ function Rejoicing({ standing, onClose }: { standing: Standing; onClose: () => v
             What happens now? →
           </button>
         </motion.div>
-      </motion.div>
+      </div>
     </Portal>
   );
 }

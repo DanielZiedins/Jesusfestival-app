@@ -463,7 +463,7 @@ function StillnessOverlay({ onClose }: { onClose: () => void }) {
   }, []);
   return (
     <Portal>
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} className="fixed inset-0 z-[95] flex flex-col items-center justify-center bg-[#0a0510]/90 px-8 text-center backdrop-blur-md">
+      <div onClick={onClose} className="jf-fade fixed inset-0 z-[95] flex flex-col items-center justify-center bg-[#0a0510]/90 px-8 text-center backdrop-blur-md">
         <motion.div
           className="relative grid h-44 w-44 place-items-center rounded-full"
           animate={{ scale: [1, 1.18, 1] }}
@@ -483,7 +483,7 @@ function StillnessOverlay({ onClose }: { onClose: () => void }) {
         <button onClick={onClose} className="mt-10 rounded-full border border-white/20 bg-white/5 px-6 py-2.5 text-sm font-semibold text-white/80 active:scale-95">
           Amen 🙏
         </button>
-      </motion.div>
+      </div>
     </Portal>
   );
 }
@@ -517,7 +517,7 @@ function PrayerJourney({
 
   return (
     <Portal>
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[95] flex flex-col bg-gradient-to-b from-[#150a24] via-ink to-ink px-6 safe-top">
+      <div className="jf-fade fixed inset-0 z-[95] flex flex-col bg-gradient-to-b from-[#150a24] via-ink to-ink px-6 safe-top">
         <div className="flex items-center justify-between pt-4">
           <span className="text-[11px] font-bold uppercase tracking-widest text-purple-300">Prayer Journey</span>
           <button onClick={onClose} className="rounded-full bg-white/10 px-3.5 py-1.5 text-sm font-semibold text-white/80 active:scale-95">Close</button>
@@ -566,7 +566,7 @@ function PrayerJourney({
             </button>
           </div>
         )}
-      </motion.div>
+      </div>
     </Portal>
   );
 }

@@ -936,7 +936,7 @@ function VerseChallengeModal({ v, done, onComplete, onClose }: { v: VC; done: bo
 function ModalShell({ children, onClose }: { children: React.ReactNode; onClose: () => void }) {
   return (
     <Portal>
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[90] flex items-end justify-center bg-ink/70 backdrop-blur-sm" onClick={onClose}>
+    <div className="jf-fade fixed inset-0 z-[90] flex items-end justify-center bg-ink/70 backdrop-blur-sm" onClick={onClose}>
       <motion.div
         initial={{ y: "100%" }}
         animate={{ y: 0 }}
@@ -948,7 +948,7 @@ function ModalShell({ children, onClose }: { children: React.ReactNode; onClose:
         <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-white/20" />
         {children}
       </motion.div>
-    </motion.div>
+    </div>
     </Portal>
   );
 }
@@ -959,7 +959,7 @@ function Celebration({ data, onClose }: { data: { label: string; subtitle?: stri
   const colors = ["#F5A623", "#9333EA", "#a855f7", "#FFC24D", "#4bb873", "#ff6fae"];
   return (
     <Portal>
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[95] flex items-center justify-center bg-ink/80 backdrop-blur" onClick={onClose}>
+    <div className="jf-fade fixed inset-0 z-[95] flex items-center justify-center bg-ink/80 backdrop-blur" onClick={onClose}>
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {pieces.map((_, i) => (
           <motion.span
@@ -986,7 +986,7 @@ function Celebration({ data, onClose }: { data: { label: string; subtitle?: stri
           Keep going! 🎉
         </button>
       </motion.div>
-    </motion.div>
+    </div>
     </Portal>
   );
 }

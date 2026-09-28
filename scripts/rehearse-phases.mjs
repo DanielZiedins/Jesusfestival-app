@@ -26,7 +26,7 @@ await build({
 const CASES = [
   ["2026-08-30T12:00:00-04:00", "before",  t => t.includes("The countdown is on") && !t.includes("Thank you, Hamilton") && !t.includes("Live now")],
   ["2026-09-05T18:35:00-04:00", "sat-live", t => t.includes("Live now") && t.includes("Friday Night Prayer — Set 2") && t.includes("Final Prayer — Daniel & Katie") && !t.includes("Thank you, Hamilton")],
-  ["2026-09-07T10:00:00-04:00", "after",   t => t.includes("Thank you, Hamilton") && t.includes("Look what the") && t.includes("Lord has done.") && t.includes("To every volunteer") && t.includes("Keep the fire") && t.includes("burning.") && t.includes("I said yes to Jesus") && !t.includes("Live now") && !t.includes("It's festival weekend")],
+  ["2026-09-07T10:00:00-04:00", "after",   t => t.includes("Thank you, Hamilton") && t.includes("Look what the") && t.includes("Lord has done.") && t.includes("To every volunteer") && t.includes("Keep the fire") && t.includes("burning.") && t.includes("I said yes to Jesus") && t.includes("Jesus Festival 2027") && t.includes("Search sets, artists") && !t.includes("Live now") && !t.includes("It's festival weekend")],
 ];
 
 let failures = 0;
@@ -59,7 +59,7 @@ for (const [iso, label, check] of CASES) {
   const root = createRoot(dom.window.document.getElementById("root"));
   let err = null;
   try {
-    await act(async () => { root.render(React.createElement(HomeScreen, { go: () => {} })); });
+    await act(async () => { root.render(React.createElement(HomeScreen, { go: () => {}, onSearch: () => {} })); });
   } catch (e) { err = e; }
   const text = dom.window.document.body.textContent;
   const ok = !err && check(text);

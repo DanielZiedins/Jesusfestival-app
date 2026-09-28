@@ -72,7 +72,7 @@ export function QuizModal({ quiz, done, onComplete, onClose }: { quiz: Quiz; don
 
   return (
     <Portal>
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[90] flex items-end justify-center bg-ink/70 backdrop-blur-sm" onClick={onClose}>
+      <div className="jf-fade fixed inset-0 z-[90] flex items-end justify-center bg-ink/70 backdrop-blur-sm" onClick={onClose}>
         <motion.div
           initial={{ y: "100%" }}
           animate={{ y: 0 }}
@@ -143,7 +143,7 @@ export function QuizModal({ quiz, done, onComplete, onClose }: { quiz: Quiz; don
             </div>
           )}
         </motion.div>
-      </motion.div>
+      </div>
     </Portal>
   );
 }

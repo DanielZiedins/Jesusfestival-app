@@ -128,7 +128,7 @@ export default function HomeScreen({
     };
   }, []);
 
-  if (over) return <PostFestivalHome go={go} />;
+  if (over) return <PostFestivalHome go={go} onSearch={onSearch} />;
 
   return (
     <div className="pb-4">
@@ -729,22 +729,43 @@ export default function HomeScreen({
                 </h2>
               </div>
               <div className="mt-6 space-y-3">
-                {TIMELINE.map((t, i) => (
-                  <Reveal key={t.year} delay={i * 0.1}>
+                {TIMELINE.map((t, i) => {
+                  // A step with an href is one that hasn't happened yet: drawn
+                  // as an open dashed ring, and the whole row is the way in.
+                  const future = "href" in t && !!t.href;
+                  const row = (
                     <div className="flex gap-3.5">
                       <div className="flex flex-col items-center">
-                        <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold text-xs font-bold text-navy-950">
+                        <div
+                          className={`grid h-9 w-9 shrink-0 place-items-center rounded-full text-xs font-bold ${
+                            future ? "border-2 border-dashed border-gold/70 text-gold-400" : "bg-gold text-navy-950"
+                          }`}
+                        >
                           {t.year.slice(2)}
                         </div>
                         {i < TIMELINE.length - 1 && <div className="mt-1 h-full w-px flex-1 bg-white/15" />}
                       </div>
                       <div className="pb-2">
-                        <h3 className="font-display text-base font-bold text-white">{t.title}</h3>
+                        <h3 className="font-display text-base font-bold text-white">
+                          {t.title}
+                          {future && <ArrowRight width={14} height={14} className="ml-1.5 inline text-gold-400" />}
+                        </h3>
                         <p className="mt-0.5 text-[13px] leading-snug text-white/65">{t.text}</p>
                       </div>
                     </div>
-                  </Reveal>
-                ))}
+                  );
+                  return (
+                    <Reveal key={t.year} delay={i * 0.1}>
+                      {future ? (
+                        <Link href={(t as { href: string }).href} className="block rounded-xl transition hover:bg-white/[0.03]">
+                          {row}
+                        </Link>
+                      ) : (
+                        row
+                      )}
+                    </Reveal>
+                  );
+                })}
               </div>
             </Reveal>
           </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import Portal from "@/components/Portal";
 import { useOverlay } from "@/lib/useOverlay";
 import { ChevronLeft } from "@/components/icons";
@@ -26,13 +25,11 @@ export default function VolunteersScreen({ onClose }: { onClose: () => void }) {
 
   return (
     <Portal>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+      <div
         role="dialog"
         aria-modal="true"
         aria-label="Jesus Festival Volunteers"
-        className="fixed inset-0 z-[80] flex flex-col bg-[#0B0D12]"
+        className="jf-fade fixed inset-0 z-[80] flex flex-col bg-[#0B0D12]"
       >
         {/* Top bar */}
         <div className="flex items-center justify-between gap-2 border-b border-white/10 bg-ink/70 px-3 pb-2.5 pt-3 backdrop-blur safe-top">
@@ -78,7 +75,7 @@ export default function VolunteersScreen({ onClose }: { onClose: () => void }) {
             className="h-full w-full border-0 bg-[#0B0D12]"
           />
         </div>
-      </motion.div>
+      </div>
     </Portal>
   );
 }

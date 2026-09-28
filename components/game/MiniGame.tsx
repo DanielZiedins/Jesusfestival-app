@@ -171,11 +171,8 @@ function WinOverlay({ points, stars = 3, onClaim }: { points: number; stars?: nu
 export default function MiniGame({ game, onWin, onClose }: { game: MiniGameDef; onWin: (points: number, stars: number) => void; onClose: () => void }) {
   return (
     <Portal>
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 24 }}
-      className="fixed inset-0 z-[90] flex flex-col bg-gradient-to-b from-navy-900 via-ink to-ink"
+    <div
+      className="jf-rise fixed inset-0 z-[90] flex flex-col bg-gradient-to-b from-navy-900 via-ink to-ink"
     >
       <div className="flex items-center justify-between px-4 pt-4 safe-top">
         <div>
@@ -198,7 +195,7 @@ export default function MiniGame({ game, onWin, onClose }: { game: MiniGameDef; 
       {game.id === "neighbor" && <HelpNeighbor def={game} onWin={onWin} />}
       {game.id === "ark" && <ArkPairs def={game} onWin={onWin} />}
       {!["light", "plant", "fruit", "rhythm", "river", "build", "neighbor", "ark"].includes(game.id) && <EncourageCrowd def={game} onWin={onWin} />}
-    </motion.div>
+    </div>
     </Portal>
   );
 }

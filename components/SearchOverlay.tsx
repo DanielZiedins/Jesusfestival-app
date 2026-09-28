@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import Portal from "@/components/Portal";
 import { useOverlay } from "@/lib/useOverlay";
 import { QUICK_QUERIES, runSearch, type Hit } from "@/lib/search";
@@ -77,13 +76,11 @@ export default function SearchOverlay({
 
   return (
     <Portal>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+      <div
         role="dialog"
         aria-modal="true"
         aria-label="Search the festival"
-        className="fixed inset-0 z-[92] flex flex-col bg-ink/95 backdrop-blur-xl"
+        className="jf-fade fixed inset-0 z-[92] flex flex-col bg-ink/95 backdrop-blur-xl"
       >
         {/* Search bar */}
         <div className="shrink-0 border-b border-white/10 px-4 pb-3 pt-4 safe-top">
@@ -200,7 +197,7 @@ export default function SearchOverlay({
             )}
           </div>
         </div>
-      </motion.div>
+      </div>
     </Portal>
   );
 }
