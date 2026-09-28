@@ -3,13 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import GageParkArrivalPlanner from "@/components/GageParkArrivalPlanner";
 import { IMG, SITE } from "@/lib/content";
-import { breadcrumbJsonLd, FESTIVAL_EVENT_JSONLD, serializeJsonLd, webPageJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, serializeJsonLd, webPageJsonLd } from "@/lib/seo";
 
 const PATH = "/getting-to-gage-park";
 const LAST_REVIEWED = "2026-08-26";
 
 export const metadata: Metadata = {
-  title: "Getting to Gage Park for Jesus Festival 2026",
+  title: "Getting to Gage Park for Jesus Festival",
   description:
     "Plan your Jesus Festival arrival at Gage Park with current Hamilton road and HSR detours, parking facts, live directions and a personalized leave-by time.",
   alternates: { canonical: PATH },
@@ -108,7 +108,7 @@ export default function GettingToGageParkPage() {
 
   return (
     <main className="min-h-screen bg-ink pb-20 text-white">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd([FESTIVAL_EVENT_JSONLD, pageJsonLd, faqJsonLd, howToJsonLd, breadcrumbs]) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd([pageJsonLd, faqJsonLd, howToJsonLd, breadcrumbs]) }} />
       <article>
         <header className="relative isolate overflow-hidden border-b border-white/10">
           <Image src={IMG.heroCrowd} alt="Jesus Festival crowd gathered outdoors at Gage Park in Hamilton" fill preload sizes="100vw" className="-z-20 object-cover" />

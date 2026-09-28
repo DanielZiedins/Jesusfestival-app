@@ -8,9 +8,9 @@ import { breadcrumbJsonLd, serializeJsonLd, webPageJsonLd } from "@/lib/seo";
 const PATH = "/bring-a-group";
 
 export const metadata: Metadata = {
-  title: "Bring a Church, Youth Group or Family to Jesus Festival",
+  title: "Bring a Church, Youth Group or Family",
   description:
-    "Build and share a private group trip plan for Jesus Festival Hamilton 2026: meeting point, travel, arrival, leader roles, readiness checklist and offline essentials.",
+    "Build and share a private group trip plan for Jesus Festival Hamilton: meeting point, travel, arrival, leader roles and a readiness checklist.",
   alternates: { canonical: PATH },
   openGraph: {
     title: "Bring Your Crew to Jesus Festival Hamilton 2026",

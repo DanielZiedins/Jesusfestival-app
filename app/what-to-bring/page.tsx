@@ -3,13 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import FestivalPackingPlanner from "@/components/FestivalPackingPlanner";
 import { IMG, SITE } from "@/lib/content";
-import { breadcrumbJsonLd, FESTIVAL_EVENT_JSONLD, serializeJsonLd, webPageJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, serializeJsonLd, webPageJsonLd } from "@/lib/seo";
 
 const PATH = "/what-to-bring";
 const LAST_REVIEWED = "2026-08-29";
 
 export const metadata: Metadata = {
-  title: "What to Bring to Jesus Festival Hamilton 2026",
+  title: "What to Bring to Jesus Festival Hamilton",
   description: "Build a personalized Jesus Festival packing checklist for Gage Park—with weather, family, accessibility, volunteer and offline-ready festival essentials.",
   alternates: { canonical: PATH },
   openGraph: {
@@ -72,7 +72,7 @@ export default function WhatToBringPage() {
 
   return (
     <main className="min-h-screen bg-ink pb-20 text-white">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd([FESTIVAL_EVENT_JSONLD, pageJsonLd, faqJsonLd, howToJsonLd, breadcrumbs]) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd([pageJsonLd, faqJsonLd, howToJsonLd, breadcrumbs]) }} />
       <article>
         <header className="relative isolate overflow-hidden border-b border-white/10">
           <Image src={IMG.heroCrowd} alt="People gathering outdoors for Jesus Festival at Gage Park" fill preload sizes="100vw" className="-z-20 object-cover" />

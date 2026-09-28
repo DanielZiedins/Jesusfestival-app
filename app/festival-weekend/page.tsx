@@ -7,9 +7,9 @@ import { breadcrumbJsonLd, serializeJsonLd, webPageJsonLd } from "@/lib/seo";
 const PATH = "/festival-weekend";
 
 export const metadata: Metadata = {
-  title: "Jesus Festival Weekend Guide & Live Command Center",
+  title: "Festival Weekend Guide & Command Center",
   description:
-    "Your Jesus Festival Hamilton 2026 day-of hub: live schedule, Gage Park forecast, directions, packing progress, help points, accessibility, Light Hunt and offline essentials.",
+    "Your Jesus Festival Hamilton hub: the schedule, Gage Park forecast, directions, packing progress, help points, accessibility and the Light Hunt.",
   alternates: { canonical: PATH },
   openGraph: {
     title: "Jesus Festival Weekend Command Center",

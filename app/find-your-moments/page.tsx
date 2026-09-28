@@ -3,12 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import FestivalMomentFinder from "@/components/FestivalMomentFinder";
 import { IMG, SITE } from "@/lib/content";
-import { breadcrumbJsonLd, FESTIVAL_EVENT_JSONLD, serializeJsonLd, webPageJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, serializeJsonLd, webPageJsonLd } from "@/lib/seo";
 
 const PATH = "/find-your-moments";
 
 export const metadata: Metadata = {
-  title: "Jesus Festival 2026 Lineup Matcher & Schedule Planner",
+  title: "Lineup Matcher & Schedule Planner",
   description:
     "Find your best Jesus Festival Hamilton 2026 moments by who you are coming with, what you want to experience and when you can attend—then save them to My Lineup.",
   alternates: { canonical: PATH },
@@ -175,7 +175,7 @@ export default function FindYourMomentsPage() {
 
   return (
     <main className="min-h-screen bg-ink pb-20 text-white">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd([FESTIVAL_EVENT_JSONLD, pageJsonLd, faqJsonLd, howToJsonLd, artistListJsonLd, breadcrumbs]) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd([pageJsonLd, faqJsonLd, howToJsonLd, artistListJsonLd, breadcrumbs]) }} />
       <article>
         <header className="relative isolate overflow-hidden border-b border-white/10">
           <Image src={IMG.worshipDusk} alt="Jesus Festival worship at dusk in Gage Park, Hamilton" fill preload sizes="100vw" className="-z-20 object-cover" />

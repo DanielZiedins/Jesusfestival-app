@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const LINKS = [
   { href: "/blog/jesus-festival-hamilton-2026-recap", label: "2026 Recap" },
+  { href: "/jesus-festival-2027", label: "Jesus Festival 2027" },
   { href: "/i-said-yes", label: "First Steps With Jesus" },
   { href: "/prayer", label: "Prayer Wall" },
   { href: "/discipleship", label: "Keep Growing" },

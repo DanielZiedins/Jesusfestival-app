@@ -12,6 +12,7 @@ export function GET() {
 ## Post-event essentials
 
 - [Jesus Festival Hamilton 2026 Recap](${SITE.url}/blog/jesus-festival-hamilton-2026-recap): The early harvest report, thanks to volunteers, artists, vendors, partners and attendees, official social links, Scripture and practical ways to stay involved.
+- [Jesus Festival 2027](${SITE.url}/jesus-festival-2027): The next festival. Dates have not been announced yet; this page will carry the official announcement and lets people sign up to be told first. Held every year since 2024, free, at Gage Park in Hamilton.
 - [I Said Yes to Jesus](${SITE.url}/i-said-yes): Private prayer, baptism, Scripture, church and seven practical first steps for new believers.
 - [Prayer Wall](${SITE.url}/prayer): Share a prayer or praise and pray with the Jesus Festival community.
 - [Keep Growing](${SITE.url}/discipleship): Practical discipleship resources for continuing with Jesus after the festival.

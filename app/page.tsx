@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import AppShell from "@/components/AppShell";
 import { SITE } from "@/lib/content";
-import { FESTIVAL_EVENT_JSONLD, serializeJsonLd, webPageJsonLd } from "@/lib/seo";
+import { serializeJsonLd, webPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Jesus Festival 2026: All Glory to God",
@@ -34,7 +34,7 @@ export default function Page() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd([FESTIVAL_EVENT_JSONLD, pageJsonLd]) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd([pageJsonLd]) }}
       />
       <AppShell />
     </>

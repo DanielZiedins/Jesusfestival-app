@@ -20,6 +20,13 @@ export type BlogPost = {
   slug: string;
   title: string;
   description: string;
+  /**
+   * Search-result overrides. `title` and `description` are the on-page
+   * headline and dek; these are what Google shows, kept inside its ~60 and
+   * ~158 character cutoffs, and aged once an event date has passed.
+   */
+  seoTitle?: string;
+  seoDescription?: string;
   eyebrow: string;
   emoji: string;
   date: string;
@@ -34,6 +41,8 @@ export type BlogPost = {
 export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "jesus-festival-hamilton-2026-recap",
+    seoTitle: "Jesus Festival 2026 Recap: All Glory to God",
+    seoDescription: "Jesus Festival Hamilton 2026 is complete: 70+ salvations and 50+ baptisms reported so far, a record turnout, and ways to keep the fire burning.",
     title: "Jesus Festival Hamilton 2026: Thank You—and All Glory to God",
     description:
       "Jesus Festival Hamilton 2026 has ended. Read the early report of 70+ salvations, 50+ baptisms, 3,000+ hot dogs and drinks shared, a record turnout, heartfelt thanks and practical ways to keep the fire burning.",
@@ -89,6 +98,8 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "jesus-festival-starts-tomorrow-final-checklist",
+    seoTitle: "Jesus Festival 2026: The Final Checklist",
+    seoDescription: "The final checklist from Jesus Festival Hamilton 2026 at Gage Park: times, packing, detours and a before-you-go plan worth keeping for next year.",
     title: "Jesus Festival Starts Tomorrow: Your Final Gage Park Checklist",
     description:
       "Jesus Festival Hamilton starts Friday, September 4 at Gage Park. Get the final times, live weather, packing list, Main and Ottawa detour, offline app and five-minute before-you-go plan.",
@@ -141,6 +152,8 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "jesus-festival-saturday-extended-updated-schedule-2026",
+    seoTitle: "Jesus Festival 2026 Saturday Schedule",
+    seoDescription: "The extended Saturday, September 5, 2026 stage schedule from Jesus Festival Hamilton: 11 AM–7 PM artist times, speakers and planning notes.",
     title: "Jesus Festival Saturday Is Now 10 AM–7 PM: Updated Stage Schedule",
     description:
       "Jesus Festival Family Festival Day has been extended by one hour. See the September 5, 2026 stage schedule from 11 AM–7 PM, artist times, speakers and planning notes.",
@@ -209,6 +222,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "free-things-to-do-hamilton-september-2026",
+    seoTitle: "Free Things to Do in Hamilton: Sept 2026",
     title: "Free Things to Do in Hamilton in September 2026",
     description:
       "A practical, date-checked guide to free Hamilton events in September 2026—including Jesus Festival, Supercrawl, Open Streets and a great day at Gage Park.",
@@ -284,6 +298,8 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "bringing-the-kids-to-jesus-festival",
+    seoTitle: "Bringing Kids to a Festival: Parent Guide",
+    seoDescription: "A free outdoor festival, thousands of people and a toddler with opinions. What to pack, where to sit, what to do if someone wanders off.",
     title: "Bringing the Kids: A Parent's Survival Guide",
     description:
       "A free outdoor festival with thousands of people and a toddler who has opinions. What to pack, where to sit, what to do when someone wanders off — and why it's worth the effort.",
@@ -335,6 +351,8 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "never-been-to-anything-like-this",
+    seoTitle: "Never Been to Anything Like This?",
+    seoDescription: "Invited to Jesus Festival and said yes before thinking it through? Here's honestly what happens, what nobody will ask of you, and why you're welcome.",
     title: "If You've Never Been to Anything Like This Before",
     description:
       "Someone invited you to Jesus Festival and you said yes before you thought it through. Here's honestly what happens, what nobody will ask of you, and why you're more welcome than you think.",
@@ -386,6 +404,8 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "how-to-pray-for-your-city",
+    seoTitle: "How to Pray for a City: 5 Biblical Patterns",
+    seoDescription: "Praying for a whole city sounds vague. Scripture makes it concrete — five biblical patterns for praying over the streets you actually live on.",
     title: "How to Pray for a City (When It Feels Too Big)",
     description:
       "Praying for a whole city sounds enormous and vague. Scripture makes it surprisingly concrete — five biblical patterns for praying over the streets you actually live on.",
@@ -431,6 +451,8 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "gage-park-festival-guide",
+    seoTitle: "Gage Park Festival Guide: Jesus Festival",
+    seoDescription: "Your guide to Jesus Festival at Gage Park, Hamilton: where to enter, when to arrive, parking and HSR, what to pack and tips for families.",
     title: "The Complete Gage Park Festival Guide for Jesus Festival 2026",
     description:
       "Plan your Jesus Festival Hamilton weekend at Gage Park: where to enter, when to arrive, parking and HSR options, what to pack, family tips and the full September 4–5 schedule.",
@@ -506,6 +528,8 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "the-light-hunt-gage-park-scavenger-hunt",
+    seoTitle: "Light Hunt: Gage Park Scavenger Hunt",
+    seoDescription: "Twelve QR codes hide around Gage Park at Jesus Festival — each carries Scripture, lights a lamp on your phone and unlocks shareable badges.",
     title: "The Light Hunt: a Free Scavenger Hunt Hidden Inside Jesus Festival",
     description:
       "Twelve QR codes are hidden around Gage Park at Jesus Festival Hamilton — each one carries Scripture, lights a lamp on your phone, and unlocks shareable badges. Here's how to play.",
@@ -550,6 +574,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "wear-the-message",
+    seoDescription: "Most Gospel conversations start with a question, not a sermon. On faith worn out loud, the Kingdom Shop and the official Jesus Festival collection.",
     title: "What You Wear Can Start the Conversation",
     description:
       "Most Gospel conversations don't start with a sermon — they start with a question. On faith-worn-out-loud, the new Kingdom Shop, and the official Jesus Festival collection.",
@@ -644,6 +669,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
   {
     slug: "what-happens-after-you-say-yes",
+    seoDescription: "Nobody hands you a manual the moment you believe. An honest, gentle guide to the first weeks of following Jesus — what changes and what to do next.",
     title: "What Happens After You Say Yes to Jesus",
     description:
       "Nobody hands you a manual the moment you believe. Here's an honest, gentle guide to the first weeks of following Jesus — what changes, what doesn't, and what to do next.",
@@ -717,6 +743,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
   {
     slug: "faith-at-work-kingdom-business",
+    seoTitle: "Faith at Work: Your Job Is Your Calling",
     title: "Your Job Is Not a Distraction From Your Calling",
     description:
       "Most Christians spend more waking hours at work than anywhere else — and quietly assume it's spiritually neutral territory. It isn't.",
@@ -751,6 +778,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
   {
     slug: "one-invitation-changes-everything",
+    seoTitle: "One Invitation Can Change Everything",
     title: "The Most Underrated Thing You Can Do This Year",
     description:
       "Not a program. Not a platform. Just one honest invitation to one person — and why it's still how almost everyone finds their way in.",

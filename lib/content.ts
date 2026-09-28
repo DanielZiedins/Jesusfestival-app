@@ -5,7 +5,7 @@ export const SITE = {
   name: "Jesus Festival",
   url: "https://www.jesusfestival.app",
   description:
-    "Jesus Festival Hamilton 2026 recap: 70+ salvations and 50+ baptisms reported so far, 3,000+ hot dogs and drinks shared, and a record community turnout. All glory to God—the festival ended, but the mission continues.",
+    "Jesus Festival Hamilton 2026: 70+ salvations and 50+ baptisms reported so far, 3,000+ hot dogs and drinks shared and a record turnout. All glory to God.",
   eventDatesISO: "2026-09-04T18:30:00-04:00", // Friday 6:30pm Pure Worship Night
   tagline: "Celebration. Worship. Unity.",
   motto: "Love God. Love People. Change the World.",
@@ -213,8 +213,14 @@ export const TIMELINE = [
   },
   {
     year: "2026",
-    title: "We're coming back",
-    text: "September 4–5 at Gage Park. Bethel Gospel Tabernacle leads Friday's Pure Worship Night, with Ant Lee Jr., Open Heaven and more to come.",
+    title: "A record weekend",
+    text: "September 4–5 at Gage Park, with Bethel Gospel Tabernacle, Ant Lee Jr., Open Heaven, Terry Posthumus and more. Early reports: 70+ salvations and 50+ baptisms.",
+  },
+  {
+    year: "2027",
+    title: "The next chapter",
+    text: "Dates coming soon — be the first to know.",
+    href: "/jesus-festival-2027",
   },
 ];
 

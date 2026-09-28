@@ -5,7 +5,7 @@ import { KINGDOM_SITES, SITE } from "@/lib/content";
 export const metadata: Metadata = {
   title: "The Kingdom Network",
   description:
-    "Jesus Festival is one part of a wider family of Kingdom projects — city outreach, global missions, discipleship tools, disaster relief and Kingdom businesses. Explore all of them.",
+    "Jesus Festival is one part of a wider family of Kingdom projects — city outreach, global missions, discipleship, disaster relief and Kingdom business.",
   alternates: { canonical: "/network" },
   openGraph: {
     title: "The Kingdom Network | Jesus Festival",

@@ -7,8 +7,8 @@ import { breadcrumbJsonLd, serializeJsonLd, webPageJsonLd } from "@/lib/seo";
 const PATH = "/before-you-go";
 
 export const metadata: Metadata = {
-  title: "Jesus Festival Before You Go Checklist | Gage Park Go Bag",
-  description: "The final Jesus Festival Hamilton checklist: Friday and Saturday times, live Gage Park forecast, packing, Main and Ottawa detours, offline app, meeting point, directions and help.",
+  title: "Before You Go: Jesus Festival Checklist",
+  description: "The Jesus Festival before-you-go checklist: Friday and Saturday times, Gage Park forecast, packing, detours, the offline app and a meeting point.",
   alternates: { canonical: PATH },
   openGraph: {
     title: "Jesus Festival Before You Go — Your Final Go Bag",

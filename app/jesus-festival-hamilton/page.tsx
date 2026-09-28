@@ -7,7 +7,6 @@ import FestivalVisitPlanner from "@/components/FestivalVisitPlanner";
 import { ARTISTS, EXPECT, IMG, LINKS, SCHEDULE, SITE } from "@/lib/content";
 import {
   breadcrumbJsonLd,
-  FESTIVAL_EVENT_JSONLD,
   FESTIVAL_FAQS,
   FESTIVAL_GUIDE_PATH,
   serializeJsonLd,
@@ -15,7 +14,7 @@ import {
 } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Jesus Festival Hamilton 2026: Free Festival Guide",
+  title: "Jesus Festival Hamilton: The Official Guide",
   description:
     "Plan Jesus Festival Hamilton 2026 at Gage Park: September 4–5 dates and times, free admission, full lineup, schedule, parking, transit, Kids Zone and what to bring.",
   alternates: { canonical: FESTIVAL_GUIDE_PATH },
@@ -57,7 +56,7 @@ export default function FestivalGuidePage() {
     <main className="min-h-screen bg-ink pb-20 text-white">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd([FESTIVAL_EVENT_JSONLD, pageJsonLd, breadcrumbs]) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd([pageJsonLd, breadcrumbs]) }}
       />
 
       <header className="relative isolate overflow-hidden border-b border-white/10">

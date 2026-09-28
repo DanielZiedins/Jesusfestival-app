@@ -6,7 +6,7 @@ import { SITE } from "@/lib/content";
 export const metadata: Metadata = {
   title: "The Jesus Festival Blog",
   description:
-    "Encouragement, practical faith and the story behind Jesus Festival Hamilton — on loving your city, reaching the people closest to you, and what comes after you say yes to Jesus.",
+    "Encouragement, practical faith and the story behind Jesus Festival Hamilton — loving your city, reaching the people closest to you, and life after yes.",
   alternates: { canonical: "/blog" },
   openGraph: {
     title: "The Jesus Festival Blog",

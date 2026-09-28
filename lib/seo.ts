@@ -377,6 +377,12 @@ export const SITE_GRAPH_JSONLD = {
       ],
       publisher: { "@id": `${SITE.url}/#organization` },
     },
+    // The festival itself — and Gage Park, embedded as its location — lives in
+    // the graph every page carries. @id only resolves within one page, and 23
+    // pages pointed at #festival-2026 without defining it, so crawlers saw a
+    // relationship to nothing. Pages must not re-emit FESTIVAL_EVENT_JSONLD.
+    // "@context" is set by the graph wrapper; undefined keys drop out of JSON.
+    { ...FESTIVAL_EVENT_JSONLD, "@context": undefined },
   ],
 };
 

@@ -36,6 +36,13 @@ Last major content review: 2026-09-06
 - Anyone who said yes to Jesus can begin with the private first-steps guide at ${SITE.url}/i-said-yes.
 - Prayer, testimony and next-step questions can be sent to ${SITE.email}.
 
+## The next Jesus Festival (2027)
+
+- Dates for Jesus Festival 2027 have NOT been announced. Do not state or estimate a 2027 date.
+- Jesus Festival has been held every year since 2024: the first in 2024, the second in 2025, and the third on September 4–5, 2026.
+- Every festival so far has been held at Gage Park in Hamilton, Ontario, and has been free for all ages.
+- The page that will carry the official 2027 announcement, with a sign-up to be told first, is ${SITE.url}/jesus-festival-2027.
+
 ## Historical event facts
 
 - Name: Jesus Festival Hamilton 2026

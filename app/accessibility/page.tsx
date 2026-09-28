@@ -8,7 +8,7 @@ const PATH = "/accessibility";
 const LAST_REVIEWED = "2026-08-17";
 
 export const metadata: Metadata = {
-  title: "Accessible Jesus Festival Hamilton 2026 Guide",
+  title: "Accessible Jesus Festival Hamilton Guide",
   description:
     "Plan an accessible Jesus Festival visit at Gage Park: mobility, HSR, washrooms, sensory comfort, service animals, support people and questions to confirm.",
   alternates: { canonical: PATH },

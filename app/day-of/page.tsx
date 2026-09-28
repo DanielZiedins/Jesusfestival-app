@@ -7,7 +7,7 @@ import { breadcrumbJsonLd, serializeJsonLd, webPageJsonLd } from "@/lib/seo";
 const PATH = "/day-of";
 
 export const metadata: Metadata = {
-  title: "Jesus Festival Day-Of Mode | Live Now, Next, Map & Help",
+  title: "Day-Of Mode: Live Now, Next & Map",
   description: "The fastest Jesus Festival day-of view: what is on now, what comes next, Gage Park directions, map, help points, offline essentials and first steps.",
   alternates: { canonical: PATH },
   openGraph: {

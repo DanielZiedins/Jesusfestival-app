@@ -9,11 +9,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const app: MetadataRoute.Sitemap = INDEXABLE_ROUTES.map((path) => ({
     url: `${SITE.url}${path === "/" ? "" : path}`,
     lastModified: majorUpdate,
-    changeFrequency: path === "/news" || path === "/i-said-yes" || path === "/movement" || path === "/discipleship" ? "daily" : "weekly",
+    changeFrequency: path === "/news" || path === "/i-said-yes" || path === "/movement" || path === "/discipleship" || path === "/jesus-festival-2027" ? "daily" : "weekly",
     priority:
       path === "/"
         ? 1
-        : path === "/i-said-yes" || path === "/movement" || path === "/discipleship"
+        : path === "/i-said-yes" || path === "/movement" || path === "/discipleship" || path === "/jesus-festival-2027"
           ? 0.95
           : path === "/day-of" || path === "/festival-weekend" || path === "/bring-a-group"
             ? 0.8

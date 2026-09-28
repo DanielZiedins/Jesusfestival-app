@@ -8,7 +8,7 @@ import { SITE } from "@/lib/content";
 export const metadata: Metadata = {
   title: "The Festival Light Hunt",
   description:
-    "Twelve QR codes hide around Gage Park during Jesus Festival — six of them through Vendor Row. Find them all to collect Scripture, unlock nine shareable badges, pour Light Points into Revive the City, and become a Light Bearer.",
+    "Twelve QR codes hide around Gage Park during Jesus Festival. Find them to collect Scripture, unlock nine shareable badges and become a Light Bearer.",
   alternates: { canonical: "/hunt" },
   openGraph: {
     title: "The Festival Light Hunt | Jesus Festival",
