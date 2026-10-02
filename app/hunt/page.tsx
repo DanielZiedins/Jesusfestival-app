@@ -4,6 +4,7 @@ import HuntBoard from "@/components/hunt/HuntBoard";
 import HuntSeasonNotice, { HuntSeasonEyebrow } from "@/components/hunt/HuntSeasonNotice";
 import { STATIONS, TOTAL_POINTS } from "@/lib/hunt";
 import { SITE } from "@/lib/content";
+import { serializeJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "The Festival Light Hunt",
@@ -50,10 +51,48 @@ const JSONLD = {
   ],
 };
 
+
+// Phrased to stay true in every season: how the hunt works during a festival,
+// and an honest "not announced" about whether it returns.
+const HUNT_FAQS = [
+  {
+    question: "What is the Jesus Festival Light Hunt?",
+    answer:
+      "A free QR-code scavenger hunt hidden around Gage Park during Jesus Festival in Hamilton. Twelve codes — six of them among the vendor booths — each carry a Bible verse, light a lamp in the festival app, and add Light Points to Revive the City.",
+  },
+  {
+    question: "Do I need to download an app to play the Light Hunt?",
+    answer:
+      "No. Scanning a code with your phone camera opens the Light Hunt in your browser. Your lamps and badges save on your phone, and it keeps working even with no signal in the park.",
+  },
+  {
+    question: "What do you win in the Light Hunt?",
+    answer:
+      "Nine shareable digital badges — from First Light to Light Bearer for finding all twelve — plus Scripture at every station. There are no prizes or discounts; the badges are images you can post anywhere.",
+  },
+  {
+    question: "Will the Light Hunt happen again?",
+    answer:
+      "The 2026 Light Hunt is complete. Plans for the next festival, including whether the Light Hunt returns, will be shared when the next Jesus Festival is announced.",
+  },
+];
+
 export default function HuntPage() {
   return (
     <main className="mx-auto min-h-screen max-w-md px-5 pb-20 pt-10">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSONLD) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd([
+            JSONLD,
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: HUNT_FAQS.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.answer } })),
+            },
+          ]),
+        }}
+      />
 
       <nav aria-label="Breadcrumb" className="text-[12px] font-bold uppercase tracking-[0.18em] text-white/55">
         <Link href="/" className="hover:text-gold-400">Festival</Link>
@@ -104,6 +143,28 @@ export default function HuntPage() {
           No signal at the park? No problem. Your lamps save on this phone and your points reach the
           city the moment you get a bar back.
         </p>
+      </section>
+
+      <section aria-labelledby="hunt-faq" className="mt-8">
+        <h2 id="hunt-faq" className="font-display text-lg font-bold text-white">Light Hunt questions</h2>
+        <div className="mt-3 space-y-2.5">
+          {HUNT_FAQS.map((f) => (
+            <details key={f.question} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+              <summary className="cursor-pointer list-none font-display text-[14px] font-bold text-white">{f.question}</summary>
+              <p className="mt-2 text-[13.5px] leading-relaxed text-white/70">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+        <Link
+          href="/blog/the-light-hunt-gage-park-scavenger-hunt"
+          className="mt-4 flex items-center justify-between gap-3 rounded-2xl border border-gold/30 bg-gold/[0.07] p-4 text-[13.5px] font-bold text-white active:scale-[0.99]"
+        >
+          <span>Read the full Light Hunt guide — stations, badges and why six lights sit in Vendor Row</span>
+          <span aria-hidden className="text-gold-400">→</span>
+        </Link>
+        <Link href="/jesus-festival-2027" className="mt-2.5 block text-center text-[12.5px] font-semibold text-white/55 underline underline-offset-4">
+          Be first to hear about the next festival
+        </Link>
       </section>
     </main>
   );

@@ -67,7 +67,7 @@ export const APP_ROUTE_META: Record<string, { title: string; description: string
   },
   "/volunteer": {
     title: "Volunteer at Jesus Festival",
-    description: "Apply to serve, access your volunteer team, and help welcome Hamilton to Jesus Festival 2026.",
+    description: "Apply to serve, access your volunteer team, and help welcome Hamilton at the next Jesus Festival.",
   },
   "/movement": {
     title: "The Jesus Festival Movement",

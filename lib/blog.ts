@@ -808,3 +808,46 @@ export const postBySlug = (slug: string) => BLOG_POSTS.find((p) => p.slug === sl
 
 /** Newest first — the order the blog index and sitemap use. */
 export const sortedPosts = () => [...BLOG_POSTS].sort((a, b) => b.date.localeCompare(a.date));
+
+/**
+ * Festival-weekend guides and reports. Everything else is evergreen faith
+ * writing. New posts default to evergreen; add festival ones here.
+ */
+const FESTIVAL_POSTS = new Set([
+  "jesus-festival-hamilton-2026-recap",
+  "jesus-festival-starts-tomorrow-final-checklist",
+  "jesus-festival-saturday-extended-updated-schedule-2026",
+  "free-things-to-do-hamilton-september-2026",
+  "bringing-the-kids-to-jesus-festival",
+  "never-been-to-anything-like-this",
+  "gage-park-festival-guide",
+  "the-light-hunt-gage-park-scavenger-hunt",
+]);
+
+/**
+ * "Keep reading" picks: the next two posts in the same group (wrapping
+ * around), plus one from the other group so festival readers meet the faith
+ * writing and vice versa.
+ *
+ * This used to be "the two newest posts", so every article recommended the
+ * same pair: the recap had 33 inbound links and 13 of 16 posts had one.
+ * Walking a ring gives every post the same number of inbound links, which is
+ * what lets crawlers that follow links (GPTBot, ClaudeBot, Google before it
+ * renders) actually reach the whole archive.
+ */
+export function relatedPosts(slug: string): BlogPost[] {
+  const all = sortedPosts();
+  if (!all.some((p) => p.slug === slug)) return [];
+  const festival = FESTIVAL_POSTS.has(slug);
+  const same = all.filter((p) => FESTIVAL_POSTS.has(p.slug) === festival);
+  const other = all.filter((p) => FESTIVAL_POSTS.has(p.slug) !== festival);
+  const i = same.findIndex((p) => p.slug === slug);
+  const picks = [same[(i + 1) % same.length], same[(i + 2) % same.length]];
+  if (other.length) picks.push(other[i % other.length]);
+  const seen = new Set<string>([slug]);
+  return picks.filter((p): p is BlogPost => {
+    if (!p || seen.has(p.slug)) return false;
+    seen.add(p.slug);
+    return true;
+  });
+}

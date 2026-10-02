@@ -12,6 +12,11 @@ const LINKS = [
   { href: "/blog", label: "Stories & Updates" },
   { href: "/faq", label: "Festival FAQ" },
   { href: "/shop", label: "Official Shop" },
+  // These three were in the sitemap with no inbound link anywhere in the
+  // server HTML, so crawlers that don't run JS could never reach them.
+  { href: "/volunteer", label: "Volunteer" },
+  { href: "/give", label: "Give" },
+  { href: "/connect", label: "Connect" },
   { href: "/schedule", label: "2026 Schedule Archive" },
   { href: "/jesus-festival-hamilton", label: "2026 Festival Archive" },
 ];

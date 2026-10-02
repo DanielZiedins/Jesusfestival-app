@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BLOG_POSTS, postBySlug, sortedPosts } from "@/lib/blog";
+import { BLOG_POSTS, postBySlug, relatedPosts } from "@/lib/blog";
 import { KINGDOM_SITES, SITE } from "@/lib/content";
 import Rich from "@/components/blog/Rich";
 import { ReadingProgress, ShareArticle } from "@/components/blog/ArticleChrome";
@@ -44,7 +44,7 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
     .map((d) => KINGDOM_SITES.find((s) => s.domain === d))
     .filter((s): s is (typeof KINGDOM_SITES)[number] => Boolean(s));
 
-  const more = sortedPosts().filter((p) => p.slug !== post.slug).slice(0, 2);
+  const more = relatedPosts(post.slug);
 
   const sourceCitations = post.sources?.map((source) => ({ "@type": "CreativeWork", name: source.name, url: source.url })) ?? [];
   const articleAbout = ["gage-park-festival-guide", "free-things-to-do-hamilton-september-2026"].includes(post.slug)
