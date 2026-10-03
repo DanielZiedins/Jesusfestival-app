@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import ScreenHeader from "@/components/ScreenHeader";
 import Reveal from "@/components/Reveal";
 import { NewsIcon, BellIcon, Check, ArrowRight } from "@/components/icons";
@@ -13,7 +12,9 @@ const CATEGORY_STYLE: Record<string, string> = {
   update: "bg-purple-500/20 text-purple-200",
   lineup: "bg-gold/20 text-gold-400",
   schedule: "bg-emerald-500/20 text-emerald-200",
-  spotlight: "bg-ember/20 text-ember",
+  // Light text on the tint, like its siblings; "ember" (brand purple #9333ea)
+  // on its own 20% tint was ~3:1.
+  spotlight: "bg-ember/20 text-fuchsia-200",
 };
 
 /**
@@ -153,13 +154,10 @@ export default function NewsScreen() {
         <p className="py-10 text-center text-sm text-white/50">No updates yet — check back soon!</p>
       ) : (
         <div className="space-y-3 pb-4">
-          {posts.map((p, i) => (
-            <motion.article
+          {posts.map((p) => (
+            <article
               key={p.id}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: Math.min(i * 0.05, 0.3) }}
-              className={`relative overflow-hidden rounded-2xl border p-4 ${
+              className={`jf-rise relative overflow-hidden rounded-2xl border p-4 ${
                 p.pinned ? "border-gold/30 bg-gradient-to-br from-gold/10 to-white/5" : "border-white/10 bg-white/5"
               }`}
             >
@@ -172,7 +170,7 @@ export default function NewsScreen() {
               </div>
               <h3 className="font-display text-lg font-bold leading-snug text-white">{p.title}</h3>
               <LinkedBody text={p.body} />
-            </motion.article>
+            </article>
           ))}
         </div>
       )}

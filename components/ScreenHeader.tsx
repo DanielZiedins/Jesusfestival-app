@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 import { Eyebrow } from "./Reveal";
 
@@ -16,11 +15,8 @@ export default function ScreenHeader({
   icon?: ReactNode;
 }) {
   return (
-    <motion.header
-      initial={{ opacity: 0, y: 18 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="mx-auto max-w-md pt-6 pb-5 text-center safe-top"
+    <header
+      className="jf-rise mx-auto max-w-md pt-6 pb-5 text-center safe-top"
     >
       {icon && (
         <div className="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-sky-glow to-navy-700 text-white shadow-glow">
@@ -36,6 +32,6 @@ export default function ScreenHeader({
           {subtitle}
         </p>
       )}
-    </motion.header>
+    </header>
   );
 }

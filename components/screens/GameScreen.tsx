@@ -971,7 +971,7 @@ function Celebration({ data, onClose }: { data: { label: string; subtitle?: stri
           />
         ))}
       </div>
-      <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="relative mx-6 max-w-sm rounded-3xl border border-white/10 bg-gradient-to-b from-navy-900 to-ink p-7 text-center">
+      <div className="jf-pop relative mx-6 max-w-sm rounded-3xl border border-white/10 bg-gradient-to-b from-navy-900 to-ink p-7 text-center">
         <CaptainGoodness size={110} />
         <p className="mt-1 text-[11px] font-bold uppercase tracking-widest text-purple-300">Community celebration</p>
         <h3 className="mt-1 font-display text-2xl font-extrabold text-gold-400">{data.label}</h3>
@@ -985,7 +985,7 @@ function Celebration({ data, onClose }: { data: { label: string; subtitle?: stri
         <button onClick={onClose} className="mt-6 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-8 py-3 font-bold text-navy-950 shadow-glow active:scale-95">
           Keep going! 🎉
         </button>
-      </motion.div>
+      </div>
     </div>
     </Portal>
   );

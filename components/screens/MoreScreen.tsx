@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import ScreenHeader from "@/components/ScreenHeader";
@@ -86,7 +85,7 @@ export default function MoreScreen({
   return (
     <div>
       {view === "hub" && (
-          <motion.div key="hub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="px-4">
+          <div key="hub" className="jf-fade px-4">
             <ScreenHeader eyebrow="Explore more" title="More" subtitle="The movement, discipleship, the map & ways to connect." />
 
             {onSearch && (
@@ -300,7 +299,7 @@ export default function MoreScreen({
                 </Reveal>
               ))}
             </div>
-          </motion.div>
+          </div>
         )}
 
       {view === "volunteers" && (
@@ -312,7 +311,7 @@ export default function MoreScreen({
       )}
 
       {view !== "hub" && view !== "volunteers" && (
-          <motion.div key={view} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
+          <div key={view} className="jf-rise">
             <div className="sticky top-0 z-30 bg-ink/80 px-4 pt-4 backdrop-blur safe-top">
               <button
                 onClick={() => {
@@ -334,7 +333,7 @@ export default function MoreScreen({
             {view === "connect" && <ConnectScreen />}
             {view === "settings" && <SettingsScreen />}
             {view === "install" && <InstallScreen />}
-          </motion.div>
+          </div>
         )}
     </div>
   );

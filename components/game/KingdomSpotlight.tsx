@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import type { Spotlight } from "@/lib/game";
 import { hasProfanity, tidy } from "@/lib/clean";
 
@@ -67,13 +67,9 @@ export default function KingdomSpotlight({
         <div className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-gold/15 blur-2xl" />
         <AnimatePresence mode="wait">
           {featured && (
-            <motion.div
+            <div
               key={featured.id}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.4 }}
-              className="relative flex items-center gap-3"
+              className="jf-rise relative flex items-center gap-3"
             >
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gradient-to-br from-gold-400 to-gold-600 text-lg text-navy-950">🌟</span>
               <div>
@@ -83,7 +79,7 @@ export default function KingdomSpotlight({
                 </p>
                 <p className="text-[13px] leading-snug text-white/70">{featured.action}</p>
               </div>
-            </motion.div>
+            </div>
           )}
         </AnimatePresence>
       </div>

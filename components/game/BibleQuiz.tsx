@@ -101,7 +101,7 @@ export function QuizModal({ quiz, done, onComplete, onClose }: { quiz: Quiz; don
               </div>
 
               {/* No exit-dependent swap — must advance even when rAF is throttled */}
-              <motion.div key={i} initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }}>
+              <div key={i} className="jf-rise">
                   <p className="mb-5 text-center font-display text-[22px] font-bold leading-snug text-white">{q.q}</p>
                   <div className="space-y-2.5">
                     {q.options.map((opt, idx) => {
@@ -122,7 +122,7 @@ export function QuizModal({ quiz, done, onComplete, onClose }: { quiz: Quiz; don
                       );
                     })}
                   </div>
-                </motion.div>
+                </div>
             </>
           ) : (
             <div className="flex flex-col items-center py-4 text-center">

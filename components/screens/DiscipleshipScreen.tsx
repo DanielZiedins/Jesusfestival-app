@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import ScreenHeader from "@/components/ScreenHeader";
 import Reveal, { Eyebrow } from "@/components/Reveal";
 import Scripture from "@/components/Scripture";
@@ -94,14 +93,11 @@ export default function DiscipleshipScreen() {
         <PartnerList title="Ministries" items={DISCIPLESHIP.ministries} />
       </div>
 
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        className="pb-2 pt-2 text-center text-xs italic text-white/55"
+      <p
+        className="jf-fade pb-2 pt-2 text-center text-xs italic text-white/55"
       >
         &ldquo;Let us consider how we may spur one another on toward love and good deeds.&rdquo;
-      </motion.p>
+      </p>
     </div>
   );
 }

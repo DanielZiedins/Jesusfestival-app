@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { track } from "@vercel/analytics";
 import ScreenHeader from "@/components/ScreenHeader";
 import Reveal, { Eyebrow } from "@/components/Reveal";
@@ -176,15 +175,12 @@ export default function ShopScreen({ initialData }: { initialData?: ShopData }) 
                 </p>
               </Reveal>
               <div className="grid grid-cols-2 gap-3">
-                {data.fresh.map((product, index) => (
-                  <motion.div
+                {data.fresh.map((product) => (
+                  <div
                     key={product.id}
-                    initial={{ opacity: 0, y: 14 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: Math.min(index * 0.04, 0.35) }}
-                  >
+                   className="jf-rise">
                     <ProductCard product={product} />
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </section>

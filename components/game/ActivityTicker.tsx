@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import type { Spotlight } from "@/lib/game";
 
 // A gentle live ticker of recent community acts — proof the city is moving.
@@ -27,16 +27,12 @@ export default function ActivityTicker({ entries }: { entries: Spotlight[] }) {
       </span>
       <div className="relative h-5 min-w-0 flex-1 overflow-hidden">
         <AnimatePresence mode="wait">
-          <motion.p
+          <p
             key={e.id}
-            initial={{ y: 16, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -16, opacity: 0 }}
-            transition={{ duration: 0.35 }}
-            className="truncate text-[12px] font-medium text-white/75"
+            className="jf-rise truncate text-[12px] font-medium text-white/75"
           >
             <span className="font-bold text-white">{e.name || "Someone"}</span> {e.action} 🙌
-          </motion.p>
+          </p>
         </AnimatePresence>
       </div>
     </div>

@@ -74,15 +74,12 @@ function HUD({ score, goal, combo, label }: { score: number; goal: number; combo
         </span>
         <AnimatePresence>
           {combo > 1 && (
-            <motion.span
+            <span
               key={combo}
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="rounded-full bg-gold/20 px-2.5 py-0.5 text-xs font-extrabold text-gold-400"
+              className="jf-pop rounded-full bg-gold/20 px-2.5 py-0.5 text-xs font-extrabold text-gold-400"
             >
               🔥 {combo}× combo
-            </motion.span>
+            </span>
           )}
         </AnimatePresence>
       </div>
@@ -143,10 +140,8 @@ function WinOverlay({ points, stars = 3, onClaim }: { points: number; stars?: nu
     onClaim();
   };
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-ink/80 p-6 text-center backdrop-blur"
+    <div
+      className="jf-fade absolute inset-0 z-10 flex flex-col items-center justify-center bg-ink/80 p-6 text-center backdrop-blur"
     >
       <motion.div initial={{ scale: 0.5, rotate: -8 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: "spring", stiffness: 200, damping: 12 }}>
         <CaptainGoodness size={96} reaction="celebrate" />
@@ -154,16 +149,16 @@ function WinOverlay({ points, stars = 3, onClaim }: { points: number; stars?: nu
       <h4 className="mt-2 font-display text-3xl font-extrabold text-white">You did it! 🎉</h4>
       <div className="mt-3">
         <Stars stars={stars} />
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="mt-1.5 text-sm font-bold text-gold-400">
+        <p className="jf-fade mt-1.5 text-sm font-bold text-gold-400">
           {STAR_LINES[stars]}
-        </motion.p>
+        </p>
       </div>
       <p className="mt-2 max-w-xs text-[13px] text-white/70">{line}</p>
       <button onClick={claim} disabled={claimed} className="mt-5 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-7 py-3.5 text-base font-extrabold text-navy-950 shadow-glow active:scale-95 disabled:opacity-60">
         {claimed ? "Added! ✨" : `Add +${points + bonus} to the city ✨`}
       </button>
       {bonus > 0 && !claimed && <p className="mt-2 text-[11px] font-semibold text-purple-200">includes +{bonus} skill bonus 🌟</p>}
-    </motion.div>
+    </div>
   );
 }
 
@@ -277,10 +272,7 @@ function LightCity({ def, onWin }: { def: MiniGameDef; onWin: (p: number, stars:
         {/* storm cloud */}
         <AnimatePresence>
           {cloud !== null && (
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 30 }}
+            <div
               onClick={() => {
                 fire(50, 30, { text: "+3", count: 12, colors: ["#c084fc", "#a855f7"] });
                 scoreRef.current = Math.min(GOAL, scoreRef.current + 2);
@@ -289,10 +281,10 @@ function LightCity({ def, onWin }: { def: MiniGameDef; onWin: (p: number, stars:
                 setCloud(null);
               }}
               style={{ left: `${8 + (cloud % COLS) * 19}%`, top: `${14 + Math.floor(cloud / COLS) * 20}%` }}
-              className="absolute cursor-pointer text-4xl"
+              className="jf-rise absolute cursor-pointer text-4xl"
             >
               🌧️
-            </motion.div>
+            </div>
           )}
         </AnimatePresence>
         {layer}
@@ -487,17 +479,14 @@ function EncourageCrowd({ def, onWin }: { def: MiniGameDef; onWin: (p: number, s
         <AnimatePresence>
           {!won &&
             people.map((p) => (
-              <motion.button
+              <button
                 key={p.id}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0, opacity: 0 }}
                 onClick={() => encourage(p)}
                 style={{ left: `${p.x}%`, top: `${p.y}%`, position: "absolute" }}
-                className="-translate-x-1/2 -translate-y-1/2 text-4xl active:scale-90"
+                className="jf-pop -translate-x-1/2 -translate-y-1/2 text-4xl active:scale-90"
               >
                 {p.happy ? "😄" : "😔"}
-              </motion.button>
+              </button>
             ))}
         </AnimatePresence>
         {layer}
@@ -552,7 +541,7 @@ function HelpNeighbor({ def, onWin }: { def: MiniGameDef; onWin: (p: number, sta
         ))}
       </div>
       <div className="my-auto">
-          <motion.div key={round} initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }}>
+          <div key={round} className="jf-rise">
             <p className="mb-6 text-center font-display text-2xl font-bold leading-snug text-white">{s.q}</p>
             <div className="space-y-3">
               {s.options.map((opt, i) => {
@@ -573,7 +562,7 @@ function HelpNeighbor({ def, onWin }: { def: MiniGameDef; onWin: (p: number, sta
                 );
               })}
             </div>
-          </motion.div>
+          </div>
       </div>
       <AnimatePresence>{won && <WinOverlay points={def.points} stars={stars} onClaim={() => onWin(def.points, stars)} />}</AnimatePresence>
     </div>
@@ -905,9 +894,9 @@ function ArkPairs({ def, onWin }: { def: MiniGameDef; onWin: (p: number, stars: 
                 }`}
               >
                 {show ? (
-                  <motion.span key="face" initial={{ scale: 0.3, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 300, damping: 15 }}>
+                  <span key="face" className="jf-pop">
                     {c.animal}
-                  </motion.span>
+                  </span>
                 ) : (
                   <span className="text-2xl opacity-70">🌈</span>
                 )}

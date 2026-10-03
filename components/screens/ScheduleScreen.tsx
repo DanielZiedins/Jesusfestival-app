@@ -131,12 +131,9 @@ export default function ScheduleScreen() {
       {/* Keyed remount, no AnimatePresence: a stalled exit (throttled rAF / battery
           saver) must never leave the wrong day on screen at the festival. */}
       <div>
-        <motion.div
+        <div
           key={active.id}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.28 }}
-          className="mx-auto max-w-md"
+          className="jf-rise mx-auto max-w-md"
         >
           <div
             className={`mb-4 rounded-2xl border p-4 ${
@@ -303,7 +300,7 @@ export default function ScheduleScreen() {
               </p>
             </>
           )}
-        </motion.div>
+        </div>
       </div>
 
       {toast && (

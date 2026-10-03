@@ -537,7 +537,7 @@ function PrayerJourney({
 
             <div className="flex flex-1 flex-col overflow-y-auto text-center">
               <AnimatePresence>
-                <motion.div key={idx} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="my-auto w-full">
+                <div key={idx} className="jf-rise my-auto w-full">
                   <span className={`inline-block rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wide ${p.kind === "praise" ? "bg-gold/20 text-gold-400" : "bg-purple-500/20 text-purple-200"}`}>
                     {p.kind === "praise" ? "🎉 Praise with them" : "🙏 Pray for"}
                   </span>
@@ -546,7 +546,7 @@ function PrayerJourney({
                     — {p.name || "Someone"}
                     {p.church ? ` · ${p.church}` : ""}
                   </p>
-                </motion.div>
+                </div>
               </AnimatePresence>
             </div>
 
@@ -556,9 +556,9 @@ function PrayerJourney({
           </>
         ) : (
           <div className="flex flex-1 flex-col items-center justify-center text-center">
-            <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 200, damping: 12 }} className="text-6xl">
+            <div className="jf-pop text-6xl">
               🕊️
-            </motion.div>
+            </div>
             <h3 className="mt-4 font-display text-3xl font-extrabold text-white">
               {queue.length === 0 ? "Every prayer is lifted 💛" : `You lifted up ${lifted} ${lifted === 1 ? "person" : "people"}!`}
             </h3>

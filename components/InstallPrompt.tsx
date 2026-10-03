@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { Download, Share } from "./icons";
 
 type BIPEvent = Event & {
@@ -70,12 +70,8 @@ export default function InstallPrompt() {
   return (
     <AnimatePresence>
       {show && (
-        <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 80 }}
-          transition={{ type: "spring", stiffness: 260, damping: 26 }}
-          className="pointer-events-auto fixed inset-x-3 bottom-[88px] z-50 mx-auto max-w-md"
+        <div
+          className="jf-rise pointer-events-auto fixed inset-x-3 bottom-[88px] z-50 mx-auto max-w-md"
         >
           <div className="glass-strong flex items-center gap-3 rounded-2xl p-3 shadow-card">
             <div className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl bg-gradient-to-br from-navy-800 to-ink ring-1 ring-purple-500/40">
@@ -109,7 +105,7 @@ export default function InstallPrompt() {
               ✕
             </button>
           </div>
-        </motion.div>
+        </div>
       )}
     </AnimatePresence>
   );

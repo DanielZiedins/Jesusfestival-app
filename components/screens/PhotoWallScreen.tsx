@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import ScreenHeader from "@/components/ScreenHeader";
 import Reveal from "@/components/Reveal";
 import { fetchPhotos, photoUrl, submitPhoto, type Photo } from "@/lib/photos";
@@ -152,14 +151,11 @@ export default function PhotoWallScreen() {
         </div>
       ) : (
         <div className="mx-auto grid max-w-md grid-cols-2 gap-3">
-          {photos.map((p, i) => (
-            <motion.button
+          {photos.map((p) => (
+            <button
               key={p.id}
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: Math.min(i * 0.04, 0.4) }}
               onClick={() => setLightbox(p)}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 text-left"
+              className="jf-rise group relative overflow-hidden rounded-2xl border border-white/10 text-left"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={photoUrl(p.path)} alt={p.caption ?? "Festival moment"} loading="lazy" className="aspect-square w-full object-cover transition group-active:scale-105" />
@@ -169,7 +165,7 @@ export default function PhotoWallScreen() {
                   {p.name && <p className="mt-0.5 text-[10px] text-white/55">— {p.name.split(/\s+/)[0]}</p>}
                 </div>
               )}
-            </motion.button>
+            </button>
           ))}
         </div>
       )}

@@ -275,11 +275,9 @@ export default function FestivalMap() {
 
       {/* ===== Selected place ===== */}
       {selected && (
-        <motion.div
+        <div
           key={selected.id}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-3 rounded-2xl border border-white/12 bg-white/[0.05] p-4"
+          className="jf-rise mt-3 rounded-2xl border border-white/12 bg-white/[0.05] p-4"
         >
           <div className="flex items-start gap-3">
             <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/[0.07] text-2xl" aria-hidden="true">
@@ -323,7 +321,7 @@ export default function FestivalMap() {
               <Share width={13} height={13} /> Meet me here
             </button>
           </div>
-        </motion.div>
+        </div>
       )}
 
       {/* ===== Everything on the map, as a list ===== */}

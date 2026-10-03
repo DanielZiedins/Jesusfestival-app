@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import Portal from "../Portal";
 import CaptainGoodness from "./CaptainGoodness";
 import CityScene from "./CityScene";
@@ -71,20 +71,16 @@ export default function GameIntro({ onDone }: { onDone: () => void }) {
 
         <div className="relative flex flex-1 flex-col justify-center px-6 pb-8">
           <AnimatePresence mode="wait">
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -30 }}
-              transition={{ duration: 0.35 }}
-              className="flex flex-col items-center text-center"
+              className="jf-rise flex flex-col items-center text-center"
             >
               <IntroVisual visual={step.visual} />
 
               <p className="mt-6 text-[11px] font-bold uppercase tracking-[0.28em] text-gold-400">{step.eyebrow}</p>
               <h2 className="mt-2 font-display text-3xl font-extrabold leading-tight text-white">{step.title}</h2>
               <p className="mx-auto mt-3 max-w-sm text-[15px] leading-relaxed text-white/75">{step.body}</p>
-            </motion.div>
+            </div>
           </AnimatePresence>
         </div>
 
@@ -121,16 +117,13 @@ function IntroVisual({ visual }: { visual: Step["visual"] }) {
           { e: "📖", t: "Scripture" },
           { e: "✨", t: "Kindness" },
         ].map((a) => (
-          <motion.div
+          <div
             key={a.t}
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.1 + Math.random() * 0.4, type: "spring", stiffness: 200 }}
-            className="flex flex-col items-center gap-1 rounded-2xl border border-white/10 bg-white/5 p-3"
+            className="jf-pop flex flex-col items-center gap-1 rounded-2xl border border-white/10 bg-white/5 p-3"
           >
             <span className="text-2xl">{a.e}</span>
             <span className="text-[10px] font-semibold text-white/70">{a.t}</span>
-          </motion.div>
+          </div>
         ))}
       </div>
     );
@@ -141,15 +134,12 @@ function IntroVisual({ visual }: { visual: Step["visual"] }) {
         <div className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-gold/20 blur-2xl" />
         <div className="flex -space-x-3">
           {["🧑🏽", "👩🏻", "🧑🏿", "👵🏼", "🧒🏻", "👨🏾"].map((p, idx) => (
-            <motion.span
+            <span
               key={idx}
-              initial={{ y: 14, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: idx * 0.08 }}
-              className="grid h-11 w-11 place-items-center rounded-full border-2 border-ink bg-gradient-to-br from-purple-600/50 to-navy-800 text-lg"
+              className="jf-rise grid h-11 w-11 place-items-center rounded-full border-2 border-ink bg-gradient-to-br from-purple-600/50 to-navy-800 text-lg"
             >
               {p}
-            </motion.span>
+            </span>
           ))}
         </div>
       </div>

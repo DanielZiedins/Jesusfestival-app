@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { hasProfanity } from "@/lib/clean";
 import { crewCreate, crewGet, crewJoin, crewsSample, leaveCrew, myCrew, haptic, type Crew } from "@/lib/game";
 import { Check, Share, Users } from "@/components/icons";
@@ -191,17 +190,13 @@ function OtherCrews({ others }: { others: Crew[] }) {
       </p>
       <div className="grid grid-cols-2 gap-2">
         {others.slice(0, 4).map((c, i) => (
-          <motion.div
+          <div
             key={c.church + i}
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.05 }}
-            className="rounded-2xl border border-white/8 bg-white/[0.04] p-3"
+            className="jf-rise rounded-2xl border border-white/8 bg-white/[0.04] p-3"
           >
             <p className="text-[13px] font-bold leading-tight text-white">{c.church}</p>
             <p className="mt-0.5 text-[11px] text-gold-400">{c.members} rallying · {c.acts.toLocaleString()} acts 💛</p>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>

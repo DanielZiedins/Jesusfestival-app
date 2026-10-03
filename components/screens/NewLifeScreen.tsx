@@ -141,14 +141,11 @@ function Invitation({
           <div className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-gold/20 blur-[90px]" />
           <div className="absolute left-1/4 top-10 h-48 w-48 rounded-full bg-purple-500/25 blur-[80px]" />
         </div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ type: "spring", stiffness: 180, damping: 16 }}
-          className="relative mx-auto grid h-20 w-20 place-items-center rounded-full border border-gold/30 bg-gradient-to-br from-gold/20 to-purple-600/20 text-gold-400"
+        <div
+          className="jf-pop relative mx-auto grid h-20 w-20 place-items-center rounded-full border border-gold/30 bg-gradient-to-br from-gold/20 to-purple-600/20 text-gold-400"
         >
           <CrossIcon width={38} height={38} />
-        </motion.div>
+        </div>
         <div className="relative mt-5">
           <Eyebrow>The reason we do all of this</Eyebrow>
         </div>
@@ -272,13 +269,11 @@ function Invitation({
                   </span>
                 </button>
                 {on && (
-                  <motion.p
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    className="px-3.5 pb-4 text-[13px] leading-relaxed text-white/65"
+                  <p
+                    className="jf-fade px-3.5 pb-4 text-[13px] leading-relaxed text-white/65"
                   >
                     {item.a}
-                  </motion.p>
+                  </p>
                 )}
               </div>
             );
@@ -427,10 +422,8 @@ function Journey({
                   </div>
 
                   {on && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      className="px-3.5 pb-4"
+                    <div
+                      className="jf-fade px-3.5 pb-4"
                     >
                       <p className="text-[13px] leading-relaxed text-white/70">{s.why}</p>
                       <figure className="mt-3 border-l-2 border-gold/40 pl-3">
@@ -458,7 +451,7 @@ function Journey({
                           {s.action} <ArrowRight width={14} height={14} />
                         </button>
                       )}
-                    </motion.div>
+                    </div>
                   )}
                 </div>
               </Reveal>
@@ -581,11 +574,8 @@ function Rejoicing({ standing, onClose }: { standing: Standing; onClose: () => v
         className="jf-fade fixed inset-0 z-[95] flex items-center justify-center overflow-hidden bg-ink/92 px-6 backdrop-blur"
       >
         {/* Light from above */}
-        <motion.div
-          initial={{ opacity: 0, scaleY: 0.5 }}
-          animate={{ opacity: 1, scaleY: 1 }}
-          transition={{ duration: 1.1, ease: "easeOut" }}
-          className="pointer-events-none absolute inset-x-0 top-0 h-[70vh] origin-top"
+        <div
+          className="jf-pop pointer-events-none absolute inset-x-0 top-0 h-[70vh] origin-top"
           style={{
             background:
               "conic-gradient(from 190deg at 50% 0%, transparent 0deg, rgba(245,166,35,0.20) 12deg, transparent 26deg, transparent 34deg, rgba(147,51,234,0.18) 46deg, transparent 58deg, transparent 122deg, rgba(245,166,35,0.14) 134deg, transparent 148deg)",
@@ -610,11 +600,8 @@ function Rejoicing({ standing, onClose }: { standing: Standing; onClose: () => v
           ))}
         </div>
 
-        <motion.div
-          initial={{ scale: 0.88, opacity: 0, y: 14 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 160, damping: 18, delay: 0.15 }}
-          className="relative w-full max-w-sm text-center"
+        <div
+          className="jf-pop relative w-full max-w-sm text-center"
         >
           <motion.div
             initial={{ scale: 0, rotate: -25 }}
@@ -646,7 +633,7 @@ function Rejoicing({ standing, onClose }: { standing: Standing; onClose: () => v
           >
             What happens now? →
           </button>
-        </motion.div>
+        </div>
       </div>
     </Portal>
   );
