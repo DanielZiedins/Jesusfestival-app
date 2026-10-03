@@ -19,7 +19,14 @@ function MilestoneJourney({ pct }: { pct: number }) {
   }, [nextIdx]);
 
   return (
-    <div ref={scroller} className="no-scrollbar -mx-1 flex snap-x gap-2.5 overflow-x-auto px-1 pb-1">
+    <div
+      ref={scroller}
+      // Focusable so keyboard users can scroll it with the arrow keys.
+      tabIndex={0}
+      role="region"
+      aria-label="Milestone journey"
+      className="no-scrollbar -mx-1 flex snap-x gap-2.5 overflow-x-auto rounded-xl px-1 pb-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-400"
+    >
       {MILESTONES.map((m, i) => {
         const unlocked = pct >= m.pct;
         const isNext = i === nextIdx;

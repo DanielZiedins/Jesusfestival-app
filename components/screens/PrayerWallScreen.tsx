@@ -268,10 +268,10 @@ export default function PrayerWallScreen() {
       {/* ===== Rotating scripture ribbon ===== */}
       <div className="relative mt-6 min-h-[64px] overflow-hidden rounded-2xl border border-gold/20 bg-gradient-to-r from-gold/10 to-transparent px-4 py-3 text-center">
         <AnimatePresence>
-          <motion.p key={verseIdx} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="text-[13px] italic leading-snug text-white/80">
+          <p key={verseIdx} className="jf-rise text-[13px] italic leading-snug text-white/80">
             &ldquo;{UNITY_VERSES[verseIdx].text}&rdquo;
             <span className="mt-1 block text-[10px] font-bold uppercase not-italic tracking-widest text-gold-400">{UNITY_VERSES[verseIdx].ref}</span>
-          </motion.p>
+          </p>
         </AnimatePresence>
       </div>
 
@@ -413,12 +413,12 @@ function CandleCard({
   const isPraise = p.kind === "praise";
   const gold = isPraise || p.answered;
   return (
+    // `layout` stays: it animates reflow with transforms and degrades to an
+    // instant move. The entrance is CSS, because a framer opacity:0 start left
+    // every prayer on the wall invisible whenever animation frames stalled.
     <motion.div
       layout
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-      className={`relative overflow-hidden rounded-2xl border p-3.5 ${gold ? "border-gold/30 bg-gold/[0.07]" : "border-white/10 bg-white/[0.04]"}`}
+      className={`jf-rise relative overflow-hidden rounded-2xl border p-3.5 ${gold ? "border-gold/30 bg-gold/[0.07]" : "border-white/10 bg-white/[0.04]"}`}
       style={{ boxShadow: gold ? `0 0 ${8 + glow * 22}px rgba(245,166,35,${0.12 + glow * 0.28})` : `0 0 ${glow * 16}px rgba(245,166,35,${glow * 0.16})` }}
     >
       <div className="mb-1.5 flex items-center gap-2">
@@ -441,8 +441,8 @@ function CandleCard({
         >
           🕯️ {didPray ? `You + ${Math.max(0, p.prayed - 1).toLocaleString()} holding this up` : `Light a candle · ${p.prayed.toLocaleString()} lit`}
         </button>
-        <button onClick={onShare} className="inline-flex items-center gap-1 rounded-full bg-white/5 px-2.5 py-1.5 text-[11px] font-semibold text-white/60 active:scale-95">
-          <Share width={12} height={12} />
+        <button onClick={onShare} aria-label="Share this prayer" className="inline-flex min-h-8 min-w-8 items-center justify-center gap-1 rounded-full bg-white/5 px-2.5 py-1.5 text-[11px] font-semibold text-white/60 active:scale-95">
+          <Share width={12} height={12} aria-hidden />
         </button>
         {isMine && !p.answered && p.kind === "prayer" && (
           <button onClick={onAnswer} disabled={answering} className="inline-flex items-center gap-1 rounded-full border border-gold/40 bg-gold/10 px-3 py-1.5 text-[11px] font-bold text-gold-400 active:scale-95 disabled:opacity-50">
@@ -475,9 +475,9 @@ function StillnessOverlay({ onClose }: { onClose: () => void }) {
         </motion.div>
         <p className="mt-8 text-[11px] font-bold uppercase tracking-[0.25em] text-gold-400">Be still</p>
         <AnimatePresence>
-          <motion.p key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-3 max-w-sm font-display text-xl italic leading-relaxed text-white/90">
+          <p key={i} className="jf-fade mt-3 max-w-sm font-display text-xl italic leading-relaxed text-white/90">
             &ldquo;{UNITY_VERSES[i].text}&rdquo;
-          </motion.p>
+          </p>
         </AnimatePresence>
         <p className="mt-2 text-[11px] font-bold uppercase tracking-widest text-white/55">{UNITY_VERSES[i].ref}</p>
         <button onClick={onClose} className="mt-10 rounded-full border border-white/20 bg-white/5 px-6 py-2.5 text-sm font-semibold text-white/80 active:scale-95">
@@ -527,7 +527,10 @@ function PrayerJourney({
           <>
             <div className="mt-4 flex items-center gap-3">
               <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
-                <motion.div className="h-full rounded-full bg-gradient-to-r from-purple-500 to-gold-500" animate={{ width: `${(idx / queue.length) * 100}%` }} transition={{ type: "spring", stiffness: 160, damping: 26 }} />
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-purple-500 to-gold-500 transition-[width] duration-500 ease-out"
+                  style={{ width: `${(idx / queue.length) * 100}%` }}
+                />
               </div>
               <span className="text-[11px] font-bold text-white/50">{idx}/{queue.length}</span>
             </div>

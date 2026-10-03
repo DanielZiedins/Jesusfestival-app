@@ -27,7 +27,7 @@ import { ArrowRight, MapPin, Share } from "@/components/icons";
  */
 
 const GROUP_COLOR: Record<Pin["group"], { ring: string; bg: string; text: string }> = {
-  stage: { ring: "ring-ember/50", bg: "bg-ember/85", text: "text-ember" },
+  stage: { ring: "ring-ember/50", bg: "bg-ember/85", text: "text-ember-400" },
   care: { ring: "ring-gold/50", bg: "bg-gold/85", text: "text-gold-400" },
   food: { ring: "ring-purple-400/50", bg: "bg-purple-500/85", text: "text-purple-300" },
   family: { ring: "ring-emerald-400/50", bg: "bg-emerald-500/85", text: "text-emerald-300" },
