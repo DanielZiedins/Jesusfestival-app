@@ -116,7 +116,7 @@ export default function PostFestivalHome({ go, onSearch }: Props) {
             Jesus Festival 2026 has ended—and it was absolutely amazing. Thank you to every person who prayed, served, shared and showed up.
           </p>
 
-          <div className="jf-rise mt-6 grid w-full max-w-sm grid-cols-3 gap-2" aria-label="Early Jesus Festival 2026 impact report">
+          <div role="group" className="jf-rise mt-6 grid w-full max-w-sm grid-cols-3 gap-2" aria-label="Early Jesus Festival 2026 impact report">
             {POST_EVENT.impact.slice(0, 3).map((item) => (
               <div key={item.stat} className="rounded-2xl border border-white/15 bg-ink/50 px-2 py-3.5 backdrop-blur-xl">
                 <p className="font-display text-2xl font-black text-gold-300">{item.stat}</p>

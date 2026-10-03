@@ -102,7 +102,7 @@ export default function HuntBoard({ highlight }: { highlight?: string }) {
             </p>
           </div>
           <div className="text-right">
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">Light Points</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/55">Light Points</p>
             <p className="mt-1 font-display text-2xl font-extrabold text-gradient-gold">
               {earned.toLocaleString("en-CA")}
             </p>
@@ -163,7 +163,7 @@ export default function HuntBoard({ highlight }: { highlight?: string }) {
           <h2 id="hunt-badges-heading" className="text-[11px] font-black uppercase tracking-[0.2em] text-gold-400">
             Your badges
           </h2>
-          <span className="text-[11px] font-bold text-white/45">
+          <span className="text-[11px] font-bold text-white/55">
             {badges.length} of {BADGES.length}
           </span>
         </div>
@@ -193,7 +193,7 @@ export default function HuntBoard({ highlight }: { highlight?: string }) {
                 <span className={`text-[26px] ${got ? "" : "opacity-30 grayscale"}`} aria-hidden>
                   {got ? b.emoji : "🔒"}
                 </span>
-                <span className={`text-[10.5px] font-bold leading-tight ${got ? "text-white" : "text-white/40"}`}>
+                <span className={`text-[10.5px] font-bold leading-tight ${got ? "text-white" : "text-white/55"}`}>
                   {b.name}
                 </span>
                 {got && <span className="text-[9px] font-black uppercase tracking-wider text-gold-400">Tap to share</span>}
@@ -224,11 +224,11 @@ export default function HuntBoard({ highlight }: { highlight?: string }) {
               >
                 {section.label}
               </h2>
-              <span className="text-[11px] font-bold text-white/45">
+              <span className="text-[11px] font-bold text-white/55">
                 {done} of {section.group.length}
               </span>
             </div>
-            <p className="mb-2.5 text-[12px] leading-relaxed text-white/45">{section.note}</p>
+            <p className="mb-2.5 text-[12px] leading-relaxed text-white/55">{section.note}</p>
             <div className="grid grid-cols-3 gap-2.5">
               {section.group.map((s) => {
                 const on = lit.has(s.id);
@@ -250,7 +250,7 @@ export default function HuntBoard({ highlight }: { highlight?: string }) {
                     <span className={`text-2xl ${on ? "" : "opacity-25 grayscale"}`} aria-hidden>
                       {on ? s.emoji : "❓"}
                     </span>
-                    <span className={`text-[10px] font-bold leading-tight ${on ? "text-white" : "text-white/40"}`}>
+                    <span className={`text-[10px] font-bold leading-tight ${on ? "text-white" : "text-white/55"}`}>
                       {on ? s.name : s.where.replace("Vendor Row · ", "")}
                     </span>
                     {on && (
@@ -279,7 +279,7 @@ export default function HuntBoard({ highlight }: { highlight?: string }) {
         Open the park map <ArrowRight width={15} height={15} />
       </Link>
 
-      <p className="mt-3 text-center text-[11px] leading-relaxed text-white/40">
+      <p className="mt-3 text-center text-[11px] leading-relaxed text-white/55">
         Works with no signal — your lamps are saved on this phone and your points reach the city
         the moment you reconnect.
       </p>
