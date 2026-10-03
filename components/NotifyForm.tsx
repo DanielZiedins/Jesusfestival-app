@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { getSupabase, supabaseReady } from "@/lib/supabase";
 import { INTERESTS } from "@/lib/content";
 import { Check, BellIcon } from "./icons";
@@ -51,31 +50,25 @@ export default function NotifyForm() {
 
   return (
     <div className="glass-strong rounded-3xl p-5 shadow-card">
-      <AnimatePresence mode="wait">
-        {status === "done" ? (
-          <motion.div
-            key="done"
-            initial={{ opacity: 0, scale: 0.94 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="flex flex-col items-center py-6 text-center"
-          >
+      {/* CSS entrances, keyed so each state replays its own. This was
+          AnimatePresence mode="wait", which holds the success message back
+          until the form's exit animation finishes — when animation frames are
+          throttled that never happens, so a successful sign-up showed nothing.
+          The form's framer opacity:0 start was also baked into the server
+          HTML, hiding the whole form until JavaScript ran. */}
+      {status === "done" ? (
+          <div key="done" role="status" className="jf-pop flex flex-col items-center py-6 text-center">
             <div className="grid h-16 w-16 place-items-center rounded-full bg-gold text-navy-950 shadow-glow">
               <Check width={30} height={30} />
             </div>
             <h3 className="mt-4 font-display text-xl font-bold text-white">You&apos;re in!</h3>
             <p className="mt-1.5 max-w-xs text-sm text-white/65">
-              We&apos;ll keep you posted on artists, schedule, and everything for
-              Hamilton 2026. See you at Gage Park.
+              We&apos;ll keep you posted on the next Jesus Festival — dates, artists and ways to
+              serve — plus the stories still coming out of 2026.
             </p>
-          </motion.div>
+          </div>
         ) : (
-          <motion.form
-            key="form"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            onSubmit={submit}
-            className="space-y-3.5"
-          >
+          <form key="form" onSubmit={submit} className="space-y-3.5">
             <div className="flex items-center gap-2 text-gold-400">
               <BellIcon width={18} height={18} />
               <span className="text-xs font-semibold uppercase tracking-[0.2em]">
@@ -134,9 +127,8 @@ export default function NotifyForm() {
             <p className="text-center text-[11px] text-white/55">
               No spam, ever. Unsubscribe anytime.
             </p>
-          </motion.form>
+          </form>
         )}
-      </AnimatePresence>
     </div>
   );
 }
