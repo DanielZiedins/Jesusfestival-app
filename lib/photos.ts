@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase";
+import { getSupabase, SUPABASE_URL } from "@/lib/supabase";
 import { hasProfanity } from "@/lib/clean";
 
 export type Photo = {
@@ -12,7 +12,10 @@ export type Photo = {
 const BUCKET = "jf-photos";
 
 export function photoUrl(path: string): string {
-  return supabase.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+  // Byte-for-byte what storage-js getPublicUrl returns (encodeURI over the
+  // whole URL, leading slashes stripped) — without loading the client just to
+  // assemble a string.
+  return encodeURI(`${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${path.replace(/^\/+/, "")}`);
 }
 
 /**
@@ -52,10 +55,10 @@ export async function submitPhoto(file: File, caption: string): Promise<{ ok: bo
     if (blob.size > 4 * 1024 * 1024) return { ok: false, error: "That photo is too large — try another." };
 
     const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.jpg`;
-    const up = await supabase.storage.from(BUCKET).upload(path, blob, { contentType: "image/jpeg" });
+    const up = await (await getSupabase()).storage.from(BUCKET).upload(path, blob, { contentType: "image/jpeg" });
     if (up.error) return { ok: false, error: "Upload failed — check your connection." };
 
-    const ins = await supabase.from("jf_photos").insert({ path, name, caption: caption.trim() || null });
+    const ins = await (await getSupabase()).from("jf_photos").insert({ path, name, caption: caption.trim() || null });
     if (ins.error) return { ok: false, error: "Couldn't submit — try again." };
     return { ok: true };
   } catch {
@@ -66,7 +69,7 @@ export async function submitPhoto(file: File, caption: string): Promise<{ ok: bo
 /** Approved photos, newest first. Null on failure so the UI can show a retry. */
 export async function fetchPhotos(): Promise<Photo[] | null> {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await (await getSupabase())
       .from("jf_photos")
       .select("id, path, name, caption, created_at")
       .order("created_at", { ascending: false })
@@ -80,7 +83,7 @@ export async function fetchPhotos(): Promise<Photo[] | null> {
 
 export async function adminPendingPhotos(passcode: string): Promise<Photo[]> {
   try {
-    const { data } = await supabase.rpc("admin_photos_pending", { p_passcode: passcode });
+    const { data } = await (await getSupabase()).rpc("admin_photos_pending", { p_passcode: passcode });
     return (data as Photo[]) ?? [];
   } catch {
     return [];
@@ -89,7 +92,7 @@ export async function adminPendingPhotos(passcode: string): Promise<Photo[]> {
 
 export async function adminReviewPhoto(passcode: string, id: string, approve: boolean): Promise<boolean> {
   try {
-    const { error } = await supabase.rpc("admin_photo_review", { p_passcode: passcode, p_id: id, p_approve: approve });
+    const { error } = await (await getSupabase()).rpc("admin_photo_review", { p_passcode: passcode, p_id: id, p_approve: approve });
     return !error;
   } catch {
     return false;

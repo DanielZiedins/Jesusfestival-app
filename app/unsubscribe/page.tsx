@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 
 // Branded one-click unsubscribe (reached from the email footer / List-Unsubscribe).
 export default function UnsubscribePage() {
@@ -18,7 +18,7 @@ export default function UnsubscribePage() {
       setState("error");
       return;
     }
-    supabase.rpc("email_unsubscribe", { p_token: t }).then(
+    getSupabase().then((sb) => sb.rpc("email_unsubscribe", { p_token: t })).then(
       ({ data }) => {
         if (data?.ok) {
           setName(data.name ?? null);
@@ -34,7 +34,7 @@ export default function UnsubscribePage() {
   async function resubscribe() {
     if (busy || !token) return;
     setBusy(true);
-    const { data } = await supabase.rpc("email_resubscribe", { p_token: token });
+    const { data } = await (await getSupabase()).rpc("email_resubscribe", { p_token: token });
     setBusy(false);
     if (data?.ok) setState("resubscribed");
   }

@@ -1,7 +1,7 @@
 // "Revive the City" — game data + logic for the Jesus Festival app.
 // Personal progress is stored locally; shared community progress lives in Supabase.
 
-import { supabase } from "./supabase";
+import { getSupabase } from "./supabase";
 
 export const BIBLE_TRANSLATION = "NIV";
 
@@ -246,7 +246,7 @@ export type CityProgress = { total: number; missions: number; pct: number };
 // (a false 0 baseline would fire bogus milestone celebrations on the next act).
 export async function fetchCityProgress(): Promise<CityProgress | null> {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await (await getSupabase())
       .from("revive_city_progress")
       .select("total_light_points, missions_completed")
       .eq("id", 1)
@@ -263,7 +263,7 @@ export async function fetchCityProgress(): Promise<CityProgress | null> {
 // Adds to the shared community total. Returns the new progress (or null on failure).
 export async function contributePoints(points: number, missions = 0): Promise<CityProgress | null> {
   try {
-    const { data } = await supabase.rpc("add_light_points", { pts: points, missions });
+    const { data } = await (await getSupabase()).rpc("add_light_points", { pts: points, missions });
     if (!data) return null;
     const row = Array.isArray(data) ? data[0] : data;
     const total = Number(row?.total_light_points ?? 0);
@@ -407,7 +407,7 @@ export type Spotlight = { id: string; name: string | null; church: string | null
 
 export async function fetchDaily(): Promise<number> {
   try {
-    const { data } = await supabase.from("revive_daily").select("count").eq("day", todayKey()).maybeSingle();
+    const { data } = await (await getSupabase()).from("revive_daily").select("count").eq("day", todayKey()).maybeSingle();
     return Number(data?.count ?? 0);
   } catch {
     return 0;
@@ -416,7 +416,7 @@ export async function fetchDaily(): Promise<number> {
 
 export async function doDaily(): Promise<number | null> {
   try {
-    const { data } = await supabase.rpc("revive_do_daily", { p_day: todayKey() });
+    const { data } = await (await getSupabase()).rpc("revive_do_daily", { p_day: todayKey() });
     return data == null ? null : Number(data);
   } catch {
     return null;
@@ -425,7 +425,7 @@ export async function doDaily(): Promise<number | null> {
 
 export async function fetchFruitMeters(): Promise<FruitMeters> {
   try {
-    const { data } = await supabase.from("revive_fruit").select("fruit_id, count");
+    const { data } = await (await getSupabase()).from("revive_fruit").select("fruit_id, count");
     const out: FruitMeters = {};
     (data ?? []).forEach((r: { fruit_id: string; count: number }) => (out[r.fruit_id] = Number(r.count)));
     return out;
@@ -436,7 +436,7 @@ export async function fetchFruitMeters(): Promise<FruitMeters> {
 
 export async function fetchBoss(): Promise<number> {
   try {
-    const { data } = await supabase.from("revive_boss").select("progress").eq("week", isoWeekKey()).maybeSingle();
+    const { data } = await (await getSupabase()).from("revive_boss").select("progress").eq("week", isoWeekKey()).maybeSingle();
     return Number(data?.progress ?? 0);
   } catch {
     return 0;
@@ -445,7 +445,7 @@ export async function fetchBoss(): Promise<number> {
 
 export async function fetchSpotlight(): Promise<Spotlight[]> {
   try {
-    const { data } = await supabase.from("revive_spotlight").select("id, name, church, action, created_at").order("created_at", { ascending: false }).limit(40);
+    const { data } = await (await getSupabase()).from("revive_spotlight").select("id, name, church, action, created_at").order("created_at", { ascending: false }).limit(40);
     return (data as Spotlight[]) ?? [];
   } catch {
     return [];
@@ -454,7 +454,7 @@ export async function fetchSpotlight(): Promise<Spotlight[]> {
 
 export async function addSpotlight(name: string | null, church: string | null, action: string): Promise<void> {
   try {
-    await supabase.rpc("revive_add_spotlight", { p_name: name, p_church: church, p_action: action });
+    await (await getSupabase()).rpc("revive_add_spotlight", { p_name: name, p_church: church, p_action: action });
   } catch {
     /* ignore */
   }
@@ -493,7 +493,7 @@ export function leaveCrew() {
 
 export async function crewCreate(church: string): Promise<{ ok: boolean; crew?: Crew; error?: string }> {
   try {
-    const { data, error } = await supabase.rpc("crew_create", { p_church: church });
+    const { data, error } = await (await getSupabase()).rpc("crew_create", { p_church: church });
     if (error || !data?.ok) return { ok: false, error: data?.error || "Couldn't create the crew — try again." };
     saveCrew(data.code, data.church);
     return { ok: true, crew: { code: data.code, church: data.church, members: 1, acts: 0 } };
@@ -504,7 +504,7 @@ export async function crewCreate(church: string): Promise<{ ok: boolean; crew?: 
 
 export async function crewJoin(code: string): Promise<{ ok: boolean; crew?: Crew; error?: string }> {
   try {
-    const { data, error } = await supabase.rpc("crew_join", { p_code: code });
+    const { data, error } = await (await getSupabase()).rpc("crew_join", { p_code: code });
     if (error || !data?.ok) return { ok: false, error: data?.error || "Code not found." };
     saveCrew(data.code, data.church);
     return { ok: true, crew: { code: data.code, church: data.church, members: Number(data.members), acts: Number(data.acts) } };
@@ -515,7 +515,7 @@ export async function crewJoin(code: string): Promise<{ ok: boolean; crew?: Crew
 
 export async function crewGet(code: string): Promise<Crew | null> {
   try {
-    const { data } = await supabase.rpc("crew_get", { p_code: code });
+    const { data } = await (await getSupabase()).rpc("crew_get", { p_code: code });
     if (!data?.ok) return null;
     return { code: data.code, church: data.church, members: Number(data.members), acts: Number(data.acts) };
   } catch {
@@ -525,7 +525,7 @@ export async function crewGet(code: string): Promise<Crew | null> {
 
 export async function crewsSample(): Promise<Crew[]> {
   try {
-    const { data } = await supabase.rpc("crews_sample");
+    const { data } = await (await getSupabase()).rpc("crews_sample");
     return (data ?? []).map((r: { church: string; members: number; acts: number }) => ({ code: "", church: r.church, members: Number(r.members), acts: Number(r.acts) }));
   } catch {
     return [];
@@ -539,7 +539,7 @@ export type PrayerStats = { total_prayed: number; requests: number; praises: num
 // Returns null on failure so the UI can offer a retry instead of a false "empty wall".
 export async function fetchPrayers(): Promise<Prayer[] | null> {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await (await getSupabase())
       .from("revive_prayers")
       .select("id, name, church, body, kind, prayed, answered, created_at")
       .order("created_at", { ascending: false })
@@ -553,7 +553,7 @@ export async function fetchPrayers(): Promise<Prayer[] | null> {
 
 export async function fetchPrayerStats(): Promise<PrayerStats | null> {
   try {
-    const { data } = await supabase.rpc("prayer_stats");
+    const { data } = await (await getSupabase()).rpc("prayer_stats");
     if (!data) return null;
     return { total_prayed: Number(data.total_prayed ?? 0), requests: Number(data.requests ?? 0), praises: Number(data.praises ?? 0), answered: Number(data.answered ?? 0) };
   } catch {
@@ -601,7 +601,7 @@ function getPrayerToken(id: string): string | null {
 
 export async function prayerAdd(name: string | null, church: string | null, body: string, kind: "prayer" | "praise"): Promise<{ ok: boolean; prayer?: Prayer; error?: string }> {
   try {
-    const { data, error } = await supabase.rpc("prayer_add", { p_name: name, p_church: church, p_body: body, p_kind: kind });
+    const { data, error } = await (await getSupabase()).rpc("prayer_add", { p_name: name, p_church: church, p_body: body, p_kind: kind });
     if (error || !data?.ok) return { ok: false, error: data?.error || "Couldn't post right now — try again." };
     markMyPrayer(data.id);
     if (data.token) savePrayerToken(data.id, data.token);
@@ -619,7 +619,7 @@ export async function prayerAnswer(id: string): Promise<boolean> {
   const token = getPrayerToken(id);
   if (!token) return false;
   try {
-    const { data } = await supabase.rpc("prayer_answer", { p_id: id, p_token: token });
+    const { data } = await (await getSupabase()).rpc("prayer_answer", { p_id: id, p_token: token });
     return Boolean(data?.ok);
   } catch {
     return false;
@@ -629,7 +629,7 @@ export async function prayerAnswer(id: string): Promise<boolean> {
 // Record a prayer for someone's request (once per device, tracked in localStorage).
 export async function prayerPray(id: string): Promise<number | null> {
   try {
-    const { data } = await supabase.rpc("prayer_pray", { p_id: id });
+    const { data } = await (await getSupabase()).rpc("prayer_pray", { p_id: id });
     if (!data?.ok) return null;
     return Number(data.prayed);
   } catch {
@@ -663,7 +663,7 @@ export async function contributeCommunity(
   fruit: string | null
 ): Promise<{ city: CityProgress; boss: number } | null> {
   try {
-    const { data } = await supabase.rpc("revive_contribute", {
+    const { data } = await (await getSupabase()).rpc("revive_contribute", {
       p_points: points,
       p_missions: missions,
       p_fruit: fruit,

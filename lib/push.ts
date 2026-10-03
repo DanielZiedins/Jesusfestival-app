@@ -1,6 +1,6 @@
 "use client";
 
-import { supabase } from "./supabase";
+import { getSupabase } from "./supabase";
 
 export const PUSH_PUBLIC_KEY = "BMqoHxNI9foGRVWQVSFAlEzHvnueYS12Bkm_Y_CPtlbZtqSqc-JeLPDeZgMCkmcST_h-NsqBC8bbgDwrFeBbxaI";
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://vmpkiwfvnlzraabtjkig.supabase.co";
@@ -45,7 +45,7 @@ export async function subscribeToPush(): Promise<{ ok: boolean; error?: string }
     // Postgres also requires a SELECT policy for — and adding one would expose
     // every subscriber's push endpoint. This route stores the subscription
     // without granting anyone read access.
-    const { error } = await supabase.rpc("push_subscribe", { p_endpoint: json.endpoint, p_sub: json });
+    const { error } = await (await getSupabase()).rpc("push_subscribe", { p_endpoint: json.endpoint, p_sub: json });
     if (error) return { ok: false, error: "Couldn't save your subscription — check your connection and try again." };
     try {
       localStorage.setItem("jf-push", "1");
@@ -85,7 +85,7 @@ export async function resubscribeIfPermitted(): Promise<void> {
     const json = sub.toJSON() as { endpoint?: string };
     if (!json.endpoint) return;
 
-    const { error } = await supabase.rpc("push_subscribe", { p_endpoint: json.endpoint, p_sub: json });
+    const { error } = await (await getSupabase()).rpc("push_subscribe", { p_endpoint: json.endpoint, p_sub: json });
     if (!error) {
       try {
         localStorage.setItem("jf-push", "1");

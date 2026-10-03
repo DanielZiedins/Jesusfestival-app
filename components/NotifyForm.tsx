@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { supabase, supabaseReady } from "@/lib/supabase";
+import { getSupabase, supabaseReady } from "@/lib/supabase";
 import { INTERESTS } from "@/lib/content";
 import { Check, BellIcon } from "./icons";
 
@@ -32,7 +32,7 @@ export default function NotifyForm() {
     if (!supabaseReady) return setError("Sign-ups are temporarily unavailable.");
 
     setStatus("loading");
-    const { error: err } = await supabase.from("jesus_festival_subscribers").insert({
+    const { error: err } = await (await getSupabase()).from("jesus_festival_subscribers").insert({
       first_name: name,
       email: mail,
       interests: interests.length ? interests : ["updates"],

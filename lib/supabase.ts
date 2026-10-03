@@ -1,4 +1,4 @@
-import { createClient } from "@supabase/supabase-js";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
 // The URL and publishable key are safe for the browser (client-side, RLS-protected).
 // Env vars take precedence; the public fallbacks keep sign-ups working everywhere.
@@ -10,9 +10,27 @@ const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || FALLBACK_KEY;
 
 export const supabaseReady = Boolean(url && key);
 
-export const supabase = createClient(url, key, {
-  auth: { persistSession: false },
-});
+/** Public base URL, for building storage links without loading the client. */
+export const SUPABASE_URL = url;
+
+let client: Promise<SupabaseClient> | null = null;
+
+/**
+ * The client, loaded on first use.
+ *
+ * supabase-js is 60KB gzipped (234KB raw), and a static import put it on the
+ * critical path of every page that so much as rendered a sign-up form — the
+ * 2027 page, the Light Hunt, the home screen — where it sat unused until
+ * someone pressed Submit. A dynamic import moves it into its own chunk that
+ * arrives after the page is interactive, and the promise is shared so every
+ * caller gets the same single client.
+ */
+export function getSupabase(): Promise<SupabaseClient> {
+  client ??= import("@supabase/supabase-js").then(({ createClient }) =>
+    createClient(url, key, { auth: { persistSession: false } }),
+  );
+  return client;
+}
 
 // ---------- Onboarding sign-up ----------
 export type MemberInput = {
@@ -28,7 +46,7 @@ export type MemberInput = {
 
 export async function joinFestival(input: MemberInput): Promise<{ ok: boolean; error?: string }> {
   try {
-    const { error } = await supabase.from("jesus_festival_app_members").insert({
+    const { error } = await (await getSupabase()).from("jesus_festival_app_members").insert({
       full_name: input.full_name.trim(),
       email: input.email.trim().toLowerCase(),
       phone: input.phone?.trim() || null,
@@ -50,7 +68,7 @@ export type SignupLocation = { label: string; lat: number; lng: number; n: numbe
 
 export async function fetchSignupLocations(): Promise<SignupLocation[]> {
   try {
-    const { data } = await supabase.rpc("revive_signup_locations");
+    const { data } = await (await getSupabase()).rpc("revive_signup_locations");
     return (data ?? []).map((r: { label: string; lat: number; lng: number; n: number }) => ({
       label: r.label,
       lat: Number(r.lat),
@@ -76,7 +94,7 @@ export type NewsPost = {
 // misleading "no updates yet".
 export async function fetchNews(): Promise<NewsPost[] | null> {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await (await getSupabase())
       .from("jesus_festival_app_news")
       .select("id, title, body, category, pinned, created_at")
       .eq("published", true)
@@ -96,7 +114,7 @@ export async function adminCreateNews(
   post: { title: string; body: string; category?: string; pinned?: boolean }
 ): Promise<{ ok: boolean; error?: string }> {
   try {
-    const { error } = await supabase.rpc("admin_create_news", {
+    const { error } = await (await getSupabase()).rpc("admin_create_news", {
       p_passcode: passcode,
       p_title: post.title,
       p_body: post.body,
@@ -112,7 +130,7 @@ export async function adminCreateNews(
 
 export async function adminResetCity(passcode: string): Promise<{ ok: boolean; error?: string }> {
   try {
-    const { error } = await supabase.rpc("admin_reset_city", { p_passcode: passcode });
+    const { error } = await (await getSupabase()).rpc("admin_reset_city", { p_passcode: passcode });
     if (error) return { ok: false, error: "Incorrect passcode or server error." };
     return { ok: true };
   } catch {
