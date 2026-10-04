@@ -120,7 +120,7 @@ export default function NotifyForm() {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="w-full rounded-xl bg-gradient-to-r from-gold-400 to-ember-500 py-3.5 font-display text-base font-bold text-navy-950 shadow-glow transition active:scale-[0.98] disabled:opacity-60"
+              className="w-full rounded-xl bg-gradient-to-r from-gold-400 to-purple-400 py-3.5 font-display text-base font-bold text-navy-950 shadow-glow transition active:scale-[0.98] disabled:opacity-60"
             >
               {status === "loading" ? "Signing you up…" : "Notify Me"}
             </button>

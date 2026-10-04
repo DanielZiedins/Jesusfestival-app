@@ -11,7 +11,7 @@
  * nodes, hiding real failures. Each one is re-measured against the actual
  * pixels behind it.
  *
- * The pixel pass removes six traps that each produced fake ratios:
+ * The pixel pass removes these traps that each produced fake ratios:
  *   - overlays (splash, install banner, first-visit game intro) sampled
  *     instead of the page
  *   - screenshot clips are document-relative: viewport coordinates without
@@ -19,6 +19,7 @@
  *   - scroll-linked effects (the hero fades as you scroll) sampled mid-fade:
  *     anything already on screen is measured without scrolling
  *   - gradient-clipped text, which keeps painting through color:transparent
+ *   - rounded boxes, whose corners show the page behind a badge
  *   - fixed chrome (the tab bar) passing over footer links mid-capture
  *   - captureBeyondViewport, which resizes 100vh heroes and shifts coordinates
  * Colours are resolved by painting them on a canvas, so oklch/color-mix can't
@@ -117,12 +118,17 @@ for (const path of PAGES) {
       let op = svg ? parseFloat(cs.fillOpacity || "1") : 1;
       for (let n = el; n; n = n.parentElement) op *= parseFloat(getComputedStyle(n).opacity || "1");
       const size = parseFloat(cs.fontSize);
+      // A rounded box's corners show whatever is behind it (a circular badge on
+      // a dark page "failed" at 1.01 from its corners alone). Inset past the
+      // curve: 1 - 1/sqrt(2) of the radius clears it.
+      const rad = Math.min(parseFloat(cs.borderTopLeftRadius) || 0, r.width / 2, r.height / 2);
+      const inset = Math.ceil(rad * 0.3);
       return {
         // Puppeteer's screenshot clip is measured from the top of the
         // DOCUMENT, not the viewport — without the scroll offset, every element
         // below the fold was sampled from the wrong place (caught when a card
         // "failed" while the capture showed the card above it).
-        box: { x: Math.max(0, r.left) + scrollX, y: Math.max(0, r.top) + scrollY, w: Math.min(r.width, innerWidth - r.left), h: Math.min(r.height, innerHeight - r.top) },
+        box: { x: Math.max(0, r.left) + scrollX + inset, y: Math.max(0, r.top) + scrollY + inset, w: Math.min(r.width, innerWidth - r.left) - 2 * inset, h: Math.min(r.height, innerHeight - r.top) - 2 * inset },
         rgba: [R, G, B, (A / 255) * op],
         large: size >= 24 || (size >= 18.66 && parseInt(cs.fontWeight) >= 700),
         text: el.textContent.trim().slice(0, 50),
