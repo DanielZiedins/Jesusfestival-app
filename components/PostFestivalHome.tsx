@@ -124,14 +124,14 @@ export default function PostFestivalHome({ go, onSearch }: Props) {
               </div>
             ))}
           </div>
-          <p className="mt-2 text-[10px] font-semibold text-white/55">Early reports shared by the festival team · testimonies are still coming in</p>
+          <p className="mt-2 text-[10px] font-semibold text-white/75">Early reports shared by the festival team · testimonies are still coming in</p>
 
           <div className="jf-fade mt-6 grid w-full max-w-sm grid-cols-2 gap-2.5">
             <a
               href={LINKS.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-fuchsia-500 via-purple-500 to-amber-400 px-4 text-sm font-black text-white shadow-[0_0_30px_rgba(168,85,247,0.25)] active:scale-[0.98]"
+              className="flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-fuchsia-600 via-purple-600 to-orange-700 px-4 text-sm font-black text-white shadow-[0_0_30px_rgba(168,85,247,0.25)] active:scale-[0.98]"
             >
               <Camera width={17} height={17} /> See Instagram
             </a>
@@ -250,7 +250,7 @@ export default function PostFestivalHome({ go, onSearch }: Props) {
               Follow Jesus Festival as moments and testimonies from the weekend are shared—and keep supporting the artists, ministries and vendors featured there.
             </p>
             <div className="relative mt-5 grid grid-cols-2 gap-2.5">
-              <a href={LINKS.instagram} target="_blank" rel="noopener noreferrer" className="rounded-2xl bg-gradient-to-r from-fuchsia-500 via-purple-500 to-amber-400 px-3 py-3 text-sm font-black text-white active:scale-[0.98]">
+              <a href={LINKS.instagram} target="_blank" rel="noopener noreferrer" className="rounded-2xl bg-gradient-to-r from-fuchsia-600 via-purple-600 to-orange-700 px-3 py-3 text-sm font-black text-white active:scale-[0.98]">
                 Instagram ↗
               </a>
               <a href={LINKS.facebook} target="_blank" rel="noopener noreferrer" className="rounded-2xl border border-blue-300/30 bg-blue-500/20 px-3 py-3 text-sm font-black text-white active:scale-[0.98]">
