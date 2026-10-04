@@ -368,7 +368,7 @@ export default function PostFestivalHome({ go, onSearch }: Props) {
             >
               {SITE.email} <ArrowRight width={15} height={15} />
             </a>
-            <p className="relative mt-6 text-[10px] font-bold uppercase tracking-[0.18em] text-white/40">Love God · Love people · Change the world</p>
+            <p className="relative mt-6 text-[10px] font-bold uppercase tracking-[0.18em] text-white/60">Love God · Love people · Change the world</p>
           </div>
         </Reveal>
       </section>

@@ -198,7 +198,7 @@ export default function FestivalMap() {
                   <span aria-hidden="true">{p.emoji}</span>
                 </span>
                 {p.group === "stage" && !on && (
-                  <span className="pointer-events-none absolute -bottom-0.5 whitespace-nowrap rounded-full bg-navy-950/80 px-1.5 text-[8px] font-black uppercase tracking-wider text-ember">
+                  <span className="pointer-events-none absolute -bottom-0.5 whitespace-nowrap rounded-full bg-navy-950/80 px-1.5 text-[8px] font-black uppercase tracking-wider text-purple-300">
                     {p.id === "stage" ? "Stage" : "Lawn"}
                   </span>
                 )}
@@ -436,7 +436,7 @@ function ParkArt() {
       <rect x="0" y="0" width="400" height="26" fill="#151824" />
       <rect x="0" y="474" width="400" height="26" fill="#171a28" />
       <rect x="0" y="0" width="26" height="500" fill="#151824" />
-      <g fill="#ffffff" fillOpacity="0.5" fontSize="9.5" fontWeight="700" letterSpacing="1.4">
+      <g fill="#ffffff" fillOpacity="0.66" fontSize="9.5" fontWeight="700" letterSpacing="1.4">
         <text x="200" y="17" textAnchor="middle">LAWRENCE ROAD</text>
         <text x="205" y="491" textAnchor="middle">MAIN STREET EAST</text>
         <text x="13" y="252" textAnchor="middle" transform="rotate(-90 13 252)">
