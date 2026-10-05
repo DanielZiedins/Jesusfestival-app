@@ -188,6 +188,26 @@ export default function PartnerPage() {
         </p>
       </section>
 
+      {/* ── The longer read ── */}
+      <Link
+        href="/blog/plunder-hell-populate-heaven-partner-with-daniel-and-katie"
+        className="mt-6 flex items-center gap-4 rounded-3xl border border-white/10 bg-white/[0.04] p-5 transition hover:border-gold/40"
+      >
+        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-gold-400/25 to-purple-500/25 text-2xl" aria-hidden>
+          🔥
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-[11px] font-black uppercase tracking-[0.2em] text-gold-400">Read the vision</span>
+          <span className="mt-1 block font-display text-[16px] font-extrabold leading-snug text-white">
+            Plunder Hell, Populate Heaven
+          </span>
+          <span className="mt-1 block text-[12.5px] leading-snug text-white/60">
+            Scripture, the story so far, and the call to 100 multiplying outreach groups.
+          </span>
+        </span>
+        <ArrowRight width={16} height={16} className="shrink-0 text-gold-400" />
+      </Link>
+
       {/* ── Send-off ── */}
       <p className="mt-10 text-center font-display text-[15px] italic leading-relaxed text-white/75">
         &ldquo;Freely ye have received, freely give.&rdquo;

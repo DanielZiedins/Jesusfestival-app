@@ -71,6 +71,27 @@ export default function Rich({ blocks }: { blocks: Block[] }) {
               </cite>
             </blockquote>
           );
+        if (b.t === "cta")
+          return (
+            <aside
+              key={i}
+              aria-label={b.eyebrow}
+              className="relative my-9 overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-gold/15 via-purple-900/35 to-navy-950 p-7 text-center shadow-glow"
+            >
+              <div aria-hidden className="pointer-events-none absolute -top-16 left-1/2 h-40 w-40 -translate-x-1/2 rounded-full bg-gold/20 blur-3xl" />
+              <p className="relative text-[11px] font-black uppercase tracking-[0.24em] text-gold-400">{b.eyebrow}</p>
+              <p className="relative mt-2 font-display text-[26px] font-extrabold leading-tight text-white">{b.title}</p>
+              <p className="relative mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-white/75">{inline(b.text, `c${i}`)}</p>
+              <a
+                href={b.href}
+                target="_blank"
+                rel="noopener"
+                className="relative mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 px-6 font-display text-[15px] font-extrabold text-navy-950 transition active:scale-[0.98]"
+              >
+                {b.label} <span aria-hidden>→</span>
+              </a>
+            </aside>
+          );
         if (b.t === "list")
           return (
             <ul key={i} className="my-5 space-y-3">

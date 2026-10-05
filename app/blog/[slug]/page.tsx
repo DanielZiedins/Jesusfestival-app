@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BLOG_POSTS, postBySlug, relatedPosts } from "@/lib/blog";
+import { BLOG_POSTS, isFestivalPost, postBySlug, relatedPosts } from "@/lib/blog";
 import { KINGDOM_SITES, SITE } from "@/lib/content";
 import Rich from "@/components/blog/Rich";
 import { ReadingProgress, ShareArticle } from "@/components/blog/ArticleChrome";
@@ -196,11 +196,13 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
               </li>
             ))}
           </ul>
-          <p className="mt-3 text-[11px] leading-relaxed text-white/60">
-            {post.slug === "jesus-festival-hamilton-2026-recap"
-              ? "Impact figures are preliminary reports shared by the Jesus Festival team on September 6, 2026 and may be updated as follow-up continues."
-              : "Park, transit and event information can change. Check current official sources when planning a future visit."}
-          </p>
+          {isFestivalPost(post.slug) && (
+            <p className="mt-3 text-[11px] leading-relaxed text-white/60">
+              {post.slug === "jesus-festival-hamilton-2026-recap"
+                ? "Impact figures are preliminary reports shared by the Jesus Festival team on September 6, 2026 and may be updated as follow-up continues."
+                : "Park, transit and event information can change. Check current official sources when planning a future visit."}
+            </p>
+          )}
         </section>
       ) : null}
 

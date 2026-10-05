@@ -14,7 +14,9 @@ export type Block =
   | { t: "p"; text: string }
   | { t: "h2"; text: string }
   | { t: "list"; items: string[] }
-  | { t: "quote"; text: string; ref: string };
+  | { t: "quote"; text: string; ref: string }
+  /** A standout invitation card with one outbound button. */
+  | { t: "cta"; eyebrow: string; title: string; text: string; href: string; label: string };
 
 export type BlogPost = {
   slug: string;
@@ -39,6 +41,107 @@ export type BlogPost = {
 };
 
 export const BLOG_POSTS: BlogPost[] = [
+
+  {
+    slug: "plunder-hell-populate-heaven-partner-with-daniel-and-katie",
+    seoTitle: "Plunder Hell, Populate Heaven: Join the Harvest",
+    seoDescription:
+      "From one coffee in Hamilton in 2014 to 20+ weekly outreach teams and a vision for 100 multiplying groups. How to pray, go and partner through e3 Canada.",
+    title: "Plunder Hell, Populate Heaven: An Invitation to Partner in the Harvest",
+    description:
+      "Jesus didn't build His church to hide behind walls. Here's the vision Daniel & Katie Ziedins are carrying with e3 Canada and I Am Second, what Scripture says about the people who send, and how you can stand in it with them.",
+    eyebrow: "The vision",
+    emoji: "🔥",
+    date: "2026-10-05",
+    readMins: 6,
+    body: [
+      { t: "p", text: "There's a line the evangelist Reinhard Bonnke made famous, and it has stuck to the bones of a whole generation of soul-winners: *plunder hell and populate heaven.* It sounds like a slogan. It's actually a summary of the Gospels." },
+      { t: "p", text: "Because when Jesus described His church, He didn't describe a fortress waiting to be attacked. He described a church on the move, and an enemy whose defences would fail." },
+      { t: "quote", text: "Upon this rock I will build my church; and the gates of hell shall not prevail against it.", ref: "Matthew 16:18 (KJV)" },
+      { t: "p", text: "Gates don't attack anybody. Gates are what you hide behind. Jesus pictured hell on the defensive and His people at the walls, and He promised the walls would not hold." },
+
+      { t: "h2", text: "What \"plunder hell\" actually means" },
+      { t: "p", text: "Jesus used this picture Himself. Accused of working by the devil's power, He answered with a story about a break-in:" },
+      { t: "quote", text: "How can one enter into a strong man's house, and spoil his goods, except he first bind the strong man? and then he will spoil his house.", ref: "Matthew 12:29 (KJV)" },
+      { t: "p", text: "The strong man has been bound. That happened at the cross and the empty tomb, not at our next conference. And the \"goods\" in this story aren't treasure. They're people: sons and daughters held captive, men and women who were made for God and have never once heard that He wants them back." },
+      { t: "p", text: "So plundering hell has nothing to do with hype, shouting or winning arguments. People are never the enemy. It means walking into the places darkness assumed it owned and carrying people out, one name at a time, into the light." },
+      { t: "quote", text: "Who hath delivered us from the power of darkness, and hath translated us into the kingdom of his dear Son.", ref: "Colossians 1:13 (KJV)" },
+
+      { t: "h2", text: "And \"populate heaven\"" },
+      { t: "p", text: "The last book of the Bible lets us peek at the finish line, and it is crowded:" },
+      { t: "quote", text: "A great multitude, which no man could number, of all nations, and kindreds, and people, and tongues, stood before the throne, and before the Lamb.", ref: "Revelation 7:9 (KJV)" },
+      { t: "p", text: "Every one of them got there because somebody told them. Every one of them is a reason for a party in heaven. Jesus said so: there is *joy in heaven over one sinner that repenteth* (Luke 15:7). Picture that multitude and then picture the faces from your own street in it. That's the vision." },
+
+      { t: "h2", text: "Where this has looked like real life" },
+      { t: "p", text: "For Daniel & Katie Ziedins it started small. In 2014 it was two people, some coffee and a question, and the outreach that became [Love on Hamilton](https://www.loveonhamilton.com). Sidewalks, bus stops, shelters, parking lots. No perfect script, just availability: everywhere, to everyone." },
+      { t: "p", text: "Twelve-plus years later, that small outreach has grown into **more than 20 weekly outreach teams**, ordinary believers who now go out every week on their own. It became training that turns nervous Christians into confident everyday witnesses. It became a citywide festival: this September Gage Park filled again for Jesus Festival, and you can read the [2026 harvest report](https://www.jesusfestival.app/blog/jesus-festival-hamilton-2026-recap). And it became [Love on The World](https://www.loveontheworld.com), carrying the same heart to more cities." },
+      { t: "p", text: "None of it is a success story about two people. It's a story about what God does with a yes that keeps getting said." },
+
+      { t: "h2", text: "The next assignment: 100 multiplying outreach groups" },
+      { t: "p", text: "Daniel & Katie now serve with **e3 Canada, in collaboration with I Am Second**, to equip believers to share their faith and to establish multiplying, life-changing churches. The mission in front of them is huge on purpose: help establish **100 multiplying outreach groups, anywhere and everywhere around the world.**" },
+      { t: "p", text: "Why multiplying? Because addition will never catch up with the harvest. One team that reaches a city is a blessing. One team that trains a team that trains a team has no ceiling. That has been the pattern from the beginning:" },
+      { t: "quote", text: "The things that thou hast heard of me among many witnesses, the same commit thou to faithful men, who shall be able to teach others also.", ref: "2 Timothy 2:2 (KJV)" },
+      { t: "p", text: "Count the generations in that one verse: Paul, Timothy, faithful men, others. Four, in a single sentence. That's the engine behind the 100." },
+
+      { t: "h2", text: "The people who send share the reward" },
+      { t: "p", text: "Here is something the church often forgets. In Scripture, the people who send are never second-class to the people who go." },
+      { t: "quote", text: "How shall they hear without a preacher? And how shall they preach, except they be sent?", ref: "Romans 10:14–15 (KJV)" },
+      { t: "p", text: "Look at David after the battle at Ziklag. Some of his men fought; others were too exhausted and stayed back to guard the supplies. When the fighters wanted to keep the spoil for themselves, David made a rule that became law in Israel:" },
+      { t: "quote", text: "As his part is that goeth down to the battle, so shall his part be that tarrieth by the stuff: they shall part alike.", ref: "1 Samuel 30:24 (KJV)" },
+      { t: "p", text: "Whoever stays by the supplies shares the plunder equally. When someone on a sidewalk in Hamilton, or a campus, or a city we haven't reached yet, meets Jesus, the person who prayed for that outreach and the person who helped fund it stand in that joy too. Paul said the same thing to the church that supported him: he wanted *fruit that may abound to your account* (Philippians 4:17)." },
+
+      { t: "h2", text: "Three ways to stand in it" },
+      {
+        t: "list",
+        items: [
+          "**Pray, first and always.** Jesus' own strategy for a harvest with few workers was a prayer request: *pray ye therefore the Lord of the harvest, that he will send forth labourers* (Matthew 9:38). Pray for Daniel & Katie, for the teams, and for the 100. Prayer is not the consolation prize of partnership. It's the engine.",
+          "**Go with someone.** You don't need a title. In Hamilton, join a weekly team through [LoveonHamilton.com](https://www.loveonhamilton.com). Anywhere else, start or join a group through [LoveonTheWorld.com](https://www.loveontheworld.com). The outreach that changes your city may be the one you start.",
+          "**Give, if the Lord leads.** Monthly partners are the quiet backbone of full-time ministry; they turn a calling into a sustainable sending. Financial partnership is handled securely through Daniel & Katie's official e3 Canada staff page, linked from [KD-Ziedins.com](https://www.kd-ziedins.com).",
+        ],
+      },
+      {
+        t: "cta",
+        eyebrow: "Partner in the harvest",
+        title: "Stand with Daniel & Katie",
+        text: "Read the story, see what God is doing on the streets, and find out how to pray, go or give through e3 Canada and I Am Second.",
+        href: "https://www.kd-ziedins.com",
+        label: "Visit KD-Ziedins.com",
+      },
+
+      { t: "h2", text: "One more picture" },
+      { t: "p", text: "Somewhere in that multitude in Revelation 7 there will be someone who first heard about Jesus at a bus stop on Barton Street. Someone who prayed in Gage Park with a stranger in a festival T-shirt. Someone on another continent reached by a team trained by a team trained by a team that began over coffee in Hamilton." },
+      { t: "p", text: "They will never know your name. Heaven will. *They shall part alike.*" },
+      { t: "p", text: "The gates are not going to hold. Let's go get our neighbours, in Jesus' name." },
+    ],
+    faqs: [
+      {
+        question: "What does \"plunder hell and populate heaven\" mean?",
+        answer:
+          "It's a phrase made famous by the evangelist Reinhard Bonnke. It draws on Jesus' words in Matthew 12:29 about binding the strong man and taking back what he holds: rescuing people from darkness through the Gospel (\"plunder hell\") so that they share eternal life with God (\"populate heaven\", see Revelation 7:9). It describes evangelism, never hostility toward people.",
+      },
+      {
+        question: "Who are Daniel & Katie Ziedins?",
+        answer:
+          "Daniel & Katie Ziedins are Hamilton, Ontario evangelists who began Love on Hamilton in 2014. Their work has grown into more than 20 weekly outreach teams, evangelism training, Jesus Festival in Gage Park and Love on The World. They now serve with e3 Canada in collaboration with I Am Second.",
+      },
+      {
+        question: "What is the 100 multiplying outreach groups vision?",
+        answer:
+          "It's Daniel & Katie's current mission with e3 Canada and I Am Second: help establish 100 outreach groups anywhere in the world that train others to share their faith and reproduce themselves, rather than relying on one team to do all the work.",
+      },
+      {
+        question: "How can I partner with Daniel & Katie?",
+        answer:
+          "Pray for them and the teams, join or start an outreach through Love on Hamilton or Love on The World, and, if the Lord leads, give through their official e3 Canada staff page, which is linked from KD-Ziedins.com. Prayer partners matter as much as financial ones.",
+      },
+    ],
+    sources: [
+      { name: "Daniel & Katie Ziedins: KD-Ziedins.com", url: "https://www.kd-ziedins.com" },
+      { name: "Daniel & Katie's e3 Canada staff page", url: "https://e3ministry.ca/staff/katie-daniel-ziedins" },
+      { name: "Love on Hamilton: weekly outreach teams", url: "https://www.loveonhamilton.com" },
+    ],
+    related: ["KD-Ziedins.com", "LoveonHamilton.com", "LoveonTheWorld.com"],
+  },
   {
     slug: "jesus-festival-hamilton-2026-recap",
     seoTitle: "Jesus Festival 2026 Recap: All Glory to God",
@@ -73,7 +176,7 @@ export const BLOG_POSTS: BlogPost[] = [
         "**If you said yes to Jesus:** begin with the private [I Said Yes guide](https://www.jesusfestival.app/i-said-yes) for prayer, Scripture, baptism, church and seven practical first steps.",
         "**If you live in Hamilton:** connect with the local outreach family at [Love on Hamilton](https://loveonhamilton.com).",
         "**If you live outside Hamilton:** join or create an outreach group in your city through [Love on The World](https://loveontheworld.com).",
-        "**If you want to partner with Daniel & Katie Ziedins:** follow their continued work through e3 Canada and I Am Second at [KD-Ziedins.com](https://kd-ziedins.com).",
+        "**If you want to partner with Daniel & Katie Ziedins:** follow their continued work through e3 Canada and I Am Second at [KD-Ziedins.com](https://kd-ziedins.com), and read the vision behind it in [Plunder Hell, Populate Heaven](https://www.jesusfestival.app/blog/plunder-hell-populate-heaven-partner-with-daniel-and-katie).",
         "**If you need prayer, want to share a testimony or need help finding your next step:** email [hello@jesusfestival.ca](mailto:hello@jesusfestival.ca). We are here for you.",
       ] },
       { t: "p", text: "We love you guys. Let’s continue to advance God’s Kingdom together—one prayer, one conversation, one act of obedience and one person at a time." },
@@ -835,6 +938,8 @@ const FESTIVAL_POSTS = new Set([
  * what lets crawlers that follow links (GPTBot, ClaudeBot, Google before it
  * renders) actually reach the whole archive.
  */
+export const isFestivalPost = (slug: string) => FESTIVAL_POSTS.has(slug);
+
 export function relatedPosts(slug: string): BlogPost[] {
   const all = sortedPosts();
   if (!all.some((p) => p.slug === slug)) return [];

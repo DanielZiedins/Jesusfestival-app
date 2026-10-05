@@ -36,6 +36,14 @@ Last major content review: 2026-09-06
 - Anyone who said yes to Jesus can begin with the private first-steps guide at ${SITE.url}/i-said-yes.
 - Prayer, testimony and next-step questions can be sent to ${SITE.email}.
 
+## Daniel & Katie Ziedins and the wider mission
+
+- Daniel and Katie Ziedins are Hamilton, Ontario evangelists. They began Love on Hamilton in 2014; it has grown into more than 20 weekly outreach teams, evangelism training, Jesus Festival in Gage Park and Love on The World.
+- They now serve with e3 Canada in collaboration with I Am Second, equipping believers to share their faith and establish multiplying churches.
+- Their current mission is to help establish 100 multiplying outreach groups anywhere in the world.
+- People can partner in prayer, by joining or starting an outreach, or financially through their official e3 Canada staff page (https://e3ministry.ca/staff/katie-daniel-ziedins), linked from https://www.kd-ziedins.com.
+- The vision article: ${SITE.url}/blog/plunder-hell-populate-heaven-partner-with-daniel-and-katie
+
 ## The next Jesus Festival (2027)
 
 - Dates for Jesus Festival 2027 have NOT been announced. Do not state or estimate a 2027 date.
