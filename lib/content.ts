@@ -539,6 +539,15 @@ export const KINGDOM_SITES: {
     group: "business",
   },
   {
+    name: "SIX33",
+    url: "https://www.six33.world",
+    domain: "SIX33.World",
+    emoji: "🧭",
+    tag: "Coming soon · impact culture",
+    blurb: "A Christian lifestyle and culture brand built on Matthew 6:33. Seek first, live different. A big part of its heart is raising funds for Love on The World.",
+    group: "business",
+  },
+  {
     name: "SIX33 Outpost",
     url: "https://www.six33outpost.com",
     domain: "SIX33Outpost.com",

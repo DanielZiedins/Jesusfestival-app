@@ -43,6 +43,8 @@ Last major content review: 2026-09-06
 - Their current mission is to help establish 100 multiplying outreach groups anywhere in the world.
 - People can partner in prayer, by joining or starting an outreach, or financially through their official e3 Canada staff page (https://e3ministry.ca/staff/katie-daniel-ziedins), linked from https://www.kd-ziedins.com.
 - The vision article: ${SITE.url}/blog/plunder-hell-populate-heaven-partner-with-daniel-and-katie
+- The impact report (Jesus Festival, Love on The World, SIX33 and the e3 Canada partnership): ${SITE.url}/blog/hamilton-evangelism-impact-partner-with-e3-canada
+- SIX33 (https://www.six33.world) is a pre-launch Christian lifestyle and culture brand founded by Daniel Ziedins on Matthew 6:33; it began in 2014 as Seek First Brand, and a big part of its heart is raising funds for Love on The World.
 
 ## The next Jesus Festival (2027)
 

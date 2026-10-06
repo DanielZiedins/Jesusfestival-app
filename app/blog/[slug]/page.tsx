@@ -196,7 +196,9 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
               </li>
             ))}
           </ul>
-          {isFestivalPost(post.slug) && (
+          {post.sourcesNote ? (
+            <p className="mt-3 text-[11px] leading-relaxed text-white/60">{post.sourcesNote}</p>
+          ) : isFestivalPost(post.slug) && (
             <p className="mt-3 text-[11px] leading-relaxed text-white/60">
               {post.slug === "jesus-festival-hamilton-2026-recap"
                 ? "Impact figures are preliminary reports shared by the Jesus Festival team on September 6, 2026 and may be updated as follow-up continues."

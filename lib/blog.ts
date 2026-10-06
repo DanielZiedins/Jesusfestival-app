@@ -36,11 +36,124 @@ export type BlogPost = {
   body: Block[];
   faqs?: { question: string; answer: string }[];
   sources?: { name: string; url: string }[];
+  /** Footnote under the sources, e.g. how impact figures were counted. */
+  sourcesNote?: string;
   /** Domains from KINGDOM_SITES to surface as cards at the end of the post. */
   related: string[];
 };
 
 export const BLOG_POSTS: BlogPost[] = [
+
+  {
+    slug: "hamilton-evangelism-impact-partner-with-e3-canada",
+    seoTitle: "From Hamilton to the Nations: Impact & Partnership",
+    seoDescription:
+      "70+ salvations and 50+ baptisms reported at Jesus Festival 2026, 20+ weekly outreach teams, 12 city groups. See the impact and partner through e3 Canada.",
+    title: "The Harvest Isn't Finished: What God Is Doing From Hamilton to the Nations",
+    description:
+      "A park full of worship. Names written in heaven. Weekly teams on the streets, city groups across the map, and a culture brand on the way. Here's the impact so far, and the open door to partner in what comes next.",
+    eyebrow: "Impact report",
+    emoji: "🌍",
+    date: "2026-10-06",
+    readMins: 7,
+    body: [
+      { t: "p", text: "Some numbers you count once and forget. Others get counted in heaven, and they never stop mattering. This is a report about the second kind." },
+      { t: "quote", text: "Lift up your eyes, and look on the fields; for they are white already to harvest.", ref: "John 4:35 (KJV)" },
+      { t: "p", text: "Jesus said that to disciples who thought harvest season was still months away. It wasn't then, and it isn't now. Here's what that has looked like for the work Daniel & Katie Ziedins have carried since 2014, and why this is the moment to lean in." },
+
+      { t: "h2", text: "The impact, in one place" },
+      {
+        t: "list",
+        items: [
+          "**70+ salvations and 50+ baptisms** reported at Jesus Festival 2026 in Gage Park, September 4–5, as of September 6. These are early ministry reports, and follow-up is still going.",
+          "**3,000+ hot dogs and drinks** given away free to the city, in what the team called a record weekend.",
+          "**A free festival every year since 2024**, all three at Gage Park, Hamilton, open to everyone. Plan the next one at [JesusFestival.ca](https://www.jesusfestival.ca).",
+          "**20+ weekly outreach teams**, grown from one small outreach in 2014: ordinary believers who now go out every week on their own.",
+          "**12 listed city groups and prayer for 36 nations** through [Love on The World](https://www.loveontheworld.com), all plotted on one live movement map.",
+          "**One goal ahead:** 100 multiplying outreach groups, anywhere and everywhere, through e3 Canada and I Am Second.",
+        ],
+      },
+      { t: "p", text: "Every one of those numbers is a person. Behind \"50+ baptisms\" are fifty-some people who walked into water in front of their city and came up declaring that Jesus is Lord. Heaven threw a party for each of them (Luke 15:7). The full story of the weekend is in the [2026 harvest report](https://www.jesusfestival.app/blog/jesus-festival-hamilton-2026-recap)." },
+
+      { t: "h2", text: "Jesus Festival: the city's front door" },
+      { t: "p", text: "[Jesus Festival](https://www.jesusfestival.ca) exists for one reason: to make it as easy as possible for a whole city to hear the Gospel. No tickets, no offering plate, no church walls to get past. Worship, testimonies, food trucks, a Kids Zone, and the clear message that Jesus is alive and He loves Hamilton." },
+      { t: "p", text: "That front door matters. Plenty of people will never walk into a sanctuary, but they'll walk into a park on a Saturday. Some of them met Jesus there this year. The 2027 dates haven't been announced yet; you can be first to know at [Jesus Festival 2027](https://www.jesusfestival.app/jesus-festival-2027)." },
+
+      { t: "h2", text: "Love on The World: the weekly frontline" },
+      { t: "p", text: "A festival is one weekend. The harvest is fifty-two weeks a year. [Love on The World](https://www.loveontheworld.com) is the Great Commission movement that grew out of Love on Hamilton: believers sharing the Gospel, making disciples, serving their communities and multiplying outreach groups in cities and nations." },
+      { t: "p", text: "Sidewalks, bus stops, campuses, hospital hallways. It's not glamorous, and it's the most powerful thing we know: people who are available, everywhere, to everyone. If you've ever wanted to share your faith but didn't know where to start, this is where you start. Join a group, or start one in your city." },
+      { t: "quote", text: "And others save with fear, pulling them out of the fire.", ref: "Jude 1:23 (KJV)" },
+
+      { t: "h2", text: "SIX33: carrying the Kingdom into culture" },
+      { t: "p", text: "The Gospel was never meant to stay inside Christian spaces. Jesus called His people *the light of the world* and *a city that is set on an hill* (Matthew 5:14). Light goes where the dark is: into gyms, garages, studios, feeds and streets." },
+      { t: "p", text: "That's the heart of [SIX33](https://www.six33.world), **coming really soon**. It's a Christian lifestyle and culture brand built on one verse:" },
+      { t: "quote", text: "But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you.", ref: "Matthew 6:33 (KJV)" },
+      { t: "p", text: "SIX33 began in 2014 as Seek First Brand and is being rebuilt as a whole world: limited drops, athletes and creators, Field Notes and events, all with the same order of life: seek Jesus first, live with purpose, pursue excellence, impact culture for His Kingdom, give God the glory. **A big part of its heart is raising funds for Love on The World**, so as SIX33 grows, the giving grows with it. It's pre-launch right now; the Inner Circle list at [SIX33.World](https://www.six33.world) is the way in." },
+
+      { t: "h2", text: "The next season: enlarge the tent" },
+      { t: "p", text: "Daniel & Katie now serve with **e3 Canada, in collaboration with I Am Second**, equipping believers to share their faith and to establish multiplying, life-changing churches. The assignment is bigger than anything so far: **100 multiplying outreach groups**, anywhere and everywhere." },
+      { t: "quote", text: "Enlarge the place of thy tent, and let them stretch forth the curtains of thine habitations: spare not, lengthen thy cords, and strengthen thy stakes.", ref: "Isaiah 54:2 (KJV)" },
+      { t: "p", text: "Lengthen the cords, so the work goes further. Strengthen the stakes, so it holds. Multiplication needs both: reach and roots. It means training people who train people, and it means faithful partners who keep the stakes in the ground while the cords stretch to new cities." },
+
+      { t: "h2", text: "This is what plundering hell looks like" },
+      { t: "p", text: "It doesn't look like a slogan on a stage. It looks like a man at a bus stop hearing for the first time that God isn't finished with him. It looks like a teenager baptised in a park while her friends cheer. It looks like a team in a city you've never visited, trained by a team trained by a team that started over coffee in Hamilton." },
+      { t: "quote", text: "And they that be wise shall shine as the brightness of the firmament; and they that turn many to righteousness as the stars for ever and ever.", ref: "Daniel 12:3 (KJV)" },
+      { t: "p", text: "Plunder hell. Populate heaven. In Jesus' name. If you want the full biblical case for why the people who send share the reward, read [Plunder Hell, Populate Heaven](https://www.jesusfestival.app/blog/plunder-hell-populate-heaven-partner-with-daniel-and-katie)." },
+
+      { t: "h2", text: "Your part in the next number" },
+      {
+        t: "list",
+        items: [
+          "**Pray.** Ask the Lord of the harvest to send out labourers (Matthew 9:38), and to keep Daniel, Katie and every team strong.",
+          "**Go.** Join or start an outreach through [LoveonTheWorld.com](https://www.loveontheworld.com), and invite someone to the next [Jesus Festival](https://www.jesusfestival.ca).",
+          "**Carry it into culture.** Join the SIX33 Inner Circle at [SIX33.World](https://www.six33.world) before launch and help turn a brand into fuel for the Gospel.",
+          "**Partner.** If the Lord leads, become a monthly or one-time partner through Daniel & Katie's official e3 Canada page, linked from [KD-Ziedins.com](https://www.kd-ziedins.com). It's the backbone that turns a calling into a sustainable sending.",
+        ],
+      },
+      {
+        t: "cta",
+        eyebrow: "Partner through e3 Canada",
+        title: "Help write the next chapter",
+        text: "Meet Daniel & Katie, read the stories from the streets, and see how to partner in prayer or giving with e3 Canada and I Am Second.",
+        href: "https://www.kd-ziedins.com",
+        label: "Partner at KD-Ziedins.com",
+      },
+      { t: "p", text: "The fields are still white. The gates are still not holding. And somewhere out there is someone whose name is about to be written in heaven because somebody said yes. Let's go together." },
+    ],
+    faqs: [
+      {
+        question: "What impact did Jesus Festival 2026 have?",
+        answer:
+          "As of September 6, 2026, the Jesus Festival team reported 70+ salvations and 50+ baptisms from the September 4–5 festival at Gage Park in Hamilton, plus 3,000+ free hot dogs and drinks and a record turnout. These are preliminary ministry reports and may be updated as follow-up continues.",
+      },
+      {
+        question: "What is Love on The World?",
+        answer:
+          "Love on The World (LoveonTheWorld.com) is a Great Commission movement founded in Hamilton, Ontario in 2014 by Daniel and Katie Ziedins. It helps believers share the Gospel, make disciples and multiply outreach groups, with 12 listed city groups and prayer for 36 nations.",
+      },
+      {
+        question: "What is SIX33?",
+        answer:
+          "SIX33 (SIX33.World) is a Christian lifestyle and culture brand founded by Daniel Ziedins, built on Matthew 6:33 and launching soon. It began in 2014 as Seek First Brand, and a big part of its heart is raising funds for Love on The World.",
+      },
+      {
+        question: "How can I partner with Daniel & Katie Ziedins and e3 Canada?",
+        answer:
+          "Pray for the work, join or start an outreach through Love on The World, and, if the Lord leads, give monthly or once through Daniel & Katie's official e3 Canada staff page, linked from KD-Ziedins.com.",
+      },
+    ],
+    sources: [
+      { name: "Jesus Festival Hamilton 2026 recap", url: "https://www.jesusfestival.app/blog/jesus-festival-hamilton-2026-recap" },
+      { name: "Jesus Festival: JesusFestival.ca", url: "https://www.jesusfestival.ca" },
+      { name: "Love on The World: our impact", url: "https://www.loveontheworld.com/impact" },
+      { name: "SIX33: SIX33.World", url: "https://www.six33.world" },
+      { name: "Daniel & Katie Ziedins: KD-Ziedins.com", url: "https://www.kd-ziedins.com" },
+      { name: "Daniel & Katie's e3 Canada staff page", url: "https://e3ministry.ca/staff/katie-daniel-ziedins" },
+    ],
+    sourcesNote:
+      "Festival figures are preliminary reports shared by the Jesus Festival team on September 6, 2026. City-group and nation counts are as listed by Love on The World in October 2026. Every number is a person, and all glory belongs to God.",
+    related: ["KD-Ziedins.com", "LoveonTheWorld.com", "JesusFestival.ca", "SIX33.World"],
+  },
 
   {
     slug: "plunder-hell-populate-heaven-partner-with-daniel-and-katie",
@@ -112,6 +225,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { t: "p", text: "Somewhere in that multitude in Revelation 7 there will be someone who first heard about Jesus at a bus stop on Barton Street. Someone who prayed in Gage Park with a stranger in a festival T-shirt. Someone on another continent reached by a team trained by a team trained by a team that began over coffee in Hamilton." },
       { t: "p", text: "They will never know your name. Heaven will. *They shall part alike.*" },
       { t: "p", text: "The gates are not going to hold. Let's go get our neighbours, in Jesus' name." },
+      { t: "p", text: "Want to see the fruit so far, from Gage Park to the nations? Read [The Harvest Isn't Finished](https://www.jesusfestival.app/blog/hamilton-evangelism-impact-partner-with-e3-canada)." },
     ],
     faqs: [
       {
