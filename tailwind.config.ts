@@ -4,9 +4,15 @@ const config: Config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    // lib/ holds class strings too (the game's fruit colours); unscanned, they
+    // never compiled and rendered as plain white.
+    "./lib/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
+      // Off-scale steps used for soft glows and tints (v3's default scale is
+      // multiples of 5, so /8, /12, /18 and /92 silently compiled to nothing).
+      opacity: { 8: "0.08", 12: "0.12", 18: "0.18", 92: "0.92" },
       colors: {
         // Official Jesus Festival identity: black + royal purple + gold.
         ink: "#0a0510",
@@ -18,6 +24,10 @@ const config: Config = {
         },
         gold: {
           DEFAULT: "#f5a623",
+          // 200/300 were used across the app (54 places) but never defined, so
+          // those labels and links silently rendered white.
+          200: "#ffe3a3",
+          300: "#ffd27a",
           400: "#ffc24d",
           500: "#f5a623",
           600: "#d98a00",

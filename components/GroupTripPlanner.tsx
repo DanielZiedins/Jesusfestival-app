@@ -350,7 +350,7 @@ export default function GroupTripPlanner() {
       <div className="space-y-8 p-5 sm:p-8">
         <div className="grid gap-5 sm:grid-cols-2">
           <label className="block">
-            <span className="font-display text-sm font-extrabold text-white">Group nickname <span className="font-sans font-normal text-white/45">(optional)</span></span>
+            <span className="font-display text-sm font-extrabold text-white">Group nickname <span className="font-sans font-normal text-white/60">(optional)</span></span>
             <input
               value={plan.name}
               disabled={!ready}
@@ -361,7 +361,7 @@ export default function GroupTripPlanner() {
             />
           </label>
           <label className="block">
-            <span className="font-display text-sm font-extrabold text-white">One group note <span className="font-sans font-normal text-white/45">(optional)</span></span>
+            <span className="font-display text-sm font-extrabold text-white">One group note <span className="font-sans font-normal text-white/60">(optional)</span></span>
             <input
               value={plan.note}
               disabled={!ready}
@@ -448,7 +448,7 @@ export default function GroupTripPlanner() {
             </ul>
           </div>
 
-          <p className="mt-5 text-[10.5px] leading-relaxed text-white/45">
+          <p className="mt-5 text-[10.5px] leading-relaxed text-white/55">
             Festival zones and event-day conditions can change. Follow current signs and volunteer direction. Keep phone numbers, medical details, minor names and other sensitive information out of shared links.
           </p>
         </div>
@@ -474,7 +474,7 @@ export default function GroupTripPlanner() {
             <Link href="/map" className="flex min-h-11 items-center justify-center gap-2 rounded-xl border border-purple-300/25 bg-purple-400/[0.07] px-4 py-3 text-center text-sm font-bold text-purple-100"><MapPin width={15} height={15} /> Open park map</Link>
             <Link href="/offline" className="flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/12 bg-white/[0.04] px-4 py-3 text-center text-sm font-bold text-white">Save offline <ArrowRight width={15} height={15} /></Link>
           </div>
-          <p className="mt-4 text-center text-[10.5px] leading-relaxed text-white/45">
+          <p className="mt-4 text-center text-[10.5px] leading-relaxed text-white/55">
             Sharing creates a link containing the visible group choices, nickname and note. Readiness checks remain private on this device and are never added to the link.
           </p>
         </div>

@@ -38,7 +38,9 @@ const BASE = process.env.BASE || "https://www.jesusfestival.app";
 const CHROME = process.env.CHROME_PATH || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const PAGES = process.argv.slice(2).length
   ? process.argv.slice(2)
-  : ["/", "/schedule", "/hunt", "/prayer", "/news", "/photos", "/map", "/i-said-yes", "/revive-the-city", "/jesus-festival-2027", "/blog", "/partner"];
+  : ["/", "/schedule", "/hunt", "/prayer", "/news", "/photos", "/map", "/i-said-yes", "/revive-the-city", "/jesus-festival-2027", "/blog", "/partner",
+     "/bring-a-group", "/day-of", "/festival-weekend", "/find-your-moments", "/getting-to-gage-park", "/before-you-go", "/what-to-bring",
+     "/blog/hamilton-evangelism-impact-partner-with-e3-canada"];
 
 const lum = ([r, g, b]) => {
   const f = (c) => ((c /= 255) <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);

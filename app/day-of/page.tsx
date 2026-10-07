@@ -38,7 +38,7 @@ export default function DayOfPage() {
     <main className="min-h-screen bg-ink px-4 pb-16 pt-8 text-white safe-top sm:pt-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd([pageJsonLd, faqJsonLd, breadcrumbs]) }} />
       <article className="mx-auto max-w-lg">
-        <nav aria-label="Breadcrumb" className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-white/45"><Link href="/" className="hover:text-gold-400">Jesus Festival</Link><span className="px-2">/</span><span aria-current="page">Day-Of Mode</span></nav>
+        <nav aria-label="Breadcrumb" className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-white/75"><Link href="/" className="hover:text-gold-400">Jesus Festival</Link><span className="px-2">/</span><span aria-current="page">Day-Of Mode</span></nav>
         <header className="pb-6 pt-5">
           <p className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-gold-400">Fast · live · offline-ready</p>
           <h1 className="mt-2 font-display text-4xl font-extrabold leading-[1.02] sm:text-5xl">Everything that matters <span className="text-gradient-gold">right now.</span></h1>

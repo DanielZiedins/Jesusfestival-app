@@ -150,12 +150,12 @@ export default function BringAGroupPage() {
           />
           <div className="absolute inset-0 -z-10 bg-gradient-to-b from-ink/45 via-purple-950/75 to-ink" />
           <div className="mx-auto flex min-h-[590px] max-w-5xl flex-col justify-end px-5 pb-16 pt-24 text-center sm:px-8">
-            <nav aria-label="Breadcrumb" className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/70">
+            <nav aria-label="Breadcrumb" className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/90">
               <Link href="/" className="hover:text-gold-400">Jesus Festival</Link>
               <span className="px-2">/</span>
               <span aria-current="page">Bring a Group</span>
             </nav>
-            <p className="mt-6 text-[11px] font-extrabold uppercase tracking-[0.24em] text-gold-400">One crew · one clear plan · one unforgettable weekend</p>
+            <p className="mt-6 text-[11px] font-extrabold uppercase tracking-[0.24em] text-gold-300">One crew · one clear plan · one unforgettable weekend</p>
             <h1 className="mx-auto mt-4 max-w-4xl font-display text-4xl font-extrabold leading-[0.98] sm:text-6xl">
               Don&apos;t just come. <span className="text-gradient-gold">Bring your people.</span>
             </h1>
@@ -266,7 +266,7 @@ export default function BringAGroupPage() {
 
           <section className="render-later mt-14 border-t border-white/10 pt-8" aria-labelledby="group-sources-heading">
             <h2 id="group-sources-heading" className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/60">Current authoritative sources</h2>
-            <p className="mt-2 max-w-2xl text-[12px] leading-relaxed text-white/45">Festival details and City park information were reviewed August 24, 2026. Final event-day signs and official updates take priority.</p>
+            <p className="mt-2 max-w-2xl text-[12px] leading-relaxed text-white/60">Festival details and City park information were reviewed August 24, 2026. Final event-day signs and official updates take priority.</p>
             <ul className="mt-4 grid gap-2 sm:grid-cols-2">
               {SOURCES.map((source) => (
                 <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer" className="block rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3 text-[12px] font-semibold leading-relaxed text-gold-400 hover:border-gold/30">{source.name} ↗</a></li>

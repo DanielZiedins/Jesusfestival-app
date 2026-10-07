@@ -353,6 +353,31 @@ export default function PostFestivalHome({ go, onSearch }: Props) {
         </Reveal>
       </section>
 
+      {/* Beyond the weekend: where the harvest goes after Gage Park. */}
+      <section className="render-later mt-6 px-4">
+        <Reveal className="mx-auto max-w-md">
+          <Link
+            href="/blog/hamilton-evangelism-impact-partner-with-e3-canada"
+            className="group relative block overflow-hidden rounded-[2rem] border border-gold/30 bg-gradient-to-br from-gold/[0.10] via-ink to-purple-800/25 p-6 active:scale-[0.99]"
+          >
+            <span className="pointer-events-none absolute -left-12 -bottom-14 h-40 w-40 rounded-full bg-gold/15 blur-3xl" />
+            <div className="relative flex items-center gap-4">
+              <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-gradient-to-br from-gold-400/25 to-purple-500/25 text-3xl" aria-hidden>
+                🌍
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-[10px] font-black uppercase tracking-[0.22em] text-gold-300">Beyond the weekend</span>
+                <span className="mt-1 block font-display text-2xl font-black leading-tight text-white">The harvest isn&apos;t finished</span>
+                <span className="mt-1 block text-[13px] leading-snug text-white/65">
+                  From Gage Park to 20+ weekly teams and the nations, and how to partner in what&apos;s next.
+                </span>
+              </span>
+              <ArrowRight width={18} height={18} className="shrink-0 text-gold-300 transition group-hover:translate-x-0.5" />
+            </div>
+          </Link>
+        </Reveal>
+      </section>
+
       <section className="render-later mt-16 px-4">
         <Reveal className="mx-auto max-w-md">
           <div className="relative overflow-hidden rounded-[2rem] border border-gold/30 bg-gradient-to-br from-gold/[0.13] via-purple-900/20 to-ink p-6 text-center">

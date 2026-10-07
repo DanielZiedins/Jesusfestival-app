@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BLOG_POSTS, isFestivalPost, postBySlug, relatedPosts } from "@/lib/blog";
+import { BLOG_POSTS, isFestivalPost, postBySlug, postSection, relatedPosts } from "@/lib/blog";
 import { KINGDOM_SITES, SITE } from "@/lib/content";
 import Rich from "@/components/blog/Rich";
 import { ReadingProgress, ShareArticle } from "@/components/blog/ArticleChrome";
@@ -47,9 +47,28 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
   const more = relatedPosts(post.slug);
 
   const sourceCitations = post.sources?.map((source) => ({ "@type": "CreativeWork", name: source.name, url: source.url })) ?? [];
-  const articleAbout = ["gage-park-festival-guide", "free-things-to-do-hamilton-september-2026"].includes(post.slug)
-    ? [{ "@id": `${SITE.url}/#festival-2026` }, { "@id": `${SITE.url}/#gage-park` }]
-    : [{ "@id": `${SITE.url}/#festival-2026` }];
+  // Mission posts are about Daniel & Katie's wider work, not the festival
+  // weekend. Their Person nodes are defined once here, so each @id resolves on
+  // the page that uses it.
+  const mission = postSection(post.slug) === "mission";
+  const articleAbout = mission
+    ? [
+        { "@type": "Person", "@id": `${SITE.url}/#daniel-ziedins`, name: "Daniel Ziedins", url: "https://www.danielziedins.com", sameAs: ["https://www.kd-ziedins.com"] },
+        { "@type": "Person", "@id": `${SITE.url}/#katie-ziedins`, name: "Katie Ziedins", sameAs: ["https://www.kd-ziedins.com"] },
+      ]
+    : ["gage-park-festival-guide", "free-things-to-do-hamilton-september-2026"].includes(post.slug)
+      ? [{ "@id": `${SITE.url}/#festival-2026` }, { "@id": `${SITE.url}/#gage-park` }]
+      : [{ "@id": `${SITE.url}/#festival-2026` }];
+  const missionMentions = mission
+    ? [
+        { "@type": "Organization", name: "e3 Canada", url: "https://e3ministry.ca" },
+        { "@type": "Organization", name: "I Am Second" },
+        { "@type": "Organization", name: "Love on The World", url: "https://www.loveontheworld.com" },
+        { "@type": "Organization", name: "Love on Hamilton", url: "https://www.loveonhamilton.com" },
+        { "@type": "Organization", name: "SIX33", url: "https://www.six33.world" },
+        { "@id": `${SITE.url}/#festival-2026` },
+      ]
+    : [];
   const jsonLd: object[] = [
     {
       "@context": "https://schema.org",
@@ -70,6 +89,7 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
       articleSection: post.eyebrow,
       inLanguage: "en-CA",
       about: articleAbout,
+      ...(missionMentions.length ? { mentions: missionMentions } : {}),
       speakable: {
         "@type": "SpeakableSpecification",
         cssSelector: ["article h1", "article header > p", ".article-faqs"],

@@ -1054,6 +1054,23 @@ const FESTIVAL_POSTS = new Set([
  */
 export const isFestivalPost = (slug: string) => FESTIVAL_POSTS.has(slug);
 
+/** The wider mission: partnership, impact and the work beyond the festival. */
+const MISSION_POSTS = new Set([
+  "plunder-hell-populate-heaven-partner-with-daniel-and-katie",
+  "hamilton-evangelism-impact-partner-with-e3-canada",
+]);
+
+export const BLOG_SECTIONS = [
+  { id: "mission", title: "The mission & partnership", blurb: "The vision, the impact so far, and how to stand in it." },
+  { id: "festival", title: "Festival guides & reports", blurb: "The 2026 harvest report and every guide to the weekend at Gage Park." },
+  { id: "faith", title: "Everyday faith", blurb: "Loving your city, reaching the people closest to you, and life after yes." },
+] as const;
+
+export type BlogSectionId = (typeof BLOG_SECTIONS)[number]["id"];
+
+export const postSection = (slug: string): BlogSectionId =>
+  MISSION_POSTS.has(slug) ? "mission" : FESTIVAL_POSTS.has(slug) ? "festival" : "faith";
+
 export function relatedPosts(slug: string): BlogPost[] {
   const all = sortedPosts();
   if (!all.some((p) => p.slug === slug)) return [];

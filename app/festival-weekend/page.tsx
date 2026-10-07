@@ -147,7 +147,7 @@ export default function FestivalWeekendPage() {
               <a href="#my-weekend" className="rounded-2xl border border-gold/30 bg-gold/[0.08] px-6 py-3.5 font-display text-sm font-extrabold text-gold-300">Open my weekend hub</a>
               <Link href="/schedule" className="rounded-2xl border border-white/15 bg-white/[0.05] px-6 py-3.5 text-sm font-bold text-white">See the full schedule</Link>
             </div>
-            <p className="mt-5 text-[11px] text-white/45">Updated September 3, 2026 · Live information is shown in Hamilton time</p>
+            <p className="mt-5 text-[11px] text-white/55">Updated September 3, 2026 · Live information is shown in Hamilton time</p>
           </div>
         </header>
 
@@ -244,7 +244,7 @@ export default function FestivalWeekendPage() {
                 <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer" className="block rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3 text-[12px] font-semibold leading-relaxed text-gold-400 hover:border-gold/30">{source.name} ↗</a></li>
               ))}
             </ul>
-            <p className="mt-4 text-[11px] leading-relaxed text-white/45">Reviewed August 24, 2026. Follow official festival announcements, on-site signs and emergency instructions when they differ from planning information saved earlier.</p>
+            <p className="mt-4 text-[11px] leading-relaxed text-white/55">Reviewed August 24, 2026. Follow official festival announcements, on-site signs and emergency instructions when they differ from planning information saved earlier.</p>
           </section>
         </div>
       </article>

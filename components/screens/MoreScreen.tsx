@@ -173,7 +173,7 @@ export default function MoreScreen({
                 className="group mb-3 flex min-h-20 items-center gap-4 rounded-2xl border border-ember/35 bg-gradient-to-br from-ember/20 via-purple-800/25 to-ink/50 p-4 transition active:scale-[0.99]"
               >
                 <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-ember/35 to-gold/25 text-3xl" aria-hidden>🕊️</span>
-                <span className="min-w-0 flex-1"><span className="flex items-center gap-2"><span className="font-display text-lg font-extrabold text-white">I Said Yes to Jesus</span><span className="rounded-full bg-ember/15 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-wider text-ember">Start here</span></span><span className="block text-xs leading-snug text-white/65">Prayer, baptism, Scripture, church and seven practical first steps</span></span>
+                <span className="min-w-0 flex-1"><span className="flex items-center gap-2"><span className="font-display text-lg font-extrabold text-white">I Said Yes to Jesus</span><span className="rounded-full bg-ember/15 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-wider text-purple-300">Start here</span></span><span className="block text-xs leading-snug text-white/65">Prayer, baptism, Scripture, church and seven practical first steps</span></span>
                 <ArrowRight width={18} height={18} className="shrink-0 text-gold-400 transition group-hover:translate-x-0.5" />
               </Link>
             </Reveal>

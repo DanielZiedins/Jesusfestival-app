@@ -52,7 +52,7 @@ export default function FestivalLive({ go }: { go: (t: TabId, sub?: string) => v
           <span className="absolute inline-flex h-full w-full animate-ping-slow rounded-full bg-ember" />
           <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-ember" />
         </span>
-        <span className="text-[11px] font-black uppercase tracking-[0.22em] text-ember">
+        <span className="text-[11px] font-black uppercase tracking-[0.22em] text-purple-300">
           Live now · {day.label}
         </span>
       </div>

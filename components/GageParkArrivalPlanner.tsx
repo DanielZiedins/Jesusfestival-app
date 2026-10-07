@@ -250,7 +250,7 @@ export default function GageParkArrivalPlanner() {
               <Link href="/find-your-moments" className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.05] px-4 py-3 text-sm font-bold text-white">Plan what to see <ArrowRight width={15} height={15} /></Link>
             </div>
             <p role="status" className="mt-3 min-h-5 text-center text-[12px] font-bold text-gold-300">{notice}</p>
-            <p className="mt-1 text-center text-[10.5px] leading-relaxed text-white/45">Your choices stay on this device. Times are planning estimates—not live traffic or transit predictions.</p>
+            <p className="mt-1 text-center text-[10.5px] leading-relaxed text-white/60">Your choices stay on this device. Times are planning estimates—not live traffic or transit predictions.</p>
           </div>
         </div>
       </div>
@@ -273,5 +273,5 @@ function PlannerOptions<T extends string>({ legend, options, value, disabled, on
 }
 
 function PlanStat({ label, value }: { label: string; value: string }) {
-  return <div className="bg-navy-950/80 p-4 text-center"><p className="font-display text-lg font-extrabold text-white">{value}</p><p className="mt-0.5 text-[9px] font-extrabold uppercase tracking-[0.16em] text-white/45">{label}</p></div>;
+  return <div className="bg-navy-950/80 p-4 text-center"><p className="font-display text-lg font-extrabold text-white">{value}</p><p className="mt-0.5 text-[9px] font-extrabold uppercase tracking-[0.16em] text-white/55">{label}</p></div>;
 }

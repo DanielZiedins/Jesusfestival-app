@@ -353,7 +353,7 @@ export default function FestivalMomentFinder() {
             <Link href="/schedule" className="flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.05] px-4 py-3 text-center text-sm font-bold text-white"><CalendarIcon width={15} height={15} /> Open My Lineup</Link>
             <Link href="/festival-weekend" className="flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.05] px-4 py-3 text-center text-sm font-bold text-white">Open weekend hub <ArrowRight width={15} height={15} /></Link>
           </div>
-          <p className="mt-4 text-center text-[10.5px] leading-relaxed text-white/45">Recommendations and starred moments stay on this device. Stage times are approximate and may shift slightly during the day.</p>
+          <p className="mt-4 text-center text-[10.5px] leading-relaxed text-white/60">Recommendations and starred moments stay on this device. Stage times are approximate and may shift slightly during the day.</p>
           <p role="status" className="mt-2 min-h-5 text-center text-[12px] font-bold text-gold-300">{notice}</p>
         </div>
       </div>

@@ -78,7 +78,7 @@ export default function WhatToBringPage() {
           <Image src={IMG.heroCrowd} alt="People gathering outdoors for Jesus Festival at Gage Park" fill preload sizes="100vw" className="-z-20 object-cover" />
           <div className="absolute inset-0 -z-10 bg-gradient-to-b from-ink/35 via-purple-950/80 to-ink" />
           <div className="mx-auto flex min-h-[570px] max-w-5xl flex-col justify-end px-5 pb-16 pt-24 text-center sm:px-8">
-            <nav aria-label="Breadcrumb" className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/70"><Link href="/" className="hover:text-gold-400">Jesus Festival</Link><span className="px-2">/</span><span aria-current="page">What to Bring</span></nav>
+            <nav aria-label="Breadcrumb" className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/90"><Link href="/" className="hover:text-gold-400">Jesus Festival</Link><span className="px-2">/</span><span aria-current="page">What to Bring</span></nav>
             <p className="mt-6 text-[11px] font-extrabold uppercase tracking-[0.24em] text-emerald-200">September 4–5 · Gage Park</p>
             <h1 className="mx-auto mt-4 max-w-4xl font-display text-4xl font-extrabold leading-[0.98] sm:text-6xl">Pack less guesswork. <span className="text-gradient-gold">Bring what matters.</span></h1>
             <p className="packing-answer-summary mx-auto mt-5 max-w-2xl text-[17px] leading-relaxed text-white/80 sm:text-xl">The direct answer: bring seating, water, comfortable shoes, a charged phone, Saturday sun protection and a Friday evening layer—then personalize the rest for your actual visit.</p>

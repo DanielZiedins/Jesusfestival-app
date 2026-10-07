@@ -178,7 +178,7 @@ export default function FestivalCommandCenter() {
           {(phase === "fri" || phase === "sat") && (
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
               <div className="rounded-2xl border border-ember/35 bg-ember/10 p-3.5">
-                <p className="text-[9px] font-extrabold uppercase tracking-[0.18em] text-ember">On stage</p>
+                <p className="text-[9px] font-extrabold uppercase tracking-[0.18em] text-purple-300">On stage</p>
                 <p className="mt-1 font-display text-lg font-extrabold text-white">{current?.title ?? liveDay?.theme}</p>
               </div>
               <div className="rounded-2xl border border-gold/25 bg-gold/[0.07] p-3.5">
@@ -223,7 +223,7 @@ export default function FestivalCommandCenter() {
           </div>
 
           {personal.attending && (
-            <button type="button" onClick={toggleWeekend} className="mt-3 w-full text-center text-[11px] font-bold text-white/45 hover:text-white/70">Remove saved weekend</button>
+            <button type="button" onClick={toggleWeekend} className="mt-3 w-full text-center text-[11px] font-bold text-white/55 hover:text-white/70">Remove saved weekend</button>
           )}
         </section>
 
@@ -234,7 +234,7 @@ export default function FestivalCommandCenter() {
                 <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-sky-200">Gage Park forecast</p>
                 <h3 id="command-weather-heading" className="mt-1 font-display text-2xl font-extrabold text-white">Pack for the real weekend</h3>
               </div>
-              <span className="text-[10px] text-white/45">Updates daily</span>
+              <span className="text-[10px] text-white/55">Updates daily</span>
             </div>
             <div className="mt-3 grid grid-cols-2 gap-3">
               {forecast.map((day) => (
@@ -247,7 +247,7 @@ export default function FestivalCommandCenter() {
                 </article>
               ))}
             </div>
-            <p className="mt-2 text-[10px] leading-relaxed text-white/45">Forecast provided by Open-Meteo. Check official festival updates before travelling if severe weather is possible.</p>
+            <p className="mt-2 text-[10px] leading-relaxed text-white/55">Forecast provided by Open-Meteo. Check official festival updates before travelling if severe weather is possible.</p>
           </section>
         ) : forecastReady ? (
           <p className="rounded-2xl border border-white/10 bg-white/[0.035] p-4 text-[12px] leading-relaxed text-white/60">The two-day forecast is temporarily unavailable. Pack for an outdoor event and check the News tab before leaving.</p>
@@ -286,7 +286,7 @@ function PrepStat({ ready, label, value }: { ready: boolean; label: string; valu
   return (
     <div className={`rounded-2xl border p-3 text-center ${ready ? "border-emerald-300/25 bg-emerald-400/[0.08]" : "border-white/10 bg-black/15"}`}>
       <span className="text-base" aria-hidden>{ready ? "✓" : "○"}</span>
-      <span className="mt-1 block text-[9px] font-bold uppercase tracking-wider text-white/45">{label}</span>
+      <span className="mt-1 block text-[9px] font-bold uppercase tracking-wider text-white/60">{label}</span>
       <strong className={`mt-0.5 block text-[11px] ${ready ? "text-emerald-200" : "text-white/75"}`}>{value}</strong>
     </div>
   );

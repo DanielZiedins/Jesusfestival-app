@@ -110,7 +110,7 @@ export default function FestivalDayMode() {
           </div>
 
           <div aria-live="polite" className="mt-7">
-            <p className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.22em] text-ember">
+            <p className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.22em] text-purple-300">
               {(phase === "fri" || phase === "sat") && <span className="relative flex h-2.5 w-2.5"><span className="absolute inline-flex h-full w-full animate-ping-slow rounded-full bg-ember" /><span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-ember" /></span>}
               {status.eyebrow}
             </p>
@@ -124,7 +124,7 @@ export default function FestivalDayMode() {
                 <div className="rounded-2xl border border-gold/30 bg-gold/[0.08] p-4">
                   <div className="flex items-center justify-between gap-3">
                     <p className="text-[9px] font-black uppercase tracking-[0.18em] text-gold-400">Up next</p>
-                    {nextStart && now && <span className="text-[10px] font-bold text-white/45">in {timeUntil(nextStart, now)}</span>}
+                    {nextStart && now && <span className="text-[10px] font-bold text-white/55">in {timeUntil(nextStart, now)}</span>}
                   </div>
                   <p className="mt-1 font-display text-lg font-extrabold text-white">{next.time} · {next.title}</p>
                   <p className="mt-1 text-[11.5px] leading-snug text-white/55">{next.note}</p>
@@ -134,7 +134,7 @@ export default function FestivalDayMode() {
               )}
               {afterNext && (
                 <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.045] p-3.5">
-                  <span className="shrink-0 text-[9px] font-black uppercase tracking-[0.16em] text-white/40">Then</span>
+                  <span className="shrink-0 text-[9px] font-black uppercase tracking-[0.16em] text-white/55">Then</span>
                   <p className="min-w-0 font-display text-sm font-bold text-white/80">{afterNext.time} · {afterNext.title}</p>
                 </div>
               )}

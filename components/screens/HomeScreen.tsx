@@ -285,7 +285,7 @@ export default function HomeScreen({
             <span className="pointer-events-none absolute -right-10 -top-14 h-36 w-36 rounded-full bg-ember/20 blur-3xl" />
             <span className="relative grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-ember to-gold-500 text-2xl shadow-glow" aria-hidden>⚡</span>
             <span className="relative min-w-0 flex-1">
-              <span className="flex items-center gap-2"><span className="font-display text-[15px] font-extrabold text-white">Festival Day-Of Mode</span><span className="rounded-full bg-ember/15 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-wider text-ember">New</span></span>
+              <span className="flex items-center gap-2"><span className="font-display text-[15px] font-extrabold text-white">Festival Day-Of Mode</span><span className="rounded-full bg-ember/15 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-wider text-purple-300">New</span></span>
               <span className="mt-0.5 block text-[11.5px] leading-snug text-white/65">One fast screen for live now, next, map, help and offline essentials.</span>
             </span>
             <ArrowRight width={17} height={17} className="relative shrink-0 text-gold-400 transition group-hover:translate-x-0.5" />

@@ -197,10 +197,10 @@ export default function FestivalGoBag() {
             </span>
             <span className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-gold-400">{readyCount}/5 ready</span>
           </div>
-          <p className="mt-7 text-[10px] font-black uppercase tracking-[0.22em] text-ember">{now ? timeUntilFestival(now) : "Festival weekend is almost here"}</p>
+          <p className="mt-7 text-[10px] font-black uppercase tracking-[0.22em] text-purple-300">{now ? timeUntilFestival(now) : "Festival weekend is almost here"}</p>
           <h2 id="go-bag-heading" className="mt-2 font-display text-3xl font-extrabold leading-[1.04] text-white sm:text-5xl">Your five-minute <span className="text-gradient-gold">Festival Go Bag</span></h2>
           <p className="mt-3 text-[13.5px] leading-relaxed text-white/65 sm:text-base">Friday opens at 6 PM and worship begins at 6:30 PM. Finish these five things now, then arriving can simply be about showing up.</p>
-          {now && <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.14em] text-white/40">Hamilton time · {HAMILTON_TIME.format(now)}</p>}
+          {now && <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.14em] text-white/55">Hamilton time · {HAMILTON_TIME.format(now)}</p>}
           <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10" role="progressbar" aria-label="Festival Go Bag progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={percent}>
             <div className="h-full rounded-full bg-gradient-to-r from-purple-400 via-gold-400 to-emerald-300 transition-[width] duration-500" style={{ width: `${percent}%` }} />
           </div>
@@ -209,19 +209,19 @@ export default function FestivalGoBag() {
 
       {forecast && (
         <section aria-labelledby="go-bag-weather" className="rounded-3xl border border-sky-300/20 bg-sky-300/[0.055] p-5">
-          <div className="flex items-end justify-between gap-3"><div><p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-sky-200">Live Gage Park forecast</p><h3 id="go-bag-weather" className="mt-1 font-display text-xl font-extrabold">Pack for the real weekend</h3></div><span className="text-[9px] text-white/40">Open-Meteo</span></div>
+          <div className="flex items-end justify-between gap-3"><div><p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-sky-200">Live Gage Park forecast</p><h3 id="go-bag-weather" className="mt-1 font-display text-xl font-extrabold">Pack for the real weekend</h3></div><span className="text-[9px] text-white/55">Open-Meteo</span></div>
           <div className="mt-4 grid grid-cols-2 gap-2.5">
             {forecast.map((day) => (
               <article key={day.name} className="rounded-2xl border border-white/10 bg-black/15 p-3.5 text-center">
                 <p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-sky-200">{day.name}</p>
                 <span className="mt-2 block text-3xl" aria-hidden>{day.emoji}</span>
                 <p className="mt-1 text-[12px] font-bold">{day.label}</p>
-                <p className="mt-1 font-display text-lg font-extrabold">{day.hi}° <span className="text-xs text-white/45">/ {day.lo}°</span></p>
+                <p className="mt-1 font-display text-lg font-extrabold">{day.hi}° <span className="text-xs text-white/55">/ {day.lo}°</span></p>
                 <p className="mt-1 text-[10px] text-white/55">{day.rain}% rain · {weatherNote(day)}</p>
               </article>
             ))}
           </div>
-          <p className="mt-3 text-[10px] leading-relaxed text-white/45">Refreshed when this page opens. Recheck before leaving and follow official event announcements if conditions change.</p>
+          <p className="mt-3 text-[10px] leading-relaxed text-white/55">Refreshed when this page opens. Recheck before leaving and follow official event announcements if conditions change.</p>
         </section>
       )}
 
