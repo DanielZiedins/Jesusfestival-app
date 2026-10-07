@@ -21,6 +21,9 @@ export function GET() {
 - [Love on Hamilton](https://loveonhamilton.com): Local outreach for people in the Hamilton area.
 - [Love on The World](https://loveontheworld.com): Join or create an outreach group outside Hamilton.
 - [Daniel & Katie Ziedins](https://kd-ziedins.com): Continued e3 Canada and I Am Second work, updates and partnership information.
+- [Plunder Hell, Populate Heaven](${SITE.url}/blog/plunder-hell-populate-heaven-partner-with-daniel-and-katie): The biblical case for partnering in the harvest, and the vision for 100 multiplying outreach groups.
+- [The Harvest Isn't Finished](${SITE.url}/blog/hamilton-evangelism-impact-partner-with-e3-canada): Impact report: Jesus Festival 2026, 20+ weekly outreach teams, Love on The World's city groups, and SIX33 (pre-launch).
+- [SIX33](https://www.six33.world): Pre-launch Christian lifestyle and culture brand founded by Daniel Ziedins on Matthew 6:33; raising funds for Love on The World.
 - [Official Festival Shop](${SITE.url}/shop): Jesus Festival collection from ThyKingdom.Shop in Canadian dollars.
 - Share a testimony, request prayer or ask for help with a next step: [hello@jesusfestival.ca](mailto:hello@jesusfestival.ca).
 
