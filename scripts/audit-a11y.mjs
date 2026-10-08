@@ -20,6 +20,7 @@
  *     anything already on screen is measured without scrolling
  *   - gradient-clipped text, which keeps painting through color:transparent
  *   - rounded boxes, whose corners show the page behind a badge
+ *   - wrapped inline links, whose box covers the neighbouring text too
  *   - fixed chrome (the tab bar) passing over footer links mid-capture
  *   - captureBeyondViewport, which resizes 100vh heroes and shifts coordinates
  * Colours are resolved by painting them on a canvas, so oklch/color-mix can't
@@ -105,7 +106,11 @@ for (const path of PAGES) {
       if (!el) return null;
       window.scrollTo(0, 0);
       if (el.getBoundingClientRect().bottom > innerHeight) el.scrollIntoView({ block: "center", behavior: "instant" });
-      const r = el.getBoundingClientRect();
+      // A wrapped inline link's bounding box spans the full line width, so the
+      // neighbouring text on the same lines gets sampled as "background" (a
+      // green link read 3.19 beside a gold email link). Measure its first line.
+      const rects = el.getClientRects();
+      const r = rects.length > 1 && getComputedStyle(el).display === "inline" ? rects[0] : el.getBoundingClientRect();
       if (r.width < 4 || r.height < 4 || r.bottom < 0 || r.top > innerHeight) return null;
       const cs = getComputedStyle(el);
       if (cs.webkitBackgroundClip === "text" || cs.backgroundClip === "text") return null;

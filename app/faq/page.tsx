@@ -16,6 +16,28 @@ export const metadata: Metadata = {
   },
 };
 
+/** Bare addresses in answers (kd-ziedins.com, six33.world) become real links. */
+function linkify(text: string) {
+  // Not the domain half of an email address (hello@jesusfestival.ca).
+  const re = /(?<![@\w.])((?:https?:\/\/)?[a-z0-9-]+(?:\.[a-z0-9-]+)*\.(?:com|ca|world|app|net)(?:\/[^\s),.]*)?)/gi;
+  const out: React.ReactNode[] = [];
+  let last = 0;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(text))) {
+    if (m.index > last) out.push(text.slice(last, m.index));
+    const raw = m[1];
+    const href = raw.startsWith("http") ? raw : `https://${raw}`;
+    out.push(
+      <a key={m.index} href={href} target="_blank" rel="noopener" className="font-semibold text-gold-400 underline decoration-gold-400/35 underline-offset-2">
+        {raw}
+      </a>,
+    );
+    last = m.index + raw.length;
+  }
+  if (last < text.length) out.push(text.slice(last));
+  return out;
+}
+
 export default function FaqPage() {
   const pageJsonLd = webPageJsonLd({
     path: "/faq",
@@ -61,7 +83,7 @@ export default function FaqPage() {
               </span>
               <div>
                 <h2 className="font-display text-xl font-bold leading-snug text-white">{item.question}</h2>
-                <p className="mt-3 text-[15px] leading-relaxed text-white/65">{item.answer}</p>
+                <p className="mt-3 text-[15px] leading-relaxed text-white/65">{linkify(item.answer)}</p>
               </div>
             </div>
           </article>

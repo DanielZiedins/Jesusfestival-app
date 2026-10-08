@@ -126,6 +126,21 @@ export const FESTIVAL_FAQS = [
       "Gage Park is an open-air venue, so dress for the forecast — a light rain jacket packs down smaller than an umbrella and blocks nobody's view. The app shows the Gage Park forecast on the home screen from about two weeks out. If severe weather ever required a change to the plan, the News tab and app notifications are where it would be announced first, so turning on notifications is the simplest way to know.",
   },
   {
+    question: "Who is behind Jesus Festival?",
+    answer:
+      "Jesus Festival grew out of the outreach Daniel and Katie Ziedins began in Hamilton in 2014 (Love on Hamilton), which has grown into more than 20 weekly outreach teams and the Love on The World movement. They now serve with e3 Canada in collaboration with I Am Second, with a mission to help establish 100 multiplying outreach groups. Their site is kd-ziedins.com.",
+  },
+  {
+    question: "How can I partner with or support the ministry behind Jesus Festival?",
+    answer:
+      "Three ways: pray for Daniel, Katie and the outreach teams; join or start an outreach through loveonhamilton.com (Hamilton) or loveontheworld.com (anywhere else); and, if the Lord leads, give monthly or once through Daniel and Katie's official e3 Canada staff page, linked from kd-ziedins.com. The app never takes money itself. The articles 'Plunder Hell, Populate Heaven' and 'The Harvest Isn't Finished' on this site explain the vision.",
+  },
+  {
+    question: "What is SIX33?",
+    answer:
+      "SIX33 (six33.world) is a Christian lifestyle and culture brand founded by Daniel Ziedins, built on Matthew 6:33 and launching soon. It began in 2014 as Seek First Brand, and a big part of its heart is raising funds for Love on The World.",
+  },
+  {
     question: "Will someone try to convert me?",
     answer:
       "Nobody will single you out, put you on the spot or corner you. There is no altar call you have to stand up for, no moment where visitors are asked to identify themselves, and no collection. Speakers will talk openly about Jesus from the stage — that is genuinely what the weekend is — and you are free to listen, eat, chat with friends or leave at any point. If you ever want to talk or be prayed for, the Prayer Tent is there and you go to it, not the other way around.",
