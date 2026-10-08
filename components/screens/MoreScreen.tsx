@@ -167,6 +167,17 @@ export default function MoreScreen({
               </Link>
             </Reveal>
 
+            <Reveal delay={0.065}>
+              <Link
+                href="/blog/hamilton-evangelism-impact-partner-with-e3-canada"
+                className="group mb-3 flex min-h-20 items-center gap-4 rounded-2xl border border-purple-300/30 bg-gradient-to-br from-purple-700/25 via-ink/60 to-gold/[0.10] p-4 transition active:scale-[0.99]"
+              >
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-gold/30 to-purple-500/25 text-3xl" aria-hidden>🌍</span>
+                <span className="min-w-0 flex-1"><span className="font-display text-lg font-extrabold text-white">Beyond the weekend</span><span className="block text-xs leading-snug text-white/65">The harvest from Hamilton to the nations, and how to partner in what&apos;s next</span></span>
+                <ArrowRight width={18} height={18} className="shrink-0 text-gold-300 transition group-hover:translate-x-0.5" />
+              </Link>
+            </Reveal>
+
             <Reveal delay={0.07}>
               <Link
                 href="/i-said-yes"

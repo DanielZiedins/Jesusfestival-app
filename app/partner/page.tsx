@@ -208,6 +208,14 @@ export default function PartnerPage() {
         <ArrowRight width={16} height={16} className="shrink-0 text-gold-400" />
       </Link>
 
+      <p className="mt-3 text-center text-[12.5px] text-white/60">
+        Then see the fruit so far:{" "}
+        <Link href="/blog/hamilton-evangelism-impact-partner-with-e3-canada" className="font-semibold text-gold-400 underline underline-offset-2">
+          the impact report
+        </Link>
+        .
+      </p>
+
       {/* ── Send-off ── */}
       <p className="mt-10 text-center font-display text-[15px] italic leading-relaxed text-white/75">
         &ldquo;Freely ye have received, freely give.&rdquo;
