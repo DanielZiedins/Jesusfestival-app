@@ -1087,3 +1087,29 @@ export function relatedPosts(slug: string): BlogPost[] {
     return true;
   });
 }
+
+const escHtml = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+/** [label](url), **bold** and *italic* → escaped HTML (mirrors components/blog/Rich.tsx). */
+export function inlineHtml(text: string): string {
+  return escHtml(text)
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>");
+}
+
+/**
+ * The whole article as plain HTML, for the RSS feed's content:encoded so
+ * readers and aggregators get the full text, not just the dek.
+ */
+export function postHtml(post: BlogPost): string {
+  return post.body
+    .map((b) => {
+      if (b.t === "h2") return `<h2>${escHtml(b.text)}</h2>`;
+      if (b.t === "quote") return `<blockquote><p>${escHtml(b.text)}</p><cite>${escHtml(b.ref)}</cite></blockquote>`;
+      if (b.t === "list") return `<ul>${b.items.map((it) => `<li>${inlineHtml(it)}</li>`).join("")}</ul>`;
+      if (b.t === "cta") return `<p><strong>${escHtml(b.title)}</strong> ${inlineHtml(b.text)} <a href="${escHtml(b.href)}">${escHtml(b.label)}</a></p>`;
+      return `<p>${inlineHtml(b.text)}</p>`;
+    })
+    .join("\n");
+}
