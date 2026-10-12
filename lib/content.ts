@@ -558,7 +558,7 @@ export const KINGDOM_SITES: {
   },
   {
     name: "SIX33 Legends",
-    url: "https://www.six33legends.com",
+    url: "https://six33legends.com",
     domain: "SIX33Legends.com",
     emoji: "⚔️",
     tag: "Story that stirs faith",
