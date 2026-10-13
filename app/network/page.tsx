@@ -71,6 +71,12 @@ export default function NetworkPage() {
           Jesus Festival isn&apos;t a standalone event — it&apos;s one expression of a wider family of
           projects, all aimed at the same thing: <span className="text-white/85">Love God. Love People. Change the World.</span>
         </p>
+        <p className="mt-3 text-[13px] text-white/60">
+          How they fit together, in one read:{" "}
+          <Link href="/blog/hamilton-evangelism-impact-partner-with-e3-canada" className="font-semibold text-gold-400 underline decoration-gold-400/35 underline-offset-2">
+            The Harvest Isn&apos;t Finished
+          </Link>
+        </p>
       </header>
 
       {GROUPS.map((g) => {

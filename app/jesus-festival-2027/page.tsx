@@ -235,6 +235,7 @@ export default function JesusFestival2027Page() {
             { href: "/i-said-yes", emoji: "🕊️", title: "Said yes to Jesus?", sub: "Seven practical first steps, prayer and baptism" },
             { href: "/photos", emoji: "📸", title: "Relive the weekend", sub: "Photos and testimonies from Gage Park" },
             { href: "/movement", emoji: "🌍", title: "Join the year-round mission", sub: "The festival is one weekend. The movement is every day." },
+            { href: "/blog/hamilton-evangelism-impact-partner-with-e3-canada", emoji: "🤝", title: "See the harvest, and help it grow", sub: "From Gage Park to the nations, and how to partner in what's next" },
           ].map((l) => (
             <Link
               key={l.href}
