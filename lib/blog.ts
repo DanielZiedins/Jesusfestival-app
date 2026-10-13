@@ -1113,3 +1113,11 @@ export function postHtml(post: BlogPost): string {
     })
     .join("\n");
 }
+
+/** Stable anchor id for an article heading, shared by the renderer and the table of contents. */
+export const headingId = (text: string) =>
+  text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
+
+/** Section headings for the "In this article" list (only worth showing on longer reads). */
+export const postHeadings = (post: BlogPost) =>
+  post.body.filter((b): b is Extract<Block, { t: "h2" }> => b.t === "h2").map((b) => ({ id: headingId(b.text), text: b.text }));

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BLOG_POSTS, isFestivalPost, postBySlug, postSection, relatedPosts } from "@/lib/blog";
+import { BLOG_POSTS, isFestivalPost, postBySlug, postHeadings, postSection, relatedPosts } from "@/lib/blog";
 import { KINGDOM_SITES, SITE } from "@/lib/content";
 import Rich from "@/components/blog/Rich";
 import { ReadingProgress, ShareArticle } from "@/components/blog/ArticleChrome";
@@ -45,6 +45,7 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
     .filter((s): s is (typeof KINGDOM_SITES)[number] => Boolean(s));
 
   const more = relatedPosts(post.slug);
+  const headings = postHeadings(post);
 
   const sourceCitations = post.sources?.map((source) => ({ "@type": "CreativeWork", name: source.name, url: source.url })) ?? [];
   // Mission posts are about Daniel & Katie's wider work, not the festival
@@ -153,6 +154,20 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
             <span>{post.readMins} min read</span>
           </div>
         </header>
+
+        {headings.length >= 4 && (
+          <nav aria-label="In this article" className="mt-7 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+            <p className="text-[11px] font-black uppercase tracking-[0.2em] text-gold-400">In this article</p>
+            <ol className="mt-3 space-y-2">
+              {headings.map((h, i) => (
+                <li key={h.id} className="flex gap-3 text-[14px] leading-snug">
+                  <span className="w-5 shrink-0 font-display text-[12px] font-extrabold text-gold-400/70">{i + 1}</span>
+                  <a href={`#${h.id}`} className="font-semibold text-white/80 hover:text-gold-400">{h.text}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
 
         <div className="mt-2">
           <Rich blocks={post.body} />

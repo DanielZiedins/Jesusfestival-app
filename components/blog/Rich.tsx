@@ -1,4 +1,4 @@
-import type { Block } from "@/lib/blog";
+import { headingId, type Block } from "@/lib/blog";
 
 /**
  * Renders post blocks as real elements. Inline syntax supports [label](url),
@@ -56,7 +56,7 @@ export default function Rich({ blocks }: { blocks: Block[] }) {
       {blocks.map((b, i) => {
         if (b.t === "h2")
           return (
-            <h2 key={i} className="mt-9 font-display text-2xl font-bold leading-snug text-white sm:text-[26px]">
+            <h2 key={i} id={headingId(b.text)} className="mt-9 scroll-mt-20 font-display text-2xl font-bold leading-snug text-white sm:text-[26px]">
               {b.text}
             </h2>
           );
