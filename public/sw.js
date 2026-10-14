@@ -1,5 +1,5 @@
 // Jesus Festival — lightweight offline-first service worker.
-const CACHE = "jf-app-v21";
+const CACHE = "jf-app-v22";
 const IMG_CACHE = "jf-images-v1";
 const IMG_MAX_ENTRIES = 80;
 const IMG_HOSTS = new Set([
@@ -32,6 +32,13 @@ const APP_SHELL = [
   "/blog/jesus-festival-hamilton-2026-recap",
   "/blog/jesus-festival-starts-tomorrow-final-checklist",
   "/blog/jesus-festival-saturday-extended-updated-schedule-2026",
+  // After the festival, the pages people open on the bus or in a waiting room.
+  "/blog",
+  "/blog/hamilton-evangelism-impact-partner-with-e3-canada",
+  "/blog/plunder-hell-populate-heaven-partner-with-daniel-and-katie",
+  "/jesus-festival-2027",
+  "/faq",
+  "/network",
   "/bring-a-group",
   "/find-your-moments",
   "/getting-to-gage-park",
