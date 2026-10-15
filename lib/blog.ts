@@ -149,6 +149,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { name: "SIX33: SIX33.World", url: "https://www.six33.world" },
       { name: "Daniel & Katie Ziedins: KD-Ziedins.com", url: "https://www.kd-ziedins.com" },
       { name: "Daniel & Katie's e3 Canada staff page", url: "https://e3ministry.ca/staff/katie-daniel-ziedins" },
+      { name: "KD-Ziedins.com: the Jesus Festival 2026 harvest report", url: "https://www.kd-ziedins.com/blog/jesus-festival-2026-harvest-report" },
     ],
     sourcesNote:
       "Festival figures are preliminary reports shared by the Jesus Festival team on September 6, 2026. City-group and nation counts are as listed by Love on The World in October 2026. Every number is a person, and all glory belongs to God.",
