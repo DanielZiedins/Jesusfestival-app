@@ -10,7 +10,7 @@
 import { ARTISTS, DISCIPLESHIP, KINGDOM_SITES, SCHEDULE } from "@/lib/content";
 import { PARK_PINS } from "@/lib/park";
 import { STEPS } from "@/lib/newlife";
-import { BLOG_POSTS } from "@/lib/blog";
+import { BLOG_META } from "@/lib/blog-meta";
 import type { TabId } from "@/components/BottomNav";
 
 export type Hit = {
@@ -124,7 +124,7 @@ export function searchIndex(): Hit[] {
     });
   }
 
-  for (const post of BLOG_POSTS) {
+  for (const post of BLOG_META) {
     out.push({
       id: `bl-${post.slug}`,
       title: post.title,

@@ -5,7 +5,8 @@
   "description": "Jesus Festival Hamilton 2026 recap, early harvest report, first steps, prayer and year-round outreach.",
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/check-sw-hunt.mjs && next build",
+    "build": "node scripts/check-sw-hunt.mjs && npm run gen:blog-meta && next build",
+    "gen:blog-meta": "node --experimental-strip-types --no-warnings scripts/gen-blog-meta.mjs",
     "start": "next start",
     "lint": "eslint .",
     "submit:indexnow": "node scripts/submit-indexnow.mjs",
