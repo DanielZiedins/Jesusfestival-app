@@ -4,6 +4,15 @@ export type BlogMeta = { slug: string; title: string; description: string; eyebr
 
 export const BLOG_META: BlogMeta[] = [
   {
+    "slug": "how-to-start-reading-the-bible",
+    "title": "How to Start Reading the Bible (Where to Begin, and a Simple 7-Day Plan)",
+    "description": "It's 66 books, written over 1,500 years, and most people who try to read it cover to cover stall somewhere in Leviticus. Here's a better way in: where to start, how to read it, and a plan for your first week.",
+    "eyebrow": "Next steps",
+    "emoji": "📖",
+    "date": "2026-10-18",
+    "readMins": 3
+  },
+  {
     "slug": "how-to-get-baptized",
     "title": "How to Get Baptized: What the Bible Says, What Happens, and How to Take the Step",
     "description": "More than 50 people were baptised at Jesus Festival 2026, many of them the same weekend they met Jesus. If you're wondering whether that step is for you, here's what baptism is, what it isn't, and how to go about it.",

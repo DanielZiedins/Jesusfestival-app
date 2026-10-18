@@ -56,6 +56,7 @@ export const STEPS: {
     ref: "John 1:4–5",
     action: "Read John chapter 1",
     href: "https://www.bible.com/bible/111/JHN.1.NIV",
+    readMore: { label: "How to start reading the Bible, and a simple first week", href: "/blog/how-to-start-reading-the-bible" },
   },
   {
     id: "pray",

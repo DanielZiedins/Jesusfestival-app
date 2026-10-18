@@ -45,6 +45,91 @@ export type BlogPost = {
 export const BLOG_POSTS: BlogPost[] = [
 
   {
+    slug: "how-to-start-reading-the-bible",
+    seoTitle: "How to Start Reading the Bible: Where to Begin",
+    seoDescription:
+      "Don't start at Genesis. Where to begin, which translation to pick, how long to read, a simple 7-day plan, and what to do when you don't understand it.",
+    title: "How to Start Reading the Bible (Where to Begin, and a Simple 7-Day Plan)",
+    description:
+      "It's 66 books, written over 1,500 years, and most people who try to read it cover to cover stall somewhere in Leviticus. Here's a better way in: where to start, how to read it, and a plan for your first week.",
+    eyebrow: "Next steps",
+    emoji: "📖",
+    date: "2026-10-18",
+    readMins: 3,
+    body: [
+      { t: "p", text: "Somebody hands you a Bible. Maybe at a festival, maybe a friend, maybe you downloaded an app in a quiet moment. You open it at page one, read about creation and a garden, keep going through a flood and a tower, and then somewhere around the genealogies or the tabernacle measurements you quietly stop." },
+      { t: "p", text: "That's not a failure of faith. It's a navigation problem. The Bible isn't one book; it's a library of 66, written across about 1,500 years in three languages, and nobody hands you a library and says *start at the top left shelf.* Here's where to actually begin." },
+
+      { t: "h2", text: "Start with Jesus" },
+      { t: "p", text: "Begin with one of the four Gospels, the eyewitness accounts of Jesus' life. **John** is the best first read for most people: it was written, in the author's own words, *that ye might believe that Jesus is the Christ, the Son of God; and that believing ye might have life through his name* (John 20:31). It's twenty-one chapters, so one a day gets you through it in three weeks." },
+      { t: "p", text: "**Mark** is the shortest and fastest-moving if you'd rather see what Jesus did than hear long conversations. Either way: meet the person first. Everything else in the Bible points to Him (Luke 24:27)." },
+
+      { t: "h2", text: "Pick a translation you can actually read" },
+      { t: "p", text: "There is no single \"real\" English Bible; they're all translations from Hebrew and Greek. The King James (KJV) is beautiful and the one we quote on this site, but its 1611 English is hard going for a first read. The **NIV**, **ESV**, **CSB** or **NLT** are accurate and written in today's language. Free apps like YouVersion let you switch between them with a tap, so try two and keep the one you understand." },
+
+      { t: "h2", text: "How to read it: four questions" },
+      { t: "p", text: "Don't try to read fast or far. A chapter, or even a paragraph, read slowly beats five chapters skimmed. After you read, ask:" },
+      {
+        t: "list",
+        items: [
+          "**What does this say about God?** His character, His promises, what He loves and hates.",
+          "**What does it say about people?** About me, honestly.",
+          "**Is there something to do?** An instruction to obey, a comfort to hold, a sin to turn from, an example to follow.",
+          "**What will I pray because of it?** Turn what you read straight into a prayer. If you've never done that, [how to pray when you don't know what to say](https://www.jesusfestival.app/blog/how-to-pray-when-you-dont-know-what-to-say) is the companion to this guide.",
+        ],
+      },
+      { t: "quote", text: "Thy word is a lamp unto my feet, and a light unto my path.", ref: "Psalm 119:105 (KJV)" },
+
+      { t: "h2", text: "A simple first week" },
+      { t: "p", text: "Ten to fifteen minutes a day. Same time each day if you can; first coffee works for a lot of people." },
+      {
+        t: "list",
+        items: [
+          "**Day 1: John 1.** Who Jesus is, from before the beginning.",
+          "**Day 2: John 3.** The most famous verse in the Bible, in its full conversation.",
+          "**Day 3: Luke 15.** Three stories about lost things, and a Father who runs.",
+          "**Day 4: Psalm 23.** The prayer people have held onto for three thousand years.",
+          "**Day 5: John 14.** Jesus the night before He died, calming frightened friends.",
+          "**Day 6: Romans 8.** Nothing can separate you from the love of God.",
+          "**Day 7: John 20–21.** The empty tomb, and breakfast on a beach with the risen Jesus.",
+        ],
+      },
+      { t: "p", text: "After that, read John from the start, one chapter a day. Then Mark, then Acts (what the first Christians did next), then the Psalms a few at a time. By then you'll have your bearings." },
+
+      { t: "h2", text: "When you don't understand something" },
+      { t: "p", text: "You won't understand everything. Nobody does; people spend whole lives on this book. That's fine. Note the question and keep reading; a lot of confusing passages get clearer when you've read more of the story. Ask someone further along. Pray before you read: *Open thou mine eyes, that I may behold wondrous things out of thy law* (Psalm 119:18). And remember the goal isn't to finish; it's to meet God in it." },
+      { t: "quote", text: "For the word of God is quick, and powerful, and sharper than any twoedged sword.", ref: "Hebrews 4:12 (KJV)" },
+
+      { t: "h2", text: "Don't read alone forever" },
+      { t: "p", text: "The Bible was written to communities and is best read in one. Find a church that teaches it plainly; [LoveonHamilton.com](https://www.loveonhamilton.com) can help you find people in Hamilton. For a structured path through these first months, [IAmReborn.net](https://www.iamreborn.net) was built for new believers, and the [first steps guide](https://www.jesusfestival.app/i-said-yes) in this app keeps it to seven simple things." },
+      { t: "p", text: "Open it today. One chapter. John 1. That's enough for a start." },
+    ],
+    faqs: [
+      {
+        question: "Where should a beginner start reading the Bible?",
+        answer:
+          "Start with one of the four Gospels rather than Genesis. The Gospel of John is the best first read for most people, since it was written so readers would believe in Jesus (John 20:31). Mark is the shortest if you prefer a fast-moving account. Read a chapter a day.",
+      },
+      {
+        question: "Which Bible translation is easiest to read?",
+        answer:
+          "The NIV, NLT, CSB and ESV are accurate translations in modern English and are good first choices. The King James Version is beautiful but uses 1611 English that is harder for a first read. Free apps such as YouVersion let you compare translations.",
+      },
+      {
+        question: "How much of the Bible should I read each day?",
+        answer:
+          "Ten to fifteen minutes, or about one chapter, read slowly is better than several chapters skimmed. Consistency matters more than volume; attach it to a daily habit such as your morning coffee.",
+      },
+      {
+        question: "What should I do if I don't understand what I'm reading in the Bible?",
+        answer:
+          "Note the question and keep going, since many passages become clearer with more of the story; ask a more experienced Christian; pray before reading (Psalm 119:18); and read with a church or small group rather than only alone.",
+      },
+    ],
+    related: ["IAmReborn.net", "LoveonHamilton.com", "SeekFirst.World"],
+  },
+
+  {
     slug: "how-to-get-baptized",
     seoTitle: "How to Get Baptized: What the Bible Says & What Happens",
     seoDescription:
