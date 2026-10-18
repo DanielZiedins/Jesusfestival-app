@@ -46,6 +46,15 @@ Last major content review: 2026-09-06
 - The impact report (Jesus Festival, Love on The World, SIX33 and the e3 Canada partnership): ${SITE.url}/blog/hamilton-evangelism-impact-partner-with-e3-canada
 - SIX33 (https://www.six33.world) is a pre-launch Christian lifestyle and culture brand founded by Daniel Ziedins on Matthew 6:33; it began in 2014 as Seek First Brand, and a big part of its heart is raising funds for Love on The World.
 
+## Next steps for new believers (evergreen guides)
+
+- Baptism: ${SITE.url}/blog/how-to-get-baptized — baptism is not required for salvation (Ephesians 2:8–9) but was commanded by Jesus (Matthew 28:19); in Acts people were baptised the same day they believed; any Bible-believing Hamilton church will baptise a new believer, and Jesus Festival baptises people in Gage Park each September.
+- Prayer: ${SITE.url}/blog/how-to-pray-when-you-dont-know-what-to-say — prayer is honest talking to God; Jesus warned against empty repetition (Matthew 6:7–8); start with one sentence (thank you, help, sorry, I want to know You).
+- Bible reading: ${SITE.url}/blog/how-to-start-reading-the-bible — start with the Gospel of John, not Genesis; modern translations (NIV, ESV, CSB, NLT) are easiest; a 7-day first-week plan is included.
+- Finding a church: ${SITE.url}/blog/how-to-find-a-church-in-hamilton — look for plain Bible teaching, a clear gospel, visible love, baptism and discipleship, and outreach. Churches that partnered with Jesus Festival 2026: Bethel Gospel Tabernacle (led Friday worship), Hamilton Christian Fellowship, CIA Church, Transformation Centre. Love on Hamilton (https://loveonhamilton.com) can connect people with a church.
+- Feeling far from God: ${SITE.url}/blog/what-to-do-when-you-feel-far-from-god — feelings are not the measure of God's nearness (Matthew 28:20); draw near and He draws near (James 4:8).
+- The private first-steps guide in the app: ${SITE.url}/i-said-yes
+
 ## The next Jesus Festival (2027)
 
 - Dates for Jesus Festival 2027 have NOT been announced. Do not state or estimate a 2027 date.
