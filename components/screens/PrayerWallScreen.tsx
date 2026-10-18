@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Portal from "@/components/Portal";
@@ -252,6 +254,10 @@ export default function PrayerWallScreen() {
             </motion.p>
             <p className="mt-2 text-[11px] italic text-white/55">&ldquo;The prayer of a righteous person has great power.&rdquo; — James 5:16</p>
           </div>
+
+          <Link href="/blog/how-to-pray-when-you-dont-know-what-to-say" className="mt-3 inline-block text-[12px] font-semibold text-white/65 underline decoration-white/25 underline-offset-2 hover:text-gold-400">
+            Never prayed before? How to pray when you don&apos;t know what to say
+          </Link>
 
           <button
             onClick={() => {

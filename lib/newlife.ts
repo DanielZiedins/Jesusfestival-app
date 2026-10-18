@@ -34,6 +34,8 @@ export const STEPS: {
   /** Either an external resource, or an in-app destination handled by the screen. */
   href?: string;
   go?: "prayer" | "share" | "map" | "discipleship";
+  /** A longer read on this step, inside the app. */
+  readMore?: { label: string; href: string };
 }[] = [
   {
     id: "tell",
@@ -64,6 +66,7 @@ export const STEPS: {
     ref: "Philippians 4:6",
     action: "Post a prayer on the wall",
     go: "prayer",
+    readMore: { label: "How to pray when you don't know what to say", href: "/blog/how-to-pray-when-you-dont-know-what-to-say" },
   },
   {
     id: "baptism",
@@ -74,6 +77,7 @@ export const STEPS: {
     ref: "Acts 2:38",
     action: "Find the baptism area",
     go: "map",
+    readMore: { label: "What happens, what to wear, and how to take the step", href: "/blog/how-to-get-baptized" },
   },
   {
     id: "church",

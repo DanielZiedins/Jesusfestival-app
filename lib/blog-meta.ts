@@ -4,6 +4,24 @@ export type BlogMeta = { slug: string; title: string; description: string; eyebr
 
 export const BLOG_META: BlogMeta[] = [
   {
+    "slug": "how-to-get-baptized",
+    "title": "How to Get Baptized: What the Bible Says, What Happens, and How to Take the Step",
+    "description": "More than 50 people were baptised at Jesus Festival 2026, many of them the same weekend they met Jesus. If you're wondering whether that step is for you, here's what baptism is, what it isn't, and how to go about it.",
+    "eyebrow": "Next steps",
+    "emoji": "💧",
+    "date": "2026-10-18",
+    "readMins": 4
+  },
+  {
+    "slug": "how-to-pray-when-you-dont-know-what-to-say",
+    "title": "How to Pray When You Don't Know What to Say",
+    "description": "You don't need the right words, a quiet room or a religious voice. Here's how to start talking to God today, what Jesus said about prayer, and what to do when it feels like nothing is happening.",
+    "eyebrow": "Prayer",
+    "emoji": "🙏",
+    "date": "2026-10-18",
+    "readMins": 3
+  },
+  {
     "slug": "hamilton-evangelism-impact-partner-with-e3-canada",
     "title": "The Harvest Isn't Finished: What God Is Doing From Hamilton to the Nations",
     "description": "A park full of worship. Names written in heaven. Weekly teams on the streets, city groups across the map, and a culture brand on the way. Here's the impact so far, and the open door to partner in what comes next.",

@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import Portal from "@/components/Portal";
@@ -450,6 +452,11 @@ function Journey({
                         >
                           {s.action} <ArrowRight width={14} height={14} />
                         </button>
+                      )}
+                      {s.readMore && (
+                        <Link href={s.readMore.href} className="mt-2.5 block text-center text-[12px] font-semibold text-white/65 underline decoration-white/25 underline-offset-2 hover:text-gold-400">
+                          Read: {s.readMore.label}
+                        </Link>
                       )}
                     </div>
                   )}

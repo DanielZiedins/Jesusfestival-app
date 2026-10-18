@@ -45,6 +45,184 @@ export type BlogPost = {
 export const BLOG_POSTS: BlogPost[] = [
 
   {
+    slug: "how-to-get-baptized",
+    seoTitle: "How to Get Baptized: What the Bible Says & What Happens",
+    seoDescription:
+      "Do you need to be baptized? What happens at a baptism, who can do it, what to wear, and how to take the step in Hamilton. Plain answers from the Bible.",
+    title: "How to Get Baptized: What the Bible Says, What Happens, and How to Take the Step",
+    description:
+      "More than 50 people were baptised at Jesus Festival 2026, many of them the same weekend they met Jesus. If you're wondering whether that step is for you, here's what baptism is, what it isn't, and how to go about it.",
+    eyebrow: "Next steps",
+    emoji: "💧",
+    date: "2026-10-18",
+    readMins: 4,
+    body: [
+      { t: "p", text: "A baptism tank in a public park is a strange and wonderful sight. At Jesus Festival 2026 more than fifty people stepped into one in front of the whole crowd, many of them people who had met Jesus that very weekend. Friends cheered. Strangers cried. And a lot of people watching quietly wondered: *is that something I should do?*" },
+      { t: "p", text: "This is the plain answer to that question, from the Bible, with the practical details people are usually too shy to ask about." },
+
+      { t: "h2", text: "What baptism is" },
+      { t: "p", text: "Baptism is going under water and coming up again as a public sign that you belong to Jesus. The word itself just means to dip or immerse. It pictures what has already happened inside: your old life buried with Christ, and a new one raised with Him." },
+      { t: "quote", text: "Therefore we are buried with him by baptism into death: that like as Christ was raised up from the dead by the glory of the Father, even so we also should walk in newness of life.", ref: "Romans 6:4 (KJV)" },
+      { t: "p", text: "It is also a declaration. In the ancient world, baptism was how you announced which teacher you followed. Going under in Jesus' name says out loud, in front of witnesses: *I'm His now.*" },
+
+      { t: "h2", text: "Do I have to be baptized to be saved?" },
+      { t: "p", text: "No. Salvation comes by grace through faith in Jesus, not by any act we perform: *by grace are ye saved through faith; and that not of yourselves: it is the gift of God: not of works* (Ephesians 2:8–9). The thief on the cross was never baptised, and Jesus told him, *To day shalt thou be with me in paradise* (Luke 23:43)." },
+      { t: "p", text: "But \"not required to be saved\" is very different from \"optional.\" Jesus commanded it. His last instruction to His followers was to make disciples, *baptizing them in the name of the Father, and of the Son, and of the Holy Ghost* (Matthew 28:19). Baptism isn't how you get saved. It's the first thing a saved person does." },
+
+      { t: "h2", text: "Who should be baptized, and when?" },
+      { t: "p", text: "Anyone who has personally turned to Jesus and trusted Him. In the book of Acts the pattern is always the same: people hear the good news, believe, and are baptised, usually right away." },
+      { t: "quote", text: "Then they that gladly received his word were baptized: and the same day there were added unto them about three thousand souls.", ref: "Acts 2:41 (KJV)" },
+      { t: "p", text: "Same day. The Ethiopian official in Acts 8 saw water by the roadside and asked, *what doth hinder me to be baptized?* The jailer in Acts 16 was baptised in the middle of the night. There's no waiting period in Scripture, no course to pass first. If you've said yes to Jesus, you're ready." },
+      { t: "p", text: "If you were baptised as a baby and have since come to faith for yourself, many people choose to be baptised as a believer, as their own public declaration. Talk it through with a pastor you trust. It's your yes, and it's worth making clearly." },
+
+      { t: "h2", text: "What actually happens" },
+      {
+        t: "list",
+        items: [
+          "**You say why you're doing it.** Usually a sentence or two, sometimes a short testimony. \"I've decided to follow Jesus\" is enough.",
+          "**Someone asks you a question.** Something like: *Have you trusted Jesus as your Lord and Saviour?* You say yes.",
+          "**You go under, in His name.** They say words like *I baptise you in the name of the Father, the Son and the Holy Spirit*, lean you back under the water, and bring you straight back up. It takes about two seconds.",
+          "**People cheer.** Loudly, if it's a park full of Jesus Festival. Heaven is cheering too (Luke 15:10).",
+        ],
+      },
+      { t: "p", text: "It doesn't hurt. You don't have to hold your breath long. Nobody is judging your swimming. If you have a disability, a health concern or a fear of water, say so; it can be done gently, seated, or with sprinkling or pouring if going under isn't possible. God is not grading the technique." },
+
+      { t: "h2", text: "What to wear and bring" },
+      {
+        t: "list",
+        items: [
+          "**Dark, modest clothes** you don't mind getting soaked: a t-shirt and shorts or leggings. White goes see-through; avoid it.",
+          "**A full change of clothes**, underwear included, plus a towel. A plastic bag for the wet things.",
+          "**Flip-flops or sandals** for the walk to and from the water.",
+          "**Someone to hold your phone** and film it. You'll want this video for the rest of your life.",
+        ],
+      },
+
+      { t: "h2", text: "How to get baptized in Hamilton" },
+      { t: "p", text: "Ask a church. Any Bible-believing local church will be glad to baptise you; most do it a few times a year, and many will arrange one sooner if you ask. If you don't have a church yet, that's the right first step anyway, and [LoveonHamilton.com](https://www.loveonhamilton.com) can connect you with one and with people who will walk alongside you." },
+      { t: "p", text: "And every September, [Jesus Festival](https://www.jesusfestival.ca) baptises people in Gage Park in front of the whole city. You don't have to wait for it. But if you'd love to be baptised outdoors with a crowd roaring for you, [be first to know when 2027 is announced](https://www.jesusfestival.app/jesus-festival-2027)." },
+
+      { t: "h2", text: "What comes next" },
+      { t: "p", text: "Baptism is a beginning, not a finish line. Keep going: pray, read the Bible, find your people, tell someone what happened. The [first steps guide](https://www.jesusfestival.app/i-said-yes) walks through all of it, and [IAmReborn.net](https://www.iamreborn.net) is a whole site built for exactly this season." },
+      { t: "p", text: "Fifty-some people in a tank in Gage Park didn't have it all figured out. They just said yes, in public, in water. You can too." },
+    ],
+    faqs: [
+      {
+        question: "Do you have to be baptized to go to heaven?",
+        answer:
+          "No. The Bible says salvation is by grace through faith in Jesus, not by works (Ephesians 2:8–9), and the thief on the cross was saved without being baptised (Luke 23:43). But Jesus commanded baptism (Matthew 28:19), so it is the normal first step of obedience for every new believer, not an optional extra.",
+      },
+      {
+        question: "How soon after becoming a Christian can I be baptized?",
+        answer:
+          "Right away. In the book of Acts people were baptised the same day they believed (Acts 2:41; Acts 8:36–38; Acts 16:33). There is no waiting period or course required in Scripture. If you have personally trusted Jesus, you are ready.",
+      },
+      {
+        question: "What do you wear to get baptized?",
+        answer:
+          "Dark, modest clothes you don't mind getting wet, such as a t-shirt with shorts or leggings (avoid white, which goes see-through). Bring a towel, a full change of clothes and sandals.",
+      },
+      {
+        question: "Where can I get baptized in Hamilton, Ontario?",
+        answer:
+          "Any Bible-believing local church will baptise you; ask the pastor. Love on Hamilton (loveonhamilton.com) can connect you with a church. Jesus Festival also baptises people each September in Gage Park, Hamilton; dates for 2027 are not yet announced.",
+      },
+      {
+        question: "I was baptized as a baby. Should I be baptized again?",
+        answer:
+          "Many people who come to personal faith later choose believer's baptism as their own public declaration of following Jesus. Churches differ on this, so talk it through with a pastor you trust.",
+      },
+    ],
+    related: ["LoveonHamilton.com", "IAmReborn.net", "JesusFestival.ca"],
+  },
+
+  {
+    slug: "how-to-pray-when-you-dont-know-what-to-say",
+    seoTitle: "How to Pray When You Don't Know What to Say",
+    seoDescription:
+      "Prayer isn't a performance. A simple way to start talking to God today, what the Bible says about it, four honest prayers, and what to do when it feels like nothing happens.",
+    title: "How to Pray When You Don't Know What to Say",
+    description:
+      "You don't need the right words, a quiet room or a religious voice. Here's how to start talking to God today, what Jesus said about prayer, and what to do when it feels like nothing is happening.",
+    eyebrow: "Prayer",
+    emoji: "🙏",
+    date: "2026-10-18",
+    readMins: 3,
+    body: [
+      { t: "p", text: "Most people who stop by the [Prayer Wall](https://www.jesusfestival.app/prayer) have never been taught how to pray. They've seen it done at funerals, maybe in a film. It looks like something you need special words for, or a special voice. So they don't." },
+      { t: "p", text: "Here is the whole secret: prayer is talking to God. That's it. Honestly, in your own words, the way you'd talk to someone who already knows everything about you and loves you anyway." },
+
+      { t: "h2", text: "What Jesus said about it" },
+      { t: "p", text: "Jesus' disciples asked Him exactly this question: *Lord, teach us to pray* (Luke 11:1). He didn't give them a technique. He warned them off performance first:" },
+      { t: "quote", text: "But when ye pray, use not vain repetitions, as the heathen do: for they think that they shall be heard for their much speaking. … for your Father knoweth what things ye have need of, before ye ask him.", ref: "Matthew 6:7–8 (KJV)" },
+      { t: "p", text: "Read that again. God already knows what you need. You're not informing Him or impressing Him. Then Jesus gave them a short, plain prayer we call the Lord's Prayer: *Our Father which art in heaven, Hallowed be thy name. Thy kingdom come. Thy will be done…* (Matthew 6:9–13). Not a formula to recite so much as a shape: who God is, what He wants, what we need, what we've done wrong, what we're up against." },
+
+      { t: "h2", text: "Start with one sentence" },
+      { t: "p", text: "If you've never prayed, don't start with twenty minutes. Start with one honest sentence. Out loud or silently, eyes open or closed, walking or lying in bed. Something like:" },
+      {
+        t: "list",
+        items: [
+          "**\"God, I don't know if You're there, but if You are, I want to know You.\"** That is a real prayer, and He answers it.",
+          "**\"God, thank You.\"** Then name one thing. A meal. A friend. The fact that you woke up.",
+          "**\"God, help.\"** The shortest prayer in the Bible is Peter sinking in the waves: *Lord, save me* (Matthew 14:30). It worked.",
+          "**\"God, I'm sorry.\"** Say what for. He already knows, and *if we confess our sins, he is faithful and just to forgive us* (1 John 1:9).",
+        ],
+      },
+      { t: "p", text: "That's four prayers. Thank you, help, sorry, and *I want to know You*. Most of life fits in them." },
+
+      { t: "h2", text: "You can be completely honest" },
+      { t: "p", text: "The prayers in the Bible are not polite. David tells God he feels forgotten (Psalm 13:1). Job argues. Jeremiah complains that God tricked him. Jesus Himself, in the garden, prayed *if it be possible, let this cup pass from me* (Matthew 26:39) and sweat blood doing it. You are allowed to bring God your anger, your doubt, your grief and your boredom. He'd rather have the real you than a performance." },
+      { t: "quote", text: "Casting all your care upon him; for he careth for you.", ref: "1 Peter 5:7 (KJV)" },
+
+      { t: "h2", text: "When you can't find any words" },
+      { t: "p", text: "Sometimes there are none. The Bible has an answer for that too: *the Spirit itself maketh intercession for us with groanings which cannot be uttered* (Romans 8:26). On the days you can only sit there, sitting there with God is prayer. You can also borrow words: read a Psalm out loud as your own prayer. Psalm 23 and Psalm 139 are good places to start." },
+
+      { t: "h2", text: "Build a rhythm, not a rule" },
+      {
+        t: "list",
+        items: [
+          "**Attach it to something you already do.** First coffee. The drive to work. Brushing your teeth. Two minutes, every day, beats an hour once a month.",
+          "**Pray about people by name.** Your family, the coworker who's struggling, the neighbour you barely know. [How to pray for your city](https://www.jesusfestival.app/blog/how-to-pray-for-your-city) takes this further.",
+          "**Write some of it down.** A prayer you can see later is a prayer you can watch get answered.",
+          "**Pray with someone.** It's less awkward than it sounds, and it changes friendships. The [Prayer Wall](https://www.jesusfestival.app/prayer) is a simple place to start: post one line, pray for one other person.",
+        ],
+      },
+
+      { t: "h2", text: "When it feels like nothing happens" },
+      { t: "p", text: "It will, sometimes. Jesus told a story specifically so people *ought always to pray, and not to faint* (Luke 18:1): a widow who kept knocking on a judge's door until he answered. Keep knocking. Some answers come fast, some come slowly, some come as *no* or *not yet*, and some you only recognise years later. But none of it is wasted. *The effectual fervent prayer of a righteous man availeth much* (James 5:16), and in Jesus, that's you." },
+      { t: "p", text: "If you've never talked to God before, you could do it right now, before you close this page. One sentence. He's listening." },
+    ],
+    faqs: [
+      {
+        question: "How do I start praying if I've never prayed before?",
+        answer:
+          "Talk to God in your own words, the way you would talk to someone who already knows you. Start with one honest sentence, such as \"God, if You're there, I want to know You,\" \"thank You,\" \"help,\" or \"I'm sorry.\" There are no required words, posture or voice.",
+      },
+      {
+        question: "What did Jesus say about how to pray?",
+        answer:
+          "In Matthew 6:5–13 Jesus said not to pray to be seen by people or to pile up empty words, because the Father already knows what we need. He then gave the Lord's Prayer as a pattern: honour God, ask for His kingdom and will, ask for daily needs, ask forgiveness, and ask for protection from temptation.",
+      },
+      {
+        question: "Does God hear my prayer if I'm not religious?",
+        answer:
+          "Yes. The Bible says that everyone who calls on the name of the Lord will be saved (Romans 10:13) and that God is near to all who call on Him in truth (Psalm 145:18). An honest prayer from someone who isn't sure God exists is still heard.",
+      },
+      {
+        question: "What should I do when I can't find words to pray?",
+        answer:
+          "Sit with God in silence, which is itself prayer, or borrow words by reading a Psalm aloud (Psalm 23 or Psalm 139). Romans 8:26 says the Holy Spirit prays for us when we don't know what to say.",
+      },
+      {
+        question: "Why does it feel like God doesn't answer my prayers?",
+        answer:
+          "Jesus taught persistence in prayer (Luke 18:1–8). Answers can come quickly, slowly, as \"no\" or \"not yet,\" or in ways we only recognise later. Keep praying honestly; the Bible promises that the prayer of a righteous person is powerful and effective (James 5:16).",
+      },
+    ],
+    related: ["IAmReborn.net", "SeekFirst.World", "LoveonHamilton.com"],
+  },
+
+  {
     slug: "hamilton-evangelism-impact-partner-with-e3-canada",
     seoTitle: "From Hamilton to the Nations: Impact & Partnership",
     seoDescription:

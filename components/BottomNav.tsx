@@ -61,7 +61,7 @@ export default function BottomNav({
                 </span>
                 <span
                   className={`relative text-[10px] font-semibold tracking-wide transition-colors ${
-                    on ? "text-gold-400" : "text-white/55"
+                    on ? "text-gold-400" : "text-white/70"
                   }`}
                 >
                   {label}
