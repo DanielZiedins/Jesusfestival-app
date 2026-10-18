@@ -136,6 +136,18 @@ export default function BlogIndex() {
               <PostCard key={p.slug} p={p} />
             ))}
           </div>
+          {sec.id === "next-steps" && (
+            <Link
+              href="/i-said-yes"
+              className="mt-4 flex items-center justify-between gap-3 rounded-2xl border border-purple-300/30 bg-purple-500/[0.08] px-5 py-4 transition hover:border-gold/40"
+            >
+              <span>
+                <span className="block text-[11px] font-black uppercase tracking-[0.2em] text-purple-300">Private, saved on your phone</span>
+                <span className="mt-0.5 block text-[14px] font-semibold text-white">The seven first steps after saying yes to Jesus</span>
+              </span>
+              <span aria-hidden className="text-gold-400">→</span>
+            </Link>
+          )}
           {sec.id === "mission" && (
             <a
               href="https://www.kd-ziedins.com"

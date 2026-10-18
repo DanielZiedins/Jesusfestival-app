@@ -211,3 +211,6 @@ export const BLOG_META: BlogMeta[] = [
     "readMins": 4
   }
 ];
+
+/** Slugs of the new-believer guides, in the order the first-steps screen lists them. */
+export const NEXT_STEP_SLUGS: string[] = ["how-to-get-baptized","how-to-pray-when-you-dont-know-what-to-say","how-to-start-reading-the-bible","how-to-find-a-church-in-hamilton","what-to-do-when-you-feel-far-from-god","what-happens-after-you-say-yes"];

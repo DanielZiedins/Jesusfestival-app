@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { BLOG_META, NEXT_STEP_SLUGS } from "@/lib/blog-meta";
 
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
@@ -281,6 +282,36 @@ function Invitation({
             );
           })}
         </div>
+      </section>
+
+      {/* Guides: real pages, server-rendered, so a new believer (and a crawler)
+          can reach the longer reads without opening a step first. */}
+      <section className="mt-12" aria-labelledby="next-step-guides">
+        <Reveal className="mx-auto max-w-md">
+          <div className="flex items-center gap-2 text-gold-400">
+            <Sparkle width={17} height={17} />
+            <h2 id="next-step-guides" className="font-display text-lg font-bold text-white">Longer reads for this season</h2>
+          </div>
+          <ul className="mt-3 space-y-2">
+            {NEXT_STEP_SLUGS.map((slug) => BLOG_META.find((m) => m.slug === slug))
+              .filter((m): m is (typeof BLOG_META)[number] => Boolean(m))
+              .map((m) => (
+                <li key={m.slug}>
+                  <Link
+                    href={`/blog/${m.slug}`}
+                    className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 transition hover:border-gold/40 active:scale-[0.99]"
+                  >
+                    <span className="text-xl" aria-hidden>{m.emoji}</span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[13.5px] font-bold leading-snug text-white">{m.title}</span>
+                      <span className="mt-0.5 block text-[11px] text-white/55">{m.readMins} min read</span>
+                    </span>
+                    <ArrowRight width={14} height={14} className="shrink-0 text-gold-400" />
+                  </Link>
+                </li>
+              ))}
+          </ul>
+        </Reveal>
       </section>
 
       <section className="mt-10">

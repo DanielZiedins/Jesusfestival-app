@@ -1490,16 +1490,27 @@ const MISSION_POSTS = new Set([
   "hamilton-evangelism-impact-partner-with-e3-canada",
 ]);
 
+/** The guides a brand-new believer needs first; also linked from /i-said-yes steps. */
+export const NEXT_STEP_POSTS = new Set([
+  "how-to-get-baptized",
+  "how-to-pray-when-you-dont-know-what-to-say",
+  "how-to-start-reading-the-bible",
+  "how-to-find-a-church-in-hamilton",
+  "what-to-do-when-you-feel-far-from-god",
+  "what-happens-after-you-say-yes",
+]);
+
 export const BLOG_SECTIONS = [
+  { id: "next-steps", title: "Said yes? Start here", blurb: "Baptism, prayer, the Bible, finding a church, and the weeks after the yes." },
   { id: "mission", title: "The mission & partnership", blurb: "The vision, the impact so far, and how to stand in it." },
   { id: "festival", title: "Festival guides & reports", blurb: "The 2026 harvest report and every guide to the weekend at Gage Park." },
-  { id: "faith", title: "Everyday faith", blurb: "Loving your city, reaching the people closest to you, and life after yes." },
+  { id: "faith", title: "Everyday faith", blurb: "Loving your city, reaching the people closest to you, and faith at work." },
 ] as const;
 
 export type BlogSectionId = (typeof BLOG_SECTIONS)[number]["id"];
 
 export const postSection = (slug: string): BlogSectionId =>
-  MISSION_POSTS.has(slug) ? "mission" : FESTIVAL_POSTS.has(slug) ? "festival" : "faith";
+  NEXT_STEP_POSTS.has(slug) ? "next-steps" : MISSION_POSTS.has(slug) ? "mission" : FESTIVAL_POSTS.has(slug) ? "festival" : "faith";
 
 export function relatedPosts(slug: string): BlogPost[] {
   const all = sortedPosts();
