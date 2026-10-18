@@ -4,6 +4,24 @@ export type BlogMeta = { slug: string; title: string; description: string; eyebr
 
 export const BLOG_META: BlogMeta[] = [
   {
+    "slug": "how-to-find-a-church-in-hamilton",
+    "title": "How to Find a Church in Hamilton (and What to Look For)",
+    "description": "A church isn't a building you attend; it's a family who notices when you're missing. Here's how to find one in Hamilton, what matters and what doesn't, what your first Sunday will be like, and the churches that stood with Jesus Festival 2026.",
+    "eyebrow": "Next steps",
+    "emoji": "⛪",
+    "date": "2026-10-19",
+    "readMins": 3
+  },
+  {
+    "slug": "what-to-do-when-you-feel-far-from-god",
+    "title": "What to Do When You Feel Far From God",
+    "description": "The festival high fades. Prayers feel like they hit the ceiling. You wonder if you did something wrong, or if any of it was real. Here's what's going on, what Scripture says about dry seasons, and the way back.",
+    "eyebrow": "Keep going",
+    "emoji": "🌧️",
+    "date": "2026-10-19",
+    "readMins": 3
+  },
+  {
     "slug": "how-to-start-reading-the-bible",
     "title": "How to Start Reading the Bible (Where to Begin, and a Simple 7-Day Plan)",
     "description": "It's 66 books, written over 1,500 years, and most people who try to read it cover to cover stall somewhere in Leviticus. Here's a better way in: where to start, how to read it, and a plan for your first week.",

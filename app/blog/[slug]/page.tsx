@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BLOG_POSTS, isFestivalPost, postBySlug, postHeadings, postSection, relatedPosts } from "@/lib/blog";
+import { BLOG_POSTS, isFestivalPost, postBySlug, postHeadings, postSection, postWordCount, relatedPosts } from "@/lib/blog";
 import { KINGDOM_SITES, SITE } from "@/lib/content";
 import Rich from "@/components/blog/Rich";
 import { ReadingProgress, ShareArticle } from "@/components/blog/ArticleChrome";
@@ -88,6 +88,9 @@ export default async function BlogArticle(props: { params: Promise<{ slug: strin
       mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE.url}/blog/${post.slug}` },
       image: [`${SITE.url}/blog/${post.slug}/opengraph-image`],
       articleSection: post.eyebrow,
+      wordCount: postWordCount(post),
+      timeRequired: `PT${post.readMins}M`,
+      isAccessibleForFree: true,
       inLanguage: "en-CA",
       about: articleAbout,
       ...(missionMentions.length ? { mentions: missionMentions } : {}),

@@ -89,6 +89,7 @@ export const STEPS: {
     ref: "Hebrews 10:24–25",
     action: "See churches near you",
     go: "discipleship",
+    readMore: { label: "How to find a church in Hamilton, and what to look for", href: "/blog/how-to-find-a-church-in-hamilton" },
   },
   {
     id: "reborn",

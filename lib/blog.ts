@@ -45,6 +45,172 @@ export type BlogPost = {
 export const BLOG_POSTS: BlogPost[] = [
 
   {
+    slug: "how-to-find-a-church-in-hamilton",
+    seoTitle: "How to Find a Church in Hamilton, Ontario",
+    seoDescription:
+      "New to faith or new to the city? What to look for in a church, questions to ask on your first visit, what to expect on Sunday, and churches that stood with Jesus Festival.",
+    title: "How to Find a Church in Hamilton (and What to Look For)",
+    description:
+      "A church isn't a building you attend; it's a family who notices when you're missing. Here's how to find one in Hamilton, what matters and what doesn't, what your first Sunday will be like, and the churches that stood with Jesus Festival 2026.",
+    eyebrow: "Next steps",
+    emoji: "⛪",
+    date: "2026-10-19",
+    readMins: 3,
+    body: [
+      { t: "p", text: "At Jesus Festival, dozens of congregations stood on one stage and prayed for one city together. That's the beautiful part. The practical part comes the following Sunday: *so, which one do I go to?*" },
+      { t: "p", text: "If you said yes to Jesus in Gage Park, or you've just moved to Hamilton, or you've been away from church for years, this is the honest guide." },
+
+      { t: "h2", text: "Why you need one at all" },
+      { t: "p", text: "Because the Christian life was never designed to be lived alone. The New Testament doesn't know a Christian without a church. *Not forsaking the assembling of ourselves together, as the manner of some is; but exhorting one another* (Hebrews 10:25). You need people who will pray for you, teach you, correct you kindly, and notice when you don't show up. You also have something they need. A church is where your new life gets a family." },
+
+      { t: "h2", text: "What actually matters" },
+      {
+        t: "list",
+        items: [
+          "**They preach the Bible, plainly.** Open Bibles, real passages, Jesus at the centre. If a church isn't sure what it believes about Jesus, keep looking.",
+          "**The gospel is clear.** You should be able to hear, within a visit or two, that salvation is by grace through faith in Jesus (Ephesians 2:8–9), not by being good enough.",
+          "**They love each other, visibly.** Jesus said this is how the world would recognise His disciples (John 13:35). Watch how people treat each other in the lobby, not just on stage.",
+          "**They'll baptise you and disciple you.** Ask directly: *If I want to be baptised, how does that work here? Is there someone who could meet with me?* ([Here's what baptism involves](https://www.jesusfestival.app/blog/how-to-get-baptized).)",
+          "**They send people out.** A healthy church is reaching its city, not just gathering on Sunday.",
+        ],
+      },
+
+      { t: "h2", text: "What doesn't matter as much as you think" },
+      { t: "p", text: "The size. The music style. The building. Whether the pastor wears a suit or sneakers. Whether it's five minutes away or twenty. These are preferences, and preferences are fine, but they're not the test. Some of the best churches in the city meet in school gyms. Don't let a drum kit, or the absence of one, decide where your soul gets fed." },
+
+      { t: "h2", text: "Churches that stood with Jesus Festival 2026" },
+      { t: "p", text: "These congregations partnered with the festival in 2026, and each has an open door. Bethel Gospel Tabernacle led the Friday night worship in Gage Park. Visit their sites for service times and locations:" },
+      {
+        t: "list",
+        items: [
+          "**[Bethel Gospel Tabernacle](https://bethelhamilton.com/)**, who led Pure Worship Night.",
+          "**[Hamilton Christian Fellowship](https://hcfchurch.ca/)**",
+          "**[CIA Church](https://www.ciachurch.com/)**",
+          "**[Transformation Centre](https://transformationcentre.ca/)**",
+        ],
+      },
+      { t: "p", text: "This isn't a list of the only good churches in Hamilton; there are many more. If none of these is near you or feels like home, ask the people who prayed with you at the festival, or get in touch through [LoveonHamilton.com](https://www.loveonhamilton.com). The weekly outreach teams there know churches across the city and will gladly walk you into one." },
+
+      { t: "h2", text: "Your first Sunday" },
+      {
+        t: "list",
+        items: [
+          "**Arrive ten minutes early** and let someone greet you. Say the true thing: *I'm new, I said yes to Jesus recently.* Watch what happens; it's usually wonderful.",
+          "**Wear whatever you own.** Nobody is checking.",
+          "**You don't have to sing, give or do anything.** Sit, listen, and see. Nobody will put you on the spot.",
+          "**Stay for the coffee.** The ten minutes after the service are where church actually happens.",
+          "**Give it three visits** before deciding. One Sunday tells you about one Sunday.",
+        ],
+      },
+
+      { t: "h2", text: "Then commit" },
+      { t: "p", text: "Church-shopping forever is a way of never belonging anywhere. Once you've found a place that preaches Jesus and loves people, plant yourself. Show up when you don't feel like it. Join a small group. Serve somewhere. *God setteth the solitary in families* (Psalm 68:6), and this is how He does it." },
+      { t: "p", text: "A year from now, the thing you'll remember about this season isn't the festival. It's the people who walked you through it. Go find them." },
+    ],
+    faqs: [
+      {
+        question: "How do I choose a church?",
+        answer:
+          "Look for a church that teaches the Bible plainly, makes the gospel of grace through faith in Jesus clear, visibly loves people, will baptise and disciple you, and reaches its city. Size, music style and building matter far less. Visit at least three times before deciding.",
+      },
+      {
+        question: "Which churches partnered with Jesus Festival Hamilton 2026?",
+        answer:
+          "Churches that partnered with Jesus Festival 2026 include Bethel Gospel Tabernacle (which led Friday's worship night), Hamilton Christian Fellowship, CIA Church and Transformation Centre. Many other Hamilton congregations also took part; Love on Hamilton can help connect you with a church near you.",
+      },
+      {
+        question: "What should I expect on my first visit to a church?",
+        answer:
+          "Expect a greeting at the door, singing, a Bible-based talk, and prayer. You are not required to sing, give money or participate; you can sit and watch. Wear what you own, arrive a little early, and stay for coffee afterwards, which is where people connect.",
+      },
+      {
+        question: "Do I need to go to church to be a Christian?",
+        answer:
+          "Salvation comes through faith in Jesus, not church attendance, but the Bible commands believers not to give up meeting together (Hebrews 10:25). Christians grow, are taught, are cared for and serve others in a local church; it is the family God gives new believers.",
+      },
+    ],
+    related: ["LoveonHamilton.com", "IAmReborn.net", "JesusFestival.ca"],
+  },
+
+  {
+    slug: "what-to-do-when-you-feel-far-from-god",
+    seoTitle: "What to Do When You Feel Far From God",
+    seoDescription:
+      "Feeling distant from God doesn't mean He's gone. Why the feeling comes, what the Bible says about dry seasons, and five honest steps back, starting today.",
+    title: "What to Do When You Feel Far From God",
+    description:
+      "The festival high fades. Prayers feel like they hit the ceiling. You wonder if you did something wrong, or if any of it was real. Here's what's going on, what Scripture says about dry seasons, and the way back.",
+    eyebrow: "Keep going",
+    emoji: "🌧️",
+    date: "2026-10-19",
+    readMins: 3,
+    body: [
+      { t: "p", text: "A few weeks after Jesus Festival, a message came in that said, more or less: *I felt so close to God in the park. Now I feel nothing. Did I do something wrong?*" },
+      { t: "p", text: "If that's you, you're in very good company. Nearly every believer in the Bible hit a season like it. David wrote a whole song that opens, *How long wilt thou forget me, O LORD? for ever? how long wilt thou hide thy face from me?* (Psalm 13:1). That's Scripture. God put the feeling of distance in His own book, which tells you He isn't surprised by it." },
+
+      { t: "h2", text: "Feelings aren't the thermometer" },
+      { t: "p", text: "Here's the first thing to settle: how close God *feels* and how close God *is* are two different things. Jesus' last words to His friends were *lo, I am with you alway, even unto the end of the world* (Matthew 28:20). Not \"while you feel it.\" Always." },
+      { t: "p", text: "A park full of worship, lights and thousands of voices is an intense experience, and intense experiences fade. That's not God leaving; that's adrenaline leaving. The mountain-top is real, but nobody lives there. Even Jesus came down from the mountain of transfiguration and walked straight into an argument and a sick child (Mark 9)." },
+
+      { t: "h2", text: "Why the distance comes" },
+      {
+        t: "list",
+        items: [
+          "**Ordinary life.** Work, kids, bills and tiredness crowd out what you felt. Nothing is wrong; you just haven't built the rhythm yet.",
+          "**Unconfessed sin.** Sometimes the distance is real and we know why. *If I regard iniquity in my heart, the Lord will not hear me* (Psalm 66:18). The fix is simple, if not easy: say it to Him.",
+          "**Isolation.** You met God in a crowd and then went home alone. Faith was never meant to be solo.",
+          "**Grief, depression or exhaustion.** Elijah, after the greatest victory of his life, lay under a tree and asked to die. God's response was sleep and food, twice, before a single word (1 Kings 19). Sometimes the most spiritual thing you can do is rest, and see a doctor.",
+          "**A test of trust.** Occasionally God lets the feelings go quiet so that faith, not feeling, does the walking. *For we walk by faith, not by sight* (2 Corinthians 5:7).",
+        ],
+      },
+
+      { t: "h2", text: "What the Bible promises" },
+      { t: "quote", text: "Draw nigh to God, and he will draw nigh to you.", ref: "James 4:8 (KJV)" },
+      { t: "p", text: "That's a promise with your part in it. You move, He moves. Not because He was far, but because the drawing near is how you notice again that He never left. The prodigal son's father didn't wait on the porch; *when he was yet a great way off, his father saw him, and had compassion, and ran* (Luke 15:20). One step toward home, and He's running." },
+
+      { t: "h2", text: "Five steps back, starting today" },
+      {
+        t: "list",
+        items: [
+          "**Tell Him the truth.** \"God, I feel far from You and I don't know why.\" That sentence is a prayer. If words are hard, [this is how to pray when you don't know what to say](https://www.jesusfestival.app/blog/how-to-pray-when-you-dont-know-what-to-say).",
+          "**Confess what you know.** If there's something specific, name it. *He is faithful and just to forgive us our sins* (1 John 1:9). Then stop carrying it.",
+          "**Open the Bible, small.** One Psalm. Psalm 42 is for exactly this: *Why art thou cast down, O my soul? … hope thou in God.* If you don't know where to start, [here's how](https://www.jesusfestival.app/blog/how-to-start-reading-the-bible).",
+          "**Get around people.** Text someone from the festival, walk into a church this Sunday, join an outreach through [LoveonHamilton.com](https://www.loveonhamilton.com). Coals stay hot in a pile and go out alone.",
+          "**Do the next kind thing.** Serve someone. Give something away. Distance often shrinks when we stop staring at it and start loving the person in front of us.",
+        ],
+      },
+
+      { t: "h2", text: "If it was never real" },
+      { t: "p", text: "Some people wonder whether the yes in the park even counted. Here is the test: it counted if you meant it, and it still counts now. Salvation doesn't rest on the strength of your feeling but on the strength of His promise: *him that cometh to me I will in no wise cast out* (John 6:37). If you're not sure you ever truly came, come now. Same door, still open. The [first steps guide](https://www.jesusfestival.app/i-said-yes) walks you through it." },
+      { t: "quote", text: "The LORD is nigh unto them that are of a broken heart; and saveth such as be of a contrite spirit.", ref: "Psalm 34:18 (KJV)" },
+      { t: "p", text: "You haven't lost Him. You've lost the feeling, for a while. Walk toward home anyway. He's already running." },
+    ],
+    faqs: [
+      {
+        question: "Why do I feel far from God?",
+        answer:
+          "Common reasons include ordinary busyness crowding out prayer, unconfessed sin, isolation from other believers, grief, exhaustion or depression, and seasons where God lets feelings go quiet so faith grows. Feeling distant does not mean God has left; Jesus promised to be with His people always (Matthew 28:20).",
+      },
+      {
+        question: "What does the Bible say about feeling distant from God?",
+        answer:
+          "The Psalms openly voice the feeling (Psalm 13:1, Psalm 42), and James 4:8 promises that if we draw near to God He will draw near to us. The parable of the prodigal son shows the Father running to meet anyone who turns toward home (Luke 15:20).",
+      },
+      {
+        question: "How do I get close to God again?",
+        answer:
+          "Tell God honestly how you feel, confess anything specific you know is wrong, read a small portion of Scripture such as Psalm 42, get around other believers in a church or outreach, and serve someone. Draw near, and He draws near (James 4:8).",
+      },
+      {
+        question: "Is it normal to feel nothing after a powerful spiritual experience?",
+        answer:
+          "Yes. Intense experiences like a festival fade as the emotion settles; that is not God leaving. Even Elijah collapsed after his greatest victory (1 Kings 19), and God answered with rest and food before words. Build a daily rhythm of prayer and Scripture so faith does not depend on the feeling.",
+      },
+    ],
+    related: ["IAmReborn.net", "LoveonHamilton.com", "SeekFirst.World"],
+  },
+
+  {
     slug: "how-to-start-reading-the-bible",
     seoTitle: "How to Start Reading the Bible: Where to Begin",
     seoDescription:
@@ -1385,3 +1551,13 @@ export const headingId = (text: string) =>
 /** Section headings for the "In this article" list (only worth showing on longer reads). */
 export const postHeadings = (post: BlogPost) =>
   post.body.filter((b): b is Extract<Block, { t: "h2" }> => b.t === "h2").map((b) => ({ id: headingId(b.text), text: b.text }));
+
+/** Visible words in an article body, for BlogPosting.wordCount. */
+export const postWordCount = (post: BlogPost) =>
+  post.body
+    .map((b) => (b.t === "list" ? b.items.join(" ") : b.t === "cta" ? `${b.title} ${b.text}` : b.text))
+    .join(" ")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/[*_]/g, "")
+    .split(/\s+/)
+    .filter(Boolean).length;
