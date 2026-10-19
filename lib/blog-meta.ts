@@ -4,12 +4,30 @@ export type BlogMeta = { slug: string; title: string; description: string; eyebr
 
 export const BLOG_META: BlogMeta[] = [
   {
+    "slug": "how-to-forgive-someone-who-hurt-you",
+    "title": "How to Forgive Someone Who Hurt You (Even If They Never Say Sorry)",
+    "description": "It's the hardest thing Jesus asked of us, and the thing He talked about most often. What forgiveness is and isn't, why it's for you too, and a practical way to do it when the other person will never apologise.",
+    "eyebrow": "Keep going",
+    "emoji": "🕊️",
+    "date": "2026-10-18",
+    "readMins": 3
+  },
+  {
+    "slug": "doubt-doesnt-disqualify-you",
+    "title": "Doubt Doesn't Disqualify You: Honest Faith When You're Not Sure",
+    "description": "You said yes to Jesus, and now a voice says: what if none of it is true? Here's why doubt is normal, the doubters Jesus kept close, and what to actually do with your questions.",
+    "eyebrow": "Keep going",
+    "emoji": "🤔",
+    "date": "2026-10-18",
+    "readMins": 3
+  },
+  {
     "slug": "how-to-find-a-church-in-hamilton",
     "title": "How to Find a Church in Hamilton (and What to Look For)",
     "description": "A church isn't a building you attend; it's a family who notices when you're missing. Here's how to find one in Hamilton, what matters and what doesn't, what your first Sunday will be like, and the churches that stood with Jesus Festival 2026.",
     "eyebrow": "Next steps",
     "emoji": "⛪",
-    "date": "2026-10-19",
+    "date": "2026-10-18",
     "readMins": 3
   },
   {
@@ -18,7 +36,7 @@ export const BLOG_META: BlogMeta[] = [
     "description": "The festival high fades. Prayers feel like they hit the ceiling. You wonder if you did something wrong, or if any of it was real. Here's what's going on, what Scripture says about dry seasons, and the way back.",
     "eyebrow": "Keep going",
     "emoji": "🌧️",
-    "date": "2026-10-19",
+    "date": "2026-10-18",
     "readMins": 3
   },
   {
@@ -213,4 +231,4 @@ export const BLOG_META: BlogMeta[] = [
 ];
 
 /** Slugs of the new-believer guides, in the order the first-steps screen lists them. */
-export const NEXT_STEP_SLUGS: string[] = ["how-to-get-baptized","how-to-pray-when-you-dont-know-what-to-say","how-to-start-reading-the-bible","how-to-find-a-church-in-hamilton","what-to-do-when-you-feel-far-from-god","what-happens-after-you-say-yes"];
+export const NEXT_STEP_SLUGS: string[] = ["how-to-get-baptized","how-to-pray-when-you-dont-know-what-to-say","how-to-start-reading-the-bible","how-to-find-a-church-in-hamilton","what-to-do-when-you-feel-far-from-god","doubt-doesnt-disqualify-you","what-happens-after-you-say-yes"];

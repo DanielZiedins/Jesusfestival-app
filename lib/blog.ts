@@ -45,6 +45,160 @@ export type BlogPost = {
 export const BLOG_POSTS: BlogPost[] = [
 
   {
+    slug: "how-to-forgive-someone-who-hurt-you",
+    seoTitle: "How to Forgive Someone Who Hurt You (Even If They Never Say Sorry)",
+    seoDescription:
+      "Forgiveness isn't forgetting, excusing or reconciling. What Jesus taught, why it's for your sake too, and a practical way to forgive someone who hasn't apologised.",
+    title: "How to Forgive Someone Who Hurt You (Even If They Never Say Sorry)",
+    description:
+      "It's the hardest thing Jesus asked of us, and the thing He talked about most often. What forgiveness is and isn't, why it's for you too, and a practical way to do it when the other person will never apologise.",
+    eyebrow: "Keep going",
+    emoji: "🕊️",
+    date: "2026-10-18",
+    readMins: 3,
+    body: [
+      { t: "p", text: "Somebody hurt you. Maybe years ago, maybe last week. A parent, a partner, a friend, a boss, a stranger. You carry it around, and the carrying is exhausting. And now you've started following Jesus, and He keeps bringing it up." },
+      { t: "p", text: "He really does. Right in the middle of the prayer He taught: *forgive us our debts, as we forgive our debtors* (Matthew 6:12). Peter asked Him how many times he had to forgive, hoping the answer was seven. Jesus said *seventy times seven* (Matthew 18:22), meaning stop counting. This is not a side issue to Him. Here's how to actually do it." },
+
+      { t: "h2", text: "What forgiveness is not" },
+      {
+        t: "list",
+        items: [
+          "**It's not saying it didn't matter.** Forgiveness only exists because something real was done. Minimising it is the opposite of forgiving it.",
+          "**It's not forgetting.** You may remember it for the rest of your life. Forgiveness is about what you do with the memory, not whether you have it.",
+          "**It's not trusting them again.** Trust is rebuilt by the other person's actions over time. Forgiveness is given; trust is earned.",
+          "**It's not reconciliation.** Reconciliation takes two people. Forgiveness takes one. You can fully forgive someone you never speak to again, and in cases of abuse, keeping distance is often the wise and right thing.",
+          "**It's not a feeling.** It's a decision you make, and then keep making, until the feelings slowly follow.",
+        ],
+      },
+
+      { t: "h2", text: "What it is" },
+      { t: "p", text: "Forgiveness is releasing your right to make someone pay. It's handing the debt to God and saying: *You deal with this. I'm putting it down.* That's exactly what Paul meant: *Dearly beloved, avenge not yourselves, but rather give place unto wrath: for it is written, Vengeance is mine; I will repay, saith the Lord* (Romans 12:19). Forgiving doesn't mean nobody will deal with it. It means you won't have to." },
+      { t: "quote", text: "And be ye kind one to another, tenderhearted, forgiving one another, even as God for Christ's sake hath forgiven you.", ref: "Ephesians 4:32 (KJV)" },
+
+      { t: "h2", text: "Why Jesus insists on it" },
+      { t: "p", text: "Two reasons. The first is that you've been forgiven more. Jesus told a story about a servant forgiven a debt of millions who then choked a coworker over pocket change (Matthew 18:23–35). Next to what God has forgiven you, every debt owed to you is small. Not nothing. Small." },
+      { t: "p", text: "The second is that unforgiveness is a poison you drink yourself. Bitterness, the Bible says, is a root that *springing up trouble you, and thereby many be defiled* (Hebrews 12:15). It spreads: into your marriage, your kids, your sleep, your body. Forgiveness is how you stop the person who hurt you from hurting you every single day after." },
+
+      { t: "h2", text: "A practical way to do it" },
+      {
+        t: "list",
+        items: [
+          "**Name it honestly.** Write down what they did and what it cost you. Don't soften it. You can't forgive what you won't look at.",
+          "**Tell God the truth about how you feel.** Anger, included. The Psalms are full of it. He can handle it.",
+          "**Decide, out loud.** \"God, I choose to forgive ___ for ___. I release my right to make them pay. I hand this to You.\" Say it even if you don't feel it. Especially then.",
+          "**Pray for them.** Jesus said to (Matthew 5:44). You cannot keep hating someone you keep sincerely praying for. It's almost mechanical.",
+          "**Repeat when it resurfaces.** It will. That's not failure; that's seventy times seven. Each time, decide again.",
+          "**Get help if it's deep.** Serious trauma deserves a counsellor and a church family walking with you. Forgiving isn't something God expects you to do alone.",
+        ],
+      },
+
+      { t: "h2", text: "When they never say sorry" },
+      { t: "p", text: "Most people who hurt us never apologise. If forgiveness waited for that, most of us would carry our wounds to the grave. Jesus didn't wait: on the cross, with no apology from anyone, He prayed *Father, forgive them; for they know not what they do* (Luke 23:34). Forgiveness that depends on their repentance isn't really in your hands. The kind Jesus taught is." },
+      { t: "p", text: "Put it down today. Not because they deserve it. Because you've been forgiven, and because you're tired of carrying it. If you're not sure where you stand with God yourself, start with [what happens after you say yes](https://www.jesusfestival.app/blog/what-happens-after-you-say-yes), and if the words won't come, [here's how to pray when you don't know what to say](https://www.jesusfestival.app/blog/how-to-pray-when-you-dont-know-what-to-say)." },
+    ],
+    faqs: [
+      {
+        question: "Does forgiving someone mean I have to trust them again?",
+        answer:
+          "No. Forgiveness is releasing your right to make someone pay and is given by you alone; trust is rebuilt by the other person's actions over time. You can fully forgive someone and still keep healthy distance, especially where there has been abuse.",
+      },
+      {
+        question: "How do I forgive someone who never apologized?",
+        answer:
+          "Name honestly what they did, tell God how you feel, decide out loud to release the debt to Him (Romans 12:19), pray for the person (Matthew 5:44), and repeat the decision whenever the hurt resurfaces. Jesus forgave from the cross without any apology (Luke 23:34), so forgiveness does not depend on the other person.",
+      },
+      {
+        question: "What does the Bible say about forgiving others?",
+        answer:
+          "Jesus taught His followers to forgive as they have been forgiven (Matthew 6:12), without keeping count (Matthew 18:22), and told the parable of the unforgiving servant to show how small others' debts are next to what God has forgiven us (Matthew 18:23–35). Ephesians 4:32 says to forgive one another as God in Christ forgave you.",
+      },
+      {
+        question: "Is forgiveness a feeling or a decision?",
+        answer:
+          "A decision. You choose to release the debt even while the feelings are still raw, and you keep choosing it each time the hurt comes back. The feelings usually follow the decision over time, not the other way around.",
+      },
+    ],
+    related: ["IAmReborn.net", "SeekFirst.World", "LoveonHamilton.com"],
+  },
+
+  {
+    slug: "doubt-doesnt-disqualify-you",
+    seoTitle: "Can a Christian Have Doubts? Honest Faith When You're Not Sure",
+    seoDescription:
+      "Doubt isn't the opposite of faith; unbelief is. What the Bible says about doubters Jesus welcomed, why questions are normal for new believers, and what to do with them.",
+    title: "Doubt Doesn't Disqualify You: Honest Faith When You're Not Sure",
+    description:
+      "You said yes to Jesus, and now a voice says: what if none of it is true? Here's why doubt is normal, the doubters Jesus kept close, and what to actually do with your questions.",
+    eyebrow: "Keep going",
+    emoji: "🤔",
+    date: "2026-10-18",
+    readMins: 3,
+    body: [
+      { t: "p", text: "A week or two after saying yes to Jesus, a lot of people hit the same wall. The feeling fades, somebody at work makes a comment, you read something online, and a quiet voice asks: *what if you just got caught up in the moment?*" },
+      { t: "p", text: "If that's where you are, here is the first thing to know: doubt is not the opposite of faith. Unbelief is. Doubt is faith asking questions, and the Bible is full of people who did exactly that and were welcomed." },
+
+      { t: "h2", text: "The doubters Jesus kept close" },
+      { t: "p", text: "Thomas gets a bad name, but look at what actually happened. He said he wouldn't believe unless he saw the wounds. Jesus showed up, showed him the wounds, and said *be not faithless, but believing* (John 20:27). He didn't kick Thomas out. He came to him." },
+      { t: "p", text: "A desperate father once told Jesus, *Lord, I believe; help thou mine unbelief* (Mark 9:24). Faith and doubt in the same sentence, and Jesus healed his son. John the Baptist, in prison, sent messengers to ask Jesus *Art thou he that should come, or do we look for another?* (Matthew 11:3). The man who baptised Jesus had questions. Jesus answered him with kindness and then called him the greatest man ever born." },
+      { t: "p", text: "And on the mountain, as the risen Jesus gave the Great Commission, Matthew records quietly: *they worshipped him: but some doubted* (Matthew 28:17). Jesus sent them anyway." },
+
+      { t: "h2", text: "Why doubt shows up now" },
+      {
+        t: "list",
+        items: [
+          "**The feelings settled.** You met Jesus in a loud, bright, crowded park. Ordinary Tuesday is quieter. Faith was never meant to run on adrenaline; that's why [this guide to feeling far from God](https://www.jesusfestival.app/blog/what-to-do-when-you-feel-far-from-god) exists.",
+          "**You're taking it seriously.** People don't doubt things they don't care about. The questions mean it matters to you.",
+          "**Somebody pushed back.** A friend, a family member, a video. Pushback isn't evidence; it's just pushback. Most of it has good answers you simply haven't heard yet.",
+          "**You expected certainty.** Faith isn't the absence of questions; it's trusting Someone while you still have them. *Now we see through a glass, darkly* (1 Corinthians 13:12). That's the normal Christian condition this side of heaven.",
+        ],
+      },
+
+      { t: "h2", text: "What to do with your questions" },
+      {
+        t: "list",
+        items: [
+          "**Say them out loud, to God first.** *Help thou mine unbelief* is a prayer He has answered before. He isn't threatened by your questions.",
+          "**Write them down, specifically.** \"Is any of this real?\" is a fog. \"Did Jesus actually rise from the dead?\" is a question with evidence either way, and the evidence is strong. Specific doubts can be investigated; vague ones just hang around.",
+          "**Keep reading the Gospels while you doubt.** Don't wait to feel sure before opening the Bible. Meet Jesus on the page and let Him make His own case. [Start here](https://www.jesusfestival.app/blog/how-to-start-reading-the-bible).",
+          "**Ask a believer who's been through it.** Every mature Christian you know has doubted. Ask them. Their honesty will help more than any argument.",
+          "**Keep doing what you know.** Pray, go to church, be kind, tell the truth. Obedience often clears fog that argument can't. Jesus said *If any man will do his will, he shall know of the doctrine* (John 7:17).",
+          "**Don't decide anything in the dark.** Doubt at 2am is not the moment to walk away from faith, any more than 2am is the moment to walk away from a marriage. Wait for daylight and people.",
+        ],
+      },
+      { t: "quote", text: "And of some have compassion, making a difference.", ref: "Jude 1:22 (KJV)" },
+      { t: "p", text: "Have compassion on yourself, too. God does. The grip that holds you isn't the strength of your faith; it's the strength of His hand: *neither shall any man pluck them out of my hand* (John 10:28). Your doubt can't undo His promise." },
+
+      { t: "h2", text: "The question under the questions" },
+      { t: "p", text: "Most doubt eventually comes down to one thing: did Jesus rise from the dead? If He did, everything else holds, including the parts you don't understand yet. If He didn't, as Paul said, *your faith is vain* (1 Corinthians 15:17). So take that one question seriously. Read the accounts. Weigh the empty tomb, the witnesses who died rather than retract, the sudden transformation of terrified disciples. Then decide. Two thousand years of honest doubters have walked that road and come out worshipping." },
+      { t: "p", text: "You can keep following Jesus with questions in your pocket. He never asked you to leave them at the door." },
+    ],
+    faqs: [
+      {
+        question: "Is it a sin for a Christian to doubt?",
+        answer:
+          "No. Doubt is faith asking questions; unbelief is refusing to trust. Jesus welcomed doubters such as Thomas (John 20:27), the father who prayed \"help my unbelief\" (Mark 9:24) and John the Baptist (Matthew 11:3), and He commissioned disciples even though \"some doubted\" (Matthew 28:17).",
+      },
+      {
+        question: "Why do I have doubts after becoming a Christian?",
+        answer:
+          "Doubt commonly appears when the emotion of a conversion experience settles, when someone pushes back on your faith, or when you expected certainty rather than trust. It usually means you are taking your faith seriously, not that it was never real.",
+      },
+      {
+        question: "What should I do when I doubt my faith?",
+        answer:
+          "Tell God honestly, write your questions down specifically, keep reading the Gospels, talk with a mature believer who has doubted, keep obeying what you already know, and avoid making decisions about faith in moments of exhaustion. Focus on the central question of whether Jesus rose from the dead.",
+      },
+      {
+        question: "Can doubt make me lose my salvation?",
+        answer:
+          "Jesus said no one can snatch His sheep out of His hand (John 10:28). Salvation rests on Christ's promise and finished work, not on the strength of your feelings on a given day. Honest doubt does not undo what God has done.",
+      },
+    ],
+    related: ["IAmReborn.net", "SeekFirst.World", "LoveonHamilton.com"],
+  },
+
+  {
     slug: "how-to-find-a-church-in-hamilton",
     seoTitle: "How to Find a Church in Hamilton, Ontario",
     seoDescription:
@@ -54,7 +208,7 @@ export const BLOG_POSTS: BlogPost[] = [
       "A church isn't a building you attend; it's a family who notices when you're missing. Here's how to find one in Hamilton, what matters and what doesn't, what your first Sunday will be like, and the churches that stood with Jesus Festival 2026.",
     eyebrow: "Next steps",
     emoji: "⛪",
-    date: "2026-10-19",
+    date: "2026-10-18",
     readMins: 3,
     body: [
       { t: "p", text: "At Jesus Festival, dozens of congregations stood on one stage and prayed for one city together. That's the beautiful part. The practical part comes the following Sunday: *so, which one do I go to?*" },
@@ -142,7 +296,7 @@ export const BLOG_POSTS: BlogPost[] = [
       "The festival high fades. Prayers feel like they hit the ceiling. You wonder if you did something wrong, or if any of it was real. Here's what's going on, what Scripture says about dry seasons, and the way back.",
     eyebrow: "Keep going",
     emoji: "🌧️",
-    date: "2026-10-19",
+    date: "2026-10-18",
     readMins: 3,
     body: [
       { t: "p", text: "A few weeks after Jesus Festival, a message came in that said, more or less: *I felt so close to God in the park. Now I feel nothing. Did I do something wrong?*" },
@@ -1497,6 +1651,7 @@ export const NEXT_STEP_POSTS = new Set([
   "how-to-start-reading-the-bible",
   "how-to-find-a-church-in-hamilton",
   "what-to-do-when-you-feel-far-from-god",
+  "doubt-doesnt-disqualify-you",
   "what-happens-after-you-say-yes",
 ]);
 
