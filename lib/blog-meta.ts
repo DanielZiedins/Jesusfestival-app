@@ -4,6 +4,15 @@ export type BlogMeta = { slug: string; title: string; description: string; eyebr
 
 export const BLOG_META: BlogMeta[] = [
   {
+    "slug": "how-to-tell-your-family-you-became-a-christian",
+    "title": "How to Tell Your Family You've Become a Christian",
+    "description": "You said yes to Jesus. Now there's a dinner table to face. How to tell the people closest to you, what to say and not say, what to do if they laugh or get angry, and the promise Jesus made to people in exactly your position.",
+    "eyebrow": "Next steps",
+    "emoji": "🏠",
+    "date": "2026-10-18",
+    "readMins": 3
+  },
+  {
     "slug": "how-to-forgive-someone-who-hurt-you",
     "title": "How to Forgive Someone Who Hurt You (Even If They Never Say Sorry)",
     "description": "It's the hardest thing Jesus asked of us, and the thing He talked about most often. What forgiveness is and isn't, why it's for you too, and a practical way to do it when the other person will never apologise.",
@@ -231,4 +240,4 @@ export const BLOG_META: BlogMeta[] = [
 ];
 
 /** Slugs of the new-believer guides, in the order the first-steps screen lists them. */
-export const NEXT_STEP_SLUGS: string[] = ["how-to-get-baptized","how-to-pray-when-you-dont-know-what-to-say","how-to-start-reading-the-bible","how-to-find-a-church-in-hamilton","what-to-do-when-you-feel-far-from-god","doubt-doesnt-disqualify-you","what-happens-after-you-say-yes"];
+export const NEXT_STEP_SLUGS: string[] = ["how-to-get-baptized","how-to-pray-when-you-dont-know-what-to-say","how-to-start-reading-the-bible","how-to-find-a-church-in-hamilton","what-to-do-when-you-feel-far-from-god","doubt-doesnt-disqualify-you","how-to-tell-your-family-you-became-a-christian","what-happens-after-you-say-yes"];

@@ -45,6 +45,86 @@ export type BlogPost = {
 export const BLOG_POSTS: BlogPost[] = [
 
   {
+    slug: "how-to-tell-your-family-you-became-a-christian",
+    seoTitle: "How to Tell Your Family You've Become a Christian",
+    seoDescription:
+      "Nervous about telling your parents, partner or kids you've started following Jesus? When to say it, what to say, how to handle pushback, and what Jesus said about family.",
+    title: "How to Tell Your Family You've Become a Christian",
+    description:
+      "You said yes to Jesus. Now there's a dinner table to face. How to tell the people closest to you, what to say and not say, what to do if they laugh or get angry, and the promise Jesus made to people in exactly your position.",
+    eyebrow: "Next steps",
+    emoji: "🏠",
+    date: "2026-10-18",
+    readMins: 3,
+    body: [
+      { t: "p", text: "The hardest audience for your new faith is not a stranger. It's the people who have known you your whole life: the parents who raised you in a different religion or none, the partner who didn't sign up for this, the teenager who thinks you've lost it, the brother who will never let you hear the end of it." },
+      { t: "p", text: "Jesus knew this. He said it plainly: *a man's foes shall be they of his own household* (Matthew 10:36), and *a prophet is not without honour, save in his own country, and in his own house* (Matthew 13:57). His own brothers didn't believe in Him at first (John 7:5). If your family is a hard room, you are in His company. Here's how to walk into it." },
+
+      { t: "h2", text: "Tell them, and tell them soon" },
+      { t: "p", text: "Don't hide it. Secrecy makes a good thing look shameful, and it gets heavier every week. Jesus said *whosoever shall confess me before men, him will I confess also before my Father* (Matthew 10:32). You don't need a speech. You need a sentence, said early, before they hear it from somebody else: *I've started following Jesus. It's real for me, and I wanted you to hear it from me.*" },
+
+      { t: "h2", text: "How to say it" },
+      {
+        t: "list",
+        items: [
+          "**Pick a calm moment, one person at a time.** Not the family group chat. Not Christmas dinner. A walk, a drive, a coffee.",
+          "**Tell your story, not a sermon.** What was going on in your life, what happened, what's different now. Nobody can argue with what happened to you. Keep it under two minutes.",
+          "**Make clear what hasn't changed.** \"I'm still me. I still love you. I'm not going to preach at you.\" Then keep that promise.",
+          "**Don't apologise for it, and don't oversell it.** You're not asking permission, and you're not recruiting. You're sharing news.",
+          "**Expect questions, and be fine with \"I don't know.\"** You're two weeks in. \"I don't know yet, but I'm finding out\" is an honest and disarming answer.",
+        ],
+      },
+
+      { t: "h2", text: "If they laugh, worry or get angry" },
+      { t: "p", text: "Some families shrug. Some mock. Some grieve, especially if your faith feels to them like a rejection of theirs. Some get genuinely angry. Decide now that none of those reactions will change how you treat them." },
+      { t: "quote", text: "Bless them which persecute you: bless, and curse not.", ref: "Romans 12:14 (KJV)" },
+      { t: "p", text: "Don't argue. Arguments are won and people are lost. Answer softly (*a soft answer turneth away wrath*, Proverbs 15:1), let them have the last word, and let time and your life do the talking. Peter's advice to believers with unbelieving spouses applies to the whole household: that they *may without the word be won by the conversation* (1 Peter 3:1), meaning your conduct. Your changed life will make a better case over a year than your best argument will make in an evening." },
+
+      { t: "h2", text: "Then be the best version of their family member" },
+      {
+        t: "list",
+        items: [
+          "**Honour your parents** (Ephesians 6:2), even the ones who don't understand. Especially them.",
+          "**Serve without being asked.** Do the dishes. Call your mother. Show up. Let the change be visible before it's audible.",
+          "**Keep your word about not preaching.** If they want to talk about it, they'll ask. When they do, answer honestly and briefly, then stop.",
+          "**Keep loving them exactly the same.** Never make your love conditional on their response, or the door closes.",
+          "**Pray for them by name, every day.** Most people who come to faith as adults had someone praying for them for years before anything visible happened.",
+        ],
+      },
+
+      { t: "h2", text: "If it costs you" },
+      { t: "p", text: "For some people, following Jesus costs a relationship, a place in the family, or worse. Jesus didn't hide that, and He made a promise to go with it: *There is no man that hath left house, or brethren, or sisters, or father, or mother… for my sake, and the gospel's, But he shall receive an hundredfold now in this time… and in the world to come eternal life* (Mark 10:29–30). The hundredfold now is the church: a family that will take you in. Find one; [here's how](https://www.jesusfestival.app/blog/how-to-find-a-church-in-hamilton). If you're in Hamilton and need people around you this week, [LoveonHamilton.com](https://www.loveonhamilton.com) is a door that's open." },
+
+      { t: "h2", text: "The long game" },
+      { t: "p", text: "The jailer in Philippi believed, *and all his house* (Acts 16:34). Lydia's whole household was baptised. Timothy's faith came through his grandmother and mother (2 Timothy 1:5). God loves saving families, and He very often starts with one person. Right now, that person is you." },
+      { t: "p", text: "Tell them. Love them. Pray for them. Then be patient, because the story isn't finished. If you need help knowing what to say when you pray for them, [start here](https://www.jesusfestival.app/blog/how-to-pray-when-you-dont-know-what-to-say)." },
+    ],
+    faqs: [
+      {
+        question: "How do I tell my parents I became a Christian?",
+        answer:
+          "Tell them soon, calmly and one at a time, in your own words: what was going on, what happened, and what's different now. Make clear you still love them and won't preach at them, expect questions, and be comfortable saying \"I don't know yet.\" Then honour them and let your changed life speak over time.",
+      },
+      {
+        question: "What if my family is against my new faith?",
+        answer:
+          "Don't argue; answer softly (Proverbs 15:1), keep loving and serving them unconditionally, keep your promise not to preach, and pray for them by name daily. Jesus said families would sometimes be divided over Him (Matthew 10:36) and promised His followers a new family in the church (Mark 10:29–30).",
+      },
+      {
+        question: "What does the Bible say about family members who don't believe?",
+        answer:
+          "Jesus' own brothers did not believe in Him at first (John 7:5). Peter taught that unbelieving family members can be won by a believer's conduct rather than words (1 Peter 3:1), and the Bible records whole households coming to faith after one person believed (Acts 16:31–34).",
+      },
+      {
+        question: "Should I keep my faith private to keep the peace?",
+        answer:
+          "No. Jesus asked His followers to acknowledge Him openly (Matthew 10:32), and secrecy makes faith look shameful and grows heavier over time. Share it early and kindly, then live it consistently without pressuring anyone.",
+      },
+    ],
+    related: ["LoveonHamilton.com", "IAmReborn.net", "OikosMap.com"],
+  },
+
+  {
     slug: "how-to-forgive-someone-who-hurt-you",
     seoTitle: "How to Forgive Someone Who Hurt You (Even If They Never Say Sorry)",
     seoDescription:
@@ -1652,6 +1732,7 @@ export const NEXT_STEP_POSTS = new Set([
   "how-to-find-a-church-in-hamilton",
   "what-to-do-when-you-feel-far-from-god",
   "doubt-doesnt-disqualify-you",
+  "how-to-tell-your-family-you-became-a-christian",
   "what-happens-after-you-say-yes",
 ]);
 

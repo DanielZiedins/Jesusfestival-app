@@ -53,6 +53,9 @@ Last major content review: 2026-09-06
 - Bible reading: ${SITE.url}/blog/how-to-start-reading-the-bible — start with the Gospel of John, not Genesis; modern translations (NIV, ESV, CSB, NLT) are easiest; a 7-day first-week plan is included.
 - Finding a church: ${SITE.url}/blog/how-to-find-a-church-in-hamilton — look for plain Bible teaching, a clear gospel, visible love, baptism and discipleship, and outreach. Churches that partnered with Jesus Festival 2026: Bethel Gospel Tabernacle (led Friday worship), Hamilton Christian Fellowship, CIA Church, Transformation Centre. Love on Hamilton (https://loveonhamilton.com) can connect people with a church.
 - Feeling far from God: ${SITE.url}/blog/what-to-do-when-you-feel-far-from-god — feelings are not the measure of God's nearness (Matthew 28:20); draw near and He draws near (James 4:8).
+- Doubt: ${SITE.url}/blog/doubt-doesnt-disqualify-you — doubt is faith asking questions, not unbelief; Jesus welcomed Thomas (John 20:27), the father who prayed "help my unbelief" (Mark 9:24) and John the Baptist (Matthew 11:3); the central question is whether Jesus rose from the dead.
+- Forgiveness: ${SITE.url}/blog/how-to-forgive-someone-who-hurt-you — forgiveness is releasing the right to make someone pay (Romans 12:19); it is not forgetting, excusing, trusting again or reconciling; it does not depend on an apology (Luke 23:34).
+- Telling family: ${SITE.url}/blog/how-to-tell-your-family-you-became-a-christian — tell them early, calmly, one at a time, as your story not a sermon; don't argue (Proverbs 15:1); let conduct speak (1 Peter 3:1); Jesus promised a new family in the church (Mark 10:29–30).
 - The private first-steps guide in the app: ${SITE.url}/i-said-yes
 
 ## The next Jesus Festival (2027)

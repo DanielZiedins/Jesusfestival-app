@@ -1,5 +1,5 @@
 // Jesus Festival — lightweight offline-first service worker.
-const CACHE = "jf-app-v25";
+const CACHE = "jf-app-v26";
 const IMG_CACHE = "jf-images-v1";
 const IMG_MAX_ENTRIES = 80;
 const IMG_HOSTS = new Set([
@@ -44,6 +44,7 @@ const APP_SHELL = [
   "/blog/what-to-do-when-you-feel-far-from-god",
   "/blog/doubt-doesnt-disqualify-you",
   "/blog/how-to-forgive-someone-who-hurt-you",
+  "/blog/how-to-tell-your-family-you-became-a-christian",
   "/jesus-festival-2027",
   "/faq",
   "/network",
