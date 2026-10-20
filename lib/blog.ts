@@ -45,6 +45,168 @@ export type BlogPost = {
 export const BLOG_POSTS: BlogPost[] = [
 
   {
+    slug: "family-devotions-in-ten-minutes",
+    seoTitle: "Family Devotions in 10 Minutes: Read the Bible With Your Kids",
+    seoDescription:
+      "A realistic way to read the Bible and pray with your kids: a 10-minute shape that survives real evenings, what to read by age, and what to do when it falls apart.",
+    title: "Family Devotions in Ten Minutes: How to Read the Bible With Your Kids",
+    description:
+      "You brought the kids to the Kids Zone, and now you'd like Jesus to be part of Tuesday too. Here's a ten-minute shape that survives real family life, what to read at each age, and what to do when it goes sideways (it will).",
+    eyebrow: "Family",
+    emoji: "👨‍👩‍👧‍👦",
+    date: "2026-10-20",
+    readMins: 3,
+    body: [
+      { t: "p", text: "Saturday at Jesus Festival was easy: bouncy castles, worship, a stage full of joy, somebody else running the Kids Zone. Tuesday night at 7:40, with homework undone and someone crying about a sock, is where faith either becomes part of the family or stays a once-a-year event." },
+      { t: "p", text: "The Bible's instruction to parents is not \"hold a service.\" It's this:" },
+      { t: "quote", text: "And thou shalt teach them diligently unto thy children, and shalt talk of them when thou sittest in thine house, and when thou walkest by the way, and when thou liest down, and when thou risest up.", ref: "Deuteronomy 6:7 (KJV)" },
+      { t: "p", text: "Sitting, walking, lying down, getting up. Ordinary moments. That's the bar, and it's reachable." },
+
+      { t: "h2", text: "The ten-minute shape" },
+      { t: "p", text: "Pick one slot that already exists: after dinner, before bed, in the car. Same slot most days. Then:" },
+      {
+        t: "list",
+        items: [
+          "**Read (3 minutes).** One short passage. A story, not a doctrine. Let a reader-age kid read it out loud if they want to.",
+          "**Ask (3 minutes).** Two questions, always the same: *What did you notice?* and *What does this tell us about God?* No right answers required. Weird answers are welcome.",
+          "**Pray (2 minutes).** Everyone says one sentence: a thank-you or an ask. Toddlers can say \"thank you God for dog.\" That counts.",
+          "**Done (2 minutes of grace).** Don't stretch it. End while it's still good. Ten minutes most nights beats forty minutes once a month, every time.",
+        ],
+      },
+
+      { t: "h2", text: "What to read, by age" },
+      {
+        t: "list",
+        items: [
+          "**Under 5:** a picture storybook Bible, one story a night. The Jesus Storybook Bible is a favourite of many families because every story points to Jesus. Repetition is a feature; they'll ask for the same one twenty times.",
+          "**5–9:** short real-Bible stories in an easy translation (NIrV or NLT): David and Goliath, Daniel and the lions, Jesus calming the storm, Zacchaeus, the lost sheep. One story, one question.",
+          "**10–13:** a chapter of Mark a night. It's short, fast, and full of things Jesus did. Let them disagree with you about what it means.",
+          "**Teens:** stop performing devotions at them. Read the same chapter separately, then talk about it over food. Ask what they think before you say what you think, and mean it.",
+        ],
+      },
+      { t: "p", text: "If you're new to the Bible yourself, you don't need to be an expert first. [Here's where to start](https://www.jesusfestival.app/blog/how-to-start-reading-the-bible); you can learn a chapter ahead of your kids and that's plenty." },
+
+      { t: "h2", text: "What to do when it falls apart" },
+      { t: "p", text: "It will fall apart. Somebody will fight, somebody will fall off the chair, you'll be too tired, three weeks will go by. None of that is failure. Here's what matters:" },
+      {
+        t: "list",
+        items: [
+          "**Restart without a speech.** Just do it again tomorrow. No guilt, no announcement.",
+          "**Lower the bar before you quit.** Can't manage ten minutes? Do the prayer only. One verse at breakfast. Say grace. Keep the thread alive.",
+          "**Let them see you do it alone.** Kids learn more from catching you reading your Bible than from any devotion you lead.",
+          "**Make the car a chapel.** A Bible-story audiobook or worship album on the school run is a devotion with zero prep.",
+        ],
+      },
+
+      { t: "h2", text: "What you're actually building" },
+      { t: "p", text: "You're not building Bible scholars. You're building a home where God is talked about as naturally as weather and dinner: *when thou sittest in thine house.* Timothy's faith, Paul says, lived *first in thy grandmother Lois, and thy mother Eunice* (2 Timothy 1:5). Nobody records their curriculum. They just kept talking about Jesus at home, for years." },
+      { t: "p", text: "Ten minutes, most nights. Then one day you'll overhear your kid explain the lost sheep to a friend, and you'll know it worked. If your own faith is new and you're figuring it out alongside them, [these are the first steps](https://www.jesusfestival.app/i-said-yes), and for a church family to do this with, [LoveonHamilton.com](https://www.loveonhamilton.com) can help." },
+    ],
+    faqs: [
+      {
+        question: "How long should family devotions be?",
+        answer:
+          "About ten minutes: three to read a short passage, three to ask two simple questions, two to pray one sentence each, and stop while it is still going well. Short and frequent beats long and rare.",
+      },
+      {
+        question: "What Bible stories are good for young children?",
+        answer:
+          "For under-fives, a picture storybook Bible one story a night. For ages five to nine, short real-Bible stories in an easy translation such as David and Goliath, Daniel in the lions' den, Jesus calming the storm, Zacchaeus and the lost sheep. Older children can read a chapter of Mark a night.",
+      },
+      {
+        question: "How do I do devotions with a teenager?",
+        answer:
+          "Stop leading devotions at them. Read the same chapter separately, then talk about it over food, asking what they think before sharing your view. Honest discussion keeps teenagers engaged far better than a lesson.",
+      },
+      {
+        question: "What if we keep missing family devotions?",
+        answer:
+          "Restart the next day without guilt or a speech. If ten minutes is too much, keep the thread alive with a one-sentence prayer, grace at meals, a verse at breakfast or a Bible-story audiobook in the car.",
+      },
+    ],
+    related: ["IAmReborn.net", "LoveonHamilton.com", "SeekFirst.World"],
+  },
+
+  {
+    slug: "what-to-say-to-someone-who-is-grieving",
+    seoTitle: "What to Say to Someone Who Is Grieving (and What Not To)",
+    seoDescription:
+      "Christian or not, most of us freeze around grief. What actually helps, the phrases to avoid, what the Bible says about comfort, and how to keep showing up after the funeral.",
+    title: "What to Say to Someone Who Is Grieving (and What Not To)",
+    description:
+      "A friend's mother dies, a coworker loses a baby, a neighbour's husband doesn't come home. You want to help and you're terrified of saying the wrong thing. Here's what helps, what hurts, and how Jesus did it.",
+    eyebrow: "Love your city",
+    emoji: "🕯️",
+    date: "2026-10-20",
+    readMins: 4,
+    body: [
+      { t: "p", text: "Grief makes good people go silent. We want to help, we're scared of making it worse, and so we send one text and then avoid them in the grocery store. The grieving person notices. Silence is the loudest thing people hear after a loss." },
+      { t: "p", text: "If you're a follower of Jesus, this is one of the most important things you'll ever learn to do, because it's exactly what He did. When Lazarus died, Jesus didn't arrive with an explanation. He arrived, and the shortest verse in the Bible records what happened: *Jesus wept* (John 11:35). He knew He was about to raise the man. He wept anyway, because His friends were weeping." },
+
+      { t: "h2", text: "What helps" },
+      {
+        t: "list",
+        items: [
+          "**Show up.** In person, if you possibly can. Your presence says more than any sentence. Job's friends got one thing right before they started talking: *they sat down with him upon the ground seven days and seven nights, and none spake a word unto him* (Job 2:13).",
+          "**Say the person's name.** \"I'm so sorry about Mark.\" Grieving people are often starved of hearing the name; everyone else is avoiding it.",
+          "**Say something true and small.** \"I'm so sorry.\" \"I don't know what to say, but I'm here.\" \"I loved how she laughed.\" You don't need wisdom. You need honesty.",
+          "**Ask about them, and let them talk.** \"What was he like when you were kids?\" Then listen for as long as they want. Grief needs to be spoken, repeatedly.",
+          "**Do something specific, don't offer something vague.** Not \"let me know if you need anything.\" Instead: \"I'm bringing dinner Thursday, lasagna or curry?\" \"I'll mow your lawn Saturday.\" \"I'll pick the kids up from school this week.\"",
+          "**Keep showing up.** The casseroles stop after two weeks. The grief doesn't. Put a reminder in your phone for one month, three months, and the first anniversary, and reach out each time.",
+        ],
+      },
+
+      { t: "h2", text: "What not to say" },
+      { t: "p", text: "Most of these come from a good heart and land like a slap. Avoid:" },
+      {
+        t: "list",
+        items: [
+          "**\"Everything happens for a reason.\"** Even if you believe God is sovereign, this is not the moment, and it isn't your reason to give.",
+          "**\"They're in a better place.\"** Maybe true. Still their person is not *here*, and that is the entire problem right now.",
+          "**\"God needed another angel.\"** Not in the Bible, and it makes God the one who took their child.",
+          "**\"I know how you feel.\"** You don't. Even if you've lost someone, you don't know *their* grief.",
+          "**\"At least…\"** Anything that starts with \"at least\" is an attempt to shrink the loss. Don't.",
+          "**\"You're so strong.\"** It tells them they're not allowed to fall apart in front of you.",
+          "**Any explanation.** Job's friends were fine until they opened their mouths. God later said they had *not spoken of me the thing that is right* (Job 42:7).",
+        ],
+      },
+      { t: "p", text: "If you've said one of these, don't panic. Go back and say, \"I think I said something clumsy the other day. I'm sorry. I just didn't know what to say and I wanted you to know I care.\" That repair will mean more than if you'd said it right the first time." },
+
+      { t: "h2", text: "What the Bible actually says about comfort" },
+      { t: "quote", text: "Blessed be God… the Father of mercies, and the God of all comfort; Who comforteth us in all our tribulation, that we may be able to comfort them which are in any trouble, by the comfort wherewith we ourselves are comforted of God.", ref: "2 Corinthians 1:3–4 (KJV)" },
+      { t: "p", text: "Comfort isn't an argument. It's something you receive from God and then pass on, mostly through presence. The Bible's instruction is simply *weep with them that weep* (Romans 12:15). Not fix them. Not cheer them up. Weep with them." },
+      { t: "p", text: "And Christians do grieve with hope: *that ye sorrow not, even as others which have no hope* (1 Thessalonians 4:13). The hope is real, and it's the resurrection. But notice the verse says sorrow *not as those without hope*. It does not say *don't sorrow*. Let them grieve. The hope will be there when they can hear it, and they'll usually ask." },
+
+      { t: "h2", text: "If they ask you about God" },
+      { t: "p", text: "Sometimes, often weeks later, the grieving person asks: *Where was God?* or *Do you think she's with Him?* Don't rush. Answer honestly and briefly, out of your own faith, not a script: \"I don't understand why this happened. I do believe God is close to the brokenhearted, and I've found that to be true.\" (That's Psalm 34:18.) Offer to pray with them, right there, if they'd like. Most people say yes. If you're not sure how, [this is how to pray when you don't know what to say](https://www.jesusfestival.app/blog/how-to-pray-when-you-dont-know-what-to-say)." },
+      { t: "p", text: "Then keep being their friend. Loving a city, it turns out, is mostly this: showing up for one person at a time, on the worst day of their life, and not leaving. If you want to learn to do this well with others, [LoveonHamilton.com](https://www.loveonhamilton.com) goes out every week to people who are hurting." },
+    ],
+    faqs: [
+      {
+        question: "What should you say to someone who is grieving?",
+        answer:
+          "Keep it true and small: \"I'm so sorry,\" \"I don't know what to say, but I'm here,\" and say the name of the person who died. Ask about them and listen. Offer specific help (\"I'm bringing dinner Thursday\") rather than \"let me know if you need anything,\" and keep showing up after the first two weeks.",
+      },
+      {
+        question: "What should you not say to a grieving person?",
+        answer:
+          "Avoid \"everything happens for a reason,\" \"they're in a better place,\" \"God needed another angel,\" \"I know how you feel,\" anything beginning with \"at least,\" \"you're so strong,\" and any attempt to explain the loss. If you've said one, go back and apologise simply.",
+      },
+      {
+        question: "What does the Bible say about comforting the grieving?",
+        answer:
+          "Jesus wept with grieving friends before acting (John 11:35). Romans 12:15 says to weep with those who weep, and 2 Corinthians 1:3–4 describes God as the God of all comfort who comforts us so we can comfort others. Job's friends helped most when they sat in silence (Job 2:13).",
+      },
+      {
+        question: "How long should I keep checking on someone after a death?",
+        answer:
+          "Far longer than two weeks. Set reminders for one month, three months, six months and the first anniversary, and reach out each time; most support disappears after the funeral while grief continues for years.",
+      },
+    ],
+    related: ["LoveonHamilton.com", "LoveonTheWorld.com", "KingdomResponse.com"],
+  },
+
+  {
     slug: "how-to-tell-your-family-you-became-a-christian",
     seoTitle: "How to Tell Your Family You've Become a Christian",
     seoDescription:

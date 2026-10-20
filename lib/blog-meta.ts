@@ -4,6 +4,24 @@ export type BlogMeta = { slug: string; title: string; description: string; eyebr
 
 export const BLOG_META: BlogMeta[] = [
   {
+    "slug": "family-devotions-in-ten-minutes",
+    "title": "Family Devotions in Ten Minutes: How to Read the Bible With Your Kids",
+    "description": "You brought the kids to the Kids Zone, and now you'd like Jesus to be part of Tuesday too. Here's a ten-minute shape that survives real family life, what to read at each age, and what to do when it goes sideways (it will).",
+    "eyebrow": "Family",
+    "emoji": "👨‍👩‍👧‍👦",
+    "date": "2026-10-20",
+    "readMins": 3
+  },
+  {
+    "slug": "what-to-say-to-someone-who-is-grieving",
+    "title": "What to Say to Someone Who Is Grieving (and What Not To)",
+    "description": "A friend's mother dies, a coworker loses a baby, a neighbour's husband doesn't come home. You want to help and you're terrified of saying the wrong thing. Here's what helps, what hurts, and how Jesus did it.",
+    "eyebrow": "Love your city",
+    "emoji": "🕯️",
+    "date": "2026-10-20",
+    "readMins": 4
+  },
+  {
     "slug": "how-to-tell-your-family-you-became-a-christian",
     "title": "How to Tell Your Family You've Become a Christian",
     "description": "You said yes to Jesus. Now there's a dinner table to face. How to tell the people closest to you, what to say and not say, what to do if they laugh or get angry, and the promise Jesus made to people in exactly your position.",
