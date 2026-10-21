@@ -4,6 +4,24 @@ export type BlogMeta = { slug: string; title: string; description: string; eyebr
 
 export const BLOG_META: BlogMeta[] = [
   {
+    "slug": "how-to-help-someone-who-is-homeless",
+    "title": "How to Help Someone Who Is Homeless (Without Making It Worse)",
+    "description": "You pass the same person every day and don't know whether to stop, what to say, or whether a few dollars helps or hurts. Here's what twelve years of weekly street outreach in Hamilton has taught us, and how to start.",
+    "eyebrow": "Love your city",
+    "emoji": "🧥",
+    "date": "2026-10-21",
+    "readMins": 3
+  },
+  {
+    "slug": "why-christians-sing-what-worship-is",
+    "title": "Why Christians Sing: What Worship Is (and How to Join In When You Don't Feel It)",
+    "description": "Friday night at Jesus Festival was three hours of singing in a public park. If you stood at the back wondering what everyone was doing, or whether you were allowed to join in, this is for you.",
+    "eyebrow": "Keep going",
+    "emoji": "🎶",
+    "date": "2026-10-21",
+    "readMins": 3
+  },
+  {
     "slug": "family-devotions-in-ten-minutes",
     "title": "Family Devotions in Ten Minutes: How to Read the Bible With Your Kids",
     "description": "You brought the kids to the Kids Zone, and now you'd like Jesus to be part of Tuesday too. Here's a ten-minute shape that survives real family life, what to read at each age, and what to do when it goes sideways (it will).",

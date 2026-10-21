@@ -45,6 +45,175 @@ export type BlogPost = {
 export const BLOG_POSTS: BlogPost[] = [
 
   {
+    slug: "how-to-help-someone-who-is-homeless",
+    seoTitle: "How to Help Someone Who Is Homeless (Without Making It Worse)",
+    seoDescription:
+      "What to say, what to give, what not to do, and how to treat someone on the street like a person. Learned on Hamilton sidewalks over twelve years of weekly outreach.",
+    title: "How to Help Someone Who Is Homeless (Without Making It Worse)",
+    description:
+      "You pass the same person every day and don't know whether to stop, what to say, or whether a few dollars helps or hurts. Here's what twelve years of weekly street outreach in Hamilton has taught us, and how to start.",
+    eyebrow: "Love your city",
+    emoji: "🧥",
+    date: "2026-10-21",
+    readMins: 3,
+    body: [
+      { t: "p", text: "There's a man you pass every morning. You've thought about stopping a hundred times. You don't, because you don't know what to say, you're not sure money is the right thing, and you're a little afraid. This is for you." },
+      { t: "p", text: "Since 2014, teams from Love on Hamilton have gone out to the streets of this city every week. Not experts, just ordinary believers with coffee and time. Here's what we've learned, and it's simpler than you think." },
+
+      { t: "h2", text: "Start with the person, not the problem" },
+      { t: "p", text: "The single most painful thing about living on the street, people tell us again and again, is not the cold. It's being invisible. Hundreds of people a day look through you. So the most powerful thing you can give costs nothing: stop, make eye contact, say hello, and ask their name. Then use it." },
+      { t: "quote", text: "Inasmuch as ye have done it unto one of the least of these my brethren, ye have done it unto me.", ref: "Matthew 25:40 (KJV)" },
+      { t: "p", text: "Jesus didn't say *for* Me. He said *unto Me*. The person on the sidewalk is where He said we'd find Him." },
+
+      { t: "h2", text: "What to say" },
+      {
+        t: "list",
+        items: [
+          "**\"Hi, I'm Daniel. What's your name?\"** Then: \"How's your day going?\" Ask it like you want to know, because you do.",
+          "**Listen more than you talk.** Most people on the street are starved of conversation. Ten minutes of your attention is worth more than ten dollars.",
+          "**Ask what they actually need.** Not what you assume. It might be socks, a phone charge, directions to a shelter, or just company.",
+          "**Offer to pray, and ask first.** \"Is there anything I could pray for you about?\" Almost everyone says yes, and many cry. Pray briefly, in plain words, right there. ([How, if you've never done it.](https://www.jesusfestival.app/blog/how-to-pray-for-your-city))",
+          "**Don't preach, don't fix, don't lecture.** You don't know their story. Earn the right to speak by showing up more than once.",
+        ],
+      },
+
+      { t: "h2", text: "What to give" },
+      { t: "p", text: "People argue about cash. Here's our honest take: giving money isn't wrong, and Jesus never attached conditions to generosity (*Give to him that asketh thee*, Matthew 5:42). But some things help more reliably, especially in a Canadian winter:" },
+      {
+        t: "list",
+        items: [
+          "**Socks.** The most requested item on every street in the country. New, warm, in the package.",
+          "**Food you'd eat.** A hot coffee and a sandwich handed over with a conversation. Or ask: \"Can I grab you something from Tim's? What do you like?\"",
+          "**Gift cards** to a grocery store or coffee shop, in small amounts.",
+          "**Hand warmers, gloves, a toque, a blanket** from November to March. A dollar-store rain poncho in the fall.",
+          "**A phone charge or a transit fare.** Small, practical, and often the thing standing between them and an appointment.",
+          "**Your number, if you're willing to be a friend.** This is the one that changes lives, and the one most people never give.",
+        ],
+      },
+      { t: "p", text: "Keep a \"blessing bag\" in your car: socks, a granola bar, hand warmers, a bottle of water, a note with a Bible verse. Then you're never caught without something to hand over." },
+
+      { t: "h2", text: "What not to do" },
+      {
+        t: "list",
+        items: [
+          "**Don't take photos.** Ever. They're a person, not content.",
+          "**Don't promise what you can't deliver.** \"I'll come back Thursday\" means come back Thursday.",
+          "**Don't argue about how they'll spend the money.** You give; what happens next is between them and God.",
+          "**Don't put yourself in danger.** Go with someone, stay in public places, and if someone is in crisis or violent, call for help. Compassion and wisdom aren't opposites.",
+          "**Don't do it once and feel finished.** One act of kindness is good. A relationship is what changes a life.",
+        ],
+      },
+
+      { t: "h2", text: "Why we do it" },
+      { t: "p", text: "Because Jesus did. He touched lepers, ate with outcasts, and told a story about a Samaritan who stopped when the religious people crossed the road (Luke 10:30–37). Then He said *Go, and do thou likewise.* Because *pure religion and undefiled before God* is *to visit the fatherless and widows in their affliction* (James 1:27). And because, over twelve years, we have watched addictions break, people come to faith, get housed, get baptised, and come back to serve on the same sidewalk where somebody once stopped for them." },
+
+      { t: "h2", text: "Don't go alone" },
+      { t: "p", text: "The best way to learn this is beside someone who's done it. In Hamilton, [LoveonHamilton.com](https://www.loveonhamilton.com) sends teams out every week; show up once and you'll never be scared of that corner again. Anywhere else, [LoveonTheWorld.com](https://www.loveontheworld.com) can help you join or start a team. And if you've never thought of your own neighbourhood as a mission field, [it already is](https://www.jesusfestival.app/blog/you-already-know-your-mission-field)." },
+      { t: "p", text: "Tomorrow morning, stop. Say hello. Ask his name. That's how it starts." },
+    ],
+    faqs: [
+      {
+        question: "Should I give money to homeless people?",
+        answer:
+          "Giving money is not wrong, and Jesus told His followers to give to those who ask (Matthew 5:42). Practical items often help more reliably: new socks, hot food or a coffee, small grocery or coffee-shop gift cards, hand warmers, gloves and a toque in winter, a phone charge or transit fare. Whatever you give, give it with a conversation.",
+      },
+      {
+        question: "What is the most needed item for homeless people?",
+        answer:
+          "New socks are the most requested item on streets across Canada. Hand warmers, gloves, toques, blankets, water, granola bars and small gift cards are also consistently useful. A ready-made \"blessing bag\" in your car means you always have something to offer.",
+      },
+      {
+        question: "What should I say to a homeless person?",
+        answer:
+          "Introduce yourself, ask their name and use it, ask how their day is going, and listen. Ask what they actually need rather than assuming. Offer to pray if they would like. Don't preach, lecture, take photos or make promises you won't keep.",
+      },
+      {
+        question: "How can I help homeless people in Hamilton, Ontario?",
+        answer:
+          "Join a weekly street outreach team through Love on Hamilton (loveonhamilton.com), which has gone out every week since 2014, or carry a blessing bag and stop to talk with the people you pass. Outside Hamilton, Love on The World can help you join or start a team.",
+      },
+    ],
+    related: ["LoveonHamilton.com", "LoveonTheWorld.com", "KingdomResponse.com"],
+  },
+
+  {
+    slug: "why-christians-sing-what-worship-is",
+    seoTitle: "Why Christians Sing: What Worship Is and How to Join In",
+    seoDescription:
+      "Why a park full of people sang for three hours, what worship actually means in the Bible, what to do if you can't sing or don't feel anything, and how to worship on a Tuesday.",
+    title: "Why Christians Sing: What Worship Is (and How to Join In When You Don't Feel It)",
+    description:
+      "Friday night at Jesus Festival was three hours of singing in a public park. If you stood at the back wondering what everyone was doing, or whether you were allowed to join in, this is for you.",
+    eyebrow: "Keep going",
+    emoji: "🎶",
+    date: "2026-10-21",
+    readMins: 3,
+    body: [
+      { t: "p", text: "Pure Worship Night at Jesus Festival is a strange sight if you've never seen it: thousands of people in Gage Park, hands in the air, singing to someone they can't see. Some crying. Some dancing badly and not caring. If you were there wondering *what is this, and am I allowed to do it?*, here's the honest answer." },
+
+      { t: "h2", text: "Worship isn't the singing" },
+      { t: "p", text: "Start here, because it fixes most of the confusion. In the Bible, worship means giving God the worth He deserves: with your whole life, not just your voice. *Present your bodies a living sacrifice, holy, acceptable unto God, which is your reasonable service* (Romans 12:1). The Greek word there is the word for worship. Your Monday is worship. How you treat your kids is worship. Singing is one way of doing it, and it happens to be the loud one." },
+      { t: "p", text: "So if you can't sing, you have lost nothing. If you can, singing is a gift, because it does something the other forms don't: it lets a whole crowd say the same true thing to God at the same time." },
+
+      { t: "h2", text: "Why we sing anyway" },
+      {
+        t: "list",
+        items: [
+          "**Because we were told to, over and over.** The Psalms say *sing* more than seventy times. *O come, let us sing unto the LORD* (Psalm 95:1). It isn't optional decoration; it's a command, and a kind one.",
+          "**Because Jesus did.** On the night before He died, *when they had sung an hymn, they went out* (Matthew 26:30). Facing a cross, He sang.",
+          "**Because truth sung goes deeper than truth said.** You'll forget most sermons. You'll remember songs for seventy years. Paul told the church to teach each other *in psalms and hymns and spiritual songs* (Colossians 3:16): the songs are how the truth gets in.",
+          "**Because it's a weapon.** Paul and Silas sang in a jail at midnight and the doors came open (Acts 16:25–26). Jehoshaphat sent the singers out ahead of the army (2 Chronicles 20:21–22). Singing to God in a hard place changes the place.",
+          "**Because heaven does it.** The last book of the Bible is full of it: *a great multitude… saying, Alleluia* (Revelation 19:6). The park was a rehearsal.",
+        ],
+      },
+
+      { t: "h2", text: "What the hands and the tears are about" },
+      { t: "p", text: "Raised hands are in the Bible: *Lift up your hands in the sanctuary, and bless the LORD* (Psalm 134:2). It's surrender, the way a child reaches up to be held. Tears are usually relief: people realising they're loved. Dancing is in there too; David did it in the street (2 Samuel 6:14). None of it is required. None of it is performance when it's real. Do what's honest for you, and don't judge the person next to you for doing something different." },
+
+      { t: "h2", text: "When you don't feel anything" },
+      { t: "p", text: "This is the big one. You'll stand in church, everyone around you lit up, and feel nothing. Here's the secret: worship is not about your feelings. It's about His worth. He's worthy when you feel it and worthy when you don't. The Psalms are full of people singing in the dark: *Why art thou cast down, O my soul? … hope thou in God: for I shall yet praise him* (Psalm 42:5). *Yet* praise. Before the feeling. Sing the truth anyway and the feeling, very often, follows. If the dryness lasts, [this is what to do](https://www.jesusfestival.app/blog/what-to-do-when-you-feel-far-from-god)." },
+      { t: "quote", text: "By him therefore let us offer the sacrifice of praise to God continually, that is, the fruit of our lips giving thanks to his name.", ref: "Hebrews 13:15 (KJV)" },
+      { t: "p", text: "*Sacrifice* of praise. Sometimes it costs you something. That's the kind that means the most." },
+
+      { t: "h2", text: "How to worship on a Tuesday" },
+      {
+        t: "list",
+        items: [
+          "**Put worship music on in the car or kitchen.** Sing along badly. Nobody is listening except the One it's for.",
+          "**Read a Psalm out loud as a song to God.** Psalm 100 takes forty seconds.",
+          "**Say thank you for one specific thing before you check your phone.** That's worship.",
+          "**Do your work well, for Him.** *Whatsoever ye do, do it heartily, as to the Lord* (Colossians 3:23).",
+          "**Then come back on Sunday and sing with everyone.** Private worship feeds the public kind, and the public kind reminds you you're not alone. [Here's how to find a church](https://www.jesusfestival.app/blog/how-to-find-a-church-in-hamilton) if you don't have one yet.",
+        ],
+      },
+      { t: "p", text: "Next September, if the Lord wills, there will be a park full of people singing again. Come. Stand at the back if you need to. Then, when you're ready, open your mouth. He's been waiting to hear your voice in particular." },
+    ],
+    faqs: [
+      {
+        question: "What is worship in Christianity?",
+        answer:
+          "Worship is giving God the worth He deserves with your whole life, not only with singing (Romans 12:1). Singing is one prominent form, commanded throughout the Psalms, practised by Jesus (Matthew 26:30), and used to teach truth and strengthen believers (Colossians 3:16), but work, kindness, gratitude and obedience are worship too.",
+      },
+      {
+        question: "Why do Christians raise their hands when they sing?",
+        answer:
+          "Raising hands is a biblical posture of surrender and blessing God (Psalm 134:2, Psalm 63:4), like a child reaching up to be held. It is never required; people worship with different honest expressions, and the Bible also records dancing, kneeling and silence.",
+      },
+      {
+        question: "What if I can't sing?",
+        answer:
+          "Worship does not depend on singing ability. Sing quietly or not at all, and worship through gratitude, Scripture, prayer and how you live. God hears the heart, not the pitch.",
+      },
+      {
+        question: "How do I worship God when I don't feel like it?",
+        answer:
+          "Worship is about God's worth, not your feelings. Sing or speak the truth anyway, as the Psalms model (Psalm 42:5), and offer what Hebrews 13:15 calls a sacrifice of praise. Feelings often follow obedience; if the dryness continues, get around other believers and keep a daily rhythm of prayer and Scripture.",
+      },
+    ],
+    related: ["IAmReborn.net", "SeekFirst.World", "JesusFestival.ca"],
+  },
+
+  {
     slug: "family-devotions-in-ten-minutes",
     seoTitle: "Family Devotions in 10 Minutes: Read the Bible With Your Kids",
     seoDescription:
