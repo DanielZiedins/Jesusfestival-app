@@ -118,7 +118,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "Impact report",
     "emoji": "🌍",
     "date": "2026-10-06",
-    "readMins": 7
+    "readMins": 5
   },
   {
     "slug": "plunder-hell-populate-heaven-partner-with-daniel-and-katie",
@@ -127,7 +127,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "The vision",
     "emoji": "🔥",
     "date": "2026-10-05",
-    "readMins": 6
+    "readMins": 5
   },
   {
     "slug": "jesus-festival-hamilton-2026-recap",
@@ -136,7 +136,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "Jesus Festival 2026 recap",
     "emoji": "🙌",
     "date": "2026-09-06",
-    "readMins": 6
+    "readMins": 3
   },
   {
     "slug": "jesus-festival-starts-tomorrow-final-checklist",
@@ -145,7 +145,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "Tomorrow at Gage Park",
     "emoji": "🙌",
     "date": "2026-09-03",
-    "readMins": 5
+    "readMins": 3
   },
   {
     "slug": "jesus-festival-saturday-extended-updated-schedule-2026",
@@ -154,7 +154,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "Important schedule update",
     "emoji": "⏰",
     "date": "2026-09-01",
-    "readMins": 6
+    "readMins": 3
   },
   {
     "slug": "free-things-to-do-hamilton-september-2026",
@@ -163,7 +163,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "Hamilton weekend guide",
     "emoji": "🌆",
     "date": "2026-08-17",
-    "readMins": 8
+    "readMins": 4
   },
   {
     "slug": "bringing-the-kids-to-jesus-festival",
@@ -172,7 +172,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "For parents",
     "emoji": "🎈",
     "date": "2026-08-14",
-    "readMins": 6
+    "readMins": 4
   },
   {
     "slug": "never-been-to-anything-like-this",
@@ -181,7 +181,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "For the first-timer",
     "emoji": "🫂",
     "date": "2026-08-13",
-    "readMins": 6
+    "readMins": 4
   },
   {
     "slug": "how-to-pray-for-your-city",
@@ -190,7 +190,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "Prayer",
     "emoji": "🏙️",
     "date": "2026-08-11",
-    "readMins": 7
+    "readMins": 4
   },
   {
     "slug": "gage-park-festival-guide",
@@ -199,7 +199,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "Plan your weekend",
     "emoji": "🗺️",
     "date": "2026-08-17",
-    "readMins": 8
+    "readMins": 4
   },
   {
     "slug": "the-light-hunt-gage-park-scavenger-hunt",
@@ -208,7 +208,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "Play the festival",
     "emoji": "🔦",
     "date": "2026-08-29",
-    "readMins": 5
+    "readMins": 2
   },
   {
     "slug": "wear-the-message",
@@ -217,7 +217,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "Wear the message",
     "emoji": "🛍️",
     "date": "2026-08-05",
-    "readMins": 4
+    "readMins": 2
   },
   {
     "slug": "why-a-free-festival",
@@ -226,7 +226,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "The heart behind it",
     "emoji": "🎪",
     "date": "2026-08-02",
-    "readMins": 5
+    "readMins": 2
   },
   {
     "slug": "you-already-know-your-mission-field",
@@ -235,7 +235,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "Everyday evangelism",
     "emoji": "🧭",
     "date": "2026-07-28",
-    "readMins": 6
+    "readMins": 2
   },
   {
     "slug": "what-happens-after-you-say-yes",
@@ -244,7 +244,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "New life",
     "emoji": "🕊️",
     "date": "2026-07-22",
-    "readMins": 6
+    "readMins": 2
   },
   {
     "slug": "how-to-love-your-city",
@@ -253,7 +253,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "Loving your city",
     "emoji": "🏙️",
     "date": "2026-07-15",
-    "readMins": 5
+    "readMins": 2
   },
   {
     "slug": "faith-at-work-kingdom-business",
@@ -262,7 +262,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "Faith at work",
     "emoji": "🦁",
     "date": "2026-07-08",
-    "readMins": 5
+    "readMins": 2
   },
   {
     "slug": "one-invitation-changes-everything",
@@ -271,7 +271,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "The invitation",
     "emoji": "🤝",
     "date": "2026-07-01",
-    "readMins": 4
+    "readMins": 1
   }
 ];
 

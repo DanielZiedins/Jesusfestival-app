@@ -410,6 +410,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { t: "p", text: "Some families shrug. Some mock. Some grieve, especially if your faith feels to them like a rejection of theirs. Some get genuinely angry. Decide now that none of those reactions will change how you treat them." },
       { t: "quote", text: "Bless them which persecute you: bless, and curse not.", ref: "Romans 12:14 (KJV)" },
       { t: "p", text: "Don't argue. Arguments are won and people are lost. Answer softly (*a soft answer turneth away wrath*, Proverbs 15:1), let them have the last word, and let time and your life do the talking. Peter's advice to believers with unbelieving spouses applies to the whole household: that they *may without the word be won by the conversation* (1 Peter 3:1), meaning your conduct. Your changed life will make a better case over a year than your best argument will make in an evening." },
+      { t: "p", text: "If someone in your family has hurt you deeply over the years, this may also be where [forgiving them](https://www.jesusfestival.app/blog/how-to-forgive-someone-who-hurt-you) becomes part of following Jesus, whether or not they ever apologise." },
 
       { t: "h2", text: "Then be the best version of their family member" },
       {
@@ -642,6 +643,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
       { t: "h2", text: "What doesn't matter as much as you think" },
       { t: "p", text: "The size. The music style. The building. Whether the pastor wears a suit or sneakers. Whether it's five minutes away or twenty. These are preferences, and preferences are fine, but they're not the test. Some of the best churches in the city meet in school gyms. Don't let a drum kit, or the absence of one, decide where your soul gets fed." },
+      { t: "p", text: "If the singing itself feels strange to you, [here is what worship is and why Christians sing](https://www.jesusfestival.app/blog/why-christians-sing-what-worship-is)." },
 
       { t: "h2", text: "Churches that stood with Jesus Festival 2026" },
       { t: "p", text: "These congregations partnered with the festival in 2026, and each has an open door. Bethel Gospel Tabernacle led the Friday night worship in Gage Park. Visit their sites for service times and locations:" },
@@ -747,6 +749,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
       { t: "h2", text: "If it was never real" },
       { t: "p", text: "Some people wonder whether the yes in the park even counted. Here is the test: it counted if you meant it, and it still counts now. Salvation doesn't rest on the strength of your feeling but on the strength of His promise: *him that cometh to me I will in no wise cast out* (John 6:37). If you're not sure you ever truly came, come now. Same door, still open. The [first steps guide](https://www.jesusfestival.app/i-said-yes) walks you through it." },
+      { t: "p", text: "If what you're carrying is less a feeling and more a question, *is any of this even true?*, read [doubt doesn't disqualify you](https://www.jesusfestival.app/blog/doubt-doesnt-disqualify-you). And if singing in church feels hollow right now, [this is what worship actually is](https://www.jesusfestival.app/blog/why-christians-sing-what-worship-is)." },
       { t: "quote", text: "The LORD is nigh unto them that are of a broken heart; and saveth such as be of a contrite spirit.", ref: "Psalm 34:18 (KJV)" },
       { t: "p", text: "You haven't lost Him. You've lost the feeling, for a while. Walk toward home anyway. He's already running." },
     ],
@@ -920,6 +923,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
       { t: "h2", text: "What comes next" },
       { t: "p", text: "Baptism is a beginning, not a finish line. Keep going: pray, read the Bible, find your people, tell someone what happened. The [first steps guide](https://www.jesusfestival.app/i-said-yes) walks through all of it, and [IAmReborn.net](https://www.iamreborn.net) is a whole site built for exactly this season." },
+      { t: "p", text: "If your family doesn't share your faith, your baptism may be the moment it becomes visible to them. [Here is how to tell them well](https://www.jesusfestival.app/blog/how-to-tell-your-family-you-became-a-christian)." },
       { t: "p", text: "Fifty-some people in a tank in Gage Park didn't have it all figured out. They just said yes, in public, in water. You can too." },
     ],
     faqs: [
@@ -1551,6 +1555,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { t: "h2", text: "Lower the bar for what counts as a good day" },
       { t: "p", text: "You may not hear a full talk. You may spend forty minutes at a bouncy castle and miss the set you came for. A friend will find you at the exact moment someone needs the toilet." },
       { t: "p", text: "That is not a failed day. Your kids will remember that church was outdoors and there was a slide and everyone was happy. That's the memory. The theology can come later — and it will come more easily to a child who associates all this with joy rather than with sitting still." },
+      { t: "p", text: "And if the day leaves you wanting Jesus to be part of an ordinary Tuesday at home too, [family devotions in ten minutes](https://www.jesusfestival.app/blog/family-devotions-in-ten-minutes) is a realistic way to start." },
       { t: "h2", text: "Why bother at all" },
       { t: "p", text: "When people started bringing children to Jesus, his own disciples — the serious, ministry-minded ones — tried to shoo them away. They had the reasonable adult view that this was an important gathering and children were a disruption." },
       { t: "quote", text: "Let the little children come to me, and do not hinder them, for the kingdom of God belongs to such as these.", ref: "Mark 10:14" },
@@ -1578,6 +1583,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { t: "h2", text: "What is actually going to happen" },
       { t: "p", text: "It's an outdoor festival in a public park. There's a stage with bands on it. There are food trucks. There are bouncy castles and lawn games and a spray pad, and a lot of kids running around with their faces painted. People bring lawn chairs and blankets and sit on the grass. Some of them will be worshipping with their hands in the air. Some will be eating tacos. Both of those are normal here." },
       { t: "p", text: "Between the music, people get up and talk — usually for ten or fifteen minutes. Some of them will explain what Christians believe about Jesus. Some will tell you what happened in their own life. On Saturday there are baptisms, which mostly looks like people getting joyfully soaked while a crowd cheers." },
+      { t: "p", text: "There will also be a lot of singing, some of it with hands in the air. If you'd like to know what that's about before you go, [here is why Christians sing](https://www.jesusfestival.app/blog/why-christians-sing-what-worship-is). You're welcome to just listen." },
       { t: "p", text: "You can look at the whole [run of show](https://www.jesusfestival.app/schedule) if it helps to know. Some people find the unknown much worse than the plan." },
       { t: "h2", text: "What nobody is going to ask you to do" },
       { t: "list", items: [
@@ -1651,6 +1657,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { t: "p", text: "James is blunt about the version of prayer that stays entirely verbal — the *be warmed and filled* prayer offered to someone who needs a coat. He calls that faith dead." },
       { t: "quote", text: "Suppose a brother or a sister is without clothes and daily food. If one of you says to them, \"Go in peace; keep warm and well fed,\" but does nothing about their physical needs, what good is it?", ref: "James 2:15–16" },
       { t: "p", text: "The test of whether you're really praying for your city is whether your prayers keep costing you things — a Saturday, a meal, a difficult conversation, a cheque. When you ask God to move in a neighbourhood, be ready for the answer to be *you, on Tuesday*." },
+      { t: "p", text: "Two concrete places to pray with your hands this week: [how to help someone who is homeless](https://www.jesusfestival.app/blog/how-to-help-someone-who-is-homeless), and [what to say to someone who is grieving](https://www.jesusfestival.app/blog/what-to-say-to-someone-who-is-grieving)." },
       { t: "p", text: "That's most of what [Love on Hamilton](https://www.loveonhamilton.com) is: prayer that got up off the sofa. And it's why Jesus Festival exists at all — a weekend of the whole church praying for one city with its hands." },
       { t: "h2", text: "The promise underneath all of it" },
       { t: "p", text: "There's a reason to keep going when nothing visibly changes for a long time. The promise is not that God will notice a big enough crowd. It's that he is already listening for the smallest voice." },
@@ -1859,6 +1866,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { t: "h2", text: "The problem with waiting for a calling" },
       { t: "p", text: "A lot of sincere Christians spend years waiting to be sent somewhere. Meanwhile there are roughly eight to fifteen people in their ordinary life who already trust them, already take their calls, and already notice how they handle a bad week." },
       { t: "p", text: "You will likely never have more spiritual credibility with anyone than you already have with those people. That's not a consolation prize. That's the assignment." },
+      { t: "p", text: "The hardest names on that list are usually family. If that's where you're stuck, start with [how to tell your family you've become a Christian](https://www.jesusfestival.app/blog/how-to-tell-your-family-you-became-a-christian)." },
       { t: "quote", text: "Go home to your own people and tell them how much the Lord has done for you.", ref: "Mark 5:19" },
       { t: "h2", text: "Three things that actually move the needle" },
       {
@@ -1912,6 +1920,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { t: "p", text: "[IAmReborn.net](https://www.iamreborn.net) was built for precisely this moment — the first days of new life, explained simply, without assuming you already know the language. If you're at the very start, begin there." },
       { t: "p", text: "When you're ready to go deeper into what it means to actually put the Kingdom first in ordinary life, [SeekFirst.World](https://www.seekfirst.world) picks up that thread." },
       { t: "p", text: "And if you're local, our [discipleship and partner churches](https://www.jesusfestival.ca/discipleship) are genuinely glad to meet you. You don't have to have it together to walk in. Nobody there does either." },
+      { t: "p", text: "The same few questions come up in almost everyone's first weeks, and each has its own plain guide: [how to get baptized](https://www.jesusfestival.app/blog/how-to-get-baptized), [how to pray when you don't know what to say](https://www.jesusfestival.app/blog/how-to-pray-when-you-dont-know-what-to-say), [how to start reading the Bible](https://www.jesusfestival.app/blog/how-to-start-reading-the-bible), [how to find a church in Hamilton](https://www.jesusfestival.app/blog/how-to-find-a-church-in-hamilton), [what to do with doubt](https://www.jesusfestival.app/blog/doubt-doesnt-disqualify-you), [what to do when you feel far from God](https://www.jesusfestival.app/blog/what-to-do-when-you-feel-far-from-god) and [how to tell your family](https://www.jesusfestival.app/blog/how-to-tell-your-family-you-became-a-christian)." },
       { t: "p", text: "One last thing: you will have a bad week. It's coming. It is not evidence that this wasn't real. Keep showing up — He's not going anywhere." },
     ],
     related: ["IAmReborn.net", "SeekFirst.World", "KD-Ziedins.com"],
@@ -1943,6 +1952,7 @@ export const BLOG_POSTS: BlogPost[] = [
         ],
       },
       { t: "p", text: "None of this will trend. All of it is what a city actually feels when the Church is present." },
+      { t: "p", text: "Two places to start that most of us quietly avoid: the person on the sidewalk you pass every day ([how to help someone who is homeless without making it worse](https://www.jesusfestival.app/blog/how-to-help-someone-who-is-homeless)), and the neighbour who has just lost someone ([what to say to someone who is grieving](https://www.jesusfestival.app/blog/what-to-say-to-someone-who-is-grieving)). That is loving your city at its most concrete." },
       { t: "h2", text: "Do it with other people" },
       { t: "p", text: "Loving a city alone burns you out in about six weeks. [LoveonHamilton.com](https://www.loveonhamilton.com) exists so that all this practical love happens together, all year — not just on festival weekend." },
       { t: "p", text: "If you're outside Hamilton, [LoveonTheWorld.com](https://www.loveontheworld.com) carries the same heart wherever you are, and [LoveonMission.world](https://www.loveonmission.world) maps where the Gospel is moving globally so you can pray with your eyes open." },
@@ -2003,6 +2013,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { t: "p", text: "It's almost always a person. It's almost always an invitation." },
       { t: "h2", text: "Why we don't do it" },
       { t: "p", text: "Mostly fear — of being weird, of damaging a friendship, of not having answers. Which is understandable, and also mostly imaginary. You're not asking someone to sign a doctrinal statement. You're asking if they want to come to a thing." },
+      { t: "p", text: "If the person you're most afraid to invite is someone in your own family, read [how to tell your family you've become a Christian](https://www.jesusfestival.app/blog/how-to-tell-your-family-you-became-a-christian) first; most of it applies to invitations too." },
       { t: "quote", text: "Go out to the roads and country lanes and compel them to come in, so that my house will be full.", ref: "Luke 14:23" },
       { t: "h2", text: "Make it as easy as possible to say yes" },
       { t: "p", text: "This is exactly why a free, outdoor, no-strings festival is such a useful front door. There's no service to endure, no offering, no commitment. It's a park on a Saturday with food trucks and music." },
@@ -2139,3 +2150,13 @@ export const postWordCount = (post: BlogPost) =>
     .replace(/[*_]/g, "")
     .split(/\s+/)
     .filter(Boolean).length;
+
+/**
+ * Reading time is derived, never hand-typed. The typed values had drifted to
+ * 2-4x the real length ("6 min read" on a 2-minute article), and readMins now
+ * feeds BlogPosting.timeRequired and the share cards, so it has to be true.
+ * 230 words a minute; the value written in each post above is ignored.
+ */
+export const WORDS_PER_MINUTE = 230;
+export const readingMinutes = (post: BlogPost) => Math.max(1, Math.round(postWordCount(post) / WORDS_PER_MINUTE));
+for (const post of BLOG_POSTS) post.readMins = readingMinutes(post);
