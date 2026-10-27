@@ -45,6 +45,162 @@ export type BlogPost = {
 export const BLOG_POSTS: BlogPost[] = [
 
   {
+    slug: "should-christians-celebrate-halloween",
+    seoTitle: "Should Christians Celebrate Halloween? A Biblical, Balanced Answer",
+    seoDescription:
+      "Christians disagree about Halloween in good faith. What the Bible says, the three common positions, questions to decide for your family, and how to love your street on October 31.",
+    title: "Should Christians Celebrate Halloween? A Biblical, Balanced Answer",
+    description:
+      "Every October the same debate. Some Christians skip it entirely, some hand out full-size chocolate bars, and both sincerely want to honour God. Here's what Scripture actually says, the three common positions, and a way to use the one night your whole street knocks on your door.",
+    eyebrow: "Everyday faith",
+    emoji: "🎃",
+    date: "2026-10-26",
+    readMins: 4,
+    body: [
+      { t: "p", text: "It's the one night of the year your neighbours walk up to your front door on purpose. It's also a night with a lot of dark imagery, and plenty of thoughtful Christians want nothing to do with it. Both instincts come from something good. Here's how to think it through." },
+
+      { t: "h2", text: "What the Bible says, and doesn't" },
+      { t: "p", text: "The Bible never mentions Halloween; it didn't exist. But it says a lot about the things people worry about. It forbids occultism outright: divination, witchcraft, consulting the dead (Deuteronomy 18:10–12). It tells us to *abstain from all appearance of evil* (1 Thessalonians 5:22) and to fill our minds with *whatsoever things are pure… whatsoever things are lovely* (Philippians 4:8)." },
+      { t: "p", text: "It also says a lot about disputable matters. In Romans 14 Paul addresses Christians who disagreed about special days and food connected to pagan practice, and his answer is striking: *One man esteemeth one day above another: another esteemeth every day alike. Let every man be fully persuaded in his own mind* (Romans 14:5). He tells both sides not to judge each other." },
+      { t: "quote", text: "Whether therefore ye eat, or drink, or whatsoever ye do, do all to the glory of God.", ref: "1 Corinthians 10:31 (KJV)" },
+      { t: "p", text: "That's the test. Not \"is this allowed?\" but \"can I do this to the glory of God?\"" },
+
+      { t: "h2", text: "The three common positions" },
+      {
+        t: "list",
+        items: [
+          "**Abstain.** Some Christians, often those who have come out of the occult or have seen real spiritual darkness, skip the night entirely and turn the lights off. That conviction deserves respect, not mockery.",
+          "**Redeem.** Many families join in with the parts that are simply fun (costumes, candy, neighbours) and steer clear of anything gory or occult. Some churches run trunk-or-treats or harvest parties as a safe, bright alternative.",
+          "**Reach out.** Others see October 31 as the most open front door of the year and use it deliberately to love their street: the best candy, a warm porch, a real conversation, a note of blessing.",
+        ],
+      },
+      { t: "p", text: "All three can be done to the glory of God, and all three can be done badly. The worst option isn't any of these; it's looking down on the Christian who chose differently." },
+
+      { t: "h2", text: "Questions to decide for your family" },
+      {
+        t: "list",
+        items: [
+          "**What does this costume or decoration celebrate?** A superhero, an animal or a princess is different from glorifying death, demons or the occult.",
+          "**What does my conscience say?** *Whatsoever is not of faith is sin* (Romans 14:23). If you can't do it with a clear conscience, don't.",
+          "**Will this cause a younger believer to stumble?** Paul's concern in 1 Corinthians 8 was for people with a weaker conscience. Be generous with them.",
+          "**Am I afraid, or am I wise?** *Greater is he that is in you, than he that is in the world* (1 John 4:4). Christians don't need to fear a night on the calendar.",
+          "**What would love for my neighbours look like?** This is the question most of us skip.",
+        ],
+      },
+
+      { t: "h2", text: "Ideas for loving your street on October 31" },
+      {
+        t: "list",
+        items: [
+          "**Be the best house on the block.** Generous candy, a well-lit porch, a smile. Christians should be known as the most generous people on the street, not the ones with the lights off and a lecture taped to the door.",
+          "**Learn names.** Families walk your street once a year with their guard down. Introduce yourself to the parents.",
+          "**Offer something warm.** Hot chocolate or coffee for the adults on a cold night starts more conversations than any tract.",
+          "**Pray over every door you knock on**, quietly, if your kids trick-or-treat. *The light shineth in darkness* (John 1:5).",
+          "**Follow up in November.** A wave on Saturday, a plate of cookies, an invitation at Christmas. One night is a door; what you do next is the friendship.",
+        ],
+      },
+      { t: "p", text: "That last point is the whole thing. The people who knock on your door on Saturday are your [mission field](https://www.jesusfestival.app/blog/you-already-know-your-mission-field), and loving them well is how [a city gets loved](https://www.jesusfestival.app/blog/how-to-love-your-city), one porch at a time." },
+
+      { t: "h2", text: "Whatever you decide" },
+      { t: "p", text: "Decide it prayerfully, hold it humbly, and don't let a candy debate become a reason to look down on another believer. *Let us not therefore judge one another any more* (Romans 14:13). Then, whatever you do with October 31, make sure your street knows on November 1 that you love them. If your family is new to faith and figuring out traditions together, [family devotions in ten minutes](https://www.jesusfestival.app/blog/family-devotions-in-ten-minutes) is a good place to start talking about it with your kids." },
+    ],
+    faqs: [
+      {
+        question: "Is it a sin for Christians to celebrate Halloween?",
+        answer:
+          "The Bible does not mention Halloween. It forbids occult practices (Deuteronomy 18:10–12) and calls believers to avoid evil and dwell on what is pure (Philippians 4:8), but it treats special days as a matter of conscience (Romans 14:5–6). Many Christians abstain, others join in with the harmless parts, and both can honour God if done with a clear conscience and without judging each other.",
+      },
+      {
+        question: "What does the Bible say about Halloween?",
+        answer:
+          "Nothing directly. The relevant principles are to avoid occultism (Deuteronomy 18:10–12), to do everything to the glory of God (1 Corinthians 10:31), to follow your conscience on disputable days (Romans 14:5, 14:23), and not to cause others to stumble (1 Corinthians 8).",
+      },
+      {
+        question: "How can Christians use Halloween to reach neighbours?",
+        answer:
+          "Be the most generous, welcoming house on the street, learn the names of families who come by, offer something warm to parents, pray quietly for the homes you visit, and follow up in November with friendship and an invitation, for example to a Christmas service.",
+      },
+      {
+        question: "What are Christian alternatives to Halloween?",
+        answer:
+          "Many churches run trunk-or-treats or harvest parties with costumes and candy in a bright, safe setting. Some families mark Reformation Day (October 31) or All Saints' Day (November 1) instead, and others simply skip the night.",
+      },
+    ],
+    related: ["OikosMap.com", "LoveonHamilton.com", "SeekFirst.World"],
+  },
+
+  {
+    slug: "the-real-christmas-story",
+    seoTitle: "The Real Christmas Story: What Actually Happened in Bethlehem",
+    seoDescription:
+      "What the Bible actually says about the first Christmas: Mary and Joseph, the manger, the shepherds, the wise men, and why it matters. Plus what we've added along the way.",
+    title: "The Real Christmas Story: What Actually Happened in Bethlehem",
+    description:
+      "Under the lights, the songs and the shopping is a story most people half-know. Here's what Matthew and Luke actually record about the first Christmas, what tradition added later, and why a baby in a feeding trough is the most important thing that ever happened.",
+    eyebrow: "Everyday faith",
+    emoji: "⭐",
+    date: "2026-10-26",
+    readMins: 4,
+    body: [
+      { t: "p", text: "Most people can picture the nativity scene: a stable, a manger, three kings, a donkey, snow. Some of that is in the Bible. Some of it isn't. And the real story, read straight from the two Gospels that tell it, is stranger, humbler and far more hopeful than the greeting cards." },
+
+      { t: "h2", text: "A young woman and an impossible message" },
+      { t: "p", text: "Luke tells us an angel came to Mary, a young engaged woman in the small town of Nazareth, and told her she would have a son by the Holy Spirit: *thou shalt call his name JESUS. He shall be great, and shall be called the Son of the Highest* (Luke 1:31–32). Her answer is one of the bravest sentences in Scripture: *Behold the handmaid of the Lord; be it unto me according to thy word* (Luke 1:38)." },
+      { t: "p", text: "Matthew tells Joseph's side: an honest man who planned to end the engagement quietly, until an angel told him in a dream to take Mary as his wife, *for he shall save his people from their sins* (Matthew 1:21). The name Jesus means *the Lord saves*. The point of the story is in the name." },
+
+      { t: "h2", text: "Born in Bethlehem, laid in a manger" },
+      { t: "p", text: "A Roman census forced the couple to travel to Bethlehem, Joseph's ancestral town, about 150 km south. Centuries earlier the prophet Micah had named that town as the birthplace of Israel's ruler (Micah 5:2). There, Mary *brought forth her firstborn son, and wrapped him in swaddling clothes, and laid him in a manger; because there was no room for them in the inn* (Luke 2:7)." },
+      { t: "p", text: "A manger is a feeding trough for animals. The word translated \"inn\" probably means a guest room in a crowded family house, so the birth likely happened in the lower room where animals were brought in at night. The Bible never mentions a stable building, a donkey or snow. It mentions something more shocking: the Son of God's first bed was where the animals ate." },
+      { t: "quote", text: "For unto you is born this day in the city of David a Saviour, which is Christ the Lord.", ref: "Luke 2:11 (KJV)" },
+
+      { t: "h2", text: "Shepherds first" },
+      { t: "p", text: "The first people told were shepherds working the night shift: low-status, smelly, outdoors. An angel announced *good tidings of great joy, which shall be to all people*, and then a whole army of angels appeared singing *Glory to God in the highest, and on earth peace, good will toward men* (Luke 2:10, 14). God sent the biggest announcement in history to the people nobody else would have invited. That tells you who the story is for." },
+
+      { t: "h2", text: "The wise men came later" },
+      { t: "p", text: "Matthew records *wise men from the east* following a star to find *he that is born King of the Jews* (Matthew 2:1–2). The Bible doesn't say there were three (that's inferred from three gifts) or that they were kings. And they almost certainly didn't arrive the night of the birth: they found the family *into the house* (Matthew 2:11), and Herod later targeted boys *two years old and under*. Their gifts were gold, frankincense and myrrh: gifts for a king, for worship, and, strikingly, a spice used in burial. Even at the start, the shadow of the cross." },
+
+      { t: "h2", text: "What tradition added" },
+      {
+        t: "list",
+        items: [
+          "**December 25.** The Bible gives no date. The church settled on it centuries later. What matters is that He came, not which day.",
+          "**Three kings.** Unnamed, unnumbered wise men in the text.",
+          "**The stable, the donkey, the snow, the innkeeper.** Lovely in carols; absent from Luke.",
+          "**The little drummer boy, the lowing cattle that don't wake the baby.** Songs, not Scripture.",
+        ],
+      },
+      { t: "p", text: "None of that is wrong to enjoy. It just helps to know which part is the story, because the story itself is better." },
+
+      { t: "h2", text: "Why it matters" },
+      { t: "p", text: "Christmas isn't the birthday of a great teacher. It's the claim that God Himself came: *the Word was made flesh, and dwelt among us* (John 1:14). The baby was called *Emmanuel, which being interpreted is, God with us* (Matthew 1:23). He came small, poor and vulnerable, so that no one could ever say God was too far away, too clean or too important for them. And He came for a reason: the manger leads to the cross and the empty tomb. Christmas is the beginning of the rescue." },
+      { t: "p", text: "If you've never said yes to the One the shepherds ran to see, this Christmas is a good time. [Here's what happens after you do](https://www.jesusfestival.app/blog/what-happens-after-you-say-yes). And if you're a Christian looking for one person to bring to church this December, [one invitation changes everything](https://www.jesusfestival.app/blog/one-invitation-changes-everything)." },
+    ],
+    faqs: [
+      {
+        question: "What is the true meaning of Christmas?",
+        answer:
+          "Christmas celebrates the birth of Jesus, whom Christians believe is God become human: \"the Word was made flesh\" (John 1:14), called Emmanuel, \"God with us\" (Matthew 1:23). His name means \"the Lord saves,\" because He came to save people from their sins (Matthew 1:21); the manger leads to the cross and resurrection.",
+      },
+      {
+        question: "Where is the Christmas story in the Bible?",
+        answer:
+          "The birth of Jesus is told in Matthew 1:18–2:23 (Joseph's dream, the wise men, the escape to Egypt) and Luke 1:26–2:40 (the angel's message to Mary, the birth in Bethlehem, the shepherds and the angels). John 1:1–14 explains its meaning.",
+      },
+      {
+        question: "Were there three wise men at the birth of Jesus?",
+        answer:
+          "The Bible doesn't say how many wise men there were; \"three\" is inferred from the three gifts of gold, frankincense and myrrh. They were not described as kings, and they likely arrived months after the birth, finding the family in a house (Matthew 2:11).",
+      },
+      {
+        question: "Was Jesus born on December 25?",
+        answer:
+          "The Bible gives no date for Jesus' birth. December 25 was adopted by the church centuries later as the day to celebrate it. Christians focus on the fact that He came rather than the exact date.",
+      },
+    ],
+    related: ["IAmReborn.net", "JesusFestival.ca", "SeekFirst.World"],
+  },
+
+  {
     slug: "how-to-help-someone-who-is-homeless",
     seoTitle: "How to Help Someone Who Is Homeless (Without Making It Worse)",
     seoDescription:
@@ -1883,6 +2039,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { t: "h2", text: "Then invite them to something easy" },
       { t: "p", text: "Here's why a free festival in a public park matters so much for this: it is one of the lowest-pressure invitations in existence. There's no service to sit through, no offering plate, no expectation. It's a park, some food trucks, and music." },
       { t: "p", text: "Your one person might never say yes to a church service. Most people will say yes to a free Saturday in the park with a friend. Start there." },
+      { t: "p", text: "The one night a year your whole street walks up to your door is October 31. Here's [how to think about Halloween as a Christian](https://www.jesusfestival.app/blog/should-christians-celebrate-halloween), and how to use it to love your neighbours." },
     ],
     related: ["OikosMap.com", "KingdomBase.App", "LoveonHamilton.com"],
   },
@@ -2021,6 +2178,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { t: "h2", text: "Then just be normal" },
       { t: "p", text: "Go with them. Buy them a coffee. Don't over-explain, don't monitor their reaction during worship, don't debrief them in the car like an exit interview. Let God do God's part." },
       { t: "p", text: "You are not responsible for the outcome. You're responsible for the invitation." },
+      { t: "p", text: "Christmas is the easiest invitation of the year; more people say yes to a carol service than to any other Sunday. If you'd like a refresher on what you're inviting them to, here's [the real Christmas story](https://www.jesusfestival.app/blog/the-real-christmas-story)." },
       { t: "p", text: "So — who's your one? You almost certainly thought of someone in the first ten seconds of reading this. That's not random. Text them today." },
     ],
     related: ["JesusFestival.ca", "OikosMap.com", "IAmReborn.net"],

@@ -4,6 +4,24 @@ export type BlogMeta = { slug: string; title: string; description: string; eyebr
 
 export const BLOG_META: BlogMeta[] = [
   {
+    "slug": "should-christians-celebrate-halloween",
+    "title": "Should Christians Celebrate Halloween? A Biblical, Balanced Answer",
+    "description": "Every October the same debate. Some Christians skip it entirely, some hand out full-size chocolate bars, and both sincerely want to honour God. Here's what Scripture actually says, the three common positions, and a way to use the one night your whole street knocks on your door.",
+    "eyebrow": "Everyday faith",
+    "emoji": "🎃",
+    "date": "2026-10-26",
+    "readMins": 3
+  },
+  {
+    "slug": "the-real-christmas-story",
+    "title": "The Real Christmas Story: What Actually Happened in Bethlehem",
+    "description": "Under the lights, the songs and the shopping is a story most people half-know. Here's what Matthew and Luke actually record about the first Christmas, what tradition added later, and why a baby in a feeding trough is the most important thing that ever happened.",
+    "eyebrow": "Everyday faith",
+    "emoji": "⭐",
+    "date": "2026-10-26",
+    "readMins": 3
+  },
+  {
     "slug": "how-to-help-someone-who-is-homeless",
     "title": "How to Help Someone Who Is Homeless (Without Making It Worse)",
     "description": "You pass the same person every day and don't know whether to stop, what to say, or whether a few dollars helps or hurts. Here's what twelve years of weekly street outreach in Hamilton has taught us, and how to start.",
