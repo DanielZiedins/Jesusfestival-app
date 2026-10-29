@@ -45,6 +45,119 @@ export type BlogPost = {
 export const BLOG_POSTS: BlogPost[] = [
 
   {
+    slug: "advent-reading-plan",
+    seoTitle: "Advent Reading Plan 2026: 25 Days to Christmas Through the Bible",
+    seoDescription:
+      "A free 25-day Advent Bible reading plan for December 2026: from the first promise in Genesis to the manger in Bethlehem. Five minutes a day, with a family version.",
+    title: "Advent Reading Plan: 25 Days to Christmas Through the Bible",
+    description:
+      "Five minutes a day from December 1 to Christmas morning. Follow God's promise from the garden in Genesis, through the prophets, to a manger in Bethlehem, and arrive at Christmas knowing why it matters. With a one-verse version for families with little ones.",
+    eyebrow: "Everyday faith",
+    emoji: "🕯️",
+    date: "2026-10-29",
+    readMins: 4,
+    body: [
+      { t: "p", text: "December fills up fast: parties, shopping, school concerts, travel. It's easy to arrive at Christmas morning exhausted, having thought about everything except the reason for it. Advent, the four weeks before Christmas, is the church's ancient answer: slow down, and get ready." },
+      { t: "p", text: "In 2026 Advent begins on Sunday, November 29. This plan runs December 1 to 25 so it's easy to remember: one short reading a day, about five minutes, tracing a single thread through the whole Bible, the promise that a Rescuer was coming." },
+
+      { t: "h2", text: "How to use it" },
+      {
+        t: "list",
+        items: [
+          "**Same time, every day.** First coffee, lunch break, or the kids' bedtime. Attach it to something you already do.",
+          "**Read slowly, then ask one question:** what does this show me about God's promise?",
+          "**Pray one sentence back to God** about what you read. If that's new to you, [here's how](https://www.jesusfestival.app/blog/how-to-pray-when-you-dont-know-what-to-say).",
+          "**Missed a day? Skip it, don't stack it.** Pick up at today's date. The point is the journey, not a perfect record.",
+        ],
+      },
+
+      { t: "h2", text: "Week 1: The promise (December 1–7)" },
+      {
+        t: "list",
+        items: [
+          "**Dec 1 — Genesis 3:8–15.** Right after the first sin, the first promise: a descendant of the woman will crush the serpent.",
+          "**Dec 2 — Genesis 12:1–3.** God promises Abraham that through his family *all families of the earth* will be blessed.",
+          "**Dec 3 — 2 Samuel 7:8–16.** A king from David's line whose throne will last forever.",
+          "**Dec 4 — Isaiah 7:10–14.** *A virgin shall conceive, and bear a son, and shall call his name Immanuel.*",
+          "**Dec 5 — Isaiah 9:2–7.** *For unto us a child is born… Wonderful, Counsellor, The mighty God.*",
+          "**Dec 6 — Isaiah 11:1–10.** A shoot from Jesse's stump, and a kingdom of peace.",
+          "**Dec 7 — Micah 5:2–5.** The ruler will come from tiny Bethlehem.",
+        ],
+      },
+
+      { t: "h2", text: "Week 2: The waiting (December 8–14)" },
+      {
+        t: "list",
+        items: [
+          "**Dec 8 — Isaiah 40:1–11.** *Comfort ye my people*, and a voice crying in the wilderness.",
+          "**Dec 9 — Isaiah 53:1–12.** The suffering servant, *wounded for our transgressions*. The manger leads to the cross.",
+          "**Dec 10 — Jeremiah 33:14–16.** A righteous Branch from David, called *The LORD our righteousness*.",
+          "**Dec 11 — Malachi 3:1 and 4:5–6.** The last words of the Old Testament: a messenger is coming. Then four hundred years of silence.",
+          "**Dec 12 — Luke 1:5–25.** The silence breaks: an angel to an old priest named Zechariah.",
+          "**Dec 13 — Luke 1:26–38.** Gabriel comes to Mary. *Be it unto me according to thy word.*",
+          "**Dec 14 — Luke 1:39–56.** Mary visits Elizabeth and sings the Magnificat.",
+        ],
+      },
+
+      { t: "h2", text: "Week 3: The coming (December 15–21)" },
+      {
+        t: "list",
+        items: [
+          "**Dec 15 — Matthew 1:18–25.** Joseph's dream: *thou shalt call his name JESUS: for he shall save his people from their sins.*",
+          "**Dec 16 — Luke 1:57–80.** John the Baptist is born, and Zechariah finally speaks, and sings.",
+          "**Dec 17 — Luke 2:1–7.** The census, the journey, and no room.",
+          "**Dec 18 — Luke 2:8–20.** Shepherds, angels, and *good tidings of great joy*.",
+          "**Dec 19 — Luke 2:21–38.** Simeon and Anna, who waited their whole lives, finally hold the promise.",
+          "**Dec 20 — Matthew 2:1–12.** Wise men follow a star with gifts for a king.",
+          "**Dec 21 — Matthew 2:13–23.** Danger, escape to Egypt, and God's protection.",
+        ],
+      },
+
+      { t: "h2", text: "Week 4: The meaning (December 22–25)" },
+      {
+        t: "list",
+        items: [
+          "**Dec 22 — John 1:1–14.** *The Word was made flesh, and dwelt among us.*",
+          "**Dec 23 — Philippians 2:5–11.** The One who was God took the form of a servant.",
+          "**Dec 24 — John 3:16–17.** Why He came: not to condemn the world, but to save it.",
+          "**Dec 25 — Luke 2:1–20.** Read the whole story aloud on Christmas morning, before the presents.",
+        ],
+      },
+      { t: "quote", text: "For unto you is born this day in the city of David a Saviour, which is Christ the Lord.", ref: "Luke 2:11 (KJV)" },
+
+      { t: "h2", text: "The family version" },
+      { t: "p", text: "With little ones, read just one key verse from each day's passage at dinner or bedtime, then ask, *What does this tell us about Jesus?* Light a candle while you read if you can; kids remember the ritual long after they forget the words. For older children, read the whole passage and let them take turns. [Family devotions in ten minutes](https://www.jesusfestival.app/blog/family-devotions-in-ten-minutes) has more ideas for keeping it simple." },
+
+      { t: "h2", text: "Arrive on Christmas knowing why" },
+      { t: "p", text: "By December 25 you'll have walked the whole arc of Scripture in miniature: a promise made in a garden, repeated through kings and prophets, waited for in silence, and kept in a feeding trough in Bethlehem. That's the [real Christmas story](https://www.jesusfestival.app/blog/the-real-christmas-story), and it's worth slowing down for." },
+      { t: "p", text: "And if somebody in your life has never heard it, Christmas is the easiest time of the year to [invite them](https://www.jesusfestival.app/blog/one-invitation-changes-everything). If you're new to the Bible yourself, [here's how to start reading it](https://www.jesusfestival.app/blog/how-to-start-reading-the-bible), and keep going after Christmas." },
+    ],
+    faqs: [
+      {
+        question: "When does Advent start in 2026?",
+        answer:
+          "Advent 2026 begins on Sunday, November 29, the fourth Sunday before Christmas Day (Friday, December 25, 2026). Many people follow a reading plan from December 1 to December 25.",
+      },
+      {
+        question: "What should I read in the Bible during Advent?",
+        answer:
+          "A good Advent plan traces God's promise of a Saviour: Genesis 3:15 and 12:1–3, 2 Samuel 7, Isaiah 7, 9, 11, 40 and 53, Micah 5:2, then the birth narratives in Luke 1–2 and Matthew 1–2, ending with John 1:1–14 and Luke 2:1–20 on Christmas Day.",
+      },
+      {
+        question: "What is the purpose of Advent?",
+        answer:
+          "Advent, from the Latin for \"coming,\" is the season of preparation before Christmas. Christians remember Israel's long wait for the promised Messiah, celebrate His first coming at Bethlehem, and look forward to His promised return.",
+      },
+      {
+        question: "How do I do an Advent reading plan with young children?",
+        answer:
+          "Read one key verse from each day's passage at dinner or bedtime, light a candle while you read, and ask one question such as \"What does this tell us about Jesus?\" Keep it to a few minutes; consistency matters more than length.",
+      },
+    ],
+    related: ["IAmReborn.net", "SeekFirst.World", "JesusFestival.ca"],
+  },
+
+  {
     slug: "should-christians-celebrate-halloween",
     seoTitle: "Should Christians Celebrate Halloween? A Biblical, Balanced Answer",
     seoDescription:
@@ -170,6 +283,7 @@ export const BLOG_POSTS: BlogPost[] = [
         ],
       },
       { t: "p", text: "None of that is wrong to enjoy. It just helps to know which part is the story, because the story itself is better." },
+      { t: "p", text: "If you'd like to walk through the whole story slowly this December, the [25-day Advent reading plan](https://www.jesusfestival.app/blog/advent-reading-plan) follows it from Genesis to Bethlehem, five minutes a day." },
 
       { t: "h2", text: "Why it matters" },
       { t: "p", text: "Christmas isn't the birthday of a great teacher. It's the claim that God Himself came: *the Word was made flesh, and dwelt among us* (John 1:14). The baby was called *Emmanuel, which being interpreted is, God with us* (Matthew 1:23). He came small, poor and vulnerable, so that no one could ever say God was too far away, too clean or too important for them. And He came for a reason: the manger leads to the cross and the empty tomb. Christmas is the beginning of the rescue." },
@@ -426,6 +540,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { t: "h2", text: "What you're actually building" },
       { t: "p", text: "You're not building Bible scholars. You're building a home where God is talked about as naturally as weather and dinner: *when thou sittest in thine house.* Timothy's faith, Paul says, lived *first in thy grandmother Lois, and thy mother Eunice* (2 Timothy 1:5). Nobody records their curriculum. They just kept talking about Jesus at home, for years." },
       { t: "p", text: "Ten minutes, most nights. Then one day you'll overhear your kid explain the lost sheep to a friend, and you'll know it worked. If your own faith is new and you're figuring it out alongside them, [these are the first steps](https://www.jesusfestival.app/i-said-yes), and for a church family to do this with, [LoveonHamilton.com](https://www.loveonhamilton.com) can help." },
+      { t: "p", text: "In December, the [Advent reading plan](https://www.jesusfestival.app/blog/advent-reading-plan) has a one-verse family version that fits this shape exactly." },
     ],
     faqs: [
       {

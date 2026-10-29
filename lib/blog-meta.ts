@@ -4,6 +4,15 @@ export type BlogMeta = { slug: string; title: string; description: string; eyebr
 
 export const BLOG_META: BlogMeta[] = [
   {
+    "slug": "advent-reading-plan",
+    "title": "Advent Reading Plan: 25 Days to Christmas Through the Bible",
+    "description": "Five minutes a day from December 1 to Christmas morning. Follow God's promise from the garden in Genesis, through the prophets, to a manger in Bethlehem, and arrive at Christmas knowing why it matters. With a one-verse version for families with little ones.",
+    "eyebrow": "Everyday faith",
+    "emoji": "🕯️",
+    "date": "2026-10-29",
+    "readMins": 3
+  },
+  {
     "slug": "should-christians-celebrate-halloween",
     "title": "Should Christians Celebrate Halloween? A Biblical, Balanced Answer",
     "description": "Every October the same debate. Some Christians skip it entirely, some hand out full-size chocolate bars, and both sincerely want to honour God. Here's what Scripture actually says, the three common positions, and a way to use the one night your whole street knocks on your door.",
