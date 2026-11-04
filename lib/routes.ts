@@ -185,4 +185,6 @@ export const INDEXABLE_ROUTES = [
   "/accessibility",
   "/festival-weekend",
   "/jesus-festival-2027",
+  "/history",
+  "/history/2026",
 ] as const;

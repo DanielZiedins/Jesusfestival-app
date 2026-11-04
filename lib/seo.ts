@@ -1,7 +1,7 @@
 import { ARTISTS, LINKS, POST_EVENT, SITE } from "@/lib/content";
 import { QUESTIONS, STEPS } from "@/lib/newlife";
 
-export const LAST_MAJOR_UPDATE = "2026-09-06";
+export const LAST_MAJOR_UPDATE = "2026-09-07";
 export const FESTIVAL_GUIDE_PATH = "/jesus-festival-hamilton";
 
 export const FESTIVAL_FAQS = [

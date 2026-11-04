@@ -60,20 +60,24 @@ const EXPECT_ICON: Record<string, React.ComponentType<{ width?: number; height?:
 export default function HomeScreen({
   go,
   onSearch,
+  archiveMode = false,
 }: {
   go: (t: TabId, sub?: string) => void;
   onSearch?: () => void;
+  /** Preserve the final pre-event homepage as a truthful historical snapshot. */
+  archiveMode?: boolean;
 }) {
   // On Sept 4–5 the live card replaces the countdown — showing both is
   // contradictory — and once the weekend is over the countdown block gives way
   // to the harvest card. A finished countdown otherwise reads "It's festival
   // weekend!" forever.
   const phase = useFestivalPhase();
-  const live = isLivePhase(phase);
+  const live = !archiveMode && isLivePhase(phase);
+  const HeroHeading = archiveMode ? "h2" : "h1";
   // The homepage is server-rendered before the phase hook mounts. Since the
   // 2026 weekend is now complete, the null server state should show the
   // post-festival story too; this keeps crawlers and the first paint aligned.
-  const over = phase === null || phase === "after";
+  const over = !archiveMode && (phase === null || phase === "after");
   // Verse of the day — set after mount so SSR/client never disagree on the date.
   const [verseOfDay, setVerseOfDay] = useState(SCRIPTURES[0]);
   // Personal touch: greet returning members by name, with their streak.
@@ -164,11 +168,11 @@ export default function HomeScreen({
             {HERO.eyebrow}
           </div>
 
-          <h1 className="jf-rise font-display text-5xl font-extrabold leading-[0.92] tracking-tight text-white sm:text-6xl">
-            <span className="text-gradient-gold animate-shimmer">JESUS</span>
+          <HeroHeading className="jf-rise font-display text-5xl font-extrabold leading-[0.92] tracking-tight text-white sm:text-6xl">
+            <span className="text-gradient-gold animate-shimmer">JESUS</span>{" "}
             <br />
             FESTIVAL
-          </h1>
+          </HeroHeading>
 
           <p className="jf-rise mt-3 max-w-xs text-[15px] leading-relaxed text-white/80">
             {HERO.subtitle} {HERO.body}
@@ -192,14 +196,25 @@ export default function HomeScreen({
       {/* ===== COUNTDOWN (becomes a live tracker on festival days) ===== */}
       <section className="relative -mt-10 px-4">
         {/* Renders null outside Sept 4–5, so this wrapper collapses to nothing. */}
-        <div className="mx-auto max-w-md">
-          <FestivalLive go={go} />
-        </div>
+        {!archiveMode && (
+          <div className="mx-auto max-w-md">
+            <FestivalLive go={go} />
+          </div>
+        )}
         <Reveal className={`mx-auto max-w-md ${live || over ? "hidden" : ""}`}>
           <div className="mb-3 text-center">
-            <Eyebrow>The countdown is on</Eyebrow>
+            <Eyebrow>{archiveMode ? "The countdown was on" : "The countdown is on"}</Eyebrow>
           </div>
-          <Countdown targetISO={SITE.eventDatesISO} />
+          {archiveMode ? (
+            <div className="jf-pop relative overflow-hidden rounded-2xl border border-gold/40 bg-gradient-to-r from-gold/20 via-ember/15 to-purple-600/20 px-4 py-5 text-center">
+              <span aria-hidden className="pointer-events-none absolute -right-10 -top-12 h-32 w-32 rounded-full bg-gold/20 blur-3xl" />
+              <p className="relative text-[10px] font-black uppercase tracking-[0.24em] text-gold-300">The preserved festival date</p>
+              <p className="relative mt-1 font-display text-2xl font-extrabold text-white">September 4–5, 2026</p>
+              <p className="relative mt-1 text-sm font-semibold text-white/65">Gage Park · Hamilton, Ontario</p>
+            </div>
+          ) : (
+            <Countdown targetISO={SITE.eventDatesISO} />
+          )}
           <div className="mt-4 grid grid-cols-2 gap-2.5">
             <button
               onClick={() => go("schedule")}
@@ -342,9 +357,11 @@ export default function HomeScreen({
               <SearchPill onClick={onSearch} />
             </div>
           )}
-          <div className="mb-3">
-            <NotifyNudge />
-          </div>
+          {!archiveMode && (
+            <div className="mb-3">
+              <NotifyNudge />
+            </div>
+          )}
           <div className="grid grid-cols-2 gap-2.5">
             <QuickAction emoji="🎮" title="Revive the City" sub="Missions, games & quizzes" onClick={() => go("game")} accent="gold" />
             <QuickAction emoji="🙏" title="Prayer Wall" sub="Pray for one another" onClick={() => go("more", "prayer")} accent="purple" />
@@ -428,10 +445,10 @@ export default function HomeScreen({
       </section>
 
       {/* ===== LIVE COMMUNITY NUMBERS (renders null until data arrives) ===== */}
-      <LiveImpact go={go} />
+      {!archiveMode && <LiveImpact go={go} />}
 
       {/* ===== WEEKEND FORECAST (hidden until ~16 days out) ===== */}
-      <FestivalWeather />
+      {!archiveMode && <FestivalWeather />}
 
       {/* ===== WHAT TO EXPECT ===== */}
       <section className="render-later mt-14 px-4">

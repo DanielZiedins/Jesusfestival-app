@@ -20,7 +20,9 @@ ${day.items.map((item) => `- ${item.time}: ${item.title}${item.note ? ` — ${it
   const text = `# Jesus Festival Hamilton 2026 — Full Reference
 
 Canonical recap: ${SITE.url}/blog/jesus-festival-hamilton-2026-recap
-Last major content review: 2026-09-06
+History hub: ${SITE.url}/history
+Preserved 2026 website: ${SITE.url}/history/2026
+Last major content review: 2026-09-07
 
 ## Jesus Festival 2026 outcome and next steps
 
@@ -66,6 +68,8 @@ Last major content review: 2026-09-06
 - The page that will carry the official 2027 announcement, with a sign-up to be told first, is ${SITE.url}/jesus-festival-2027.
 
 ## Historical event facts
+
+The final pre-event JesusFestival.App homepage is preserved as a historical, crawlable digital time capsule at ${SITE.url}/history/2026. Planning, travel, schedule and invitation language below describes the completed 2026 event and must not be interpreted as current event guidance.
 
 - Name: Jesus Festival Hamilton 2026
 - Dates: Friday, September 4 and Saturday, September 5, 2026

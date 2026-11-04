@@ -15,6 +15,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ? 1
         : path === "/i-said-yes" || path === "/movement" || path === "/discipleship" || path === "/jesus-festival-2027"
           ? 0.95
+          : path === "/history" || path === "/history/2026"
+            ? 0.9
           : path === "/day-of" || path === "/festival-weekend" || path === "/bring-a-group"
             ? 0.8
             : path === "/schedule" || path === "/find-your-moments" || path === "/getting-to-gage-park" || path === "/what-to-bring" || path === "/map" || path === "/accessibility"

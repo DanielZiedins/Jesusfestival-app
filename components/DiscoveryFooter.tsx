@@ -18,6 +18,8 @@ const LINKS = [
   { href: "/volunteer", label: "Volunteer" },
   { href: "/give", label: "Give" },
   { href: "/connect", label: "Connect" },
+  { href: "/history", label: "Festival History" },
+  { href: "/history/2026", label: "2026 Website Archive" },
   { href: "/schedule", label: "2026 Schedule Archive" },
   { href: "/jesus-festival-hamilton", label: "2026 Festival Archive" },
 ];

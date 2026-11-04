@@ -180,6 +180,21 @@ export default function MoreScreen({
 
             <Reveal delay={0.07}>
               <Link
+                href="/history/2026"
+                className="group mb-3 flex min-h-20 items-center gap-4 rounded-2xl border border-purple-300/30 bg-gradient-to-br from-purple-700/25 via-gold/[0.08] to-ink/50 p-4 transition active:scale-[0.99]"
+              >
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-purple-500/35 to-gold/20 text-3xl" aria-hidden>🕰️</span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-[9px] font-extrabold uppercase tracking-[0.18em] text-purple-200">History · 2026</span>
+                  <span className="block font-display text-lg font-extrabold text-white">The preserved 2026 website</span>
+                  <span className="block text-xs leading-snug text-white/65">Step back into the final pre-event homepage and festival experience</span>
+                </span>
+                <ArrowRight width={18} height={18} className="shrink-0 text-gold-300 transition group-hover:translate-x-0.5" />
+              </Link>
+            </Reveal>
+
+            <Reveal delay={0.075}>
+              <Link
                 href="/i-said-yes"
                 className="group mb-3 flex min-h-20 items-center gap-4 rounded-2xl border border-ember/35 bg-gradient-to-br from-ember/20 via-purple-800/25 to-ink/50 p-4 transition active:scale-[0.99]"
               >

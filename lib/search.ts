@@ -31,6 +31,8 @@ let cache: Hit[] | null = null;
 
 const SCREENS: Hit[] = [
   { id: "s-home", title: "Home", sub: "Countdown, lineup, verse of the day", emoji: "🏠", kind: "Screen", tab: "home" },
+  { id: "s-history", title: "Jesus Festival History", sub: "The story of Jesus Festival in Hamilton from 2024 through 2026", emoji: "📖", kind: "Screen", href: "/history", extra: "past years memories archive timeline" },
+  { id: "s-history-2026", title: "2026 Website Archive", sub: "The preserved final pre-event Jesus Festival 2026 homepage", emoji: "🕰️", kind: "Screen", href: "/history/2026", extra: "old original homepage time capsule historical site" },
   { id: "s-schedule", title: "Schedule", sub: "Every set time, both days", emoji: "🗓️", kind: "Screen", tab: "schedule", extra: "run of show set times lineup times when" },
   { id: "s-game", title: "Revive the City", sub: "Missions, mini-games, quizzes & the light meter", emoji: "🎮", kind: "Screen", tab: "game", extra: "game play points captain goodness missions" },
   { id: "s-news", title: "News", sub: "Announcements & festival updates", emoji: "📰", kind: "Screen", tab: "news", extra: "updates announcements feed" },

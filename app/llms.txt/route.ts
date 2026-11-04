@@ -29,6 +29,8 @@ export function GET() {
 
 ## Completed 2026 event archive
 
+- [Jesus Festival History](${SITE.url}/history): The story of the Hamilton gatherings from 2024 through 2026.
+- [Preserved 2026 Website](${SITE.url}/history/2026): A crawlable historical snapshot of the final pre-event homepage, including the original hero, lineup, planning tools, photos, Scripture, shop and movement content.
 - [Archived Official 2026 Festival Guide](${SITE.url}/jesus-festival-hamilton): Dates, hours, admission, lineup, parking, transit, what to bring and family information from the completed event.
 - [Archived 2026 Schedule](${SITE.url}/schedule): Friday Pure Worship Night and Saturday Family Festival Day stage times.
 - [Gage Park Map](${SITE.url}/map): The 2026 festival layout and park information.

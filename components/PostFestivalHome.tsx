@@ -400,9 +400,14 @@ export default function PostFestivalHome({ go, onSearch }: Props) {
 
       <section className="mt-12 px-4 text-center">
         <Reveal className="mx-auto max-w-md">
-          <Link href="/blog/jesus-festival-hamilton-2026-recap" className="inline-flex items-center gap-2 text-[12px] font-black text-gold-300 hover:text-gold-200">
-            Read and share the full 2026 thank-you recap <ArrowRight width={14} height={14} />
-          </Link>
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
+            <Link href="/blog/jesus-festival-hamilton-2026-recap" className="inline-flex items-center gap-2 text-[12px] font-black text-gold-300 hover:text-gold-200">
+              Read the full 2026 thank-you recap <ArrowRight width={14} height={14} />
+            </Link>
+            <Link href="/history/2026" className="inline-flex items-center gap-2 text-[12px] font-black text-purple-200 hover:text-white">
+              Visit the preserved 2026 website <ArrowRight width={14} height={14} />
+            </Link>
+          </div>
         </Reveal>
       </section>
     </div>
