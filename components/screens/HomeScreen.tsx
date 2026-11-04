@@ -202,7 +202,7 @@ export default function HomeScreen({
           </div>
         )}
         <Reveal className={`mx-auto max-w-md ${live || over ? "hidden" : ""}`}>
-          <div className="mb-3 text-center">
+          <div className={`mb-3 text-center ${archiveMode ? "relative rounded-xl bg-ink px-3 py-2" : ""}`}>
             <Eyebrow>{archiveMode ? "The countdown was on" : "The countdown is on"}</Eyebrow>
           </div>
           {archiveMode ? (
@@ -487,7 +487,7 @@ export default function HomeScreen({
           </p>
         </Reveal>
         <Reveal>
-          <div className="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2">
+          <div tabIndex={0} role="region" aria-label="Festival photo memories" className="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-400">
             {MOMENTS.map((m, i) => (
               <div
                 key={m.src}

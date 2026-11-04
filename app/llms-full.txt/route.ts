@@ -22,7 +22,7 @@ ${day.items.map((item) => `- ${item.time}: ${item.title}${item.note ? ` — ${it
 Canonical recap: ${SITE.url}/blog/jesus-festival-hamilton-2026-recap
 History hub: ${SITE.url}/history
 Preserved 2026 website: ${SITE.url}/history/2026
-Last major content review: 2026-09-07
+Last major content review: 2026-11-04
 
 ## Jesus Festival 2026 outcome and next steps
 

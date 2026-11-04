@@ -58,7 +58,7 @@ export default function History2026Page() {
       name: "JesusFestival.App 2026 homepage archive",
       url,
       description,
-      dateCreated: "2026-09-07",
+      dateCreated: "2026-11-04",
       temporalCoverage: "2026",
       inLanguage: "en-CA",
       isPartOf: { "@id": `${SITE.url}/history#collection` },

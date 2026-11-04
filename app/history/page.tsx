@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { SITE } from "@/lib/content";
+import { LINKS, SITE } from "@/lib/content";
 import { breadcrumbJsonLd, serializeJsonLd, webPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -91,7 +91,7 @@ export default function HistoryPage() {
 
       <header className="relative isolate min-h-[640px] overflow-hidden">
         <Image src="/brand/banner-splash.webp" alt="Jesus Festival purple and gold artwork" fill preload sizes="100vw" className="-z-20 object-cover" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-ink/35 via-purple-950/65 to-ink" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-ink/80 via-purple-950/90 to-ink" />
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_25%,rgba(245,190,72,0.22),transparent_34%)]" />
 
         <div className="mx-auto flex min-h-[640px] max-w-4xl flex-col px-5 pb-16 pt-10 sm:px-8">
@@ -115,6 +115,31 @@ export default function HistoryPage() {
           </div>
         </div>
       </header>
+
+      <section aria-labelledby="moments-heading" className="relative mx-auto -mt-8 max-w-5xl px-5 sm:px-8">
+        <div className="rounded-[2rem] border border-white/15 bg-ink p-5 shadow-2xl sm:p-8">
+          <p className="text-[10px] font-black uppercase tracking-[0.24em] text-gold-300">People. Prayer. Community.</p>
+          <h2 id="moments-heading" className="mt-2 font-display text-3xl font-black text-white">More than a weekend. A shared story.</h2>
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            {[
+              { src: "/photos/moment-community.webp", title: "A city coming together", detail: "The people are part of the story." },
+              { src: "/photos/moment-prayer.webp", title: "Faith shared in prayer", detail: "Every conversation matters." },
+              { src: "/photos/moment-games.webp", title: "Room for the whole family", detail: "Joy, connection and community." },
+            ].map((moment) => (
+              <figure key={moment.src} className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.035]">
+                <div className="relative aspect-[4/3] overflow-hidden"><Image src={moment.src} alt={moment.title} fill sizes="(max-width: 640px) 90vw, 30vw" className="object-cover" /></div>
+                <figcaption className="p-4"><span className="block font-display text-lg font-bold text-white">{moment.title}</span><span className="mt-1 block text-sm text-white/75">{moment.detail}</span></figcaption>
+              </figure>
+            ))}
+          </div>
+          <p className="mt-5 text-xs leading-relaxed text-white/70">Moments from the festival photo collection. Explore more memories and follow the official accounts for shared photos, videos and testimonies.</p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link href="/photos" className="rounded-xl bg-gold-400 px-4 py-3 text-sm font-bold text-navy-950">Explore festival moments →</Link>
+            <a href={LINKS.instagram} target="_blank" rel="noopener noreferrer" className="rounded-xl border border-white/20 px-4 py-3 text-sm font-bold text-white">Instagram ↗</a>
+            <a href={LINKS.facebook} target="_blank" rel="noopener noreferrer" className="rounded-xl border border-white/20 px-4 py-3 text-sm font-bold text-white">Facebook ↗</a>
+          </div>
+        </div>
+      </section>
 
       <section aria-labelledby="years-heading" className="mx-auto max-w-4xl px-5 py-16 sm:px-8">
         <p className="text-center text-[10px] font-black uppercase tracking-[0.24em] text-gold-300">Hamilton · Ontario · Canada</p>
