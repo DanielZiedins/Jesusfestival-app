@@ -50,6 +50,8 @@ Last major content review: 2026-11-04
 
 ## Next steps for new believers (evergreen guides)
 
+- Becoming a Christian: ${SITE.url}/blog/how-to-become-a-christian — the gospel in four points (God loves us; all have sinned; Jesus died and rose; turn and trust), the response Jesus asked for (repent and believe, Mark 1:15; Romans 10:9), what is not required, and a prayer of faith.
+- Resurrection evidence: ${SITE.url}/blog/did-jesus-really-rise-from-the-dead — widely accepted historical facts (crucifixion under Pilate, attested by Tacitus and Josephus; early creed in 1 Corinthians 15:3–8; empty tomb; transformed disciples; conversions of James and Paul) and the main alternative theories.
 - Baptism: ${SITE.url}/blog/how-to-get-baptized — baptism is not required for salvation (Ephesians 2:8–9) but was commanded by Jesus (Matthew 28:19); in Acts people were baptised the same day they believed; any Bible-believing Hamilton church will baptise a new believer, and Jesus Festival baptises people in Gage Park each September.
 - Prayer: ${SITE.url}/blog/how-to-pray-when-you-dont-know-what-to-say — prayer is honest talking to God; Jesus warned against empty repetition (Matthew 6:7–8); start with one sentence (thank you, help, sorry, I want to know You).
 - Bible reading: ${SITE.url}/blog/how-to-start-reading-the-bible — start with the Gospel of John, not Genesis; modern translations (NIV, ESV, CSB, NLT) are easiest; a 7-day first-week plan is included.

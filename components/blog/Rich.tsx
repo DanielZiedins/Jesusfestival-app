@@ -8,7 +8,8 @@ import { headingId, type Block } from "@/lib/blog";
 function inline(text: string, keyBase: string): React.ReactNode[] {
   const out: React.ReactNode[] = [];
   // Links first, then emphasis inside the remaining plain text.
-  const linkRe = /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g;
+  // http(s) and mailto: — the recap's email link once rendered as raw markdown.
+  const linkRe = /\[([^\]]+)\]\((https?:\/\/[^)]+|mailto:[^)]+)\)/g;
   let last = 0;
   let m: RegExpExecArray | null;
   let i = 0;
@@ -32,7 +33,7 @@ function inline(text: string, keyBase: string): React.ReactNode[] {
 
   while ((m = linkRe.exec(text))) {
     if (m.index > last) out.push(...emphasise(text.slice(last, m.index), `${keyBase}-t${i}`));
-    const external = !m[2].includes("jesusfestival.app");
+    const external = !m[2].startsWith("mailto:") && !m[2].includes("jesusfestival.app");
     out.push(
       <a
         key={`${keyBase}-l${i}`}

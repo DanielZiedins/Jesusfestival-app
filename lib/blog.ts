@@ -45,6 +45,179 @@ export type BlogPost = {
 export const BLOG_POSTS: BlogPost[] = [
 
   {
+    slug: "how-to-become-a-christian",
+    seoTitle: "How to Become a Christian: What It Means to Follow Jesus",
+    seoDescription:
+      "What a Christian actually is, what the gospel says in plain words, what you need (and don't need) to do, a prayer you can pray today, and what happens next.",
+    title: "How to Become a Christian: What It Means to Follow Jesus",
+    description:
+      "No membership form, no list of rules to master first, no need to clean yourself up. Here's what becoming a Christian actually means, the good news in plain words, a prayer you can pray right now, and what to do next.",
+    eyebrow: "Start here",
+    emoji: "✝️",
+    date: "2026-11-05",
+    readMins: 4,
+    body: [
+      { t: "p", text: "Maybe you were at Jesus Festival and something stirred. Maybe a friend has been different lately and you want to know why. Maybe you've just been wondering, quietly, whether any of it is true and what it would even mean to start. This is for you." },
+      { t: "p", text: "Becoming a Christian is not joining a club, adopting a set of rules or becoming religious. It's beginning a relationship with a person: Jesus, who is alive. Here's what that means." },
+
+      { t: "h2", text: "The good news in four sentences" },
+      {
+        t: "list",
+        items: [
+          "**God made you and loves you.** You were made by Him, for Him, on purpose. *For God so loved the world, that he gave his only begotten Son* (John 3:16).",
+          "**We have all turned away from Him.** The Bible calls it sin: going our own way. It breaks our relationship with God, and we can't fix it by trying harder. *For all have sinned, and come short of the glory of God* (Romans 3:23).",
+          "**Jesus came to bring us back.** God the Son became a man, lived the life we couldn't, died on the cross in our place, and rose from the dead on the third day. *Christ died for our sins… he was buried, and… he rose again the third day* (1 Corinthians 15:3–4).",
+          "**God invites you to turn and trust.** Forgiveness is a gift, not a reward. *By grace are ye saved through faith; and that not of yourselves: it is the gift of God* (Ephesians 2:8).",
+        ],
+      },
+
+      { t: "h2", text: "What you need to do" },
+      { t: "p", text: "Jesus summed up the response in one sentence in His first sermon: *repent ye, and believe the gospel* (Mark 1:15)." },
+      {
+        t: "list",
+        items: [
+          "**Repent** means turn around. Not \"become perfect\"; just turn from running your own life your own way, and toward God.",
+          "**Believe** means trust. Not just agree that Jesus existed, but put your weight on Him: trust that His death covers your sin and that He is Lord.",
+          "**Confess** means say it. *If thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved* (Romans 10:9).",
+        ],
+      },
+
+      { t: "h2", text: "What you don't need to do" },
+      {
+        t: "list",
+        items: [
+          "**Clean yourself up first.** Jesus said He came *not to call the righteous, but sinners to repentance* (Luke 5:32). You come as you are.",
+          "**Understand everything.** Nobody does. You need enough to trust Him, and you'll spend the rest of your life learning.",
+          "**Feel a certain way.** Some people cry; some feel nothing at all. Salvation rests on His promise, not your emotions.",
+          "**Say perfect words.** God is listening to your heart, not grading your grammar.",
+          "**Be in a church building.** You can do this right where you are.",
+        ],
+      },
+
+      { t: "h2", text: "A prayer you can pray today" },
+      { t: "p", text: "There's nothing magic about these exact words. They're just a way to say to God what's in your heart. If they're true for you, pray them out loud or quietly, wherever you are:" },
+      { t: "quote", text: "Jesus, I believe You are the Son of God, that You died on the cross for my sins and rose again. I've been running my own life, and I'm sorry. I turn from that now. Please forgive me. I trust You. Come and be my Lord, and help me follow You from today. Amen.", ref: "A prayer of faith" },
+      { t: "p", text: "If you just prayed that and meant it, the Bible's promise is plain: *For whosoever shall call upon the name of the Lord shall be saved* (Romans 10:13). And Jesus said there is joy in heaven over one sinner who repents (Luke 15:7). That's you. Welcome home." },
+
+      { t: "h2", text: "What to do next" },
+      {
+        t: "list",
+        items: [
+          "**Tell one person.** A Christian friend, or the person who invited you somewhere. Saying it out loud makes it real. You can also email [hello@jesusfestival.ca](mailto:hello@jesusfestival.ca) and someone will gladly pray with you and help you take the next step.",
+          "**Open the first-steps guide.** The private [I said yes to Jesus](https://www.jesusfestival.app/i-said-yes) guide in the app walks through seven simple steps, saved on your phone.",
+          "**Start reading about Jesus.** Begin with the Gospel of John. [Here's how](https://www.jesusfestival.app/blog/how-to-start-reading-the-bible).",
+          "**Talk to God every day.** In your own words. [This helps if you don't know what to say](https://www.jesusfestival.app/blog/how-to-pray-when-you-dont-know-what-to-say).",
+          "**Find a church.** You weren't meant to do this alone. [How to find one in Hamilton](https://www.jesusfestival.app/blog/how-to-find-a-church-in-hamilton).",
+          "**Get baptised.** It's the public yes that follows the private one. [What it involves](https://www.jesusfestival.app/blog/how-to-get-baptized).",
+        ],
+      },
+      { t: "p", text: "If you're not ready yet, that's alright too. Keep reading John, keep asking questions honestly ([doubt doesn't disqualify you](https://www.jesusfestival.app/blog/doubt-doesnt-disqualify-you)), and keep the door open. Jesus said, *him that cometh to me I will in no wise cast out* (John 6:37). That promise doesn't expire." },
+    ],
+    faqs: [
+      {
+        question: "How do I become a Christian?",
+        answer:
+          "Turn from running your own life, trust that Jesus died for your sins and rose again, and acknowledge Him as Lord (Mark 1:15; Romans 10:9). You can do this today by talking to God honestly in your own words. Then tell someone, start reading the Gospel of John, pray daily, join a church and be baptised.",
+      },
+      {
+        question: "What is the gospel in simple terms?",
+        answer:
+          "God made us and loves us; we have all turned away from Him (sin) and can't fix it ourselves; Jesus, God the Son, died in our place and rose from the dead; and God invites everyone to turn from their own way and trust Jesus, receiving forgiveness as a free gift (John 3:16; Romans 3:23; 1 Corinthians 15:3–4; Ephesians 2:8–9).",
+      },
+      {
+        question: "Do I have to be a good person to become a Christian?",
+        answer:
+          "No. Jesus said He came to call sinners, not the righteous (Luke 5:32). Salvation is a gift received by faith, not a reward for good behaviour (Ephesians 2:8–9). You come as you are, and God changes you over time.",
+      },
+      {
+        question: "Is there a specific prayer to become a Christian?",
+        answer:
+          "No exact words are required; God hears the heart. A simple prayer expresses belief that Jesus died for your sins and rose again, sorrow for running your own life, a request for forgiveness and a decision to trust and follow Him as Lord. Romans 10:13 promises that whoever calls on the name of the Lord will be saved.",
+      },
+    ],
+    related: ["IAmReborn.net", "LoveonHamilton.com", "SeekFirst.World"],
+  },
+
+  {
+    slug: "did-jesus-really-rise-from-the-dead",
+    seoTitle: "Did Jesus Really Rise From the Dead? The Evidence, Plainly",
+    seoDescription:
+      "The question everything hangs on. What historians broadly agree about Jesus' death and the empty tomb, the main alternative theories, and why the resurrection still stands.",
+    title: "Did Jesus Really Rise From the Dead? The Evidence, Plainly",
+    description:
+      "Paul said that if Jesus didn't rise, Christianity is worthless. So it's worth asking honestly: what do we actually know, what do historians broadly agree on, and how well do the alternative explanations hold up?",
+    eyebrow: "Honest questions",
+    emoji: "🌅",
+    date: "2026-11-05",
+    readMins: 5,
+    body: [
+      { t: "p", text: "Christianity makes one claim that everything else hangs on. Paul, writing about twenty-five years after the events, put it bluntly: *if Christ be not risen, then is our preaching vain, and your faith is also vain* (1 Corinthians 15:14). Not \"less inspiring.\" Worthless." },
+      { t: "p", text: "That's an unusually falsifiable thing for a religion to say. So it's fair to ask the question directly: did Jesus actually rise from the dead? Here's the case, plainly, including the objections." },
+
+      { t: "h2", text: "What almost everyone agrees on" },
+      { t: "p", text: "Historians who study the period, including many who are not Christians, broadly accept a short list of facts about Jesus. Arguments for the resurrection usually start here rather than with the Bible as Scripture:" },
+      {
+        t: "list",
+        items: [
+          "**Jesus was a real person who was crucified under Pontius Pilate.** The Roman historian Tacitus records it (Annals 15.44, written around AD 116), as does the Jewish historian Josephus. Crucifixion was public and Roman soldiers were good at it.",
+          "**His followers soon believed they had seen Him alive.** Not as a ghost or a vision of comfort, but bodily. They said so publicly, in the city where He'd been executed.",
+          "**Their belief transformed them.** Frightened men who had run away became people willing to suffer and, according to early tradition, die rather than deny it.",
+          "**Paul, a persecutor of Christians, became one.** He said he saw the risen Jesus (1 Corinthians 15:8; Galatians 1:13–16).",
+          "**James, Jesus' sceptical brother, became a leader of the church.** The Gospels say his brothers didn't believe in Him during His life (John 7:5). Something changed his mind.",
+        ],
+      },
+      { t: "p", text: "Very early evidence matters too. In 1 Corinthians 15:3–8 Paul passes on a summary he had *received*: that Christ died, was buried, rose the third day, and appeared to Peter, the twelve, more than five hundred people at once (*of whom the greater part remain unto this present*: go and ask them, in other words), to James, and to Paul. Many scholars date that summary to within a few years of the crucifixion." },
+
+      { t: "h2", text: "The empty tomb" },
+      { t: "p", text: "The disciples proclaimed the resurrection in Jerusalem, a short walk from the tomb. If the body had still been there, producing it would have ended the movement in an afternoon. The earliest opposing explanation, recorded in Matthew 28:11–15, wasn't \"the body is still in the tomb\" but \"the disciples stole it\", which quietly concedes the tomb was empty." },
+      { t: "p", text: "One more detail is often noted: all four Gospels say women were the first witnesses. In that culture a woman's testimony carried little legal weight. If you were inventing a story to persuade people, you would not make women your star witnesses. You'd only write it that way if it was what happened." },
+
+      { t: "h2", text: "The alternative explanations" },
+      {
+        t: "list",
+        items: [
+          "**\"The disciples stole the body.\"** Then they knowingly suffered for a lie they had invented. People die for things they believe are true; it's very hard to explain a group doing it for something they know is false.",
+          "**\"He didn't really die.\"** Roman crucifixion was designed to kill and soldiers confirmed death (John 19:33–34). A half-dead man, wounded and bleeding, wouldn't have convinced anyone he had conquered death.",
+          "**\"They went to the wrong tomb.\"** Then the authorities could have gone to the right one, and the body would still be there.",
+          "**\"They were hallucinating.\"** Hallucinations are individual experiences, not something hundreds of people share at once, and they don't empty tombs or explain the conversion of hostile sceptics like Paul and James.",
+          "**\"It's a legend that grew over time.\"** The core claim appears in material dated within years, not centuries, while eyewitnesses and opponents were still alive.",
+        ],
+      },
+      { t: "p", text: "Each alternative explains one piece and leaves others unexplained. The disciples' own explanation covers all of them at once: *He is not here: for he is risen, as he said* (Matthew 28:6)." },
+
+      { t: "h2", text: "What evidence can and can't do" },
+      { t: "p", text: "No historical argument forces belief; you can always choose another explanation if you've decided beforehand that miracles can't happen. What the evidence can do is show that faith in the resurrection isn't a blind leap. It's trust in the best explanation of what happened, held by billions of people across two thousand years, including many who set out to disprove it." },
+      { t: "p", text: "In the end, though, Christians don't believe in an argument. They believe in a person who is alive. Thomas, the original sceptic, didn't need a debate; he met Jesus and said, *My Lord and my God* (John 20:28). Jesus' reply was for everyone since: *blessed are they that have not seen, and yet have believed* (John 20:29)." },
+
+      { t: "h2", text: "If you're weighing it" },
+      { t: "p", text: "Read the accounts yourself. Start with Luke 24 and John 20–21, then 1 Corinthians 15. Bring your questions to God honestly; [doubt is not the opposite of faith](https://www.jesusfestival.app/blog/doubt-doesnt-disqualify-you). And if you become convinced that the tomb really was empty, the next step is simple: [here's what it means to follow Him](https://www.jesusfestival.app/blog/how-to-become-a-christian)." },
+    ],
+    faqs: [
+      {
+        question: "Is there historical evidence that Jesus existed?",
+        answer:
+          "Yes. Most historians, Christian and non-Christian, accept that Jesus was a real first-century Jewish teacher crucified under Pontius Pilate. Besides the New Testament, He is mentioned by the Roman historian Tacitus (Annals 15.44) and the Jewish historian Josephus.",
+      },
+      {
+        question: "What is the evidence for the resurrection of Jesus?",
+        answer:
+          "Key evidence includes the early creed in 1 Corinthians 15:3–8 listing eyewitnesses, the empty tomb in Jerusalem (conceded even by the earliest opposing story), women recorded as first witnesses, the sudden transformation of the disciples, and the conversions of the sceptic James and the persecutor Paul.",
+      },
+      {
+        question: "What are the alternative theories to the resurrection?",
+        answer:
+          "Common theories are that the disciples stole the body, that Jesus didn't really die, that people went to the wrong tomb, that witnesses hallucinated, or that the story is a later legend. Each explains part of the evidence but leaves other parts, such as the empty tomb, group appearances and hostile converts, unexplained.",
+      },
+      {
+        question: "Why does the resurrection matter?",
+        answer:
+          "Christianity stands or falls on it. Paul wrote that if Christ has not been raised, Christian faith is futile (1 Corinthians 15:14–17). If He did rise, it confirms His claims to be the Son of God and His promise of forgiveness and eternal life.",
+      },
+    ],
+    related: ["IAmReborn.net", "SeekFirst.World", "LoveonTheWorld.com"],
+  },
+
+  {
     slug: "advent-reading-plan",
     seoTitle: "Advent Reading Plan 2026: 25 Days to Christmas Through the Bible",
     seoDescription:
@@ -854,6 +1027,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
       { t: "h2", text: "The question under the questions" },
       { t: "p", text: "Most doubt eventually comes down to one thing: did Jesus rise from the dead? If He did, everything else holds, including the parts you don't understand yet. If He didn't, as Paul said, *your faith is vain* (1 Corinthians 15:17). So take that one question seriously. Read the accounts. Weigh the empty tomb, the witnesses who died rather than retract, the sudden transformation of terrified disciples. Then decide. Two thousand years of honest doubters have walked that road and come out worshipping." },
+      { t: "p", text: "If that's the question you're stuck on, [the evidence for the resurrection](https://www.jesusfestival.app/blog/did-jesus-really-rise-from-the-dead) is laid out plainly here, objections included." },
       { t: "p", text: "You can keep following Jesus with questions in your pocket. He never asked you to leave them at the door." },
     ],
     faqs: [
@@ -1885,6 +2059,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { t: "h2", text: "And if something does happen" },
       { t: "p", text: "Sometimes people come to a thing like this fully intending to stay on the edge, and something lands anyway. A line in a song. A stranger's story that sounds too much like their own. A sense — hard to describe later — of being known." },
       { t: "p", text: "If that happens to you, you don't have to announce it or do anything about it in the moment. You can drive home and think about it for a month. But there's a page in this app that just quietly explains what it would mean and what you might do next, with no sign-up and no email and nobody following up: [I said yes to Jesus](https://www.jesusfestival.app/i-said-yes)." },
+      { t: "p", text: "And if you want to know what saying yes would actually mean, [here it is in plain words](https://www.jesusfestival.app/blog/how-to-become-a-christian), with no pressure." },
       { t: "p", text: "And if nothing happens? You had a free day in a park with someone who loves you, and you ate well. That's not a wasted Saturday." },
       { t: "quote", text: "Taste and see that the Lord is good.", ref: "Psalm 34:8" },
       { t: "p", text: "That's an invitation to try, not a demand to conclude. Come and see for yourself. September 4–5, Gage Park, Hamilton. Bring a chair." },
@@ -2172,6 +2347,7 @@ export const BLOG_POSTS: BlogPost[] = [
     body: [
       { t: "p", text: "Maybe it happened at a festival, in a car, in a hospital corridor, or lying awake at 3am. However it happened — you said yes to Jesus, and now you're wondering what you actually just signed up for." },
       { t: "p", text: "Nobody hands you a manual. So here's an honest one." },
+      { t: "p", text: "If you're not sure whether you've actually said yes yet, start with [how to become a Christian](https://www.jesusfestival.app/blog/how-to-become-a-christian), then come back here." },
       { t: "h2", text: "What actually changed" },
       { t: "p", text: "Something real and permanent happened, and it happened entirely on God's side of the ledger. You were forgiven. You were adopted. The Holy Spirit moved in. None of that is dependent on how spiritual you feel tomorrow morning." },
       { t: "quote", text: "Therefore, if anyone is in Christ, the new creation has come: the old has gone, the new is here!", ref: "2 Corinthians 5:17" },
@@ -2341,6 +2517,7 @@ const MISSION_POSTS = new Set([
 
 /** The guides a brand-new believer needs first; also linked from /i-said-yes steps. */
 export const NEXT_STEP_POSTS = new Set([
+  "how-to-become-a-christian",
   "how-to-get-baptized",
   "how-to-pray-when-you-dont-know-what-to-say",
   "how-to-start-reading-the-bible",
@@ -2385,7 +2562,7 @@ const escHtml = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").re
 /** [label](url), **bold** and *italic* → escaped HTML (mirrors components/blog/Rich.tsx). */
 export function inlineHtml(text: string): string {
   return escHtml(text)
-    .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+|mailto:[^)]+)\)/g, '<a href="$2">$1</a>')
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     .replace(/\*([^*]+)\*/g, "<em>$1</em>");
 }

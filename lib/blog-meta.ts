@@ -4,6 +4,24 @@ export type BlogMeta = { slug: string; title: string; description: string; eyebr
 
 export const BLOG_META: BlogMeta[] = [
   {
+    "slug": "how-to-become-a-christian",
+    "title": "How to Become a Christian: What It Means to Follow Jesus",
+    "description": "No membership form, no list of rules to master first, no need to clean yourself up. Here's what becoming a Christian actually means, the good news in plain words, a prayer you can pray right now, and what to do next.",
+    "eyebrow": "Start here",
+    "emoji": "✝️",
+    "date": "2026-11-05",
+    "readMins": 3
+  },
+  {
+    "slug": "did-jesus-really-rise-from-the-dead",
+    "title": "Did Jesus Really Rise From the Dead? The Evidence, Plainly",
+    "description": "Paul said that if Jesus didn't rise, Christianity is worthless. So it's worth asking honestly: what do we actually know, what do historians broadly agree on, and how well do the alternative explanations hold up?",
+    "eyebrow": "Honest questions",
+    "emoji": "🌅",
+    "date": "2026-11-05",
+    "readMins": 3
+  },
+  {
     "slug": "advent-reading-plan",
     "title": "Advent Reading Plan: 25 Days to Christmas Through the Bible",
     "description": "Five minutes a day from December 1 to Christmas morning. Follow God's promise from the garden in Genesis, through the prophets, to a manger in Bethlehem, and arrive at Christmas knowing why it matters. With a one-verse version for families with little ones.",
@@ -208,7 +226,7 @@ export const BLOG_META: BlogMeta[] = [
     "eyebrow": "For the first-timer",
     "emoji": "🫂",
     "date": "2026-08-13",
-    "readMins": 4
+    "readMins": 5
   },
   {
     "slug": "how-to-pray-for-your-city",
@@ -303,4 +321,4 @@ export const BLOG_META: BlogMeta[] = [
 ];
 
 /** Slugs of the new-believer guides, in the order the first-steps screen lists them. */
-export const NEXT_STEP_SLUGS: string[] = ["how-to-get-baptized","how-to-pray-when-you-dont-know-what-to-say","how-to-start-reading-the-bible","how-to-find-a-church-in-hamilton","what-to-do-when-you-feel-far-from-god","doubt-doesnt-disqualify-you","how-to-tell-your-family-you-became-a-christian","what-happens-after-you-say-yes"];
+export const NEXT_STEP_SLUGS: string[] = ["how-to-become-a-christian","how-to-get-baptized","how-to-pray-when-you-dont-know-what-to-say","how-to-start-reading-the-bible","how-to-find-a-church-in-hamilton","what-to-do-when-you-feel-far-from-god","doubt-doesnt-disqualify-you","how-to-tell-your-family-you-became-a-christian","what-happens-after-you-say-yes"];
