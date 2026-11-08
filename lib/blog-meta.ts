@@ -4,6 +4,15 @@ export type BlogMeta = { slug: string; title: string; description: string; eyebr
 
 export const BLOG_META: BlogMeta[] = [
   {
+    "slug": "what-does-the-bible-say-about-heaven",
+    "title": "What Does the Bible Say About Heaven? (And What Happens When We Die)",
+    "description": "Clouds, harps and floating forever? That's mostly cartoons. Here's what Scripture actually says about death, heaven, the resurrection and the new creation, and the one question that matters most.",
+    "eyebrow": "Honest questions",
+    "emoji": "☁️",
+    "date": "2026-11-08",
+    "readMins": 3
+  },
+  {
     "slug": "how-to-become-a-christian",
     "title": "How to Become a Christian: What It Means to Follow Jesus",
     "description": "No membership form, no list of rules to master first, no need to clean yourself up. Here's what becoming a Christian actually means, the good news in plain words, a prayer you can pray right now, and what to do next.",

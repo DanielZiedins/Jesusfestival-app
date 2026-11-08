@@ -45,6 +45,85 @@ export type BlogPost = {
 export const BLOG_POSTS: BlogPost[] = [
 
   {
+    slug: "what-does-the-bible-say-about-heaven",
+    seoTitle: "What Does the Bible Say About Heaven? What Happens When We Die",
+    seoDescription:
+      "Is heaven real, what is it like, and who goes there? What the Bible actually says about death, heaven and the new creation, and what's just tradition.",
+    title: "What Does the Bible Say About Heaven? (And What Happens When We Die)",
+    description:
+      "Clouds, harps and floating forever? That's mostly cartoons. Here's what Scripture actually says about death, heaven, the resurrection and the new creation, and the one question that matters most.",
+    eyebrow: "Honest questions",
+    emoji: "☁️",
+    date: "2026-11-08",
+    readMins: 4,
+    body: [
+      { t: "p", text: "Most of us picked up our picture of heaven from cartoons and greeting cards: white robes, harps, clouds, and an eternity that sounds, frankly, a bit boring. The Bible's picture is very different, much more solid, and far more hopeful. If you've recently lost someone, or you've simply started wondering what happens next, this is what Scripture actually says." },
+
+      { t: "h2", text: "Is heaven real?" },
+      { t: "p", text: "Jesus spoke about it plainly and personally. The night before He died, He told His friends: *In my Father's house are many mansions: if it were not so, I would have told you. I go to prepare a place for you* (John 14:2). He didn't describe it as a metaphor or a feeling. He described it as a place, being made ready, by Him, for people He loves." },
+      { t: "p", text: "And Christians believe it because of what happened three days later. If Jesus really rose from the dead, then death is not the end, and He knows what lies beyond it. ([The evidence for the resurrection](https://www.jesusfestival.app/blog/did-jesus-really-rise-from-the-dead) is worth reading if you're weighing that.)" },
+
+      { t: "h2", text: "What happens when a Christian dies" },
+      { t: "p", text: "The Bible says believers go immediately into the presence of Jesus. To the thief dying beside Him, Jesus said, *To day shalt thou be with me in paradise* (Luke 23:43). Not someday. Today. Paul, facing his own death, wrote that to be *absent from the body* is to be *present with the Lord* (2 Corinthians 5:8), and that dying is *far better* (Philippians 1:23)." },
+      { t: "p", text: "That's the first chapter, not the last. Scripture describes something even greater still to come." },
+
+      { t: "h2", text: "The bigger hope: resurrection and a new creation" },
+      { t: "p", text: "The Christian hope isn't ultimately floating away from the world. It's God renewing it. The Bible ends not with souls drifting upward but with heaven coming down: *I saw a new heaven and a new earth… And I John saw the holy city, new Jerusalem, coming down from God out of heaven* (Revelation 21:1–2)." },
+      { t: "p", text: "And we won't be ghosts. Just as Jesus rose with a real body that could be touched and could eat breakfast on a beach (John 21), believers will be raised with real, renewed bodies: *it is sown in corruption; it is raised in incorruption* (1 Corinthians 15:42). Heaven is not less real than this world. It's more real: this world, finally put right." },
+
+      { t: "h2", text: "What will it be like?" },
+      {
+        t: "list",
+        items: [
+          "**God will be there, close.** *Behold, the tabernacle of God is with men, and he will dwell with them* (Revelation 21:3). Everything else flows from this.",
+          "**No more grief.** *God shall wipe away all tears from their eyes; and there shall be no more death, neither sorrow, nor crying, neither shall there be any more pain* (Revelation 21:4).",
+          "**Every nation together.** *A great multitude, which no man could number, of all nations, and kindreds, and people, and tongues* (Revelation 7:9).",
+          "**Joy, not boredom.** *In thy presence is fulness of joy; at thy right hand there are pleasures for evermore* (Psalm 16:11). The Bible pictures it as a wedding feast (Revelation 19:9), not a waiting room.",
+          "**More than we can imagine.** *Eye hath not seen, nor ear heard… the things which God hath prepared for them that love him* (1 Corinthians 2:9). Every description is an understatement.",
+        ],
+      },
+
+      { t: "h2", text: "What's tradition, not Scripture" },
+      { t: "p", text: "Harps on clouds, people becoming angels, St. Peter checking names at a gate, an endless church service. Some of these borrow a detail from Revelation's imagery; none of them is the Bible's picture. In particular, people don't become angels when they die. Angels are a different kind of being; redeemed people remain fully, gloriously human." },
+
+      { t: "h2", text: "Who goes to heaven?" },
+      { t: "p", text: "This is the question that matters most, and the Bible's answer is both narrow and astonishingly wide. Narrow, because it isn't earned by being good enough; nobody is (Romans 3:23). Jesus said, *I am the way, the truth, and the life: no man cometh unto the Father, but by me* (John 14:6). Wide, because the door is open to absolutely anyone: *whosoever believeth in him should not perish, but have everlasting life* (John 3:16). Whosoever. The thief on the cross got in on his last afternoon." },
+      { t: "p", text: "So the question isn't whether you've been good. It's whether you've trusted Jesus. If you're not sure, [here's what it means to become a Christian](https://www.jesusfestival.app/blog/how-to-become-a-christian), in plain words." },
+
+      { t: "h2", text: "If you're grieving" },
+      { t: "p", text: "Christians still grieve; Jesus wept at His friend's grave. But we *sorrow not, even as others which have no hope* (1 Thessalonians 4:13). If the person you lost trusted Jesus, the Bible's promise is that they are with Him now, and that you will see them again, in bodies that will never be sick again, in a world that will never break again. If you're supporting someone else through loss, [what to say to someone who is grieving](https://www.jesusfestival.app/blog/what-to-say-to-someone-who-is-grieving) may help." },
+    ],
+    faqs: [
+      {
+        question: "Is heaven real according to the Bible?",
+        answer:
+          "Yes. Jesus spoke of heaven as a real place He was preparing for His followers (John 14:2–3). The Bible describes believers going to be with Christ at death (Luke 23:43; 2 Corinthians 5:8) and ultimately a resurrection into a new heaven and new earth (Revelation 21:1–4).",
+      },
+      {
+        question: "What happens to a Christian when they die?",
+        answer:
+          "The Bible teaches that a believer immediately goes to be with Jesus: \"absent from the body, present with the Lord\" (2 Corinthians 5:8), as Jesus promised the thief on the cross (Luke 23:43). At the end of history believers will be raised with renewed, physical bodies (1 Corinthians 15:42–44).",
+      },
+      {
+        question: "What will heaven be like?",
+        answer:
+          "Scripture describes God dwelling with His people, no more death, tears, sorrow or pain (Revelation 21:3–4), people from every nation together (Revelation 7:9), fullness of joy (Psalm 16:11) and a renewed creation, pictured as a wedding feast rather than an endless cloudy waiting room.",
+      },
+      {
+        question: "Do people become angels when they die?",
+        answer:
+          "No. The Bible presents angels as a distinct kind of created being. Redeemed people remain human and will be raised with glorified bodies, like Jesus' resurrection body (1 Corinthians 15; Philippians 3:21).",
+      },
+      {
+        question: "Who goes to heaven?",
+        answer:
+          "According to the Bible, heaven is not earned by good works, since all have sinned (Romans 3:23). Jesus said He is the way to the Father (John 14:6), and the invitation is open to anyone who believes in Him (John 3:16; Romans 10:13).",
+      },
+    ],
+    related: ["IAmReborn.net", "SeekFirst.World", "LoveonHamilton.com"],
+  },
+
+  {
     slug: "how-to-become-a-christian",
     seoTitle: "How to Become a Christian: What It Means to Follow Jesus",
     seoDescription:
@@ -789,6 +868,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { t: "quote", text: "Blessed be God… the Father of mercies, and the God of all comfort; Who comforteth us in all our tribulation, that we may be able to comfort them which are in any trouble, by the comfort wherewith we ourselves are comforted of God.", ref: "2 Corinthians 1:3–4 (KJV)" },
       { t: "p", text: "Comfort isn't an argument. It's something you receive from God and then pass on, mostly through presence. The Bible's instruction is simply *weep with them that weep* (Romans 12:15). Not fix them. Not cheer them up. Weep with them." },
       { t: "p", text: "And Christians do grieve with hope: *that ye sorrow not, even as others which have no hope* (1 Thessalonians 4:13). The hope is real, and it's the resurrection. But notice the verse says sorrow *not as those without hope*. It does not say *don't sorrow*. Let them grieve. The hope will be there when they can hear it, and they'll usually ask." },
+      { t: "p", text: "If they, or you, are wondering what the Bible actually says about where their person is now, [this is what Scripture says about heaven](https://www.jesusfestival.app/blog/what-does-the-bible-say-about-heaven), in plain words." },
 
       { t: "h2", text: "If they ask you about God" },
       { t: "p", text: "Sometimes, often weeks later, the grieving person asks: *Where was God?* or *Do you think she's with Him?* Don't rush. Answer honestly and briefly, out of your own faith, not a script: \"I don't understand why this happened. I do believe God is close to the brokenhearted, and I've found that to be true.\" (That's Psalm 34:18.) Offer to pray with them, right there, if they'd like. Most people say yes. If you're not sure how, [this is how to pray when you don't know what to say](https://www.jesusfestival.app/blog/how-to-pray-when-you-dont-know-what-to-say)." },
